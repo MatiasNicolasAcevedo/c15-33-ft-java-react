@@ -1,121 +1,247 @@
+<h1 align="center">🏡 Clonair · Clon de Airbnb</h1>
 
-<h1 align="center">🏡 Equipo c15-33-ft-java-react | No Country 🌎</h1>
+<p align="center">Plataforma para publicar, buscar y reservar alojamientos · Spring Boot + React · proyecto de equipo de No Country (c15-33-ft-java-react)</p>
 
-<br>
+<p align="center">
+  <img alt="Estado" src="https://img.shields.io/badge/estado-en%20retoma-orange">
+  <img alt="Java" src="https://img.shields.io/badge/Java-17-blue">
+  <img alt="Spring Boot" src="https://img.shields.io/badge/Spring%20Boot-3.2-6DB33F">
+  <img alt="React" src="https://img.shields.io/badge/React-18-61DAFB">
+</p>
+<!-- Badges de CI y cobertura: se agregan en T-010 (docs/tasks/T-010-ci-workflow.md). -->
 
-<h2> 🏰 Clon de Airbnb 🚀 </h2>
+<p align="center">
+  <img src="https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/assets/109118183/4fe0900f-c101-48cb-b7bd-3a4f9ced4aa2" alt="Pantalla principal del clon de Airbnb" width="686">
+</p>
 
- <img src="https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/assets/109118183/4fe0900f-c101-48cb-b7bd-3a4f9ced4aa2" alt="mini" width="686" height="400">
+## Qué es
 
-<br>
-<br>
+Clon de Airbnb desarrollado en 5 semanas (dic-2023) durante la simulación laboral de [No Country](https://www.nocountry.tech/). Hoy se está **retomando** para dejarlo como pieza de portfolio: tests, CI, contenedores y documentación. Estado y plan en [`docs/STATUS.md`](docs/STATUS.md) y [`docs/ROADMAP.md`](docs/ROADMAP.md).
 
-🔹 Este proyecto es un clon de Airbnb desarrollado durante 5 semanas en el marco de la simulación laboral,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;con el objetivo de brindar una plataforma robusta para la gestión de propiedades y reservas.
+**Features**
 
-🔹 El proyecto proporciona un sistema completo de autenticación y autorización de usuarios <br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mediante la generación y validación de tokens JWT, asegurando que solo los usuarios autenticados y <br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;autorizados puedan acceder a ciertos recursos de la aplicación. <br>
+- ✅ Registro e inicio de sesión con JWT (roles USER y OWNER).
+- ✅ Alta de propiedades con imágenes, servicios y ubicación (OWNER).
+- 🚧 Búsqueda y filtros por categoría/subcategoría (UI lista; el front todavía no habla con el back local: T-004).
+- 🚧 Detalle de propiedad e imágenes (T-012).
+- 🚧 Reservas y "mis viajes" (solo UI; sin back).
+- 🚧 Panel de administración (UI; permisos a corregir: T-003).
 
-<br>
+🎬 [Video demostración](https://youtu.be/30RxYVl8nh8)
 
-<h2> 🚩 Funcionalidades Principales ⚜ </h2>
+## Stack
 
-🔹 Registro de Usuarios: Permite a los usuarios crear cuentas USER Y OWNER para acceder a la plataforma. <br>
+| Parte | Tecnologías |
+|---|---|
+| Back (`backend/`) | Java 17 · Spring Boot 3.2.0 (Web, Data JPA, Security) · JWT (jjwt 0.11.5) · MySQL 8.4 · springdoc-openapi 2.2 · Maven Wrapper |
+| Front (`frontend/airbnb_clone/`) | React 18.2 · Vite 5 · React Router 6 · Tailwind CSS 3 + Material Tailwind · JavaScript |
+| Infra local | Docker Compose (MySQL + back + front con nginx) |
 
-🔹 Autenticación y Login: Proceso seguro de inicio de sesión para acceder a funcionalidades exclusivas. <br>
+Arquitectura, modelo de datos y endpoints: [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md).
 
-🔹 Búsqueda de Propiedades: Facilita la búsqueda de propiedades utilizando filtros y criterios específicos. <br>
+## Levantar el proyecto en local
 
-🔹 Detalles de Servicios: Muestra información detallada sobre los servicios disponibles en cada propiedad. <br>
+### Prerrequisitos
 
-🔹 Reserva: Se permite realizar una reserva de la propiedad de interés. <br>
+| Herramienta | Versión | Cómo comprobarla | Cómo instalarla |
+|---|---|---|---|
+| Git | cualquiera reciente | `git --version` | https://git-scm.com/downloads |
+| Docker + Compose v2 | Docker 24+ | `docker compose version` | https://docs.docker.com/get-docker/ |
+| JDK (solo opción B) | 17 (también compila con 21) | `java -version` | SDKMAN: `sdk env install` en `backend/` (usa `backend/.sdkmanrc`) |
+| Node.js (solo opción B) | 24 LTS (verificado con 22 y 24) | `node -v` | nvm: `nvm install` en `frontend/airbnb_clone/` (usa `.nvmrc`) |
 
-🔹 Carga de Propiedades: Los usuarios registrados como dueños pueden cargar propiedades con detalles, <br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;servicios ofrecidos e imágenes para brindar una descripción detallada.
+> Para la **opción A** alcanza con Git y Docker. ⚠️ `sdk env install` y `nvm install` no se pudieron probar en la auditoría (sin SDKMAN/nvm en el entorno).
 
-<br>
+### Configurar variables de entorno
 
-<h2> 🎬 Video Demostración ▶ </h2>
+Cada parte tiene un archivo de ejemplo commiteado. **Los valores sirven tal cual para local**: copialos sin editar. Los archivos reales están en `.gitignore`.
 
-<a href="https://youtu.be/30RxYVl8nh8" target="_blank" rel="noopener">
-  <img src="https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/assets/109118183/38039881-034e-4d19-9db3-5ee24f25fe8f" alt="mini" width="460" height="280" >
-</a>
+| Archivo de ejemplo | Copiar a | Quién lo lee | Qué contiene |
+|---|---|---|---|
+| `backend/src/main/resources/env.properties.example` | `backend/src/main/resources/env.properties` | Spring Boot (`spring.config.import`, desde el classpath) | puerto del back y conexión a MySQL |
+| `frontend/airbnb_clone/.env.example` | `frontend/airbnb_clone/.env` | Vite (`VITE_*`) | URL del back (⚠️ hoy el código no la lee: T-004) |
 
-<br>
-<br>
+Desde la raíz del repo:
 
-<h2> 👨‍💻 Tecnologías Utilizadas 🔮 </h2>
+```bash
+cp backend/src/main/resources/env.properties.example backend/src/main/resources/env.properties
+```
 
-🔹 Frontend: JavaScript | React | React Router | Tailwind CSS | Vite | Vercel
+```bash
+cp frontend/airbnb_clone/.env.example frontend/airbnb_clone/.env
+```
 
-🔹 Backend: Spring Boot | Spring Security | MySQL | JWT | Docker | Render
+> ⚠️ El archivo del back va en `src/main/resources/`: en `backend/env.properties` **no** se lee.
+> **Producción:** definir en el proveedor las variables `APP_PORT`, `DB_PORT`, `DB_NAME`, `DB_USER`, `DB_PASS` (y `SPRING_DATASOURCE_URL` si la DB no está en `localhost`). Detalle de cada variable en [`docs/SETUP.md`](docs/SETUP.md).
 
-<br>
+### Opción A · Todo en contenedores (la más simple)
 
-<h2> 💗 Equipo ✨ </h2>
-<dd>
-    <a href="https://www.linkedin.com/in/mateo-jeremias-pg/" target="blank"><img align="center" src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" alt="logoLinkedin" width="100" height="25" target="blank"/></a>  
-    Mateo Jeremías Pinto | Team Lead 👨‍💻 
-</dd> <br>
-<dd>
-<dd>
-    <a href="https://www.linkedin.com/in/tomas-augusto-bran-70745616a/" target="blank"><img align="center" src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" alt="logoLinkedin" width="100" height="25" target="blank"/></a>  
-    Tomas Augusto Bran | Frontend 👨‍💻 
-</dd> <br>
-<dd>
-    <a href="https://www.linkedin.com/in/leandro-rossi-a964a020/" target="blank"><img align="center" src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" alt="logoLinkedin" width="100" height="25" target="blank"/></a>  
-    Leandro Rossi | Frontend 👨‍💻 
-</dd> <br>
-<dd>
-    <a href="https://www.linkedin.com/in/brayan-sanchez-2355b1199/" target="blank"><img align="center" src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" alt="logoLinkedin" width="100" height="25" target="blank"/></a>  
-    Brayan Sanchez | Frontend 👨‍💻 
-</dd> <br>
-<dd>
-    <a href="https://www.linkedin.com/in/franciscoziegler/" target="blank"><img align="center" src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" alt="logoLinkedin" width="100" height="25" target="blank"/></a>  
-    Francisco Ziegler | Backend 👨‍💻 
-</dd> <br>
-<dd>
-    <a href="https://www.linkedin.com/in/matias-nicolas-acevedo/" target="blank"><img align="center" src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" alt="logoLinkedin" width="100" height="25" target="blank"/></a>  
-    Matias Nicolas Acevedo | Backend 👨‍💻 
-</dd> 
+1. Clonar y entrar al repo:
 
-<br>
+```bash
+git clone https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react.git
+```
 
-<h2> 🖼 Capturas de pantalla 📷 </h2>
+```bash
+cd c15-33-ft-java-react
+```
 
-<img src="https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/assets/109118183/b8602f63-7b27-4697-ab6d-c07477f5e91d" alt="mini" width="675" height="350">
+2. Copiar los `.example` (bloques de arriba).
+3. Construir y levantar DB + back + front (la primera vez tarda unos minutos):
 
-<br>
+```bash
+docker compose --profile app up -d --build --wait
+```
 
-<img src="https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/assets/109118183/c7588f6e-0940-49a9-b3e3-6aba0d2144e9" alt="mini" width="675" height="350">
+**Resultado esperado:** `Container clonair-db-1 Healthy`, `Container clonair-server-1 Healthy`, `Container clonair-client-1 Healthy`.
 
-<br>
+4. Crear el usuario demo y comprobar el login:
 
-<img src="https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/assets/109118183/f1cd07c0-1c35-4cc1-9829-545179a942f3" alt="mini" width="675" height="330">
+```bash
+./scripts/seed-demo.sh
+```
 
-<br>
-<br>
+**Resultado esperado:** `✅ login demo OK · usuario: demo-owner@clonair.local · contraseña: Demo1234!`
 
-<h2> 📊 Diagrama de Entidad Relacional 📈 </h2>
+5. Abrir: front http://localhost:8081 · API http://localhost:8080 · Swagger http://localhost:8080/swagger-ui
+   ⚠️ Hoy falla: el front muestra la pantalla de error porque llama a la API de producción (ver [T-004](docs/tasks/T-004-frontend-api-base-url.md)).
+6. Apagar y borrar los datos:
 
-<img src="https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/assets/109118183/fcf1236a-bc8b-42c3-9ddf-b5189bab03d1" alt="mini" width="528" height="424">
+```bash
+docker compose --profile app down -v
+```
 
-<br>
-<br>
+### Opción B · Desarrollo (DB en contenedor; back y front locales con hot reload)
 
-<h2> 📋 Swagger | Endpoints 📑 </h2>
+**Inicio rápido:** `./scripts/dev.sh` hace todos los pasos de abajo (copia los `.example` si faltan, levanta la DB, el back, el usuario demo y el front) y `Ctrl+C` corta todo. `./scripts/dev.sh --down` apaga la DB.
 
-<img src="https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/assets/109118183/672b7335-90c5-4f6d-bfeb-e72175e23f88" alt="mini" width="680" height="830">
+Paso a paso (cada comando en su bloque, desde la carpeta indicada):
 
-<br>
-<br>
+**1. Clonar** (ver opción A, pasos 1–2) y copiar los `.example`.
 
-<h2> 🎆 Agradecimientos 🎇 </h2>
+**2. Fijar versiones** (opcional si ya tenés JDK 17+ y Node 22+). Desde `backend/`: `sdk env install` · desde `frontend/airbnb_clone/`: `nvm install`.
 
-<a href="https://www.nocountry.tech/" target="_blank" rel="noopener">
-  <img src="https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/assets/109118183/78225588-8306-4cf4-a56e-1e3edd293068" alt="mini" width="343" height="193">
-</a>
+**3. Levantar la DB** (desde la raíz):
 
+```bash
+docker compose up -d --wait
+```
 
+**Resultado esperado:** `Container clonair-db-1 Healthy`.
 
+**4. Levantar el back** (en una terminal nueva, desde `backend/`):
+
+```bash
+./mvnw spring-boot:run
+```
+
+**Resultado esperado:** el log termina en `Started BackApplication in … seconds`. Chequeo (desde otra terminal):
+
+```bash
+curl -s -o /dev/null -w '%{http_code}\n' http://localhost:8080/v3/api-docs
+```
+
+→ `200` (todavía no hay endpoint de health: T-008).
+
+**5. Crear el usuario demo** (desde la raíz):
+
+```bash
+./scripts/seed-demo.sh
+```
+
+**Resultado esperado:** `✅ login demo OK`.
+
+**6. Levantar el front** (en una terminal nueva, desde `frontend/airbnb_clone/`):
+
+```bash
+npm ci
+```
+
+```bash
+npm run dev
+```
+
+**Resultado esperado:** `VITE … ready` y `Local: http://localhost:5173/`. Abrir esa URL.
+⚠️ Hoy falla: el front llama a la API de producción en lugar de `http://localhost:8080` y la home muestra la pantalla de error ([T-004](docs/tasks/T-004-frontend-api-base-url.md), [T-011](docs/tasks/T-011-home-error-state.md)).
+
+**7. Verificar todo** (desde la raíz):
+
+```bash
+./scripts/verify.sh
+```
+
+**Resultado esperado hoy:** `server: ✅ build ✅ tests (1)` y `client: ❌ lint (93 problems) ✅ build` → ⚠️ el lint falla hasta [T-005](docs/tasks/T-005-frontend-lint.md).
+
+**8. Apagar y limpiar:** `Ctrl+C` en las terminales del back y del front, y desde la raíz:
+
+```bash
+docker compose down -v
+```
+
+### Windows
+
+- Usar **Git Bash o WSL** para los `.sh`. Antes de clonar: `git config --global core.autocrlf input` (los scripts necesitan finales de línea LF).
+- En `cmd`/PowerShell el back se levanta con `mvnw.cmd spring-boot:run` y los archivos se copian con `copy backend\src\main\resources\env.properties.example backend\src\main\resources\env.properties`.
+- Docker Desktop con WSL2.
+
+### Problemas frecuentes
+
+| Síntoma | Causa | Solución |
+|---|---|---|
+| `Failed to parse the host:port pair 'localhost:${DB_PORT}'` | `env.properties` no está en el classpath | copiarlo a `backend/src/main/resources/env.properties` (no a `backend/`) |
+| `Access denied for user 'clonair'` | `env.properties` viejo con otra contraseña, o volumen creado con otras credenciales | volver a copiar el `.example` y `docker compose down -v` |
+| `Bind for 0.0.0.0:3306 failed: port is already allocated` | hay otro MySQL local | apagarlo, o `DB_PORT=3307 docker compose up -d --wait` y `DB_PORT=3307` en `env.properties` |
+| `./mvnw: Permission denied` | checkout viejo sin bit de ejecución | `chmod +x backend/mvnw` o `sh mvnw …` |
+| `invalid target release: 17` | JDK menor a 17 | instalar JDK 17 o 21 (ver Prerrequisitos) |
+| El front muestra "Error code: 404" en la home | el front llama a la API de producción (CORS) | pendiente T-004 |
+| 403 en cualquier error de la API | no hay manejo global de errores | pendiente T-008 |
+| `seed-demo.sh` → `register → 000` | el back todavía no arrancó | esperar el `200` del paso 4 |
+
+_Verificado el 2026-10-10 en Ubuntu 24.04 con Java 21.0.12 (y 17.0.20 en contenedor), Node 22.22 (y 24 en contenedor), Docker 29.8.2 y Compose v5.6._
+
+## Tests y calidad
+
+`./scripts/verify.sh` es el gate único (build + lint + tests de ambas partes; `--server` o `--client` para una sola). Estrategia, cobertura y cómo correr un solo test: [`docs/TESTING.md`](docs/TESTING.md). Hoy: 1 test en el back (cobertura 16,8 %), ninguno en el front.
+
+## Cómo se trabaja
+
+Flujo de ramas, commits y PRs en [`CONTRIBUTING.md`](CONTRIBUTING.md). El repo está preparado para desarrollo asistido por agentes ([`AGENTS.md`](AGENTS.md)): 🤖 el agente gratuito de IntelliJ toma tareas chicas y bien especificadas, 🧠 un modelo de frontera (Claude Code) lo complejo, y 👤 el dueño decide y mergea.
+
+## Estado y roadmap
+
+[`docs/STATUS.md`](docs/STATUS.md) (dónde estamos y qué sigue) · [`docs/BACKLOG.md`](docs/BACKLOG.md) (tablero) · [`docs/ROADMAP.md`](docs/ROADMAP.md) (fases) · [auditoría inicial](docs/audits/2026-10-10-initial.md).
+
+## Capturas y diagramas
+
+<img src="https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/assets/109118183/b8602f63-7b27-4697-ab6d-c07477f5e91d" alt="Listado de propiedades" width="675">
+
+<img src="https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/assets/109118183/c7588f6e-0940-49a9-b3e3-6aba0d2144e9" alt="Detalle de una propiedad" width="675">
+
+<img src="https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/assets/109118183/f1cd07c0-1c35-4cc1-9829-545179a942f3" alt="Formulario de carga de propiedad" width="675">
+
+**Diagrama entidad-relación**
+
+<img src="https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/assets/109118183/fcf1236a-bc8b-42c3-9ddf-b5189bab03d1" alt="Diagrama entidad-relación" width="528">
+
+**Swagger (endpoints)**
+
+<img src="https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/assets/109118183/672b7335-90c5-4f6d-bfeb-e72175e23f88" alt="Endpoints en Swagger" width="680">
+
+<!-- Capturas nuevas (desktop y mobile) en docs/images/ cuando el front vuelva a funcionar en local (Backlog P3). -->
+
+## Equipo
+
+| Persona | Rol | LinkedIn |
+|---|---|---|
+| Mateo Jeremías Pinto | Team Lead | [perfil](https://www.linkedin.com/in/mateo-jeremias-pg/) |
+| Tomas Augusto Bran | Frontend | [perfil](https://www.linkedin.com/in/tomas-augusto-bran-70745616a/) |
+| Leandro Rossi | Frontend | [perfil](https://www.linkedin.com/in/leandro-rossi-a964a020/) |
+| Brayan Sanchez | Frontend | [perfil](https://www.linkedin.com/in/brayan-sanchez-2355b1199/) |
+| Francisco Ziegler | Backend | [perfil](https://www.linkedin.com/in/franciscoziegler/) |
+| Matias Nicolas Acevedo | Backend · mantenedor de la retoma | [perfil](https://www.linkedin.com/in/matias-nicolas-acevedo/) |
+
+Gracias a [No Country](https://www.nocountry.tech/) por la simulación.
+
+## Licencia
+
+Todavía sin licencia (decisión pendiente del dueño: ver [`docs/STATUS.md`](docs/STATUS.md)). Hasta entonces, todos los derechos reservados a sus autores.
