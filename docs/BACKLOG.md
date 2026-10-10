@@ -6,7 +6,7 @@
 > Próximo ID libre: T-016
 
 ## 🔨 En curso / en revisión (con su PR)
-- T-000 · P0 · L · 🧠 frontera · Relevar el proyecto y montar el harness para agentes → [tarea](tasks/T-000-agent-bootstrap.md) · PR [#2](https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/pull/2)
+- (vacío)
 
 ## ✅ Listas (cola en orden de ejecución, máx. 10)
 - T-001 · P0 · S · 🧠 frontera · Sacar el secreto y la expiración del JWT a configuración → [tarea](tasks/T-001-jwt-secret-config.md)
@@ -58,4 +58,4 @@
 - 🧠 Evaluar mover a `client/` + `server/` ([ADR 0004](adr/0004-keep-folder-layout.md))
 
 ## 🏁 Hecho reciente (máx. 10; las más viejas → archive/tasks/)
-- (vacío)
+- T-000 · P0 · L · 🧠 frontera · Relevar el proyecto y montar el harness para agentes → [tarea](tasks/T-000-agent-bootstrap.md) · PR [#2](https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/pull/2) (en revisión del 👤)

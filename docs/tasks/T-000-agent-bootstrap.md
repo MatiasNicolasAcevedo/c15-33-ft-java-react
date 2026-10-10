@@ -1,5 +1,5 @@
 # T-000 · Relevar el proyecto y montar el harness para agentes
-- Estado: En revisión · Prioridad: P0 · Esfuerzo: L · Ejecuta: 🧠 modelo de frontera
+- Estado: Hecha (PR en revisión del dueño) · Prioridad: P0 · Esfuerzo: L · Ejecuta: 🧠 modelo de frontera
 - Fase: P0 Estabilizar
 - Rama: `chore/T-000-agent-bootstrap` · Depende de: — · Spec/ADR: [0001](../adr/0001-testcontainers-mysql.md)–[0004](../adr/0004-keep-folder-layout.md)
 - Revisa: 👤 dueño (o 🧠 sesión nueva / sub-agente si el dueño lo pide)
