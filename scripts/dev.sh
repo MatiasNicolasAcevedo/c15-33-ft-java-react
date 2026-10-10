@@ -37,6 +37,7 @@ start_group() { # dir log cmd...
 
 # 2. DB
 echo "▶ DB (docker compose up -d --wait db)"
+load_server_env  # exporta DB_PORT para que compose mapee el mismo puerto que lee el back
 db_up >"$LOGS/db.log" 2>&1 || { echo "❌ la DB no levantó: ver .dev-logs/db.log"; exit 1; }
 
 # 3. Back
@@ -56,7 +57,7 @@ cat <<MSG
 ✅ Entorno listo
    Front:   http://localhost:5173   (⚠️ hoy llama a la API de producción: T-004)
    Back:    http://localhost:8080   · Swagger: http://localhost:8080/swagger-ui
-   DB:      localhost:3306 (clonair / clonair_local_only)
+   DB:      localhost:${DB_PORT} (clonair / clonair_local_only)
    Usuario demo: demo-owner@clonair.local / Demo1234!
    Ctrl+C para cortar back y front.
 MSG

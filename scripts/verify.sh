@@ -23,11 +23,12 @@ verify_server() {
   local log="$LOGS/server.log" s="server:" jdk
   jdk=$(java -version 2>&1 | grep -oE 'version "[0-9]+' | grep -oE '[0-9]+$' || echo "?")
   echo "▶ server: DB + ./mvnw clean verify (log: .verify-logs/server.log)"
+  # Primero la config: así compose usa el mismo DB_PORT que el back.
+  load_server_env
+  echo "  config: ${SERVER_ENV_USED#"$ROOT"/}"
   if ! db_up >"$LOGS/db.log" 2>&1; then
     SUMMARY+=("server: ❌ DB no levantó (ver .verify-logs/db.log)"); FAIL=1; return
   fi
-  load_server_env
-  echo "  config: ${SERVER_ENV_USED#"$ROOT"/}"
   (cd "$SERVER_DIR" && ./mvnw -B clean verify) >"$log" 2>&1
   local rc=$?
   local tests
