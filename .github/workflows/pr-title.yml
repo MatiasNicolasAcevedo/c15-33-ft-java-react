@@ -1,0 +1,31 @@
+# Valida que el título del PR siga Conventional Commits (se mergea con squash: el título es el commit).
+# Usa pull_request_target: corre recién cuando este archivo está en la rama por defecto (development).
+name: PR title
+
+on:
+  pull_request_target:
+    types: [opened, edited, synchronize, reopened]
+
+permissions:
+  pull-requests: read
+
+jobs:
+  conventional-title:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: amannn/action-semantic-pull-request@v6
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          types: |
+            feat
+            fix
+            test
+            refactor
+            chore
+            docs
+            ci
+            build
+            perf
+            revert
+          requireScope: false

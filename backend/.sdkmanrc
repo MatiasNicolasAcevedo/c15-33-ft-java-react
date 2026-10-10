@@ -1,0 +1,4 @@
+# JDK del proyecto (pom.xml: java.version=17). Activar con: sdk env install
+# ⚠️ Identificador no verificado contra SDKMAN (bloqueado en el entorno de la auditoría).
+# Si no existe: sdk list java | grep -E '17\..*-tem' y usá el más nuevo.
+java=17.0.16-tem

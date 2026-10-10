@@ -1,0 +1,7 @@
+target/
+.idea/
+*.iml
+.vscode/
+# Configuración real: nunca dentro de la imagen
+**/env.properties
+**/.env

@@ -1,0 +1,38 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(./scripts/verify.sh)",
+      "Bash(./scripts/verify.sh:*)",
+      "Bash(./scripts/seed-demo.sh:*)",
+      "Bash(./mvnw test:*)",
+      "Bash(./mvnw -q test:*)",
+      "Bash(./mvnw -B clean verify)",
+      "Bash(npm ci)",
+      "Bash(npm run build)",
+      "Bash(npm run lint)",
+      "Bash(npm test:*)",
+      "Bash(npm run test:*)",
+      "Bash(docker compose up -d --wait)",
+      "Bash(docker compose ps:*)",
+      "Bash(git status:*)",
+      "Bash(git diff:*)",
+      "Bash(git log:*)",
+      "Bash(git show:*)",
+      "Bash(git ls-remote:*)",
+      "Bash(gh pr view:*)",
+      "Bash(gh pr list:*)",
+      "Bash(gh pr diff:*)",
+      "Bash(gh pr checks:*)"
+    ],
+    "deny": [
+      "Bash(git push --force:*)",
+      "Bash(git push -f:*)",
+      "Bash(git push --force-with-lease:*)",
+      "Bash(git push origin development:*)",
+      "Bash(git push origin main:*)",
+      "Read(./backend/src/main/resources/env.properties)",
+      "Read(./frontend/airbnb_clone/.env)",
+      "Read(**/.env)"
+    ]
+  }
+}

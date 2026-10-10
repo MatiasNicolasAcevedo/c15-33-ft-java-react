@@ -1,0 +1,8 @@
+# Logs del harness
+.verify-logs/
+.dev-logs/
+# Configuración real local (se commitean solo los .example)
+.env
+**/env.properties
+# IDE
+.idea/
