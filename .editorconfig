@@ -1,0 +1,30 @@
+# Refleja el estilo actual del repo (no el ideal). Ver docs/audits/2026-10-10-initial.md → Calidad.
+root = true
+
+[*]
+charset = utf-8
+end_of_line = lf
+insert_final_newline = true
+trim_trailing_whitespace = true
+
+[*.java]
+indent_style = space
+indent_size = 4
+
+# pom.xml y los archivos generados por Spring Initializr usan tabs
+[pom.xml]
+indent_style = tab
+
+[*.{js,jsx,cjs,json,css,html,yml,yaml}]
+indent_style = space
+indent_size = 2
+
+[*.{sh,properties,example}]
+indent_style = space
+indent_size = 2
+
+[*.md]
+trim_trailing_whitespace = false
+
+[*.{cmd,bat}]
+end_of_line = crlf
