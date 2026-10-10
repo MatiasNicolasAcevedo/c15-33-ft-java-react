@@ -1,0 +1,65 @@
+# Stack local de desarrollo. Credenciales SOLO para local (iguales a los .example).
+#   Solo la base:      docker compose up -d --wait
+#   Todo (DB+back+front): docker compose --profile app up -d --build --wait
+#   Apagar y borrar datos: docker compose --profile app down -v
+name: clonair
+
+services:
+  db:
+    image: mysql:8.4
+    environment:
+      MYSQL_ROOT_PASSWORD: root_local_only
+      MYSQL_DATABASE: clonair
+      MYSQL_USER: clonair
+      MYSQL_PASSWORD: clonair_local_only
+    ports:
+      - "${DB_PORT:-3306}:3306"
+    volumes:
+      - db-data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "127.0.0.1", "-uclonair", "-pclonair_local_only", "--silent"]
+      interval: 5s
+      timeout: 5s
+      retries: 30
+      start_period: 20s
+
+  server:
+    profiles: ["app"]
+    build: ./backend
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      # Mismas variables que backend/src/main/resources/env.properties.example
+      APP_PORT: "8080"
+      DB_PORT: "3306"
+      DB_NAME: clonair
+      DB_USER: clonair
+      DB_PASS: clonair_local_only
+      # application.properties fija el host en localhost: dentro de la red de compose se sobrescribe la URL.
+      SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/clonair?createDatabaseIfNotExist=true&allowPublicKeyRetrieval=true&useSSL=false&serverTimezone=UTC
+    ports:
+      - "8080:8080"
+    healthcheck:
+      # No hay Actuator todavía (T-008): /v3/api-docs es público y responde 200 cuando la app está lista.
+      test: ["CMD", "curl", "-fs", "-o", "/dev/null", "http://localhost:8080/v3/api-docs"]
+      interval: 5s
+      timeout: 5s
+      retries: 30
+      start_period: 30s
+
+  client:
+    profiles: ["app"]
+    build:
+      context: ./frontend/airbnb_clone
+      args:
+        # Igual que frontend/airbnb_clone/.env.example. Hoy el código no lo lee (T-004).
+        VITE_API_URL: http://localhost:8080
+    depends_on:
+      server:
+        condition: service_healthy
+    ports:
+      - "8081:80"
+
+volumes:
+  db-data:
