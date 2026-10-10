@@ -35,7 +35,7 @@ Sin H2: la DB real es MySQL y los tests usan la misma vía Testcontainers ([ADR 
 |---|---|
 | Unitario back | `JwtServiceTest` (lo crea T-001) |
 | `@WebMvcTest` | el que crea T-002 (`AuthControllerTest`) |
-| Integración back | el que crea T-002 (`AuthFlowIT`) |
+| Integración back | el que crea T-002 (`AuthFlowIntegrationTest`) |
 | Componente front | el que crea T-009 |
 | E2E | el que crea T-013 |
 
