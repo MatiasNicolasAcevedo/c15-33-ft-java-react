@@ -2,7 +2,7 @@
 _Actualizado: 2026-10-10 · por: 🧠 modelo de frontera (Claude Code) · sesión: auditoría (T-000)_
 
 ## En una línea
-Bootstrap en curso: **PC1** alcanzado (relevamiento y verificación). Falta el harness completo.
+Bootstrap en curso: **PC2** alcanzado (auditoría completa). Falta el harness (Fase 3).
 
 ## Salud
 | Check | Estado | Nota |
@@ -17,5 +17,5 @@ Bootstrap en curso: **PC1** alcanzado (relevamiento y verificación). Falta el h
 
 ## Foco
 - PR abierto: T-000 `chore/T-000-agent-bootstrap` (draft)
-- **Próximo paso:** T-000 · seguir el bootstrap desde el PC1 · **ejecuta: 🧠 modelo de frontera**
-- **Qué hacer:** abrí una sesión de Claude Code y escribí: «Seguí el bootstrap desde el PC1: leé `docs/STATUS.md` y `docs/audits/2026-10-10-initial.md`»
+- **Próximo paso:** T-000 · seguir el bootstrap desde el PC2 · **ejecuta: 🧠 modelo de frontera**
+- **Qué hacer:** abrí una sesión de Claude Code y escribí: «Seguí el bootstrap desde el PC2: leé `docs/STATUS.md` y `docs/audits/2026-10-10-initial.md`»
