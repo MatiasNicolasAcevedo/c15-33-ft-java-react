@@ -32,6 +32,7 @@
 - 🤖 Default `8080` para `APP_PORT` (`application.properties:2`) (X-2)
 - 🤖 Caracterización: un test por flujo crítico sin cubrir (auditoría → Testing, flujos 6–8) — refinar tras T-009/T-013
 - 🧠 Revisar `useEffect` sin dependencias que llama a un setter (`Forms.jsx:199`) y los `eslint-disable` de T-005
+- 🧠 `.claude/settings.json`: negar también `git push origin HEAD:development` y variantes con refspec (revisión del PR #2)
 
 **P1 Actualizar** ([ADR 0002](adr/0002-migration-path.md))
 - 🧠 Spring Boot 3.2 → 3.5.x · 🧠 Java 17 → 21 · 🧠 Boot 3.5 → 4.x con OpenRewrite · 🧠 jjwt 0.11 → 0.13 (propiedad `jjwt.version`)
@@ -58,4 +59,4 @@
 - 🧠 Evaluar mover a `client/` + `server/` ([ADR 0004](adr/0004-keep-folder-layout.md))
 
 ## 🏁 Hecho reciente (máx. 10; las más viejas → archive/tasks/)
-- T-000 · P0 · L · 🧠 frontera · Relevar el proyecto y montar el harness para agentes → [tarea](tasks/T-000-agent-bootstrap.md) · PR [#2](https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/pull/2) (en revisión del 👤)
+- T-000 · P0 · L · 🧠 frontera · Relevar el proyecto y montar el harness para agentes → [tarea](tasks/T-000-agent-bootstrap.md) · PR [#2](https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/pull/2) (aprobado por sub-agente 🧠 y mergeado con squash)

@@ -20,9 +20,9 @@ Harness montado y verificado desde un clon limpio (compose, `.example`, `verify.
 P0 Estabilizar · 0/15 tareas · ver [ROADMAP](ROADMAP.md)
 
 ## Foco
-- PR abierto (máx. 1): [#2](https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/pull/2) T-000 (esperando revisión y merge del 👤)
-- **Próximo paso:** revisar y mergear el PR #2 · **ejecuta: 👤 dueño** → después T-001 · Sacar el secreto y la expiración del JWT a configuración · **ejecuta: 🧠 modelo de frontera**
-- **Qué hacer:** GitHub → PR #2 → revisar y **Squash and merge**. Después abrí una sesión nueva de Claude Code y escribí: «Seguí `docs/agents/implementer.md`»
+- PR abierto (máx. 1): ninguno (T-000 mergeado: [#2](https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/pull/2))
+- **Próximo paso:** T-001 · Sacar el secreto y la expiración del JWT a configuración · **ejecuta: 🧠 modelo de frontera**
+- **Qué hacer:** abrí una sesión nueva de Claude Code y escribí: «Seguí `docs/agents/implementer.md`»
 - **Después:** T-002 (🧠) → T-003 (🧠) → T-004 (🤖) _(en T-004 se cambia al 🤖 hasta T-007; vuelve el 🧠 en T-008)_
 
 ## Decisiones pendientes del dueño
@@ -31,8 +31,9 @@ P0 Estabilizar · 0/15 tareas · ver [ROADMAP](ROADMAP.md)
 - ¿Licencia? (proyecto de 6 personas; sugerido MIT tras consultarlo) (Backlog P3)
 - ¿El rol ADMIN se asigna solo por base/seed? (T-003 asume que sí)
 - ¿Reservas en el alcance del portfolio (P2) o se quita la UI?
-- Después del merge de T-000, crear el tag de la auditoría:
+- Crear el tag de la auditoría (T-000 ya está en `development`):
   `git switch development && git pull && git tag audit/2026-10-10 && git push origin audit/2026-10-10`
 
 ## Últimas sesiones (máx. 5; las anteriores → archive/log/AAAA-MM.md)
-- 2026-10-10 · 🧠 Claude Code · auditó y montó el harness (T-000) · PR #2 en revisión
+- 2026-10-10 · 🧠 Claude Code (sub-agente) · revisó T-000 · APROBADO, sin bloqueantes; nits 1 y 4 corregidos en el PR · PR #2 mergeado
+- 2026-10-10 · 🧠 Claude Code · auditó y montó el harness (T-000) · PR #2

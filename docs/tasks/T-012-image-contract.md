@@ -1,5 +1,5 @@
 # T-012 · Alinear el contrato de imágenes entre front y back
-- Estado: Bloqueada (por T-003 y T-004) · Prioridad: P0 · Esfuerzo: M · Ejecuta: 🧠 modelo de frontera
+- Estado: Bloqueada (por T-003, T-004 y T-009) · Prioridad: P0 · Esfuerzo: M · Ejecuta: 🧠 modelo de frontera
 - Fase: P0 Estabilizar
 - Rama: `fix/T-012-image-contract` (crearla desde `development` actualizado antes del primer commit) · Depende de: T-003, T-004, T-009 · Spec/ADR: —
 - Revisa: 🧠 modelo de frontera (sesión nueva) + 👤

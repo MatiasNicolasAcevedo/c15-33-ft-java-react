@@ -1,5 +1,5 @@
 # T-000 · Relevar el proyecto y montar el harness para agentes
-- Estado: Hecha (PR en revisión del dueño) · Prioridad: P0 · Esfuerzo: L · Ejecuta: 🧠 modelo de frontera
+- Estado: Hecha · Prioridad: P0 · Esfuerzo: L · Ejecuta: 🧠 modelo de frontera
 - Fase: P0 Estabilizar
 - Rama: `chore/T-000-agent-bootstrap` · Depende de: — · Spec/ADR: [0001](../adr/0001-testcontainers-mysql.md)–[0004](../adr/0004-keep-folder-layout.md)
 - Revisa: 👤 dueño (o 🧠 sesión nueva / sub-agente si el dueño lo pide)
@@ -22,4 +22,4 @@ Auditoría inicial + harness (compose, `.example`, `verify.sh`, `dev.sh`) + docs
 - [x] Tablero con 10 tareas en cola y protocolos de agentes
 
 ## Resultado
-- PR: [#2](https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/pull/2) · Qué cambió: ver descripción del PR · Tests agregados: ninguno (modo A) · Pendientes → T-001…T-015
+- PR: [#2](https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/pull/2) (APROBADO por sub-agente revisor, squash merge a pedido del dueño) · Qué cambió: ver descripción del PR · Tests agregados: ninguno (modo A) · Pendientes → T-001…T-015
