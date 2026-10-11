@@ -1,10 +1,10 @@
 # Tablero
 
-> **▶ SIGUIENTE: implementar [T-002 · Montar la infraestructura de tests del back](tasks/T-002-backend-test-infra.md)**
+> **▶ SIGUIENTE: revisar [PR #5](https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/pull/5) · [T-002](tasks/T-002-backend-test-infra.md)**
 >
-> **Ejecuta: 🧠 FRONTERA — GPT-6.1 Sol o Claude Opus 5.5 · sesión nueva.**
+> **Revisa: 🧠 FRONTERA — GPT-6.1 Sol · sesión nueva; después merge: 👤 dueño.**
 >
-> Prompt: «Leé `AGENTS.md` y seguí `docs/agents/implementer.md` para T-002». Rama: `test/T-002-backend-test-infra`; PR draft pendiente; T-001 aprobada y mergeada en [PR #4](https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/pull/4) (`63e5bc2`). Ver [STATUS](STATUS.md).
+> Prompt: «Leé `AGENTS.md` y seguí `docs/agents/reviewer.md` para el PR #5». Rama: `test/T-002-backend-test-infra`; listo para revisión. T-003 espera el merge. Ver [STATUS](STATUS.md).
 
 **Leyenda:** 🤖 **Lite = Junie Lite (Free) en Air** · 🧠 **Frontera = p. ej. GPT-6.1 Sol / Claude Opus 5.5** · 👤 **Dueño**. Las categorías indican quién implementa; el campo **Revisa** de cada tarea puede pedir otro ejecutor.
 
@@ -15,7 +15,7 @@
 > Próximo ID libre: T-017
 
 ## 🔨 En curso / en revisión (con su PR)
-- T-002 · P0 · M · 🧠 frontera · Montar la infraestructura de tests del back → [tarea](tasks/T-002-backend-test-infra.md) · en implementación, PR pendiente
+- (sin implementación en curso; revisión pendiente de T-002 → "Hecho reciente" y próxima acción)
 
 ## ✅ Listas (cola en orden de ejecución, máx. 10)
 - T-003 · P0 · M · 🧠 frontera · Corregir la autorización: roles en el registro, usuarios solo ADMIN, catálogo público y CORS → [tarea](tasks/T-003-authorization-rules.md)
@@ -36,6 +36,7 @@
 
 ## 📥 Backlog (sin refinar)
 **P0 Estabilizar**
+- 🧠 Diagnosticar demora de cierre de Surefire/Testcontainers en Windows: T-002 pasa 31 tests y limpia los contenedores, pero Surefire termina el fork tras 30 s de espera al cerrar la JVM.
 - 🧠 Fijar LF para scripts Bash y `backend/mvnw` con `.gitattributes`: en Windows el checkout CRLF rompe el build Docker con `./mvnw: not found` (detectado en T-001; normalizado solo localmente para validar).
 - 🤖 Default `8080` para `APP_PORT` (`application.properties:2`) (X-2)
 - 🤖 Caracterización: un test por flujo crítico sin cubrir (auditoría → Testing, flujos 6–8) — refinar tras T-009/T-013
@@ -67,6 +68,7 @@
 - 🧠 Evaluar mover a `client/` + `server/` ([ADR 0004](adr/0004-keep-folder-layout.md))
 
 ## 🏁 Hecho reciente (máx. 10; las más viejas → archive/tasks/)
+- T-002 · P0 · M · 🧠 frontera · Montar la infraestructura de tests del back → [tarea](tasks/T-002-backend-test-infra.md) · [PR #5](https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/pull/5) · **implementación terminada, revisión y merge pendientes**; 31 tests OK sin config/compose, cobertura 40,80 % con umbral 40 %, `--server` verde; gate completo sin regresiones (93 problemas de lint de T-005).
 - T-001 · P0 · S · 🧠 frontera · Sacar el secreto y la expiración del JWT a configuración → [tarea](tasks/T-001-jwt-secret-config.md) · [PR #4](https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/pull/4) · **APROBADA en [revisión independiente](https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/pull/4#issuecomment-6104606817) y mergeada por el dueño con squash `63e5bc2`**; server 25 tests OK, cobertura 23,86 %, compose y login demo OK, sin regresiones en el gate.
 - T-016 · P0 · S · 🧠 frontera · Aclarar ejecutores, compactación y traspasos → [tarea](tasks/T-016-agent-models-context.md) · [PR #3](https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/pull/3) (revisión independiente APROBADA, mergeado por el dueño con squash `47debed`; mantenimiento documental fuera de las 15 tareas de P0).
 - T-000 · P0 · L · 🧠 frontera · Relevar el proyecto y montar el harness para agentes → [tarea](tasks/T-000-agent-bootstrap.md) · PR [#2](https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/pull/2) (aprobado por sub-agente 🧠 y mergeado con squash)
