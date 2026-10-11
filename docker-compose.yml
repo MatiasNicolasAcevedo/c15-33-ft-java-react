@@ -36,6 +36,10 @@ services:
       DB_NAME: clonair
       DB_USER: clonair
       DB_PASS: clonair_local_only
+      # Clave pública SOLO local, igual al .example; nunca usar en producción.
+      JWT_SECRET: "${JWT_SECRET:-yF6mYVMULz9vvbHwuDp+jwGm3dFffAdaT9Nd1zZLi/M=}"
+      # Milisegundos: 24 h por defecto.
+      JWT_EXPIRATION: "${JWT_EXPIRATION:-86400000}"
       # application.properties fija el host en localhost: dentro de la red de compose se sobrescribe la URL.
       SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/clonair?createDatabaseIfNotExist=true&allowPublicKeyRetrieval=true&useSSL=false&serverTimezone=UTC
     ports:

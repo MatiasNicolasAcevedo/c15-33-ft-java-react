@@ -3,15 +3,14 @@ package com.clonair.back.security.jwt;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
-import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
-import javax.crypto.SecretKey;
-import java.nio.charset.StandardCharsets;
 import java.security.Key;
+import java.util.Base64;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -24,8 +23,26 @@ import java.util.function.Function;
 @Service
 public class JwtService {
 
-    // La clave secreta utilizada para firmar los tokens JWT.
-    private static final String SECRET_KEY="586E3272357538782F413F4428472B4B6250655368566B597033733676397924";
+    private final Key signingKey;
+    private final long expirationMillis;
+
+    public JwtService(@Value("${jwt.secret}") String secret,
+                      @Value("${jwt.expiration}") long expirationMillis) {
+        if (!StringUtils.hasText(secret)) {
+            throw new IllegalArgumentException("JWT_SECRET is required and must be Base64 encoded");
+        }
+        byte[] keyBytes;
+        try {
+            keyBytes = Base64.getDecoder().decode(secret);
+        } catch (IllegalArgumentException exception) {
+            throw new IllegalArgumentException("JWT_SECRET must be valid Base64");
+        }
+        if (keyBytes.length < 32) {
+            throw new IllegalArgumentException("JWT_SECRET must decode to at least 32 bytes (256 bits)");
+        }
+        this.signingKey = Keys.hmacShaKeyFor(keyBytes);
+        this.expirationMillis = expirationMillis;
+    }
 
     /**
      * Método que recibe un objeto UserDetails y devuelve un token JWT.
@@ -40,24 +57,15 @@ public class JwtService {
      * Toma un mapa de Claims adicionales (opcional) y los detalles del usuario (UserDetails).
      * */
     private String getToken(Map<String,Object> extraClaims, UserDetails user) {
+        long issuedAt = System.currentTimeMillis();
         return Jwts
                 .builder()
                 .setClaims(extraClaims) // Establece los Claims adicionales proporcionados.
                 .setSubject(user.getUsername()) // Establece el sujeto del token como el nombre de usuario del objeto UserDetails.
-                .setIssuedAt(new Date(System.currentTimeMillis())) // Establece la fecha de emisión del token como el momento actual.
-                .setExpiration(new Date(System.currentTimeMillis()+ 1000L *1000*60*60*24)) // Establece la fecha de expiración del token como un día después de su emisión.
-                .signWith(getKey(), SignatureAlgorithm.HS256) // Firma el token con el algoritmo de hash HS256 utilizando la clave secreta.
+                .setIssuedAt(new Date(issuedAt)) // Establece la fecha de emisión del token como el momento actual.
+                .setExpiration(new Date(issuedAt + expirationMillis)) // Duración configurable en milisegundos; por defecto 24 horas.
+                .signWith(signingKey, SignatureAlgorithm.HS256) // Firma el token con el algoritmo de hash HS256 utilizando la clave secreta.
                 .compact(); // Devuelve el token JWT compactado como una cadena.
-    }
-
-    /**
-     * Este método se utiliza para obtener la clave para firmar el token.
-     * Toma la clave secreta en formato Base64, la decodifica
-     * y la convierte en un objeto Key que se utiliza para firmar el token con HMAC-SHA.
-     * */
-    private Key getKey() {
-        byte[] keyBytes = Decoders.BASE64.decode(SECRET_KEY);
-        return Keys.hmacShaKeyFor(keyBytes);
     }
 
     /**
@@ -102,7 +110,7 @@ public class JwtService {
         if (StringUtils.hasText(token)) {
             return Jwts
                     .parserBuilder()
-                    .setSigningKey(getKey())
+                    .setSigningKey(signingKey)
                     .build()
                     .parseClaimsJws(token)
                     .getBody();
@@ -140,12 +148,4 @@ public class JwtService {
         return getExpiration(token).before(new Date());
     }
 
-    public static String getUserIdFromToken(String token) {
-        if (token != null && !token.isEmpty()) {
-            SecretKey key = Keys.hmacShaKeyFor(SECRET_KEY.getBytes());
-            Claims claims = Jwts.parserBuilder().setSigningKey(key).build().parseClaimsJws(token).getBody();
-            return claims.getSubject(); // Devuelve el ID del usuario como Subject del token
-        }
-        return null;
-    }
 }

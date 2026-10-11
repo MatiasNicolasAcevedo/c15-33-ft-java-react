@@ -58,7 +58,7 @@ Cada parte tiene un archivo de ejemplo commiteado. **Los valores sirven tal cual
 
 | Archivo de ejemplo | Copiar a | Quién lo lee | Qué contiene |
 |---|---|---|---|
-| `backend/src/main/resources/env.properties.example` | `backend/src/main/resources/env.properties` | Spring Boot (`spring.config.import`, desde el classpath) | puerto del back y conexión a MySQL |
+| `backend/src/main/resources/env.properties.example` | `backend/src/main/resources/env.properties` | Spring Boot (`spring.config.import`, desde el classpath) | puerto del back, conexión a MySQL y JWT (clave solo local, duración 24 h) |
 | `frontend/airbnb_clone/.env.example` | `frontend/airbnb_clone/.env` | Vite (`VITE_*`) | URL del back (⚠️ hoy el código no la lee: T-004) |
 
 Desde la raíz del repo:
@@ -72,7 +72,8 @@ cp frontend/airbnb_clone/.env.example frontend/airbnb_clone/.env
 ```
 
 > ⚠️ El archivo del back va en `src/main/resources/`: en `backend/env.properties` **no** se lee.
-> **Producción:** definir en el proveedor las variables `APP_PORT`, `DB_PORT`, `DB_NAME`, `DB_USER`, `DB_PASS` (y `SPRING_DATASOURCE_URL` si la DB no está en `localhost`). Detalle de cada variable en [`docs/SETUP.md`](docs/SETUP.md).
+> Si ya tenías un `env.properties`, agregá las variables JWT del `.example` actualizado. El back requiere `JWT_SECRET` en Base64 con al menos 32 bytes decodificados; `JWT_EXPIRATION` es opcional y vale `86400000` ms (24 h) por defecto.
+> **Producción:** definir en el proveedor las variables `APP_PORT`, `DB_PORT`, `DB_NAME`, `DB_USER`, `DB_PASS`, `JWT_SECRET` (clave propia generada con `openssl rand -base64 32`, nunca la pública del `.example`) y, opcionalmente, `JWT_EXPIRATION` (y `SPRING_DATASOURCE_URL` si la DB no está en `localhost`). Detalle de cada variable en [`docs/SETUP.md`](docs/SETUP.md).
 
 ### Opción A · Todo en contenedores (la más simple)
 
