@@ -1,5 +1,5 @@
 # T-001 · Sacar el secreto y la expiración del JWT a configuración
-- Estado: Lista · Prioridad: P0 · Esfuerzo: S · Ejecuta: 🧠 modelo de frontera
+- Estado: En curso · Prioridad: P0 · Esfuerzo: S · Ejecuta: 🧠 modelo de frontera
 - Fase: P0 Estabilizar
 - Rama: `fix/T-001-jwt-secret-config` (crearla desde `development` actualizado antes del primer commit) · Depende de: — · Spec/ADR: [0003](../adr/0003-jwt-stateless-auth.md)
 - Revisa: 🧠 modelo de frontera (sesión nueva) + 👤
@@ -39,7 +39,9 @@ El back firma con `JWT_SECRET` y expira según `JWT_EXPIRATION` (default 24 h); 
 - [ ] Un token tiene `exp - iat` = 86400 s (decodificar el payload)
 
 ## Notas de implementación
-- Hecho: … · Pendiente: … · Próximo paso: …
+- Hecho: protocolo leído; development actualizado (`47debed`); sin PR abiertos ni rama remota de T-001. Rama `fix/T-001-jwt-secret-config`; PR pendiente.
+- Línea de base: `./scripts/verify.sh` → server build + 1 test OK; client build OK, mismos 93 problemas de lint (T-005); JDK 21 / Node 24.19.0.
+- Pendiente: test de regresión, configuración y validación del secreto, unitarios y verificaciones de aceptación. Próximo paso: abrir el PR draft y reproducir la expiración incorrecta con `JwtServiceTest`.
 
 ## Resultado
 - PR: #N · Qué cambió: … · Tests agregados: … · Pendientes → T-015 (👤 rotar en prod)
