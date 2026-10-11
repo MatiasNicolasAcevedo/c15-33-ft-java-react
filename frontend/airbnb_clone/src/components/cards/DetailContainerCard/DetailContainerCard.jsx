@@ -1,7 +1,7 @@
 import { useLocation, useParams } from "react-router-dom";
 import { Container } from "../../shared";
 import { DetailCardHead, DetailCardInfo, DetailCardReservation } from "../";
-import { API_URL } from "../../services/config";
+import { API_URL } from "../../../services/config";
 
 export const DetailContainerCard = () => {
 

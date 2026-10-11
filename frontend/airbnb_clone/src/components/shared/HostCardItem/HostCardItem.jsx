@@ -1,4 +1,4 @@
-import { API_URL } from "../../services/config";
+import { API_URL } from "../../../services/config";
 
 export const HostCardItem = ({title, description, location, value, images}) => {
   return (
