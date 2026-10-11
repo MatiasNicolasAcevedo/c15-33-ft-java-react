@@ -24,7 +24,7 @@ Harness montado y verificado desde un clon limpio (compose, `.example`, `verify.
 ## Salud
 | Check | Estado | Nota |
 |---|---|---|
-| verify.sh | ❌ | server ✅ build ✅ tests (1) · client ❌ lint (93 problemas) ✅ build → T-005 |
+| verify.sh | ❌ | revalidado en T-016 el 2026-10-10: server ✅ build ✅ tests (1) · client ❌ lint (los mismos 93 problemas) ✅ build → T-005 |
 | CI en development | sin CI | → T-010 (bloqueada por T-005) |
 | Levantar en local (README) | ⚠️ verificado 2026-10-10 | contenedores ✅ y desarrollo ✅ desde clon limpio; el front llama a producción (T-004) y la home se rompe (T-011) |
 | Cobertura back / front | 16,8 % / sin tests | sin umbral todavía (T-002, T-009) |
@@ -50,6 +50,6 @@ P0 Estabilizar · 0/15 tareas · ver [ROADMAP](ROADMAP.md)
   `git switch development && git pull && git tag audit/2026-10-10 && git push origin audit/2026-10-10`
 
 ## Últimas sesiones (máx. 5; las anteriores → archive/log/AAAA-MM.md)
-- 2026-10-10 · 🧠 Codex / GPT-6.1 Sol · T-016: publica las correcciones de ejecutores, compactación/retoma, próxima acción y contexto de nube en `docs/T-016-agent-models-context`; T-001 sigue sin iniciar.
+- 2026-10-10 · 🧠 Codex / GPT-6.1 Sol · T-016 implementada y publicada en [PR #3](https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/pull/3), pendiente de revisión; checks documentales OK; gate sin diferencias respecto de la línea de base (server OK, client build OK, 93 problemas de lint pendientes de T-005); T-001 sigue sin iniciar.
 - 2026-10-10 · 🧠 Claude Code (sub-agente) · revisó T-000 · APROBADO, sin bloqueantes; nits 1 y 4 corregidos en el PR · PR #2 mergeado
 - 2026-10-10 · 🧠 Claude Code · auditó y montó el harness (T-000) · PR #2

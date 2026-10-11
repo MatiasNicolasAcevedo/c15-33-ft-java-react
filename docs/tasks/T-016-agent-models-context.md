@@ -1,6 +1,6 @@
 # T-016 · Aclarar ejecutores, compactación y traspasos de agentes
 
-- Estado: En curso · Prioridad: P0 · Esfuerzo: S · Ejecuta: 🧠 modelo de frontera
+- Estado: En revisión · Prioridad: P0 · Esfuerzo: S · Ejecuta: 🧠 modelo de frontera
 - Fase: Mantenimiento documental (fuera de las 15 tareas de P0 Estabilizar)
 - Rama: `docs/T-016-agent-models-context` · Depende de: — · Spec/ADR: —
 - Revisa: 🧠 modelo de frontera (sesión nueva) + 👤 dueño
@@ -47,17 +47,17 @@ Las instrucciones, tareas y tablero distinguen Lite y frontera, permiten retomar
 - [x] Compactación y chat nuevo tienen checkpoint y prompt de retoma de la misma tarea, rama y PR. Evidencia: `AGENTS.md` §5 e `implementer.md` pasos 2 y 7.
 - [x] STATUS y BACKLOG muestran revisión/merge del PR documental antes de implementar T-001, con ejecutor y prompt. Evidencia: tarjeta superior en ambos archivos y PR #3.
 - [x] La excepción de rama en nube exige autorización explícita y evidencia; las instrucciones Docker de nube se distinguen de Windows local. Evidencia: SETUP → Prompt de inicio, CONTRIBUTING §1 y `reviewer.md` paso 3.
-- [ ] Formato y enlaces locales verificados; diff limitado a Markdown; estado de verify documentado.
+- [x] Formato y enlaces locales verificados; diff limitado a Markdown; estado de verify documentado. Evidencia: 17 archivos Markdown, `git diff --check origin/development` OK, enlaces locales OK; gate con server build/test OK y client build OK, lint con los mismos 93 problemas previos (T-005).
 
 ## Notas de implementación
 
-- Hecho: revisión y correcciones documentales; rama exacta antes del primer commit; base sin divergencia; PR #3 draft publicado; validación de formato, enlaces locales, nomenclatura y alcance OK (17 archivos Markdown).
-- Pendiente: resumen del gate completo, publicar las correcciones finales y traspasar a revisión.
-- Ejecutor/modelo: 🧠 Codex / GPT-6.1 Sol · Rama: `docs/T-016-agent-models-context` · PR: [#3](https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/pull/3) · Commit inicial: `b1edcba`.
+- Hecho: correcciones publicadas; rama exacta antes del primer commit; base sin divergencia; PR #3; validación de formato, enlaces locales, nomenclatura y alcance OK (17 archivos Markdown); gate completo ejecutado y resultado registrado.
+- Pendiente: revisión independiente 🧠 y merge del dueño; T-001 sigue sin iniciar.
+- Ejecutor/modelo: 🧠 Codex / GPT-6.1 Sol · Rama: `docs/T-016-agent-models-context` · PR: [#3](https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/pull/3) · Commit de implementación: `75ecb25`.
 - Decisiones: conservar la cola T-001…T-015; registrar este mantenimiento aparte; el dueño revisa/mergea después de la revisión de frontera en otra sesión.
-- Pruebas: `git diff --check origin/development` OK; enlaces locales y búsqueda de nombres/supuestos retirados OK; diff solo Markdown. Gate completo en ejecución con Git Bash `--login`.
+- Pruebas: `git diff --check origin/development` OK; enlaces locales y búsqueda de nombres/supuestos retirados OK; diff solo Markdown. Gate completo con Git Bash `--login`: server ✅ build ✅ tests (1), JDK 21; client ❌ lint (93 problemas) ✅ build, Node 24.19.0, sin tests hasta T-009; exit 1, 132 s. Coincide con la línea de base registrada: lint pendiente de T-005. No se afirma que el gate completo esté verde.
 - Entorno: la primera invocación sin `--login` no encontró `dirname`; la invocación con `--login` inició correctamente y usó `env.properties.example`. No se modificó configuración real.
-- Próxima acción: registrar el resumen real del gate y publicar el traspaso de revisión.
+- Próxima acción: en una sesión nueva de frontera, «Leé `AGENTS.md` y seguí `docs/agents/reviewer.md` para el PR #3 (T-016)»; después merge del dueño. Checkpoint de implementación publicado en origin.
 
 ## Resultado
 

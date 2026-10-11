@@ -15,7 +15,7 @@
 > Próximo ID libre: T-017
 
 ## 🔨 En curso / en revisión (con su PR)
-- T-016 · P0 · S · 🧠 frontera · Aclarar ejecutores, compactación y traspasos → [tarea](tasks/T-016-agent-models-context.md) · [PR #3](https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/pull/3); mantenimiento pedido por el dueño antes de T-001.
+- T-016 · P0 · S · 🧠 frontera · Aclarar ejecutores, compactación y traspasos → [tarea](tasks/T-016-agent-models-context.md) · [PR #3](https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/pull/3) · **En revisión**; mantenimiento pedido por el dueño antes de T-001.
 
 ## ✅ Listas (cola en orden de ejecución, máx. 10)
 - **T-001 · P0 · S · 🧠 FRONTERA · Sacar el secreto y la expiración del JWT a configuración** → [tarea](tasks/T-001-jwt-secret-config.md) · primera implementación después de cerrar T-016.
