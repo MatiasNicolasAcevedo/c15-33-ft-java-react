@@ -1,10 +1,10 @@
 # Tablero
 
-> **▶ SIGUIENTE: revisar [PR #5](https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/pull/5) · [T-002](tasks/T-002-backend-test-infra.md)**
+> **▶ SIGUIENTE: implementar [T-003 · Corregir la autorización](tasks/T-003-authorization-rules.md)**
 >
-> **Revisa: 🧠 FRONTERA — GPT-6.1 Sol · sesión nueva; después merge: 👤 dueño.**
+> **Ejecuta: 🧠 FRONTERA — GPT-6.1 Sol. T-003 en curso.**
 >
-> Prompt: «Leé `AGENTS.md` y seguí `docs/agents/reviewer.md` para el PR #5». Rama: `test/T-002-backend-test-infra`; listo para revisión. T-003 espera el merge. Ver [STATUS](STATUS.md).
+> Prompt: «Leé AGENTS.md, docs/STATUS.md y las Notas de implementación de docs/tasks/T-003-authorization-rules.md. Seguí docs/agents/implementer.md retomando T-003 en la rama fix/T-003-authorization-rules. Verificá git status y el último commit; continuá desde el próximo paso registrado. No crees otra rama ni otro PR.». Rama: `fix/T-003-authorization-rules`; PR draft pendiente. Ver [STATUS](STATUS.md).
 
 **Leyenda:** 🤖 **Lite = Junie Lite (Free) en Air** · 🧠 **Frontera = p. ej. GPT-6.1 Sol / Claude Opus 5.5** · 👤 **Dueño**. Las categorías indican quién implementa; el campo **Revisa** de cada tarea puede pedir otro ejecutor.
 
@@ -15,10 +15,9 @@
 > Próximo ID libre: T-017
 
 ## 🔨 En curso / en revisión (con su PR)
-- (sin implementación en curso; revisión pendiente de T-002 → "Hecho reciente" y próxima acción)
+- T-003 · P0 · M · 🧠 frontera · Corregir la autorización → [tarea](tasks/T-003-authorization-rules.md) · `fix/T-003-authorization-rules` · PR draft pendiente
 
 ## ✅ Listas (cola en orden de ejecución, máx. 10)
-- T-003 · P0 · M · 🧠 frontera · Corregir la autorización: roles en el registro, usuarios solo ADMIN, catálogo público y CORS → [tarea](tasks/T-003-authorization-rules.md)
 - T-004 · P0 · S · **🤖 LITE — cambio de ejecutor** · Hacer configurable la URL de la API en el front y usar el prefijo /v1/api → [tarea](tasks/T-004-frontend-api-base-url.md)
 - T-005 · P0 · S · 🤖 Lite · Dejar `npm run lint` en verde → [tarea](tasks/T-005-frontend-lint.md)
 - T-006 · P0 · S · 🤖 Lite · Corregir el endpoint `DELETE /v1/api/property/{id}` → [tarea](tasks/T-006-delete-property-mapping.md)

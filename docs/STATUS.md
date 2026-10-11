@@ -1,16 +1,16 @@
 # Estado del proyecto
-_Actualizado: 2026-10-11 · por: 🧠 Codex · sesión: cierre de implementación de T-002_
+_Actualizado: 2026-10-11 · por: 🧠 Codex · sesión: implementación de T-003_
 
 ## ▶ Próxima acción
 
 | Campo | Qué sigue |
 |---|---|
-| **Acción** | **Revisar PR #5 de T-002**; luego merge del dueño |
-| **Tarea** | [T-002 · Montar la infraestructura de tests del back](tasks/T-002-backend-test-infra.md) |
+| **Acción** | **Implementar T-003** |
+| **Tarea** | [T-003 · Corregir la autorización](tasks/T-003-authorization-rules.md) |
 | **Ejecutor** | **🧠 FRONTERA — GPT-6.1 Sol** |
-| **Sesión** | Implementación terminada; revisión independiente en **sesión nueva** con frontera |
-| **Rama / PR** | `test/T-002-backend-test-infra` · [PR #5](https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/pull/5) listo para revisión |
-| **Prompt** | «Leé `AGENTS.md` y seguí `docs/agents/reviewer.md` para el PR #5» |
+| **Sesión** | T-003 en implementación; conservar la misma rama y PR |
+| **Rama / PR** | `fix/T-003-authorization-rules` · PR draft pendiente |
+| **Prompt** | «Leé AGENTS.md, docs/STATUS.md y las Notas de implementación de docs/tasks/T-003-authorization-rules.md. Seguí docs/agents/implementer.md retomando T-003 en la rama fix/T-003-authorization-rules. Verificá git status y el último commit; continuá desde el próximo paso registrado. No crees otra rama ni otro PR.» |
 
 **T-001 cerrada:** [PR #4](https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/pull/4) aprobado sin bloqueantes en [revisión independiente](https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/pull/4#issuecomment-6104606817) y mergeado por el dueño con squash (`63e5bc2`). Revisión: server build y 25 tests OK, cobertura 23,86 %, arranque sin secreto rechazado, compose y login demo OK, JWT HS256 de 86400 s; client build OK, mismos 93 problemas de lint pendientes de T-005. T-015 queda lista para el dueño, sin bloquear la cola.
 
@@ -19,7 +19,7 @@ _Actualizado: 2026-10-11 · por: 🧠 Codex · sesión: cierre de implementació
 **Compactar y continuar:** solo durante el mismo trabajo largo, en un corte seguro y después de guardar las notas + commit + push. Si la interfaz ofrece compactación, usala y retomá **la misma tarea, rama y PR**. Para Lite, guardá el checkpoint y abrí otro chat. El procedimiento y prompt están en [AGENTS.md → Gestión de contexto](../AGENTS.md#5-gestión-de-contexto).
 
 ## En una línea
-T-002 implementada, pendiente de revisión: back con 31 tests aislados (MySQL 8.4/Testcontainers), cobertura 40,80 % y umbral 40 %. T-000 y T-001 mergeadas; el front todavía llama a producción, sin tests propios.
+T-003 en implementación. Línea de base: 31 tests del back OK, cobertura 40,80 %; client build OK y 93 problemas de lint conocidos (T-005). T-002 mergeada en da3e6e6.
 
 ## Salud
 | Check | Estado | Nota |
@@ -37,7 +37,7 @@ T-002 implementada, pendiente de revisión: back con 31 tests aislados (MySQL 8.
 P0 Estabilizar · 1/15 tareas · ver [ROADMAP](ROADMAP.md)
 
 ## Foco
-- PR abierto (máx. 1): [#5 · T-002](https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/pull/5), listo para revisión en `test/T-002-backend-test-infra`. T-003 espera revisión y merge de T-002.
+- T-003 en curso en `fix/T-003-authorization-rules`; PR draft pendiente.
 - **Próximo paso / prompt:** ver la tarjeta **▶ Próxima acción** al inicio de este archivo y la cola de [BACKLOG](BACKLOG.md).
 
 ## Decisiones pendientes del dueño

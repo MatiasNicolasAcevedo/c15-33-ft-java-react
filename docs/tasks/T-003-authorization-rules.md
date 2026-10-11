@@ -1,5 +1,5 @@
 # T-003 · Corregir la autorización: roles en el registro, usuarios solo ADMIN, catálogo público y CORS
-- Estado: Lista · Prioridad: P0 · Esfuerzo: M · Ejecuta: 🧠 modelo de frontera
+- Estado: En curso · Prioridad: P0 · Esfuerzo: M · Ejecuta: 🧠 modelo de frontera
 - Fase: P0 Estabilizar
 - Rama: `fix/T-003-authorization-rules` (crearla desde `development` actualizado antes del primer commit) · Depende de: T-002 · Spec/ADR: [0003](../adr/0003-jwt-stateless-auth.md)
 - Revisa: 🧠 modelo de frontera (sesión nueva) + 👤
@@ -33,7 +33,11 @@ Solo USER/OWNER se auto-registran; listar y borrar usuarios requiere ADMIN; el c
 - [ ] `.example`, compose y `docs/SETUP.md` tienen `CORS_ALLOWED_ORIGINS`
 
 ## Notas de implementación
-- Hecho: … · Pendiente: … · Próximo paso: …
+- Hecho: rama creada desde development actualizado (da3e6e6); sin PR abiertos. Línea de base: server build, 31 tests y cobertura OK; client build OK y 93 problemas de lint conocidos (T-005).
+- Pendiente: tests de regresión primero, luego reglas de roles, catálogo público, CORS y documentación.
+- Rama: `fix/T-003-authorization-rules` · PR: draft pendiente.
+- Próximo paso: abrir PR draft y ejecutar AuthorizationIntegrationTest antes del fix.
+- Cambios documentales previos preservados en el working tree y excluidos de los commits de T-003.
 
 ## Resultado
 - PR: #N · Qué cambió: … · Tests agregados: … · Pendientes → …
