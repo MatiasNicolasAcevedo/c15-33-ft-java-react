@@ -1,5 +1,5 @@
 # T-002 · Montar la infraestructura de tests del back
-- Estado: Lista · Prioridad: P0 · Esfuerzo: M · Ejecuta: 🧠 modelo de frontera
+- Estado: En curso · Prioridad: P0 · Esfuerzo: M · Ejecuta: 🧠 modelo de frontera
 - Fase: P0 Estabilizar
 - Rama: `test/T-002-backend-test-infra` (crearla desde `development` actualizado antes del primer commit) · Depende de: T-001 · Spec/ADR: [0001](../adr/0001-testcontainers-mysql.md)
 - Revisa: 🧠 modelo de frontera (sesión nueva) + 👤
@@ -41,7 +41,10 @@
 - [ ] Ningún test borrado ni con `@Disabled`
 
 ## Notas de implementación
-- Hecho: … · Pendiente: … · Próximo paso: …
+- Rama: `test/T-002-backend-test-infra` desde `development` (`63e5bc2`); PR pendiente.
+- Línea de base: server build + 25 tests OK; client build OK, mismos 93 problemas de lint (T-005). Sin PR abiertos.
+- Hecho: contrato y referencias leídos. Pendiente: Testcontainers, tests de referencia, JaCoCo y gate. Próximo paso: abrir PR draft e implementar.
+- Cambios locales previos: cierre de T-001 en STATUS/BACKLOG conservado; archivos de T-001 y T-015 sin editar ni incluir en commits de T-002.
 
 ## Resultado
 - PR: #N · Qué cambió: … · Tests agregados: … · Cobertura: …% (umbral …) · Pendientes → …

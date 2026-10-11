@@ -1,10 +1,10 @@
 # Tablero
 
-> **▶ SIGUIENTE: revisar [PR #4](https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/pull/4) · [T-001](tasks/T-001-jwt-secret-config.md)**
+> **▶ SIGUIENTE: implementar [T-002 · Montar la infraestructura de tests del back](tasks/T-002-backend-test-infra.md)**
 >
-> **Revisa: 🧠 FRONTERA — GPT-6.1 Sol o Claude Opus 5.5 · sesión nueva; después merge: 👤 dueño.**
+> **Ejecuta: 🧠 FRONTERA — GPT-6.1 Sol o Claude Opus 5.5 · sesión nueva.**
 >
-> Prompt: «Leé `AGENTS.md` y seguí `docs/agents/reviewer.md` para el PR #4». Rama: `fix/T-001-jwt-secret-config`; listo para revisión. T-002 espera el merge. Ver [STATUS](STATUS.md).
+> Prompt: «Leé `AGENTS.md` y seguí `docs/agents/implementer.md` para T-002». Rama: `test/T-002-backend-test-infra`; PR draft pendiente; T-001 aprobada y mergeada en [PR #4](https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/pull/4) (`63e5bc2`). Ver [STATUS](STATUS.md).
 
 **Leyenda:** 🤖 **Lite = Junie Lite (Free) en Air** · 🧠 **Frontera = p. ej. GPT-6.1 Sol / Claude Opus 5.5** · 👤 **Dueño**. Las categorías indican quién implementa; el campo **Revisa** de cada tarea puede pedir otro ejecutor.
 
@@ -15,10 +15,9 @@
 > Próximo ID libre: T-017
 
 ## 🔨 En curso / en revisión (con su PR)
-- (sin implementación en curso; revisión pendiente de T-001 → "Hecho reciente" y próxima acción)
+- T-002 · P0 · M · 🧠 frontera · Montar la infraestructura de tests del back → [tarea](tasks/T-002-backend-test-infra.md) · en implementación, PR pendiente
 
 ## ✅ Listas (cola en orden de ejecución, máx. 10)
-- T-002 · P0 · M · 🧠 frontera · Montar la infraestructura de tests del back → [tarea](tasks/T-002-backend-test-infra.md)
 - T-003 · P0 · M · 🧠 frontera · Corregir la autorización: roles en el registro, usuarios solo ADMIN, catálogo público y CORS → [tarea](tasks/T-003-authorization-rules.md)
 - T-004 · P0 · S · **🤖 LITE — cambio de ejecutor** · Hacer configurable la URL de la API en el front y usar el prefijo /v1/api → [tarea](tasks/T-004-frontend-api-base-url.md)
 - T-005 · P0 · S · 🤖 Lite · Dejar `npm run lint` en verde → [tarea](tasks/T-005-frontend-lint.md)
@@ -27,12 +26,12 @@
 - T-008 · P0 · M · 🧠 frontera · Agregar manejo global de errores con ProblemDetail y health check → [tarea](tasks/T-008-error-handling.md)
 - T-009 · P0 · M · 🧠 frontera · Montar la infraestructura de tests del front → [tarea](tasks/T-009-frontend-test-infra.md)
 - T-014 · P0 · S · 👤 dueño · Proteger la rama por defecto y limpiar ramas (no bloquea la cola) → [tarea](tasks/T-014-branch-protection.md)
+- T-015 · P0 · S · 👤 dueño · Rotar el secreto JWT en todo entorno que lo haya usado (no bloquea la cola) → [tarea](tasks/T-015-rotate-jwt-secret.md) · desbloqueada por el merge de T-001; confirmar si existe deploy activo.
 
 ## ⛔ Bloqueadas (en el orden en que entrarán a la cola)
 - T-010 · P0 · S · 🧠 frontera · Agregar CI (verify por parte) y Dependabot → [tarea](tasks/T-010-ci-workflow.md) · bloqueada por: `verify.sh` en rojo hasta T-005
 - T-011 · P0 · S · 🤖 Lite · Mostrar estados de carga, error y vacío en la home → [tarea](tasks/T-011-home-error-state.md) · bloqueada por: T-009 (sin tests de front)
 - T-012 · P0 · M · 🧠 frontera · Alinear el contrato de imágenes entre front y back → [tarea](tasks/T-012-image-contract.md) · bloqueada por: T-003, T-004, T-009
-- T-015 · P0 · S · 👤 dueño · Rotar el secreto JWT en todo entorno que lo haya usado → [tarea](tasks/T-015-rotate-jwt-secret.md) · bloqueada por: T-001
 - T-013 · P0 · M · 🧠 frontera · Montar la infraestructura E2E con Playwright → [tarea](tasks/T-013-e2e-infra.md) · bloqueada por: T-010, T-011, T-012
 
 ## 📥 Backlog (sin refinar)
@@ -68,6 +67,6 @@
 - 🧠 Evaluar mover a `client/` + `server/` ([ADR 0004](adr/0004-keep-folder-layout.md))
 
 ## 🏁 Hecho reciente (máx. 10; las más viejas → archive/tasks/)
-- T-001 · P0 · S · 🧠 frontera · Sacar el secreto y la expiración del JWT a configuración → [tarea](tasks/T-001-jwt-secret-config.md) · [PR #4](https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/pull/4) · **implementación terminada, revisión y merge pendientes**; server 25 tests OK, cobertura 23,86 %, compose y login demo OK, sin regresiones en el gate.
+- T-001 · P0 · S · 🧠 frontera · Sacar el secreto y la expiración del JWT a configuración → [tarea](tasks/T-001-jwt-secret-config.md) · [PR #4](https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/pull/4) · **APROBADA en [revisión independiente](https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/pull/4#issuecomment-6104606817) y mergeada por el dueño con squash `63e5bc2`**; server 25 tests OK, cobertura 23,86 %, compose y login demo OK, sin regresiones en el gate.
 - T-016 · P0 · S · 🧠 frontera · Aclarar ejecutores, compactación y traspasos → [tarea](tasks/T-016-agent-models-context.md) · [PR #3](https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/pull/3) (revisión independiente APROBADA, mergeado por el dueño con squash `47debed`; mantenimiento documental fuera de las 15 tareas de P0).
 - T-000 · P0 · L · 🧠 frontera · Relevar el proyecto y montar el harness para agentes → [tarea](tasks/T-000-agent-bootstrap.md) · PR [#2](https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/pull/2) (aprobado por sub-agente 🧠 y mergeado con squash)
