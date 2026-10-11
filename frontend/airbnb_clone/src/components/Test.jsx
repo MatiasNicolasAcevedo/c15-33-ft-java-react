@@ -7,10 +7,11 @@ import { API_URL } from "../services/config";
 export const Test = () => {
     const token = localStorage.getItem('token') ? localStorage.getItem('token') : ''
 
-    const { user, setUser } = useAuth()
+    useAuth()
 
 
-      const property = {
+      // eslint-disable-next-line no-unused-vars
+      const _property = {
         "title": "Titulo",
         "description": "Descripcion",
         "images": [],

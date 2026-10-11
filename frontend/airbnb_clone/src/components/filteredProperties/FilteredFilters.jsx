@@ -21,7 +21,7 @@ const FilteredFilters = () => {
     const checkboxString = queryParams.get('services');
     const initialCheckboxes = checkboxString ? JSON.parse(checkboxString) : {};
 
-    const [checkboxes, setCheckboxes] = useState(initialCheckboxes);
+    const [checkboxes] = useState(initialCheckboxes);
    
 
     useEffect(() => {         
@@ -52,6 +52,7 @@ const FilteredFilters = () => {
             }            
         }
         propertiesFetch();
+        // eslint-disable-next-line react-hooks/exhaustive-deps -- comportamiento existente, ver Backlog
     }, [location.search]);
    
    

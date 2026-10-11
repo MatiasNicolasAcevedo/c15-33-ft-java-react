@@ -9,15 +9,7 @@ export const PropertiesUpdateForm = () => {
   let { state } = useLocation();
 
   const {
-    title,
     location,
-    category,
-    subCategory,
-    bathroom,
-    bed,
-    bedroom,
-    serviceTypes,
-    active,
     description,
     value,
     images,

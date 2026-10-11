@@ -112,6 +112,7 @@ const Forms = ({openLogin, handleOpenLogin, openSignUp, handleOpenSignUp}) => {
 
 
 
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- comportamiento existente, ver Backlog
     }, [countryValue])
 
 
@@ -204,7 +205,8 @@ const Forms = ({openLogin, handleOpenLogin, openSignUp, handleOpenSignUp}) => {
             resetData();
         }
         setRegisterButtonPressed(false)
-    }), [registerButtonPressed]
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- comportamiento existente, ver Backlog
+    }, [registerButtonPressed])
 
 
 
@@ -251,6 +253,7 @@ const Forms = ({openLogin, handleOpenLogin, openSignUp, handleOpenSignUp}) => {
         }
 
         
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- comportamiento existente, ver Backlog
     }, [openLogin, openSignUp]);
 
 

@@ -66,7 +66,7 @@ export async function submitProperty(formData) {
             const value = formData[key];
 
             if (key === 'images' && Array.isArray(value)) {
-                value.forEach((imageObject, index) => {
+                value.forEach((imageObject) => {
                     const file = imageObject.file;
 
                     if (file instanceof File) {

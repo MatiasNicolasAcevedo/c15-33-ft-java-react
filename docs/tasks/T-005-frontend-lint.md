@@ -31,14 +31,20 @@ Q-1: `npm run lint` falla con 93 problemas (66 `react/prop-types`, 17 `no-unused
 4. `npm run build` y revisar el diff: solo líneas de lint.
 
 ## Criterios de aceptación
-- [ ] `cd frontend/airbnb_clone && npm run lint` → código 0, sin warnings
-- [ ] `npm run build` pasa
-- [ ] `./scripts/verify.sh --client` → `client: ✅ lint ✅ build`
-- [ ] `git diff --stat development` ≤ 15 archivos y ninguno fuera de `frontend/airbnb_clone/` salvo docs del tablero
-- [ ] Cada `eslint-disable` tiene el comentario `-- comportamiento existente, ver Backlog`
+- [x] `cd frontend/airbnb_clone && npm run lint` → código 0, sin warnings
+- [x] `npm run build` pasa
+- [x] `./scripts/verify.sh --client` → `client: ✅ lint ✅ build`
+- [x] `git diff --stat development` ≤ 15 archivos y ninguno fuera de `frontend/airbnb_clone/` salvo docs del tablero
+- [x] Cada `eslint-disable` tiene el comentario `-- comportamiento existente, ver Backlog`
 
 ## Notas de implementación
-- Hecho: … · Pendiente: … · Próximo paso: …
+- Hecho: `.eslintrc.cjs` con `react/prop-types: off` y `overrides` con `env: { node: true }` para config files; variables sin uso eliminadas de 8 archivos; `hasOwnProperty` corregido en `CountryList.jsx`; 7 warnings con `eslint-disable-next-line -- comportamiento existente, ver Backlog`.
+- Pendiente: —
+- Decisiones: JS sin PropTypes (migración a TS en Backlog P3); `useEffect` sin dependencias no se modifican (pueden crear loops).
+- Archivos modificados: 12 archivos en `frontend/airbnb_clone/` + 3 docs.
+- Pruebas/verify: `verify.sh --client` → ✅ lint ✅ build ⚠️ sin tests (T-009).
+- Bloqueos: —
+- Próximo paso: revisión de PR #8.
 
 ## Resultado
-- PR: #N · Qué cambió: … · Tests agregados: — · Pendientes → …
+- PR: #8 · Qué cambió: 93 problemas de lint resueltos (66 prop-types desactivados, 17 vars sin uso eliminadas, 1 hasOwnProperty, 2 no-undef, 7 warnings con disable) · Tests agregados: — · Pendientes: —

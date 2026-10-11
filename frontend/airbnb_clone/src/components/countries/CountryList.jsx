@@ -3,7 +3,7 @@ import { countries } from 'countries-list'
 
 const countryList = []
 for (const key in countries) {
-    if (countries.hasOwnProperty(key)) {
+    if (Object.prototype.hasOwnProperty.call(countries, key)) {
       countryList.push(countries[key].name);
     }
   }

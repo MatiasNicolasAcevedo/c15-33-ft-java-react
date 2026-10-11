@@ -312,6 +312,7 @@ export const PropertiesContainer = () => {
     };
 
     fetchData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- comportamiento existente, ver Backlog
   }, [id]);
 
   if (properties.length === 0) {
