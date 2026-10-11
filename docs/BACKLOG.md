@@ -1,10 +1,10 @@
 # Tablero
 
-> **▶ SIGUIENTE: implementar [T-001 · Sacar el secreto y la expiración del JWT a configuración](tasks/T-001-jwt-secret-config.md)**
+> **▶ SIGUIENTE: revisar [PR #4](https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/pull/4) · [T-001](tasks/T-001-jwt-secret-config.md)**
 >
-> **Ejecuta: 🧠 FRONTERA — GPT-6.1 Sol o Claude Opus 5.5 · T-001 en curso.**
+> **Revisa: 🧠 FRONTERA — GPT-6.1 Sol o Claude Opus 5.5 · sesión nueva; después merge: 👤 dueño.**
 >
-> Prompt: «Leé `AGENTS.md` y seguí `docs/agents/implementer.md` para retomar T-001». Rama: `fix/T-001-jwt-secret-config`; [PR #4](https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/pull/4) draft. Ver [STATUS](STATUS.md).
+> Prompt: «Leé `AGENTS.md` y seguí `docs/agents/reviewer.md` para el PR #4». Rama: `fix/T-001-jwt-secret-config`; listo para revisión. T-002 espera el merge. Ver [STATUS](STATUS.md).
 
 **Leyenda:** 🤖 **Lite = Junie Lite (Free) en Air** · 🧠 **Frontera = p. ej. GPT-6.1 Sol / Claude Opus 5.5** · 👤 **Dueño**. Las categorías indican quién implementa; el campo **Revisa** de cada tarea puede pedir otro ejecutor.
 
@@ -15,7 +15,7 @@
 > Próximo ID libre: T-017
 
 ## 🔨 En curso / en revisión (con su PR)
-- T-001 · P0 · S · 🧠 frontera · Sacar el secreto y la expiración del JWT a configuración → [tarea](tasks/T-001-jwt-secret-config.md) · `fix/T-001-jwt-secret-config` · [PR #4](https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/pull/4) draft.
+- (sin implementación en curso; revisión pendiente de T-001 → "Hecho reciente" y próxima acción)
 
 ## ✅ Listas (cola en orden de ejecución, máx. 10)
 - T-002 · P0 · M · 🧠 frontera · Montar la infraestructura de tests del back → [tarea](tasks/T-002-backend-test-infra.md)
@@ -37,6 +37,7 @@
 
 ## 📥 Backlog (sin refinar)
 **P0 Estabilizar**
+- 🧠 Fijar LF para scripts Bash y `backend/mvnw` con `.gitattributes`: en Windows el checkout CRLF rompe el build Docker con `./mvnw: not found` (detectado en T-001; normalizado solo localmente para validar).
 - 🤖 Default `8080` para `APP_PORT` (`application.properties:2`) (X-2)
 - 🤖 Caracterización: un test por flujo crítico sin cubrir (auditoría → Testing, flujos 6–8) — refinar tras T-009/T-013
 - 🧠 Revisar `useEffect` sin dependencias que llama a un setter (`Forms.jsx:199`) y los `eslint-disable` de T-005
@@ -67,5 +68,6 @@
 - 🧠 Evaluar mover a `client/` + `server/` ([ADR 0004](adr/0004-keep-folder-layout.md))
 
 ## 🏁 Hecho reciente (máx. 10; las más viejas → archive/tasks/)
+- T-001 · P0 · S · 🧠 frontera · Sacar el secreto y la expiración del JWT a configuración → [tarea](tasks/T-001-jwt-secret-config.md) · [PR #4](https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/pull/4) · **implementación terminada, revisión y merge pendientes**; server 25 tests OK, cobertura 23,86 %, compose y login demo OK, sin regresiones en el gate.
 - T-016 · P0 · S · 🧠 frontera · Aclarar ejecutores, compactación y traspasos → [tarea](tasks/T-016-agent-models-context.md) · [PR #3](https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/pull/3) (revisión independiente APROBADA, mergeado por el dueño con squash `47debed`; mantenimiento documental fuera de las 15 tareas de P0).
 - T-000 · P0 · L · 🧠 frontera · Relevar el proyecto y montar el harness para agentes → [tarea](tasks/T-000-agent-bootstrap.md) · PR [#2](https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/pull/2) (aprobado por sub-agente 🧠 y mergeado con squash)
