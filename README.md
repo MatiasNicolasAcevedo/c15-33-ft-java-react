@@ -58,7 +58,7 @@ Cada parte tiene un archivo de ejemplo commiteado. **Los valores sirven tal cual
 
 | Archivo de ejemplo | Copiar a | Quién lo lee | Qué contiene |
 |---|---|---|---|
-| `backend/src/main/resources/env.properties.example` | `backend/src/main/resources/env.properties` | Spring Boot (`spring.config.import`, desde el classpath) | puerto del back, conexión a MySQL y JWT (clave solo local, duración 24 h) |
+| `backend/src/main/resources/env.properties.example` | `backend/src/main/resources/env.properties` | Spring Boot (`spring.config.import`, desde el classpath) | puerto del back, conexión a MySQL, JWT (clave solo local, duración 24 h) y orígenes CORS |
 | `frontend/airbnb_clone/.env.example` | `frontend/airbnb_clone/.env` | Vite (`VITE_*`) | URL del back (⚠️ hoy el código no la lee: T-004) |
 
 Desde la raíz del repo:
@@ -72,8 +72,9 @@ cp frontend/airbnb_clone/.env.example frontend/airbnb_clone/.env
 ```
 
 > ⚠️ El archivo del back va en `src/main/resources/`: en `backend/env.properties` **no** se lee.
-> Si ya tenías un `env.properties`, agregá las variables JWT del `.example` actualizado. El back requiere `JWT_SECRET` en Base64 con al menos 32 bytes decodificados; `JWT_EXPIRATION` es opcional y vale `86400000` ms (24 h) por defecto.
-> **Producción:** definir en el proveedor las variables `APP_PORT`, `DB_PORT`, `DB_NAME`, `DB_USER`, `DB_PASS`, `JWT_SECRET` (clave propia generada con `openssl rand -base64 32`, nunca la pública del `.example`) y, opcionalmente, `JWT_EXPIRATION` (y `SPRING_DATASOURCE_URL` si la DB no está en `localhost`). Detalle de cada variable en [`docs/SETUP.md`](docs/SETUP.md).
+> Si ya tenías un `env.properties`, agregá las variables JWT y `CORS_ALLOWED_ORIGINS` del `.example` actualizado. El back requiere `JWT_SECRET` en Base64 con al menos 32 bytes decodificados; `JWT_EXPIRATION` es opcional y vale `86400000` ms (24 h) por defecto.
+> Para el front local, `CORS_ALLOWED_ORIGINS=http://localhost:5173,http://localhost:8081`. Si cambiás el host o puerto del front, actualizá esa lista de orígenes exactos (sin comodines); ausente/vacía rechaza solicitudes entre orígenes.
+> **Producción:** definir en el proveedor las variables `APP_PORT`, `DB_PORT`, `DB_NAME`, `DB_USER`, `DB_PASS`, `JWT_SECRET` (clave propia generada con `openssl rand -base64 32`, nunca la pública del `.example`), `CORS_ALLOWED_ORIGINS` (orígenes exactos del front propio) y, opcionalmente, `JWT_EXPIRATION` (y `SPRING_DATASOURCE_URL` si la DB no está en `localhost`). Detalle de cada variable en [`docs/SETUP.md`](docs/SETUP.md).
 
 ### Opción A · Todo en contenedores (la más simple)
 
@@ -202,7 +203,7 @@ _Verificado el 2026-10-10 en Ubuntu 24.04 con Java 21.0.12 (y 17.0.20 en contene
 
 ## Tests y calidad
 
-`./scripts/verify.sh` es el gate único (build + lint + tests de ambas partes; `--server` o `--client` para una sola). Estrategia, cobertura y cómo correr un solo test: [`docs/TESTING.md`](docs/TESTING.md). El back tiene 31 tests; los de integración usan MySQL 8.4 efímera vía Testcontainers y puerto HTTP aleatorio. Para verificar el back basta Docker corriendo: `./scripts/verify.sh --server` (o `cd backend && ./mvnw -B clean verify`), sin `env.properties` ni DB de compose. JaCoCo genera el reporte en `backend/target/site/jacoco/index.html` y comprueba un umbral de líneas del 40 % en `verify` (cobertura medida: 40,80 %). El front todavía no tiene tests (T-009).
+`./scripts/verify.sh` es el gate único (build + lint + tests de ambas partes; `--server` o `--client` para una sola). Estrategia, cobertura y cómo correr un solo test: [`docs/TESTING.md`](docs/TESTING.md). El back tiene 57 tests; los de integración usan MySQL 8.4 efímera vía Testcontainers y puerto HTTP aleatorio. Para verificar el back basta Docker corriendo: `./scripts/verify.sh --server` (o `cd backend && ./mvnw -B clean verify`), sin `env.properties` ni DB de compose. JaCoCo genera el reporte en `backend/target/site/jacoco/index.html` y comprueba un umbral de líneas del 40 % en `verify` (cobertura medida tras T-003: 56,48 %). El front todavía no tiene tests (T-009).
 
 ## Cómo se trabaja
 

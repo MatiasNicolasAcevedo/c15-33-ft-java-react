@@ -40,6 +40,8 @@ services:
       JWT_SECRET: "${JWT_SECRET:-yF6mYVMULz9vvbHwuDp+jwGm3dFffAdaT9Nd1zZLi/M=}"
       # Milisegundos: 24 h por defecto.
       JWT_EXPIRATION: "${JWT_EXPIRATION:-86400000}"
+      # Orígenes locales exactos de Vite y del client de compose.
+      CORS_ALLOWED_ORIGINS: "${CORS_ALLOWED_ORIGINS:-http://localhost:5173,http://localhost:8081}"
       # application.properties fija el host en localhost: dentro de la red de compose se sobrescribe la URL.
       SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/clonair?createDatabaseIfNotExist=true&allowPublicKeyRetrieval=true&useSSL=false&serverTimezone=UTC
     ports:

@@ -52,13 +52,18 @@ public class AuthService {
      * Este método se encarga de registrar nuevos usuarios en el sistema.
      * */
     public AuthResponse register(RegisterRequest request) {
+        if (!"USER".equals(request.getRole()) && !"OWNER".equals(request.getRole())) {
+            throw new IllegalArgumentException("Registration role must be USER or OWNER");
+        }
+        Role role = Role.valueOf(request.getRole());
+
         User user = User.builder() // Se crea un User utilizando la información proporcionada en la request.
                 .username(request.getUsername())
                 .password(passwordEncoder.encode( request.getPassword())) // Utiliza el passwordEncoder para cifrar la contraseña antes de almacenarla en la base de datos.
                 .firstname(request.getFirstname())
                 .lastname(request.getLastname())
                 .country(request.getCountry())
-                .role(Role.valueOf(request.getRole())) // Define el rol del usuario como Role.USER (un usuario común en este caso).
+                .role(role)
                 .build();
 
         userRepository.save(user); // Guarda el nuevo usuario en la base de datos.

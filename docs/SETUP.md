@@ -15,11 +15,13 @@ Complementa el [README](../README.md) (que tiene el paso a paso); acá va solo l
 | `VITE_API_URL` | URL base del back para el front (build time) | `http://localhost:8080` | sí, desde T-004 | variable de build del hosting del front |
 | `JWT_SECRET` | Clave de firma HS256: Base64 de al menos 32 bytes (256 bits); se valida al iniciar | clave pública solo local en `.example` y compose | **sí, sin default en el back** | **secreto** propio del proveedor, generado con `openssl rand -base64 32` |
 | `JWT_EXPIRATION` | Duración de tokens en milisegundos | `86400000` (24 h) | no; default `86400000` | variable de entorno |
-| `CORS_ALLOWED_ORIGINS` | Orígenes permitidos | — | se agrega en T-003 | variable de entorno |
+| `CORS_ALLOWED_ORIGINS` | Orígenes CORS exactos separados por comas, sin comodines | `http://localhost:5173,http://localhost:8081` | no; ausente/vacía rechaza solicitudes entre orígenes | variable de entorno con los orígenes del front propio |
 
 Archivos: `backend/src/main/resources/env.properties` (copia de su `.example`, leído desde el classpath) y `frontend/airbnb_clone/.env`. En compose, las mismas variables están en `docker-compose.yml` → `services.server.environment`.
 
-Si ya tenías un `env.properties` local, agregá `JWT_SECRET` y `JWT_EXPIRATION` desde el `.example` actualizado. Sin secreto, con Base64 inválido o con menos de 32 bytes decodificados, el back no arranca: el error identifica `JWT_SECRET` sin imprimir su valor. Compose usa la clave pública del `.example` solo para desarrollo y permite sobrescribir ambas variables desde el entorno. En producción usá un secreto propio; su rotación invalida los tokens anteriores (T-015).
+Si ya tenías un `env.properties` local, agregá `JWT_SECRET`, `JWT_EXPIRATION` y `CORS_ALLOWED_ORIGINS` desde el `.example` actualizado. Sin secreto, con Base64 inválido o con menos de 32 bytes decodificados, el back no arranca: el error identifica `JWT_SECRET` sin imprimir su valor. Compose usa la clave pública del `.example` solo para desarrollo y permite sobrescribir ambas variables desde el entorno. En producción usá un secreto propio; su rotación invalida los tokens anteriores (T-015).
+
+CORS se evalúa antes de la autenticación, incluidos los preflight de endpoints protegidos. La lista admite espacios alrededor de las comas, pero rechaza comodines al iniciar. Vite usa `http://localhost:5173` y el front de compose `http://localhost:8081`; si cambiás host, esquema o puerto, actualizá la lista. En producción definí solo los orígenes exactos de tu front, sin rutas. No se usan cookies para el JWT.
 
 ## Puertos
 
@@ -65,6 +67,8 @@ Cómo usarlo:
 5. Frase de arranque: «Leé `AGENTS.md` y seguí `docs/agents/implementer.md` para T-NNN». La tarea debe estar asignada a **🤖 Lite**; no saltear una tarea 🧠 anterior.
 6. **PR:** si dispone de `gh` o una integración de GitHub, usarla según el protocolo. Si no, crear la rama, commit y push; dejar al dueño el link `https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/compare/development...<rama>?expand=1`, título y cuerpo listos para abrir el PR en **draft**.
 
+**Traspaso al dueño:** cuando toque una acción de Junie Lite, el agente que cierra la sesión debe entregar un bloque `text` con el prompt completo y concreto para copiar y pegar, y guardarlo también en `STATUS.md` y `BACKLOG.md`. Incluye tarea/archivo, protocolo y rama/PR si existen; para retomas, el punto de continuación. No alcanza con decir "abrí Junie". Ver `AGENTS.md` → Traspasos.
+
 ## 🧠 Modelo de frontera — GPT-6.1 Sol / Claude Opus 5.5
 
 - Elegí, por ejemplo, **GPT-6.1 Sol** en Codex o **Claude Opus 5.5** en Claude Code / un agente compatible. La categoría la define el modelo elegido, no la aplicación. Son ejemplos aceptados para las tareas 🧠; no es obligatorio usar Claude Code.
@@ -75,10 +79,10 @@ Cómo usarlo:
 
 ## Prompt de inicio y contexto de nube
 
-Para la próxima tarea, abrí una sesión nueva con **🧠 GPT-6.1 Sol o Claude Opus 5.5** y usá:
+Para la próxima tarea, consultá el ejecutor y el prompt concreto en `docs/STATUS.md`. Abrí una sesión nueva con ese ejecutor. Esta plantilla de implementación usa `T-NNN`; el traspaso debe entregarla con el ID real:
 
 ```text
-Leé AGENTS.md y seguí docs/agents/implementer.md para T-001.
+Leé AGENTS.md y seguí docs/agents/implementer.md para T-NNN.
 Primero comprobá STATUS, BACKLOG, git status y los PR abiertos.
 Al terminar, dejame el traspaso para la revisión que indique la tarea.
 No mergees salvo que te lo pida explícitamente para ese PR.

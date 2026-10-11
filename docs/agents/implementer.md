@@ -6,6 +6,7 @@ Seguí estos pasos en orden. Respuestas cortas; no pegues logs largos.
 ## 1. Orientarte (sin escribir código)
 - Leé `AGENTS.md`, `docs/STATUS.md` y `docs/BACKLOG.md`.
 - `git status` y `git log --oneline -10`.
+- Inventariá los cambios previos y resolvé su destino según `AGENTS.md` → **Cierre y cambios sin commit**; no los arrastres a una tarea nueva ni los incluyas sin revisar.
 - PRs abiertos: `gh pr list` · sin `gh`: `git fetch origin --prune && git ls-remote --heads origin` (una rama `<tipo>/T-NNN-*` = tarea tomada).
 
 ## 2. Primero lo que está en vuelo
@@ -63,6 +64,7 @@ Después de **2 intentos fallidos**, una **decisión de diseño** o algo **fuera
 - Verificá cada criterio de aceptación y marcalo con su evidencia.
 - Completá "Notas" y "Resultado" (PR, qué cambió, tests, pendientes). Tarea a "🏁 Hecho reciente" con el PR (si hay más de 10, la más vieja a `docs/archive/tasks/`).
 - `docs/STATUS.md`: salud (verify, cobertura), Foco (PR abierto), "Últimas sesiones" (máx. 5; las viejas a `docs/archive/log/AAAA-MM.md`). En la tarjeta **▶ Próxima acción** y el aviso superior de `BACKLOG.md`, poné **Revisar PR #N**, su tarea y el ejecutor del campo "Revisa"; la siguiente implementación espera al merge del dueño.
+- Después de actualizar los documentos, revisá el diff y agregá rutas explícitas; hacé el commit de cierre y push. Comprobá `git status --short` y que HEAD coincide con la rama publicada. No pases el PR a ready ni cierres el traspaso con cambios propios sin publicar; para heredados o bloqueos, aplicá y registrá la regla de `AGENTS.md` → **Cierre y cambios sin commit**.
 - Descripción del PR completa (resumen de `verify.sh`; capturas 375/1280 px si hay UI) y pasarlo a **ready** (`gh pr ready` o pedírselo al dueño), indicando quién revisa.
 
 ## 11. Respuesta final (máx. 5 líneas) + Traspaso
@@ -72,3 +74,5 @@ Qué hiciste, estado de verify, link del PR. Después, el Traspaso para la revis
 > **Qué hacer:** abrí <un chat nuevo de Junie Lite en Air | una sesión nueva con el modelo de frontera elegido> y escribí: «Leé `AGENTS.md` y seguí `docs/agents/reviewer.md` para el PR #N».
 
 Completá las alternativas con **un solo ejecutor**. Si te detuviste antes (paso 2, 4 o 9), el Traspaso dice quién sigue y qué escribir. Siempre sugerí **sesión nueva** para lo próximo.
+
+Si quien sigue es **🤖 Junie Lite (Free)**, entregá además el prompt completo en un bloque `text`, listo para copiar y pegar, con tarea, archivo, protocolo y rama/PR cuando correspondan, según `AGENTS.md` → Traspasos. Reflejá ese mismo prompt en `STATUS.md` y `BACKLOG.md`.

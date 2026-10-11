@@ -16,6 +16,8 @@ git switch --detach origin/<rama> && ./scripts/verify.sh
 ```
 Estado de CI: `gh pr checks N` (o la pestaña Checks si no hay `gh`). Corré los comandos de cada criterio de aceptación.
 
+Antes de cambiar de checkout, inventariá `git status --short`; si hay cambios locales, conservá los archivos y verificá el commit publicado en un checkout aislado. Aplicá `AGENTS.md` → **Cierre y cambios sin commit**: registrá los pendientes y su destino, y no habilites otra tarea mientras el cierre siga pendiente. El veredicto debe identificar el commit revisado y distinguirlo de los cambios locales sin publicar.
+
 ## 3. Revisar, en este orden
 1. **Criterios de aceptación:** uno por uno, con evidencia (salida de comando o archivo:línea).
 2. **Alcance y rama:** el nombre de la rama es exactamente el de la tarea, o existe una excepción de nube autorizada explícitamente por el dueño con evidencia del fallo y rama real registrada (ver `AGENTS.md`); nada de "No incluye"; un solo PR de tarea abierto.
@@ -42,6 +44,7 @@ Revisó: <🤖 Junie Lite (Free) | 🧠 modelo de frontera> · verify.sh: <resum
 
 ## 5. Reglas
 - Sugerí, no reescribas: no hagas commits en la rama del PR (salvo que el dueño lo pida).
+- Si el dueño pide guardar cambios, revisá el diff, agregá rutas explícitas, hacé commit y push, comprobá el árbol limpio y el commit remoto, y actualizá el PR con la evidencia del diff agregado. Si cambia código ejecutable, repetí las comprobaciones afectadas y revisá la vigencia del veredicto anterior.
 - Nada fuera de alcance se exige en este PR: va a Backlog.
 - **Segunda ronda:** revisá solo lo pedido + regresiones. Si tampoco se aprueba: `ESCALAR A 🧠/DUEÑO`.
 
@@ -56,3 +59,5 @@ Solo si el dueño pidió explícitamente una revisión con sub-agente, quien la 
 > **Qué hacer:** <GitHub → PR #N → Squash and merge | abrí un chat nuevo de Junie Lite en Air / una sesión nueva con el modelo de frontera elegido y escribí: «Leé `AGENTS.md` y seguí `docs/agents/implementer.md` (cambios pedidos en el PR #N)»>.
 
 Indicá **un solo ejecutor**. Incluí en el traspaso el texto para actualizar la tarjeta de `STATUS.md` y el aviso superior de `BACKLOG.md` con **Mergear** (👤) o **Atender cambios** (quien implementó); el dueño o implementador guarda esa actualización. Tras el merge, ambas vistas deben mostrar la primera tarea de "Listas", su ejecutor y prompt.
+
+Si los cambios pedidos o la próxima acción después del merge corresponden a **🤖 Junie Lite (Free)**, incluí el prompt completo en un bloque `text`, listo para copiar y pegar en un chat nuevo de Junie Lite en Air. Usá el ID y archivo reales, el protocolo correcto y la rama/PR si existen; para cambios pedidos, identificá lo que debe corregir y conservá la rama/PR. El mismo prompt debe quedar en `STATUS.md` y `BACKLOG.md`, según `AGENTS.md` → Traspasos.
