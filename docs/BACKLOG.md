@@ -1,28 +1,37 @@
 # Tablero
+
+> **▶ SIGUIENTE: publicar y revisar el PR documental de [T-016](tasks/T-016-agent-models-context.md)**
+>
+> **Revisa: 🧠 FRONTERA — GPT-6.1 Sol o Claude Opus 5.5 · sesión nueva; después merge: 👤 dueño.**
+>
+> Prompt al publicarse: «Leé `AGENTS.md` y seguí `docs/agents/reviewer.md` para el PR de T-016». Después del merge, implementar T-001 con 🧠 frontera. Ver [STATUS](STATUS.md).
+
+**Leyenda:** 🤖 **Lite = Junie Lite (Free) en Air** · 🧠 **Frontera = p. ej. GPT-6.1 Sol / Claude Opus 5.5** · 👤 **Dueño**. Las categorías indican quién implementa; el campo **Revisa** de cada tarea puede pedir otro ejecutor.
+
 > Reglas: **una tarea a la vez** (máx. 1 PR de tarea abierto) · "Listas" es la **cola en orden de ejecución**: se toma siempre la primera ·
 > si la primera no te corresponde (🧠 o 👤), no saltees a la siguiente: avisá con el formato de "Traspasos" y terminá ·
 > las 👤 que no bloquean nada van al final de "Listas" con "(no bloquea la cola)" ·
-> formato: `- T-NNN · Pn · S/M/L · 🤖 gratuito|🧠 frontera|👤 dueño · Título → [tarea](tasks/T-NNN-slug.md)`
-> Próximo ID libre: T-016
+> formato: `- T-NNN · Pn · S/M/L · 🤖 Lite|🧠 frontera|👤 dueño · Título → [tarea](tasks/T-NNN-slug.md)`
+> Próximo ID libre: T-017
 
 ## 🔨 En curso / en revisión (con su PR)
-- (vacío)
+- T-016 · P0 · S · 🧠 frontera · Aclarar ejecutores, compactación y traspasos → [tarea](tasks/T-016-agent-models-context.md) · PR pendiente; mantenimiento pedido por el dueño antes de T-001.
 
 ## ✅ Listas (cola en orden de ejecución, máx. 10)
-- T-001 · P0 · S · 🧠 frontera · Sacar el secreto y la expiración del JWT a configuración → [tarea](tasks/T-001-jwt-secret-config.md)
+- **T-001 · P0 · S · 🧠 FRONTERA · Sacar el secreto y la expiración del JWT a configuración** → [tarea](tasks/T-001-jwt-secret-config.md) · primera implementación después de cerrar T-016.
 - T-002 · P0 · M · 🧠 frontera · Montar la infraestructura de tests del back → [tarea](tasks/T-002-backend-test-infra.md)
 - T-003 · P0 · M · 🧠 frontera · Corregir la autorización: roles en el registro, usuarios solo ADMIN, catálogo público y CORS → [tarea](tasks/T-003-authorization-rules.md)
-- T-004 · P0 · S · 🤖 gratuito · Hacer configurable la URL de la API en el front y usar el prefijo /v1/api → [tarea](tasks/T-004-frontend-api-base-url.md)
-- T-005 · P0 · S · 🤖 gratuito · Dejar `npm run lint` en verde → [tarea](tasks/T-005-frontend-lint.md)
-- T-006 · P0 · S · 🤖 gratuito · Corregir el endpoint `DELETE /v1/api/property/{id}` → [tarea](tasks/T-006-delete-property-mapping.md)
-- T-007 · P0 · M · 🤖 gratuito · Escribir tests de caracterización de `PropertyServiceImp` → [tarea](tasks/T-007-property-service-characterization.md)
+- T-004 · P0 · S · **🤖 LITE — cambio de ejecutor** · Hacer configurable la URL de la API en el front y usar el prefijo /v1/api → [tarea](tasks/T-004-frontend-api-base-url.md)
+- T-005 · P0 · S · 🤖 Lite · Dejar `npm run lint` en verde → [tarea](tasks/T-005-frontend-lint.md)
+- T-006 · P0 · S · 🤖 Lite · Corregir el endpoint `DELETE /v1/api/property/{id}` → [tarea](tasks/T-006-delete-property-mapping.md)
+- T-007 · P0 · M · 🤖 Lite · Escribir tests de caracterización de `PropertyServiceImp` → [tarea](tasks/T-007-property-service-characterization.md)
 - T-008 · P0 · M · 🧠 frontera · Agregar manejo global de errores con ProblemDetail y health check → [tarea](tasks/T-008-error-handling.md)
 - T-009 · P0 · M · 🧠 frontera · Montar la infraestructura de tests del front → [tarea](tasks/T-009-frontend-test-infra.md)
 - T-014 · P0 · S · 👤 dueño · Proteger la rama por defecto y limpiar ramas (no bloquea la cola) → [tarea](tasks/T-014-branch-protection.md)
 
 ## ⛔ Bloqueadas (en el orden en que entrarán a la cola)
 - T-010 · P0 · S · 🧠 frontera · Agregar CI (verify por parte) y Dependabot → [tarea](tasks/T-010-ci-workflow.md) · bloqueada por: `verify.sh` en rojo hasta T-005
-- T-011 · P0 · S · 🤖 gratuito · Mostrar estados de carga, error y vacío en la home → [tarea](tasks/T-011-home-error-state.md) · bloqueada por: T-009 (sin tests de front)
+- T-011 · P0 · S · 🤖 Lite · Mostrar estados de carga, error y vacío en la home → [tarea](tasks/T-011-home-error-state.md) · bloqueada por: T-009 (sin tests de front)
 - T-012 · P0 · M · 🧠 frontera · Alinear el contrato de imágenes entre front y back → [tarea](tasks/T-012-image-contract.md) · bloqueada por: T-003, T-004, T-009
 - T-015 · P0 · S · 👤 dueño · Rotar el secreto JWT en todo entorno que lo haya usado → [tarea](tasks/T-015-rotate-jwt-secret.md) · bloqueada por: T-001
 - T-013 · P0 · M · 🧠 frontera · Montar la infraestructura E2E con Playwright → [tarea](tasks/T-013-e2e-infra.md) · bloqueada por: T-010, T-011, T-012
