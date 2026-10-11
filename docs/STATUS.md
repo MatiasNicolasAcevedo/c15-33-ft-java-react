@@ -9,7 +9,7 @@ _Actualizado: 2026-10-11 · por: 🧠 Codex · sesión: implementación de T-003
 | **Tarea** | [T-003 · Corregir la autorización](tasks/T-003-authorization-rules.md) |
 | **Ejecutor** | **🧠 FRONTERA — GPT-6.1 Sol** |
 | **Sesión** | T-003 en implementación; conservar la misma rama y PR |
-| **Rama / PR** | `fix/T-003-authorization-rules` · PR draft pendiente |
+| **Rama / PR** | `fix/T-003-authorization-rules` · [PR #6](https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/pull/6) draft |
 | **Prompt** | «Leé AGENTS.md, docs/STATUS.md y las Notas de implementación de docs/tasks/T-003-authorization-rules.md. Seguí docs/agents/implementer.md retomando T-003 en la rama fix/T-003-authorization-rules. Verificá git status y el último commit; continuá desde el próximo paso registrado. No crees otra rama ni otro PR.» |
 
 **T-001 cerrada:** [PR #4](https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/pull/4) aprobado sin bloqueantes en [revisión independiente](https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/pull/4#issuecomment-6104606817) y mergeado por el dueño con squash (`63e5bc2`). Revisión: server build y 25 tests OK, cobertura 23,86 %, arranque sin secreto rechazado, compose y login demo OK, JWT HS256 de 86400 s; client build OK, mismos 93 problemas de lint pendientes de T-005. T-015 queda lista para el dueño, sin bloquear la cola.
@@ -37,7 +37,7 @@ T-003 en implementación. Línea de base: 31 tests del back OK, cobertura 40,80 
 P0 Estabilizar · 1/15 tareas · ver [ROADMAP](ROADMAP.md)
 
 ## Foco
-- T-003 en curso en `fix/T-003-authorization-rules`; PR draft pendiente.
+- T-003 en curso en `fix/T-003-authorization-rules`; PR #6 draft.
 - **Próximo paso / prompt:** ver la tarjeta **▶ Próxima acción** al inicio de este archivo y la cola de [BACKLOG](BACKLOG.md).
 
 ## Decisiones pendientes del dueño
