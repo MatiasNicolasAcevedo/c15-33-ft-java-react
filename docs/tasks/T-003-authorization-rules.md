@@ -1,5 +1,5 @@
 # T-003 · Corregir la autorización: roles en el registro, usuarios solo ADMIN, catálogo público y CORS
-- Estado: Hecho (implementación terminada; revisión y merge pendientes) · Prioridad: P0 · Esfuerzo: M · Ejecuta: 🧠 modelo de frontera
+- Estado: Hecho (revisión independiente APROBADA; merge pendiente) · Prioridad: P0 · Esfuerzo: M · Ejecuta: 🧠 modelo de frontera
 - Fase: P0 Estabilizar
 - Rama: `fix/T-003-authorization-rules` (crearla desde `development` actualizado antes del primer commit) · Depende de: T-002 · Spec/ADR: [0003](../adr/0003-jwt-stateless-auth.md)
 - Revisa: 🧠 modelo de frontera (sesión nueva) + 👤
@@ -48,12 +48,15 @@ Solo USER/OWNER se auto-registran; listar y borrar usuarios requiere ADMIN; el c
 - Rama: `fix/T-003-authorization-rules` · PR: [#6](https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/pull/6).
 - Último commit de implementación: `376b5d6`; el cierre documental queda en el commit posterior con Refs: T-003.
 - Pruebas: 57 tests, 0 fallos/errores/skips; cobertura 56,48 %; probes curl y compose OK. Contenedores efímeros eliminados y proceso de probes detenido; stack local conservado.
-- Cambios documentales previos: preservados en el working tree y excluidos de los commits de T-003.
-- Pendiente: revisión independiente y merge del dueño. Sin bloqueos técnicos; lint conocido → T-005, códigos de error → T-008, contrato de imágenes → T-012.
-- Próximo paso: abrir sesión nueva de frontera y seguir docs/agents/reviewer.md para PR #6; conservar rama/PR. T-004 no se inicia hasta el merge.
+- Revisión independiente: [APROBADO, sin bloqueantes](https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/pull/6#issuecomment-6105109999), sobre `0625d79`: gate reproducido con 57 tests, 0 fallos/errores/skips y cobertura 56,48 %. Probes curl en API/DB efímeras (:18086): ADMIN 403 sin persistir, listado/borrado USER 403 y víctima conservada, ADMIN 200 con borrado efectivo, catálogo anónimo 200, CORS local permitido/evil rechazado. Entorno de revisión limpiado; stack existente conservado.
+- Cambios documentales previos: inicialmente preservados en el working tree y excluidos de los commits del fix. El dueño autorizó explícitamente incorporarlos al PR #6 antes de T-004: cierres T-001/T-002, desbloqueo T-015 y reglas de prompts Lite. Se agrega además la regla de cierre en AGENTS y protocolos: inventario, diff revisado, rutas explícitas, documentación antes del último commit, commit/push, comprobación del árbol limpio y resolución de heredados antes de otra tarea.
+- Cierre adicional: solo documentación, sin cambios de código, tests, dependencias, configuración ejecutable ni umbrales. Validación: diff y enlaces revisados, git diff --check y prompts idénticos en STATUS/BACKLOG. No se repite el gate funcional ya verificado porque el código ejecutable conserva el árbol de `0625d79`; commit de cierre identificable por su mensaje `docs(agents): publish pending records and require clean handoffs`, con Refs: T-003.
+- Pendiente: merge del dueño. Sin bloqueos técnicos; lint conocido → T-005, códigos de error → T-008, contrato de imágenes → T-012.
+- Próximo paso: GitHub → PR #6 → Squash and merge y borrar rama; registrar el squash y activar el prompt preparado de T-004 en STATUS/BACKLOG. T-004 no se inicia hasta el merge.
 
 ## Resultado
-- PR: [#6](https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/pull/6), listo para revisión.
+- PR: [#6](https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/pull/6), APROBADO en revisión independiente; merge pendiente.
 - Qué cambió: registro sin escalada a ADMIN, administración de usuarios por authority ADMIN, catálogo público solo por GET y CORS con orígenes configurados.
 - Tests agregados: AuthorizationIntegrationTest (20) y CorsConfigTest (6); 57 totales. Cobertura sube de 40,80 % a 56,48 %.
-- Pendientes: revisión 🧠 en sesión nueva + merge 👤; T-004 espera. No se inicia otra tarea.
+- Cierre documental autorizado: se incorporan pendientes previos y reglas de cierre con commit/push y árbol limpio; próxima acción sincronizada en STATUS/BACKLOG y prompt completo de T-004 preparado para después del merge.
+- Pendientes: merge 👤; T-004 espera. No se inicia otra tarea.

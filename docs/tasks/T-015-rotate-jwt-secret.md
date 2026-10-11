@@ -1,8 +1,10 @@
 # T-015 · Rotar el secreto JWT en todo entorno que lo haya usado
-- Estado: Bloqueada (por T-001) · Prioridad: P0 · Esfuerzo: S · Ejecuta: 👤 dueño
+- Estado: Lista (no bloquea la cola) · Prioridad: P0 · Esfuerzo: S · Ejecuta: 👤 dueño
 - Fase: P0 Estabilizar
 - Rama: — · Depende de: T-001 mergeada · Spec/ADR: [0003](../adr/0003-jwt-stateless-auth.md)
 - Revisa: —
+
+T-001 mergeada en [PR #4](https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/pull/4) con squash `63e5bc2` el 2026-10-10 (hora de Buenos Aires). Dependencia satisfecha; pendiente confirmar con el dueño si existe deploy activo y ejecutar los pasos de esta tarea.
 
 ## Por qué
 🔴 S-1: el secreto de firma estuvo commiteado desde dic-2023 (`JwtService.java:28` en el historial). Borrarlo del código (T-001) no alcanza: sigue en el historial de git y cualquiera puede forjar tokens para un deploy que lo use.

@@ -1,5 +1,5 @@
 # T-001 · Sacar el secreto y la expiración del JWT a configuración
-- Estado: En revisión · Prioridad: P0 · Esfuerzo: S · Ejecuta: 🧠 modelo de frontera
+- Estado: Hecha · Prioridad: P0 · Esfuerzo: S · Ejecuta: 🧠 modelo de frontera
 - Fase: P0 Estabilizar
 - Rama: `fix/T-001-jwt-secret-config` (crearla desde `development` actualizado antes del primer commit) · Depende de: — · Spec/ADR: [0003](../adr/0003-jwt-stateless-auth.md)
 - Revisa: 🧠 modelo de frontera (sesión nueva) + 👤
@@ -47,17 +47,18 @@ Evidencia (2026-10-10):
 - Payload del login demo decodificado sin mostrar el token: subject `demo-owner@clonair.local`, `exp - iat = 86400` segundos.
 
 ## Notas de implementación
-- Hecho: implementación y aceptación completas. Rama `fix/T-001-jwt-secret-config`; [PR #4](https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/pull/4), listo para revisión independiente. Base `47debed`; último commit de implementación `e57b35c` (cierre documental posterior).
+- Hecho: implementación, aceptación y revisión independiente completas; [APROBADO sin bloqueantes](https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/pull/4#issuecomment-6104606817). El dueño mergeó [PR #4](https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/pull/4) con squash `63e5bc2` el 2026-10-10 (hora de Buenos Aires). Rama de implementación `fix/T-001-jwt-secret-config`; base `47debed`; commit del fix `e57b35c`, head revisado `942cd8d`.
 - Línea de base: `./scripts/verify.sh` → server build + 1 test OK; client build OK, mismos 93 problemas de lint (T-005); JDK 21 / Node 24.19.0.
 - Regresión reproducida y publicada en `c277f53`: duración obtenida `86400000000` ms frente a `86400000` ms esperados; test falló antes del fix.
 - Implementado: constructor con clave Base64 validada y decodificada una vez, expiración configurable, HS256 conservado, eliminación del helper sin llamadas; `.example`, compose, README y SETUP actualizados. Unitarios `JwtServiceTest` OK (sin contexto Spring).
 - Decisiones: Base64 estricto (`java.util.Base64`); `iat` y `exp` parten de un mismo instante. Los tokens expirados siguen lanzando `ExpiredJwtException`, sin cambiar el manejo de errores de T-008. Clave pública nueva generada con `openssl rand -base64 32` solo para local; no es una rotación de producción.
 - Entorno Windows: el primer build de Docker falló con `./mvnw: not found` por CRLF. Se normalizó únicamente el checkout local de `backend/mvnw` a LF, sin diferencias de contenido ni cambios del wrapper en el PR; el segundo build pasó. La prevención permanente con `.gitattributes` queda en Backlog.
 - Archivos modificados: `JwtService.java`, `JwtServiceTest.java`, `application.properties`, `env.properties.example`, `docker-compose.yml`, README, SETUP, STATUS, BACKLOG y esta tarea. No se leyó ni modificó configuración real ni de producción.
-- Pendiente: revisión independiente con frontera y merge del dueño. Próxima acción: sesión nueva con «Leé `AGENTS.md` y seguí `docs/agents/reviewer.md` para el PR #4». El stack local queda levantado para probarlo.
+- Revisión independiente: reprodujo los 25 tests OK, cobertura 23,86 %, rechazo del arranque sin secreto, compose y login demo OK, JWT HS256 de 86400 s y gate sin regresiones (mismos 93 problemas de lint). Pruebas sobre copia temporal del head, sin configuración real; normalización LF de `mvnw` solo en esa copia.
+- Pendiente de T-001: ninguno. Próxima acción: implementar T-002 en sesión nueva con «Leé `AGENTS.md` y seguí `docs/agents/implementer.md` para T-002». T-015 queda lista para el dueño; el stack local quedó levantado tras la revisión.
 
 ## Resultado
-- PR: [#4](https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/pull/4), base `development`.
+- PR: [#4](https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/pull/4), base `development`, aprobado y mergeado con squash `63e5bc2` por el dueño.
 - Qué cambió: firma HS256 con secreto obligatorio de al menos 256 bits decodificados, duración configurable con default 24 h, helper sin uso eliminado y configuración local/producción documentada.
 - Tests agregados: 24 casos unitarios sin contexto Spring sobre subject, identidad, firma ajena, expiración, duración configurable, HS256 y secretos ausentes/cortos/malformados. Test de regresión publicado antes del fix.
-- Pendientes: revisión y merge; T-015 (👤 rotar en producción); T-005 (lint preexistente); finales LF permanentes en Backlog.
+- Pendientes fuera de T-001: T-015 (👤 confirmar deploy activo y resolver rotación); T-005 (lint preexistente); finales LF permanentes en Backlog.

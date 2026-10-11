@@ -29,6 +29,8 @@ docs/                    STATUS, BACKLOG, tasks/, agents/, audits/, adr/…
 
 Completá el traspaso con **un solo ejecutor**, sin dejar las alternativas de la plantilla. En `STATUS.md`, la primera tarjeta muestra **acción, tarea, ejecutor, rama/PR y prompt**. Si hay un PR abierto, primero revisión/merge/cambios pedidos; si no, la primera de "Listas" en `BACKLOG.md`. Mantené ambas vistas sincronizadas.
 
+**Prompt obligatorio para Junie Lite.** Cuando la próxima acción corresponda a **🤖 Junie Lite (Free)**, incluí en la respuesta final un bloque `text` con el **prompt completo, listo para copiar y pegar en un chat nuevo de Junie Lite en Air**. Debe indicar el ID real y el archivo de la tarea, el protocolo que corresponde (implementación, revisión o retoma) y la rama/PR si ya existen. Para una retoma o cambios pedidos, agregá el punto de continuación y conservá la rama/PR. No dejes placeholders, alternativas ni solo una indicación de cambiar de agente. Guardá el mismo prompt concreto en la tarjeta de `STATUS.md` y el aviso de `BACKLOG.md`. Esta regla también se aplica después de un merge; no habilita saltear la cola ni iniciar una tarea mientras haya un PR pendiente. El dueño pega el prompt; ningún agente lanza a Junie.
+
 ## 2. Stack (versiones reales)
 
 Java 17 (compila también con 21) · Spring Boot 3.2.0 · Spring Security + jjwt 0.11.5 · Spring Data JPA (Hibernate, `ddl-auto=update`) · MySQL 8.4 · springdoc 2.2 · Maven Wrapper (Maven 3.9.5) · React 18.2 · Vite 5 · React Router 6 · Tailwind 3 + Material Tailwind · JavaScript (sin TS) · ESLint 8 · Node 24 (`.nvmrc`; funciona con 22).
@@ -82,6 +84,14 @@ Detalle completo: [`docs/agents/implementer.md`](docs/agents/implementer.md) · 
 > Leé `AGENTS.md`, `docs/STATUS.md` y las Notas de implementación de `docs/tasks/T-NNN-slug.md`. Seguí `docs/agents/implementer.md` **retomando T-NNN** en la rama `<rama>` y el PR `<#N o pendiente>`. Verificá `git status` y el último commit; continuá desde el próximo paso registrado. No crees otra rama ni otro PR para esta retoma.
 
 **Higiene:** salida acotada (`-q`, `| tail -n 60`, logs a archivo + `grep`); grep/glob y rangos de líneas; no abrir `package-lock.json`, `target/`, `node_modules/`, `dist/`, `.verify-logs/`, generados ni `docs/archive/`; respuestas cortas. No asumas un tamaño fijo de contexto para Lite ni inventes un porcentaje si la interfaz no lo muestra.
+
+### Cierre y cambios sin commit (obligatorio)
+
+- Al iniciar, inventariá `git status --short`: distinguí los cambios previos de los propios y comprobá su diff antes de incluirlos. No uses `git add .` ni `git add -A` para incorporar archivos sin revisar; agregá rutas explícitas.
+- Antes de anunciar una implementación lista para revisión, hacer un traspaso o cambiar de tarea, guardá **todos los cambios propios**, incluida la documentación: tarea, `STATUS.md`, `BACKLOG.md`, protocolos y reglas del agente. Actualizá los documentos **antes del último commit**, hacé commit y push en la rama correspondiente, y volvé a comprobar `git status --short`. El cierre normal debe dejar el árbol limpio.
+- Los cambios heredados no pasan automáticamente a la próxima tarea. Resolvé su destino antes del cambio de tarea: incorporalos solo si pertenecen al alcance o el dueño lo autorizó explícitamente; en otro caso, conservá los archivos y registrá rutas, motivo y acción pendiente en la tarea y `STATUS.md`. No los borres, descartes ni ocultes con stash para aparentar un cierre limpio.
+- Comprobá que el commit local coincide con el publicado en la rama del PR; un commit local sin push no está publicado. Si falla commit/push o quedan archivos pendientes, informá el estado exacto y el próximo paso; no anuncies el cierre completo ni habilites la siguiente tarea. Las excepciones deben quedar explícitas y registradas, no solo mencionadas en el chat.
+- En revisión, respetá la prohibición de commitear sin pedido del dueño: podés publicar un veredicto sobre un commit concreto, pero debés señalar cualquier pendiente local que impida el traspaso limpio. Si el dueño autoriza guardarlo, revisá el diff agregado y actualizá la evidencia del PR.
 
 ## 6. Configuración
 
