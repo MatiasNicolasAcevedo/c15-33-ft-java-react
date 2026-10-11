@@ -203,7 +203,7 @@ _Verificado el 2026-10-10 en Ubuntu 24.04 con Java 21.0.12 (y 17.0.20 en contene
 
 ## Tests y calidad
 
-`./scripts/verify.sh` es el gate único (build + lint + tests de ambas partes; `--server` o `--client` para una sola). Estrategia, cobertura y cómo correr un solo test: [`docs/TESTING.md`](docs/TESTING.md). El back tiene 31 tests; los de integración usan MySQL 8.4 efímera vía Testcontainers y puerto HTTP aleatorio. Para verificar el back basta Docker corriendo: `./scripts/verify.sh --server` (o `cd backend && ./mvnw -B clean verify`), sin `env.properties` ni DB de compose. JaCoCo genera el reporte en `backend/target/site/jacoco/index.html` y comprueba un umbral de líneas del 40 % en `verify` (cobertura medida: 40,80 %). El front todavía no tiene tests (T-009).
+`./scripts/verify.sh` es el gate único (build + lint + tests de ambas partes; `--server` o `--client` para una sola). Estrategia, cobertura y cómo correr un solo test: [`docs/TESTING.md`](docs/TESTING.md). El back tiene 57 tests; los de integración usan MySQL 8.4 efímera vía Testcontainers y puerto HTTP aleatorio. Para verificar el back basta Docker corriendo: `./scripts/verify.sh --server` (o `cd backend && ./mvnw -B clean verify`), sin `env.properties` ni DB de compose. JaCoCo genera el reporte en `backend/target/site/jacoco/index.html` y comprueba un umbral de líneas del 40 % en `verify` (cobertura medida tras T-003: 56,48 %). El front todavía no tiene tests (T-009).
 
 ## Cómo se trabaja
 

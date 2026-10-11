@@ -1,10 +1,10 @@
 # Tablero
 
-> **▶ SIGUIENTE: implementar [T-003 · Corregir la autorización](tasks/T-003-authorization-rules.md)**
+> **▶ SIGUIENTE: revisar [PR #6](https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/pull/6) · [T-003](tasks/T-003-authorization-rules.md)**
 >
-> **Ejecuta: 🧠 FRONTERA — GPT-6.1 Sol. T-003 en curso.**
+> **Revisa: 🧠 FRONTERA — GPT-6.1 Sol · sesión nueva; después merge: 👤 dueño.**
 >
-> Prompt: «Leé AGENTS.md, docs/STATUS.md y las Notas de implementación de docs/tasks/T-003-authorization-rules.md. Seguí docs/agents/implementer.md retomando T-003 en la rama fix/T-003-authorization-rules. Verificá git status y el último commit; continuá desde el próximo paso registrado. No crees otra rama ni otro PR.». Rama: `fix/T-003-authorization-rules`; PR #6 draft. Ver [STATUS](STATUS.md).
+> Prompt: «Leé AGENTS.md y seguí docs/agents/reviewer.md para el PR #6 (T-003), rama fix/T-003-authorization-rules. Consultá docs/tasks/T-003-authorization-rules.md; verificá la evidencia de autorización, CORS, tests y cobertura. No inicies T-004 mientras este PR siga pendiente.». Rama: `fix/T-003-authorization-rules`; listo para revisión. T-004 espera el merge. Ver [STATUS](STATUS.md).
 
 **Leyenda:** 🤖 **Lite = Junie Lite (Free) en Air** · 🧠 **Frontera = p. ej. GPT-6.1 Sol / Claude Opus 5.5** · 👤 **Dueño**. Las categorías indican quién implementa; el campo **Revisa** de cada tarea puede pedir otro ejecutor.
 
@@ -15,7 +15,7 @@
 > Próximo ID libre: T-017
 
 ## 🔨 En curso / en revisión (con su PR)
-- T-003 · P0 · M · 🧠 frontera · Corregir la autorización → [tarea](tasks/T-003-authorization-rules.md) · `fix/T-003-authorization-rules` · PR #6 draft
+- (sin implementación en curso; revisión pendiente de T-003 → "Hecho reciente" y próxima acción)
 
 ## ✅ Listas (cola en orden de ejecución, máx. 10)
 - T-004 · P0 · S · **🤖 LITE — cambio de ejecutor** · Hacer configurable la URL de la API en el front y usar el prefijo /v1/api → [tarea](tasks/T-004-frontend-api-base-url.md)
@@ -67,6 +67,7 @@
 - 🧠 Evaluar mover a `client/` + `server/` ([ADR 0004](adr/0004-keep-folder-layout.md))
 
 ## 🏁 Hecho reciente (máx. 10; las más viejas → archive/tasks/)
+- T-003 · P0 · M · 🧠 frontera · Corregir la autorización → [tarea](tasks/T-003-authorization-rules.md) · [PR #6](https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/pull/6) · **implementación terminada, revisión y merge pendientes**; 57 tests OK, cobertura 56,48 % (base 40,80 %), umbral 40 %; probes curl OK, compose válido; gate sin regresiones (93 problemas de lint de T-005).
 - T-002 · P0 · M · 🧠 frontera · Montar la infraestructura de tests del back → [tarea](tasks/T-002-backend-test-infra.md) · [PR #5](https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/pull/5) · **implementación terminada, revisión y merge pendientes**; 31 tests OK sin config/compose, cobertura 40,80 % con umbral 40 %, `--server` verde; gate completo sin regresiones (93 problemas de lint de T-005).
 - T-001 · P0 · S · 🧠 frontera · Sacar el secreto y la expiración del JWT a configuración → [tarea](tasks/T-001-jwt-secret-config.md) · [PR #4](https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/pull/4) · **APROBADA en [revisión independiente](https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/pull/4#issuecomment-6104606817) y mergeada por el dueño con squash `63e5bc2`**; server 25 tests OK, cobertura 23,86 %, compose y login demo OK, sin regresiones en el gate.
 - T-016 · P0 · S · 🧠 frontera · Aclarar ejecutores, compactación y traspasos → [tarea](tasks/T-016-agent-models-context.md) · [PR #3](https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/pull/3) (revisión independiente APROBADA, mergeado por el dueño con squash `47debed`; mantenimiento documental fuera de las 15 tareas de P0).
