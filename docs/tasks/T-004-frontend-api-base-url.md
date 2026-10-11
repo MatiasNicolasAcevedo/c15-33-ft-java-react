@@ -1,5 +1,5 @@
 # T-004 · Hacer configurable la URL de la API en el front y usar el prefijo /v1/api
-- Estado: Lista · Prioridad: P0 · Esfuerzo: S · Ejecuta: 🤖 Junie Lite (Free)
+- Estado: En curso · Prioridad: P0 · Esfuerzo: S · Ejecuta: 🤖 Junie Lite (Free)
 - Fase: P0 Estabilizar
 - Rama: `fix/T-004-frontend-api-base-url` (crearla desde `development` actualizado antes del primer commit) · Depende de: — · Spec/ADR: —
 - Revisa: 🧠 modelo de frontera (sesión nueva; toca configuración, según CONTRIBUTING)
@@ -44,7 +44,9 @@ Todas las llamadas del front usan `import.meta.env.VITE_API_URL` + `/v1/api/...`
 - [ ] Con `./scripts/dev.sh` levantado, en `.dev-logs/server.log` aparecen requests del front (o, sin navegador: `curl -s localhost:5173/src/services/config.js` muestra `/v1/api`)
 
 ## Notas de implementación
-- Hecho: … · Pendiente: … · Próximo paso: …
+- Hecho: rama creada, PR draft abierto. Creando config.js y reemplazando URLs hardcodeadas.
+- Pendiente: actualizar docs (⚠️ T-004), verificar criterios, cerrar con verify.
+- Próximo paso: crear src/services/config.js y reemplazar apiUrl en apiRequests.jsx, Test.jsx, HostCardItem.jsx, DetailContainerCard.jsx.
 
 ## Resultado
 - PR: #N · Qué cambió: … · Tests agregados: — · Pendientes → …

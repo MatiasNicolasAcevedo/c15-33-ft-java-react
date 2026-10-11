@@ -1,18 +1,10 @@
 # Tablero
 
-> **▶ SIGUIENTE: mergear [PR #6](https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/pull/6) · [T-003](tasks/T-003-authorization-rules.md)**
+> **▶ EN CURSO: implementar [T-004](tasks/T-004-frontend-api-base-url.md)**
 >
-> **Ejecuta: 👤 dueño · [revisión independiente APROBADA](https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/pull/6#issuecomment-6105109999), sin bloqueantes.**
+> **Ejecuta: 🤖 Junie Lite (Free) · rama `fix/T-004-frontend-api-base-url` · PR pendiente.**
 >
-> Prompt: «GitHub → PR #6 → Squash and merge y borrar la rama; registrar el squash y actualizar STATUS.md/BACKLOG.md para T-004 con el prompt completo preparado abajo. No iniciar T-004 antes del merge.». Rama: `fix/T-003-authorization-rules`; pendiente de merge. Cierre documental adicional autorizado por el dueño: pendientes previos y regla de árbol limpio. Ver [STATUS](STATUS.md).
-
-> **Traspaso a Junie Lite:** cuando corresponda, entregar un bloque `text` con el prompt completo listo para copiar y pegar en Air, y guardar ese mismo prompt aquí y en `STATUS.md` (regla de `AGENTS.md`). Primera implementación Lite: T-004 tras revisión y merge de T-003.
-
-**Después del merge de PR #6 (todavía no iniciar):** Implementar [T-004](tasks/T-004-frontend-api-base-url.md) · ejecuta **🤖 Junie Lite (Free)** · rama a crear `fix/T-004-frontend-api-base-url` · PR pendiente. Prompt para un chat nuevo en Air:
-
-```text
-Leé AGENTS.md, docs/STATUS.md, docs/BACKLOG.md y docs/tasks/T-004-frontend-api-base-url.md. Seguí docs/agents/implementer.md para implementar T-004: hacer configurable la URL de la API del front y usar el prefijo /v1/api. Confirmá primero que el PR #6 de T-003 está mergeado y que no hay otro PR de tarea abierto. Creá la rama fix/T-004-frontend-api-base-url desde development actualizado antes del primer commit y abrí su PR en draft. Leé frontend/airbnb_clone/AGENTS.md, respetá el alcance y verificá todos los criterios de la tarea; no agregues librerías de tests ni problemas nuevos de lint. Conservá los cambios locales previos y no leas archivos de configuración reales. Al cerrar, actualizá tarea, STATUS.md y BACKLOG.md, publicá la evidencia y dejá el PR listo para revisión de frontera en una sesión nueva. No inicies T-005 mientras el PR de T-004 siga pendiente.
-```
+> T-003 mergeada (PR #6). T-004: hacer configurable la URL de la API en el front y usar el prefijo /v1/api. Ver [STATUS](STATUS.md).
 
 **Leyenda:** 🤖 **Lite = Junie Lite (Free) en Air** · 🧠 **Frontera = p. ej. GPT-6.1 Sol / Claude Opus 5.5** · 👤 **Dueño**. Las categorías indican quién implementa; el campo **Revisa** de cada tarea puede pedir otro ejecutor.
 
@@ -23,10 +15,9 @@ Leé AGENTS.md, docs/STATUS.md, docs/BACKLOG.md y docs/tasks/T-004-frontend-api-
 > Próximo ID libre: T-017
 
 ## 🔨 En curso / en revisión (con su PR)
-- (sin implementación en curso; T-003 APROBADA y pendiente de merge → "Hecho reciente" y próxima acción)
+- T-004 · P0 · S · 🤖 Lite · Hacer configurable la URL de la API en el front y usar el prefijo /v1/api → [tarea](tasks/T-004-frontend-api-base-url.md) · rama `fix/T-004-frontend-api-base-url` · PR pendiente
 
 ## ✅ Listas (cola en orden de ejecución, máx. 10)
-- T-004 · P0 · S · **🤖 LITE — cambio de ejecutor** · Hacer configurable la URL de la API en el front y usar el prefijo /v1/api → [tarea](tasks/T-004-frontend-api-base-url.md)
 - T-005 · P0 · S · 🤖 Lite · Dejar `npm run lint` en verde → [tarea](tasks/T-005-frontend-lint.md)
 - T-006 · P0 · S · 🤖 Lite · Corregir el endpoint `DELETE /v1/api/property/{id}` → [tarea](tasks/T-006-delete-property-mapping.md)
 - T-007 · P0 · M · 🤖 Lite · Escribir tests de caracterización de `PropertyServiceImp` → [tarea](tasks/T-007-property-service-characterization.md)

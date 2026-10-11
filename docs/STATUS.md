@@ -5,20 +5,11 @@ _Actualizado: 2026-10-11 · por: 🧠 Codex · sesión: revisión de T-003 y cie
 
 | Campo | Qué sigue |
 |---|---|
-| **Acción** | **Mergear PR #6 de T-003**; revisión independiente APROBADA |
-| **Tarea** | [T-003 · Corregir la autorización](tasks/T-003-authorization-rules.md) |
-| **Ejecutor** | **👤 dueño** |
-| **Sesión** | [Revisión independiente APROBADA](https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/pull/6#issuecomment-6105109999), sin bloqueantes; cierre documental adicional autorizado por el dueño |
-| **Rama / PR** | `fix/T-003-authorization-rules` · [PR #6](https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/pull/6), pendiente de merge |
-| **Prompt** | «GitHub → PR #6 → Squash and merge y borrar la rama; registrar el squash y actualizar STATUS.md/BACKLOG.md para T-004 con el prompt completo preparado abajo. No iniciar T-004 antes del merge.» |
-
-### Después del merge de PR #6 (todavía no iniciar)
-
-Ambas vistas deben mostrar **Implementar T-004**, ejecutor **🤖 Junie Lite (Free)**, tarea [T-004](tasks/T-004-frontend-api-base-url.md), rama a crear `fix/T-004-frontend-api-base-url` y PR pendiente. Prompt para un chat nuevo de Junie Lite en Air:
-
-```text
-Leé AGENTS.md, docs/STATUS.md, docs/BACKLOG.md y docs/tasks/T-004-frontend-api-base-url.md. Seguí docs/agents/implementer.md para implementar T-004: hacer configurable la URL de la API del front y usar el prefijo /v1/api. Confirmá primero que el PR #6 de T-003 está mergeado y que no hay otro PR de tarea abierto. Creá la rama fix/T-004-frontend-api-base-url desde development actualizado antes del primer commit y abrí su PR en draft. Leé frontend/airbnb_clone/AGENTS.md, respetá el alcance y verificá todos los criterios de la tarea; no agregues librerías de tests ni problemas nuevos de lint. Conservá los cambios locales previos y no leas archivos de configuración reales. Al cerrar, actualizá tarea, STATUS.md y BACKLOG.md, publicá la evidencia y dejá el PR listo para revisión de frontera en una sesión nueva. No inicies T-005 mientras el PR de T-004 siga pendiente.
-```
+| **Acción** | **Implementar T-004**: hacer configurable la URL de la API en el front y usar /v1/api |
+| **Tarea** | [T-004 · Hacer configurable la URL de la API en el front](tasks/T-004-frontend-api-base-url.md) |
+| **Ejecutor** | **🤖 Junie Lite (Free)** |
+| **Rama / PR** | `fix/T-004-frontend-api-base-url` · PR pendiente |
+| **Prompt** | — (en curso) |
 
 **T-002 cerrada:** [PR #5](https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/pull/5) aprobado sin bloqueantes en [revisión independiente](https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/pull/5#issuecomment-6104882015) y mergeado por el dueño con squash (`da3e6e6`). Verificación independiente: 31 tests sin fallos/errores/skips, sin env.properties ni DB de compose; cobertura 40,80 %, umbral 40 % y rechazo comprobado al exigir 100 %. `--server` verde; gate completo sin regresiones (client build OK, 93 problemas de lint de T-005). T-003 queda lista.
 
@@ -31,7 +22,7 @@ Leé AGENTS.md, docs/STATUS.md, docs/BACKLOG.md y docs/tasks/T-004-frontend-api-
 **Compactar y continuar:** solo durante el mismo trabajo largo, en un corte seguro y después de guardar las notas + commit + push. Si la interfaz ofrece compactación, usala y retomá **la misma tarea, rama y PR**. Para Lite, guardá el checkpoint y abrí otro chat. El procedimiento y prompt están en [AGENTS.md → Gestión de contexto](../AGENTS.md#5-gestión-de-contexto).
 
 ## En una línea
-T-003 implementada y APROBADA en revisión independiente: registro solo USER/OWNER, listado/borrado de usuarios solo ADMIN, catálogo GET público y CORS por configuración. Back: 57 tests y cobertura 56,48 %; T-002 mergeada. T-004 espera el merge de T-003 y el cierre publicado de la documentación.
+T-003 mergeada (PR #6). T-004 en curso: hacer configurable la URL de la API en el front y usar /v1/api. Back: 57 tests y cobertura 56,48 %.
 
 ## Salud
 | Check | Estado | Nota |
@@ -49,7 +40,7 @@ T-003 implementada y APROBADA en revisión independiente: registro solo USER/OWN
 P0 Estabilizar · 2/15 tareas · ver [ROADMAP](ROADMAP.md)
 
 ## Foco
-- PR abierto (máx. 1): [#6 · T-003](https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/pull/6), APROBADO en revisión independiente en `fix/T-003-authorization-rules`; pendiente de merge del dueño. T-004 espera el merge.
+- PR abierto (máx. 1): ninguno (T-004 en curso, PR pendiente).
 - **Próximo paso / prompt:** ver la tarjeta **▶ Próxima acción** al inicio de este archivo y la cola de [BACKLOG](BACKLOG.md).
 
 ## Decisiones pendientes del dueño
