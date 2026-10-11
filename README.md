@@ -205,7 +205,7 @@ _Verificado el 2026-10-10 en Ubuntu 24.04 con Java 21.0.12 (y 17.0.20 en contene
 
 ## Cómo se trabaja
 
-Flujo de ramas, commits y PRs en [`CONTRIBUTING.md`](CONTRIBUTING.md). El repo está preparado para desarrollo asistido por agentes ([`AGENTS.md`](AGENTS.md)): 🤖 el agente gratuito de IntelliJ toma tareas chicas y bien especificadas, 🧠 un modelo de frontera (Claude Code) lo complejo, y 👤 el dueño decide y mergea.
+Flujo de ramas, commits y PRs en [`CONTRIBUTING.md`](CONTRIBUTING.md). El repo está preparado para desarrollo asistido por agentes ([`AGENTS.md`](AGENTS.md)): 🤖 **Junie Lite (Free)** mediante Air en IntelliJ toma tareas chicas y bien especificadas, 🧠 un **modelo de frontera** (p. ej. **GPT-6.1 Sol / Claude Opus 5.5**) lo complejo, y 👤 el dueño decide y mergea. La tarjeta al inicio de [`docs/STATUS.md`](docs/STATUS.md) indica la **próxima acción, tarea, ejecutor y prompt**; [`docs/BACKLOG.md`](docs/BACKLOG.md) muestra la cola y los cambios entre frontera y Lite. Para compactar y retomar la misma tarea, seguí [`AGENTS.md` → Gestión de contexto](AGENTS.md#5-gestión-de-contexto).
 
 ## Estado y roadmap
 

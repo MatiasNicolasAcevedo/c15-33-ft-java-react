@@ -1,8 +1,8 @@
 # T-005 · Dejar `npm run lint` en verde
-- Estado: Lista · Prioridad: P0 · Esfuerzo: S · Ejecuta: 🤖 agente gratuito
+- Estado: Lista · Prioridad: P0 · Esfuerzo: S · Ejecuta: 🤖 Junie Lite (Free)
 - Fase: P0 Estabilizar
 - Rama: `chore/T-005-frontend-lint` (crearla desde `development` actualizado antes del primer commit) · Depende de: — · Spec/ADR: —
-- Revisa: 🤖 agente gratuito (chat nuevo)
+- Revisa: 🤖 Junie Lite (Free) (chat nuevo)
 
 ## Por qué
 Q-1: `npm run lint` falla con 93 problemas (66 `react/prop-types`, 17 `no-unused-vars`, 2 `no-undef`, 1 `no-prototype-builtins`, 7 warnings que cuentan por `--max-warnings 0`). Es lo único que deja `verify.sh` en rojo y bloquea la CI (T-010).

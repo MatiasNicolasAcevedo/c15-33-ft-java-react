@@ -1,8 +1,8 @@
 # T-NNN · <Título en imperativo>
-- Estado: Lista · Prioridad: P0–P3 · Esfuerzo: S/M/L · Ejecuta: 🤖 agente gratuito | 🧠 modelo de frontera | 👤 dueño
+- Estado: Lista · Prioridad: P0–P3 · Esfuerzo: S/M/L · Ejecuta: 🤖 Junie Lite (Free) | 🧠 modelo de frontera | 👤 dueño
 - Fase: <P0 Estabilizar | P1 Actualizar | P2 Terminar | P3 Pulir>
 - Rama: `<tipo>/T-NNN-slug` (crearla desde `development` actualizado antes del primer commit) · Depende de: T-NNN · Spec/ADR: <links o "—">
-- Revisa: <🤖 agente gratuito (chat nuevo) | 🧠 modelo de frontera | 👤 dueño> (según la matriz de CONTRIBUTING)
+- Revisa: <🤖 Junie Lite (Free) (chat nuevo) | 🧠 modelo de frontera | 👤 dueño> (según la matriz de CONTRIBUTING)
 
 ## Por qué
 <2–4 líneas: problema y evidencia (archivo:línea o hallazgo de la auditoría)>
@@ -30,6 +30,10 @@
 
 ## Notas de implementación  _(las completa quien implementa; también antes de compactar)_
 - Hecho: ... · Pendiente: ... · Próximo paso: ...
+- Ejecutor/modelo elegido: ... · Rama: ... · PR: <#N o pendiente> · Último commit: ...
+- Decisiones: ... · Archivos modificados: ... · Bloqueos/intentos fallidos: ...
+- Pruebas/verify: <comando y resultado, o no ejecutado> · Checkpoint: <local / publicado; fallo de push si aplica>
+- Próxima acción/comando concreto: ... · Retoma: <misma sesión compactada / chat nuevo, misma tarea, rama y PR>
 
 ## Resultado  _(al cerrar)_
 - PR: #N · Qué cambió: ... · Tests agregados: ... · Pendientes → nuevas tareas: T-NNN

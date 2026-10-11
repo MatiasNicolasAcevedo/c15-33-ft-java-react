@@ -49,22 +49,56 @@ Con un MySQL 8 propio: crear usuario y base con los valores de `env.properties` 
 - Front: React DevTools; las llamadas están todas en `src/services/apiRequests.jsx`.
 - Logs del harness: `.verify-logs/` (verify) y `.dev-logs/` (dev.sh).
 
-## 🤖 Agente gratuito de IntelliJ
+## 🤖 Junie Lite (Free) en Air
 
-⚠️ **No verificado**: no se pudo confirmar en docs de JetBrains qué agente gratuito con modelo Qwen trae IntelliJ ni qué archivo lee. Lo que sí documenta JetBrains: el chat de **AI Assistant** lee *project rules* en `.aiassistant/rules/*.md` y el agente **Junie** lee `.junie/guidelines.md` (o el `AGENTS.md` si se configura la ruta). Por eso el repo tiene ambos como **punteros de una línea** a `AGENTS.md`. Fuentes: [AI Assistant · Junie](https://www.jetbrains.com.cn/en-us/help/ai-assistant/junie-agent.html).
+**Lite** es la configuración gratuita de **Junie** que se usa mediante el [plugin Air para IntelliJ](https://plugins.jetbrains.com/plugin/33314-air). Air integra agentes; no es un modelo. JetBrains documenta Junie Lite gratuito con una cuenta JetBrains y aclara que las condiciones y los modelos disponibles pueden cambiar. Por eso las tareas usan el nombre **Junie Lite (Free)**, sin depender del modelo interno. Fuente: [anuncio oficial de Air y Junie Lite](https://blog.jetbrains.com/ai/2026/10/air-in-ides-eap/).
 
-Cómo usarlo (ajustá si tu versión difiere y actualizá esta sección):
+Cómo usarlo:
 
-1. **Chat nuevo** para cada tarea, revisión o retoma (no hay `/compact`: compactar = persistir + chat nuevo).
-2. Elegir **modo agente** (no solo chat), para que pueda editar archivos y correr comandos.
-3. Si existe la opción de rules, marcar `.aiassistant/rules/agents.md` como *Always*.
-4. Dar permiso para **ejecutar comandos en la terminal** del IDE (al menos `./scripts/verify.sh`, `./mvnw`, `npm`, `git`).
-5. Frase de arranque (cubre el caso de que no lea los punteros): «Leé `AGENTS.md` y seguí `docs/agents/implementer.md`».
-6. **Git:** el agente solo usa `git` (sin `gh` ni MCP). Crea la rama, commitea y hace `git push -u origin <rama>`; al final te deja un link `https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/compare/development...<rama>?expand=1` con título y cuerpo listos para pegar. **Vos abrís el PR** (en draft si recién empieza).
+1. Abrir Air en IntelliJ, iniciar sesión con tu cuenta JetBrains y elegir **Junie Lite**. Verificá esa configuración en la sesión: Junie con un modelo de frontera pertenece a 🧠.
+2. Abrir un **chat nuevo** para cada tarea o revisión. Para retomar la misma tarea en otro chat, primero guardar el checkpoint de `AGENTS.md` → Gestión de contexto; conservar rama y PR.
+3. Junie documenta la lectura de `AGENTS.md`. El puntero `.junie/guidelines.md` del repo usa el formato heredado; `.aiassistant/rules/agents.md` sirve para AI Assistant si también lo usás, no define la configuración de Air. Fuente: [instrucciones y orden de búsqueda de Junie](https://junie.jetbrains.com/docs/guidelines-and-memory.html).
+4. Habilitar las herramientas necesarias para editar y ejecutar comandos del proyecto (`verify.sh`, `mvnw`, `npm`, `git`). Comprobar qué herramientas ofrece la instalación; no asumir ausencia de terminal, `gh` o MCP por ser Lite.
+5. Frase de arranque: «Leé `AGENTS.md` y seguí `docs/agents/implementer.md` para T-NNN». La tarea debe estar asignada a **🤖 Lite**; no saltear una tarea 🧠 anterior.
+6. **PR:** si dispone de `gh` o una integración de GitHub, usarla según el protocolo. Si no, crear la rama, commit y push; dejar al dueño el link `https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/compare/development...<rama>?expand=1`, título y cuerpo listos para abrir el PR en **draft**.
 
-## 🧠 Modelo de frontera (Claude Code)
+## 🧠 Modelo de frontera — GPT-6.1 Sol / Claude Opus 5.5
 
-- Lee `CLAUDE.md` → `AGENTS.md`. Permisos seguros en `.claude/settings.json` (deniega push forzado, push a `development`/`main` y leer la config real).
-- Tiene `gh` o el MCP de GitHub: abre PRs, publica revisiones como comentario y, solo si se lo pedís para un PR concreto, mergea (ver `CONTRIBUTING.md`).
-- Sesión nueva por tarea; `/compact` solo a mitad de un trabajo largo (ver `AGENTS.md` → Gestión de contexto).
+- Elegí, por ejemplo, **GPT-6.1 Sol** en Codex o **Claude Opus 5.5** en Claude Code / un agente compatible. La categoría la define el modelo elegido, no la aplicación. Son ejemplos aceptados para las tareas 🧠; no es obligatorio usar Claude Code.
+- Arranque común: «Leé `AGENTS.md` y seguí `docs/agents/implementer.md` para T-NNN». Claude Code tiene además el puntero `CLAUDE.md` → `AGENTS.md` y permisos propios en `.claude/settings.json`; esos permisos no se trasladan automáticamente a otros agentes.
+- Comprobá si hay `gh` o integración de GitHub. El protocolo contempla el traspaso al dueño si no los hay; disponer de herramientas no autoriza un merge sin pedido explícito para ese PR (ver `CONTRIBUTING.md`).
+- Sesión nueva para otra tarea o revisión. Durante **la misma tarea larga**, persistí las notas y compactá si la interfaz lo permite; después retomá el mismo ID, rama y PR. En **Codex CLI**, `/compact` resume el chat; comprobá su disponibilidad en otras interfaces. Fuente: [comandos oficiales de Codex](https://learn.chatgpt.com/docs/developer-commands?surface=cli). El procedimiento completo y el prompt de retoma están en `AGENTS.md` → Gestión de contexto.
 - Si corre en un contenedor con proxy (como la auditoría): Docker Hub puede devolver 429 (usar el mirror `mirror.gcr.io` en el daemon) y los `docker build` no confían en el CA del proxy (ver `docs/audits/2026-10-10-initial.md` → Verificación).
+
+## Prompt de inicio y contexto de nube
+
+Para la próxima tarea, abrí una sesión nueva con **🧠 GPT-6.1 Sol o Claude Opus 5.5** y usá:
+
+```text
+Leé AGENTS.md y seguí docs/agents/implementer.md para T-001.
+Primero comprobá STATUS, BACKLOG, git status y los PR abiertos.
+Al terminar, dejame el traspaso para la revisión que indique la tarea.
+No mergees salvo que te lo pida explícitamente para ese PR.
+Si necesitás compactar o cambiar de chat, primero guardá el punto de retoma
+como indica AGENTS.md; continuá la misma tarea, rama y PR.
+```
+
+El dueño aportó este contexto para **la nube de Claude Code**. Si trabajás allí, podés agregar el siguiente bloque al prompt. Las instrucciones de `dockerd` y `/etc/docker/daemon.json` son para ese entorno Linux; en el Windows local de IntelliJ, comprobá Docker Desktop y el motor disponible.
+
+```text
+Contexto del entorno (solo si corrés en la nube de Claude Code):
+- La rama por defecto es development. Tenés mi permiso para crear la rama
+  exacta indicada por la tarea y pushearla aunque el entorno te asigne otra.
+  Si el push con ese nombre falla por una restricción del entorno, usá la
+  asignada y registrá el fallo y el nombre real en la tarea, STATUS y el PR.
+- Si docker no responde, comprobá el daemon; si no está iniciado, arrancá
+  dockerd en background en ese entorno.
+- Si Docker Hub devuelve 429, configurá el mirror https://mirror.gcr.io
+  en /etc/docker/daemon.json y reiniciá dockerd, conservando la configuración
+  existente. El ajuste es del entorno, no del repositorio.
+- Si docker build falla con PKIX path building failed por el CA del proxy,
+  registrá el bloqueo. No modifiques el Dockerfile del repo para evitar
+  la validación TLS; consultá docs/SETUP.md → Modelo de frontera.
+```
+
+La excepción de nombre de rama requiere esa **autorización explícita del dueño en la sesión**. Primero intentá la rama de la tarea; si necesitás la asignada, documentá la evidencia y conservá el ID T-NNN. No aplica al trabajo local habitual. El contexto de nube proviene del traspaso recibido; no se volvió a probar en esta revisión documental.
