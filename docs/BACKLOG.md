@@ -1,18 +1,10 @@
 # Tablero
 
-> **▶ SIGUIENTE: mergear [PR #6](https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/pull/6) · [T-003](tasks/T-003-authorization-rules.md)**
+> **▶ SIGUIENTE: revisar [PR #7](https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/pull/7) · [T-004](tasks/T-004-frontend-api-base-url.md)**
 >
-> **Ejecuta: 👤 dueño · [revisión independiente APROBADA](https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/pull/6#issuecomment-6105109999), sin bloqueantes.**
+> **Ejecuta: 🧠 Frontera — GPT-6.1 Sol / Claude Opus 5.5 · rama `fix/T-004-frontend-api-base-url` · [PR #7](https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/pull/7).**
 >
-> Prompt: «GitHub → PR #6 → Squash and merge y borrar la rama; registrar el squash y actualizar STATUS.md/BACKLOG.md para T-004 con el prompt completo preparado abajo. No iniciar T-004 antes del merge.». Rama: `fix/T-003-authorization-rules`; pendiente de merge. Cierre documental adicional autorizado por el dueño: pendientes previos y regla de árbol limpio. Ver [STATUS](STATUS.md).
-
-> **Traspaso a Junie Lite:** cuando corresponda, entregar un bloque `text` con el prompt completo listo para copiar y pegar en Air, y guardar ese mismo prompt aquí y en `STATUS.md` (regla de `AGENTS.md`). Primera implementación Lite: T-004 tras revisión y merge de T-003.
-
-**Después del merge de PR #6 (todavía no iniciar):** Implementar [T-004](tasks/T-004-frontend-api-base-url.md) · ejecuta **🤖 Junie Lite (Free)** · rama a crear `fix/T-004-frontend-api-base-url` · PR pendiente. Prompt para un chat nuevo en Air:
-
-```text
-Leé AGENTS.md, docs/STATUS.md, docs/BACKLOG.md y docs/tasks/T-004-frontend-api-base-url.md. Seguí docs/agents/implementer.md para implementar T-004: hacer configurable la URL de la API del front y usar el prefijo /v1/api. Confirmá primero que el PR #6 de T-003 está mergeado y que no hay otro PR de tarea abierto. Creá la rama fix/T-004-frontend-api-base-url desde development actualizado antes del primer commit y abrí su PR en draft. Leé frontend/airbnb_clone/AGENTS.md, respetá el alcance y verificá todos los criterios de la tarea; no agregues librerías de tests ni problemas nuevos de lint. Conservá los cambios locales previos y no leas archivos de configuración reales. Al cerrar, actualizá tarea, STATUS.md y BACKLOG.md, publicá la evidencia y dejá el PR listo para revisión de frontera en una sesión nueva. No inicies T-005 mientras el PR de T-004 siga pendiente.
-```
+> Prompt: «Leé `AGENTS.md` y seguí `docs/agents/reviewer.md` para el PR #7». Ver [STATUS](STATUS.md).
 
 **Leyenda:** 🤖 **Lite = Junie Lite (Free) en Air** · 🧠 **Frontera = p. ej. GPT-6.1 Sol / Claude Opus 5.5** · 👤 **Dueño**. Las categorías indican quién implementa; el campo **Revisa** de cada tarea puede pedir otro ejecutor.
 
@@ -23,10 +15,9 @@ Leé AGENTS.md, docs/STATUS.md, docs/BACKLOG.md y docs/tasks/T-004-frontend-api-
 > Próximo ID libre: T-017
 
 ## 🔨 En curso / en revisión (con su PR)
-- (sin implementación en curso; T-003 APROBADA y pendiente de merge → "Hecho reciente" y próxima acción)
+- T-004 · P0 · S · 🤖 Lite · Hacer configurable la URL de la API en el front y usar el prefijo /v1/api → [tarea](tasks/T-004-frontend-api-base-url.md) · [PR #7](https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/pull/7) · espera revisión de 🧠
 
 ## ✅ Listas (cola en orden de ejecución, máx. 10)
-- T-004 · P0 · S · **🤖 LITE — cambio de ejecutor** · Hacer configurable la URL de la API en el front y usar el prefijo /v1/api → [tarea](tasks/T-004-frontend-api-base-url.md)
 - T-005 · P0 · S · 🤖 Lite · Dejar `npm run lint` en verde → [tarea](tasks/T-005-frontend-lint.md)
 - T-006 · P0 · S · 🤖 Lite · Corregir el endpoint `DELETE /v1/api/property/{id}` → [tarea](tasks/T-006-delete-property-mapping.md)
 - T-007 · P0 · M · 🤖 Lite · Escribir tests de caracterización de `PropertyServiceImp` → [tarea](tasks/T-007-property-service-characterization.md)
@@ -75,7 +66,8 @@ Leé AGENTS.md, docs/STATUS.md, docs/BACKLOG.md y docs/tasks/T-004-frontend-api-
 - 🧠 Evaluar mover a `client/` + `server/` ([ADR 0004](adr/0004-keep-folder-layout.md))
 
 ## 🏁 Hecho reciente (máx. 10; las más viejas → archive/tasks/)
-- T-003 · P0 · M · 🧠 frontera · Corregir la autorización → [tarea](tasks/T-003-authorization-rules.md) · [PR #6](https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/pull/6) · **APROBADA en [revisión independiente](https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/pull/6#issuecomment-6105109999), merge pendiente**; 57 tests OK, cobertura 56,48 % (base 40,80 %), umbral 40 %; probes curl y compose OK; gate sin regresiones (93 problemas de lint de T-005). Cierre documental autorizado por el dueño: pendientes previos y regla de árbol limpio; T-004 espera el merge.
+- T-004 · P0 · S · 🤖 Lite · Hacer configurable la URL de la API en el front y usar el prefijo /v1/api → [tarea](tasks/T-004-frontend-api-base-url.md) · [PR #7](https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/pull/7) · **espera revisión de 🧠**; build ✅, lint 93 problemas (igual que development), sin IPs hardcodeadas, bundle con localhost:8080/v1/api.
+- T-003 · P0 · M · 🧠 frontera · Corregir la autorización → [tarea](tasks/T-003-authorization-rules.md) · [PR #6](https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/pull/6) · **APROBADA en [revisión independiente](https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/pull/6#issuecomment-6105109999) y mergeada**; 57 tests OK, cobertura 56,48 % (base 40,80 %), umbral 40 %; probes curl y compose OK; gate sin regresiones (93 problemas de lint de T-005).
 - T-002 · P0 · M · 🧠 frontera · Montar la infraestructura de tests del back → [tarea](tasks/T-002-backend-test-infra.md) · [PR #5](https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/pull/5) · **APROBADA en [revisión independiente](https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/pull/5#issuecomment-6104882015) y mergeada por el dueño con squash `da3e6e6`**; 31 tests OK sin config/compose, cobertura 40,80 % con umbral 40 %, `--server` verde; gate completo sin regresiones (93 problemas de lint de T-005).
 - T-001 · P0 · S · 🧠 frontera · Sacar el secreto y la expiración del JWT a configuración → [tarea](tasks/T-001-jwt-secret-config.md) · [PR #4](https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/pull/4) · **APROBADA en [revisión independiente](https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/pull/4#issuecomment-6104606817) y mergeada por el dueño con squash `63e5bc2`**; server 25 tests OK, cobertura 23,86 %, compose y login demo OK, sin regresiones en el gate.
 - T-016 · P0 · S · 🧠 frontera · Aclarar ejecutores, compactación y traspasos → [tarea](tasks/T-016-agent-models-context.md) · [PR #3](https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/pull/3) (revisión independiente APROBADA, mergeado por el dueño con squash `47debed`; mantenimiento documental fuera de las 15 tareas de P0).

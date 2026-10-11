@@ -1,10 +1,10 @@
 import { Button } from "@material-tailwind/react"
 import { useAuth } from "../context/authContext";
 import { deleteProperty, getAllProperties, getImageUrlById, getPropertiesByUserId, getProperty } from "../services/apiRequests";
+import { API_URL } from "../services/config";
 
 
 export const Test = () => {
-    const apiUrl = 'http://149.50.133.215:80';
     const token = localStorage.getItem('token') ? localStorage.getItem('token') : ''
 
     const { user, setUser } = useAuth()
@@ -33,7 +33,7 @@ export const Test = () => {
 
       const getUsers = async () => {
         try {
-            const response = await fetch(`${apiUrl}/api/user`, {
+            const response = await fetch(`${API_URL}/user`, {
                 method: 'GET',
                 headers: {
                     'Authorization': `Bearer ${token}`

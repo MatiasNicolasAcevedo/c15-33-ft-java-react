@@ -1,8 +1,8 @@
-const apiUrl = 'http://149.50.133.215:80';
+import { API_URL } from './config';
 
 export async function login(userData) {
     try {
-        const response = await fetch(apiUrl+"/auth/login", {
+        const response = await fetch(`${API_URL}/auth/login`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -27,7 +27,7 @@ export async function login(userData) {
 export async function register(userData) {
     
     try {
-        const response = await fetch(apiUrl+"/auth/register", {
+        const response = await fetch(`${API_URL}/auth/register`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -91,7 +91,7 @@ export async function submitProperty(formData) {
             }
         }
 
-        const response = await fetch(`${apiUrl}/api/property`, {
+        const response = await fetch(`${API_URL}/property`, {
             method: 'POST',
             headers: {
                 'Authorization': `Bearer ${token}`
@@ -116,7 +116,7 @@ export async function updateUserData (setUser, username) {
     const token = localStorage.getItem('token') ? localStorage.getItem('token') : ''
 
     try {
-        const response = await fetch(`${apiUrl}/api/user/username/${username}`, {
+        const response = await fetch(`${API_URL}/user/username/${username}`, {
             method: 'GET',
             headers: {
                 'Authorization': `Bearer ${token}`
@@ -142,7 +142,7 @@ export async function updateUser( formData, id ) {
     const token = localStorage.getItem('token') ? localStorage.getItem('token') : ''
 
     try {
-        const response = await fetch(`${apiUrl}/api/user/${id}`, {
+        const response = await fetch(`${API_URL}/user/${id}`, {
             method: 'PUT',
             headers: {
                 'Authorization': `Bearer ${token}`,
@@ -162,7 +162,7 @@ export async function updateUser( formData, id ) {
 export async function deleteUser (id) {
     const token = localStorage.getItem('token') ? localStorage.getItem('token') : ''
     try {
-        const response = await fetch(`${apiUrl}/api/user/${id}`, {
+        const response = await fetch(`${API_URL}/user/${id}`, {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json',
@@ -183,7 +183,7 @@ export async function deleteUser (id) {
 export async function getAllUsers () {
     const token = localStorage.getItem('token') ? localStorage.getItem('token') : ''
     try {
-        const response = await fetch(`${apiUrl}/api/user`, {
+        const response = await fetch(`${API_URL}/user`, {
             method: 'GET',
             headers: {
                 'Authorization': `Bearer ${token}`
@@ -206,7 +206,7 @@ export async function getUser (username) {
     const token = localStorage.getItem('token') ? localStorage.getItem('token') : ''
 
     try {
-        const response = await fetch(`${apiUrl}/api/user/username/${username}`, {
+        const response = await fetch(`${API_URL}/user/username/${username}`, {
             method: 'GET',
             headers: {
                 'Authorization': `Bearer ${token}`
@@ -227,7 +227,7 @@ export async function getUser (username) {
 
 export async function getAllProperties () {
     try {
-        const response = await fetch(`${apiUrl}/api/property`, {
+        const response = await fetch(`${API_URL}/property`, {
             method: 'GET',
             headers: {
             }
@@ -248,7 +248,7 @@ export async function getAllProperties () {
 export async function getProperty (id) {
     const token = localStorage.getItem('token') ? localStorage.getItem('token') : ''
     try {
-        const response = await fetch(`${apiUrl}/api/property/${id}`, {
+        const response = await fetch(`${API_URL}/property/${id}`, {
             method: 'GET',
             headers: {
                 'Authorization': `Bearer ${token}`
@@ -269,7 +269,7 @@ export async function getProperty (id) {
 export async function getPropertiesByUserId (userId) {
     const token = localStorage.getItem('token') ? localStorage.getItem('token') : ''
     try {
-        const response = await fetch(`${apiUrl}/api/property/user/${userId}`, {
+        const response = await fetch(`${API_URL}/property/user/${userId}`, {
             method: 'GET',
             headers: {
                 'Authorization': `Bearer ${token}`
@@ -291,7 +291,7 @@ export async function getPropertiesByUserId (userId) {
 export async function deleteProperty (id) {
     const token = localStorage.getItem('token') ? localStorage.getItem('token') : ''
     try {
-        const response = await fetch(`${apiUrl}/api/property/${id}`, {
+        const response = await fetch(`${API_URL}/property/${id}`, {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json',
@@ -313,7 +313,7 @@ export async function getImageUrlById (id) {
     const token = localStorage.getItem('token') ? localStorage.getItem('token') : ''
 
     try {
-        const response = await fetch(`${apiUrl}/api/img/${id}`, {
+        const response = await fetch(`${API_URL}/img/${id}`, {
             method: 'GET',
             headers: {
                 'Authorization': `Bearer ${token}`

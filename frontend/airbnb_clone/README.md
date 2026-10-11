@@ -21,7 +21,7 @@ npm run dev
 ```
 
 **Resultado esperado:** `Local: http://localhost:5173/`.
-⚠️ Hoy falla: la URL de la API está hardcodeada a producción (`src/services/apiRequests.jsx:1`) y la home cae en la pantalla de error. Se arregla en [T-004](../../docs/tasks/T-004-frontend-api-base-url.md) (usar `VITE_API_URL`) y [T-011](../../docs/tasks/T-011-home-error-state.md).
+⚠️ Hoy falla: la home muestra la pantalla de error ([T-011](../../docs/tasks/T-011-home-error-state.md)).
 
 ## Comandos
 

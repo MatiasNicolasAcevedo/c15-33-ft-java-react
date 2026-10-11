@@ -1,3 +1,5 @@
+import { API_URL } from "../../../services/config";
+
 export const HostCardItem = ({title, description, location, value, images}) => {
   return (
     <div
@@ -14,7 +16,7 @@ export const HostCardItem = ({title, description, location, value, images}) => {
           "
         >
           <img
-            src={`http://149.50.133.215:80/api/img/${images[0]}`}
+            src={`${API_URL}/img/${images[0]}`}
             alt="image 2"
             className="
               object-cover 

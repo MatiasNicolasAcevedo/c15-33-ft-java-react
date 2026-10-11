@@ -59,7 +59,6 @@ services:
     build:
       context: ./frontend/airbnb_clone
       args:
-        # Igual que frontend/airbnb_clone/.env.example. Hoy el código no lo lee (T-004).
         VITE_API_URL: http://localhost:8080
     depends_on:
       server:

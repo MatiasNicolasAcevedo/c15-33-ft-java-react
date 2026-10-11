@@ -22,7 +22,7 @@ Clon de Airbnb desarrollado en 5 semanas (dic-2023) durante la simulación labor
 
 - ✅ Registro e inicio de sesión con JWT (roles USER y OWNER).
 - ✅ Alta de propiedades con imágenes, servicios y ubicación (OWNER).
-- 🚧 Búsqueda y filtros por categoría/subcategoría (UI lista; el front todavía no habla con el back local: T-004).
+- 🚧 Búsqueda y filtros por categoría/subcategoría (UI lista; el front llama al back local pero la home se rompe: T-011).
 - 🚧 Detalle de propiedad e imágenes (T-012).
 - 🚧 Reservas y "mis viajes" (solo UI; sin back).
 - 🚧 Panel de administración (UI; permisos a corregir: T-003).
@@ -59,7 +59,7 @@ Cada parte tiene un archivo de ejemplo commiteado. **Los valores sirven tal cual
 | Archivo de ejemplo | Copiar a | Quién lo lee | Qué contiene |
 |---|---|---|---|
 | `backend/src/main/resources/env.properties.example` | `backend/src/main/resources/env.properties` | Spring Boot (`spring.config.import`, desde el classpath) | puerto del back, conexión a MySQL, JWT (clave solo local, duración 24 h) y orígenes CORS |
-| `frontend/airbnb_clone/.env.example` | `frontend/airbnb_clone/.env` | Vite (`VITE_*`) | URL del back (⚠️ hoy el código no la lee: T-004) |
+| `frontend/airbnb_clone/.env.example` | `frontend/airbnb_clone/.env` | Vite (`VITE_*`) | URL del back |
 
 Desde la raíz del repo:
 
@@ -106,7 +106,7 @@ docker compose --profile app up -d --build --wait
 **Resultado esperado:** `✅ login demo OK · usuario: demo-owner@clonair.local · contraseña: Demo1234!`
 
 5. Abrir: front http://localhost:8081 · API http://localhost:8080 · Swagger http://localhost:8080/swagger-ui
-   ⚠️ Hoy falla: el front muestra la pantalla de error porque llama a la API de producción (ver [T-004](docs/tasks/T-004-frontend-api-base-url.md)).
+   ⚠️ Hoy falla: la home muestra la pantalla de error (ver [T-011](docs/tasks/T-011-home-error-state.md)).
 6. Apagar y borrar los datos:
 
 ```bash
@@ -164,7 +164,7 @@ npm run dev
 ```
 
 **Resultado esperado:** `VITE … ready` y `Local: http://localhost:5173/`. Abrir esa URL.
-⚠️ Hoy falla: el front llama a la API de producción en lugar de `http://localhost:8080` y la home muestra la pantalla de error ([T-004](docs/tasks/T-004-frontend-api-base-url.md), [T-011](docs/tasks/T-011-home-error-state.md)).
+⚠️ Hoy falla: la home muestra la pantalla de error ([T-011](docs/tasks/T-011-home-error-state.md)).
 
 **7. Verificar todo** (desde la raíz):
 
@@ -195,7 +195,7 @@ docker compose down -v
 | `Bind for 0.0.0.0:3306 failed: port is already allocated` | hay otro MySQL local | apagarlo, o `DB_PORT=3307 docker compose up -d --wait` y `DB_PORT=3307` en `env.properties` |
 | `./mvnw: Permission denied` | checkout viejo sin bit de ejecución | `chmod +x backend/mvnw` o `sh mvnw …` |
 | `invalid target release: 17` | JDK menor a 17 | instalar JDK 17 o 21 (ver Prerrequisitos) |
-| El front muestra "Error code: 404" en la home | el front llama a la API de producción (CORS) | pendiente T-004 |
+| El front muestra "Error code: 404" en la home | la home no maneja estados de carga/error | pendiente T-011 |
 | 403 en cualquier error de la API | no hay manejo global de errores | pendiente T-008 |
 | `seed-demo.sh` → `register → 000` | el back todavía no arrancó | esperar el `200` del paso 4 |
 
