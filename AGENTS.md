@@ -44,7 +44,7 @@ Setup completo: ver [README](README.md) → "Levantar el proyecto en local" (no 
 | Todo en contenedores | `docker compose --profile app up -d --build --wait` |
 | Desarrollo (DB + back + front) | `./scripts/dev.sh` (`Ctrl+C` corta todo; `--down` apaga la DB) |
 | Usuario demo | `./scripts/seed-demo.sh` → `demo-owner@clonair.local` / `Demo1234!` |
-| Un test del back | `cd backend && ./mvnw -q test -Dtest='Clase#metodo'` (con la DB arriba) |
+| Un test del back | `cd backend && ./mvnw -q test -Dtest='Clase#metodo'` (Docker corriendo para integración; sin DB de compose ni config manual) |
 | Un test del front | desde T-009: `cd frontend/airbnb_clone && npx vitest run <archivo>` |
 | E2E | no existe todavía (T-013 crea `scripts/e2e.sh`) |
 
@@ -125,5 +125,5 @@ Versiones mayores de dependencias · esquema de DB y datos · seguridad/autentic
 - Sin `@RestControllerAdvice`, **todo error de la API es 403** (hasta T-008): no asumas que 403 = sin permiso; mirá el log del back.
 - No hay health endpoint: usá `GET /v3/api-docs` → 200.
 - El front llama a una IP de producción hardcodeada hasta T-004.
-- `verify.sh` necesita Docker (levanta la DB de compose).
+- `verify.sh --server` necesita Docker (MySQL efímera vía Testcontainers; sin DB de compose ni config manual).
 - En contenedores con proxy TLS (cloud): Docker Hub puede dar 429 y `docker build` puede fallar con `PKIX path building failed` (ver `docs/SETUP.md` → Modelo de frontera).

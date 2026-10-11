@@ -2,9 +2,9 @@
 
 Solo lo específico del back. Lo general está en el [AGENTS.md raíz](../AGENTS.md).
 
-## Comandos (desde `backend/`, con `docker compose up -d --wait` hecho en la raíz)
+## Comandos (desde `backend/`)
 
-- Tests: `./mvnw -q test` · uno: `./mvnw -q test -Dtest='Clase#metodo'` · gate: `../scripts/verify.sh --server`.
+- Tests (Docker corriendo para integración; sin DB de compose ni `env.properties`): `./mvnw -q test` · uno: `./mvnw -q test -Dtest='Clase#metodo'` · gate: `../scripts/verify.sh --server`.
 - Correr: `./mvnw spring-boot:run` → `curl -s -o /dev/null -w '%{http_code}\n' http://localhost:8080/v3/api-docs` = 200.
 - Config: `src/main/resources/env.properties` (copia del `.example`). No la leas ni la commitees.
 
