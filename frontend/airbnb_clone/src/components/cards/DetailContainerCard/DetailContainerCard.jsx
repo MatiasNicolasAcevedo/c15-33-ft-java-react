@@ -1,6 +1,7 @@
 import { useLocation, useParams } from "react-router-dom";
 import { Container } from "../../shared";
 import { DetailCardHead, DetailCardInfo, DetailCardReservation } from "../";
+import { API_URL } from "../../services/config";
 
 export const DetailContainerCard = () => {
 
@@ -24,7 +25,7 @@ export const DetailContainerCard = () => {
           <DetailCardHead
             title={title}
             country={location.country}
-            image={`http://149.50.133.215:80/api/img/${images[0]}`}
+            image={`${API_URL}/img/${images[0]}`}
           />
           <div 
             className="
