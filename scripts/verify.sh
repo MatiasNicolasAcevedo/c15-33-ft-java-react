@@ -22,19 +22,16 @@ FAIL=0 SUMMARY=()
 verify_server() {
   local log="$LOGS/server.log" s="server:" jdk
   jdk=$(java -version 2>&1 | grep -oE 'version "[0-9]+' | grep -oE '[0-9]+$' || echo "?")
-  echo "▶ server: DB + ./mvnw clean verify (log: .verify-logs/server.log)"
-  # Primero la config: así compose usa el mismo DB_PORT que el back.
-  load_server_env
-  echo "  config: ${SERVER_ENV_USED#"$ROOT"/}"
-  if ! db_up >"$LOGS/db.log" 2>&1; then
-    SUMMARY+=("server: ❌ DB no levantó (ver .verify-logs/db.log)"); FAIL=1; return
-  fi
+  echo "▶ server: ./mvnw clean verify (Testcontainers; log: .verify-logs/server.log)"
   (cd "$SERVER_DIR" && ./mvnw -B clean verify) >"$log" 2>&1
   local rc=$?
   local tests
   tests=$(grep -E '^\[(INFO|WARNING|ERROR)\] Tests run:' "$log" | tail -1 | sed -E 's/.*Tests run: ([0-9]+), Failures: ([0-9]+), Errors: ([0-9]+), Skipped: ([0-9]+).*/\1 \2 \3 \4/')
   if [ $rc -eq 0 ]; then
-    s+=" ✅ build ✅ tests (${tests%% *})"
+    s+=" ✅ build ✅ tests (${tests%% *}) ✅ cobertura"
+  elif grep -q 'Coverage checks have not been met' "$log"; then
+    s+=" ✅ build ✅ tests (${tests%% *}) ❌ cobertura"; FAIL=1
+    grep -m3 'Rule violated' "$log" | sed 's/^/    /'
   elif grep -q 'COMPILATION ERROR\|release version\|invalid target release' "$log"; then
     s+=" ❌ build"; FAIL=1
     grep -m3 -E 'ERROR.*\.java|release version|invalid target' "$log" | sed 's/^/    /'

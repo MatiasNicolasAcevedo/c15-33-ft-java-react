@@ -1,6 +1,6 @@
 # Estrategia de testing
 
-Estable. Línea de base (2026-10-10): back **1 test, 16,8 % líneas / 1,0 % ramas**; front **sin tests**; E2E **no existe**. Gate: `./scripts/verify.sh`.
+Estable. Base de auditoría (2026-10-10): back **1 test, 16,8 % líneas / 1,0 % ramas**. Tras T-002: **31 tests, 40,80 % líneas (224/549), umbral 40 %**; front **sin tests**; E2E **no existe**. Gate: `./scripts/verify.sh`.
 
 ## 1. Pirámide y herramientas
 
@@ -16,7 +16,7 @@ Estable. Línea de base (2026-10-10): back **1 test, 16,8 % líneas / 1,0 % rama
 | Front · cobertura | Vitest coverage **v8** | — |
 | E2E | **Playwright** (desktop 1280 + mobile 375), screenshots y traces en fallos | 3–5 smoke de flujos críticos contra `docker compose --profile app` |
 
-Sin H2: la DB real es MySQL y los tests usan la misma vía Testcontainers ([ADR 0001](adr/0001-testcontainers-mysql.md)). Infra pendiente: back T-002, front T-009, E2E T-013.
+Sin H2: la DB real es MySQL y los tests usan la misma vía Testcontainers ([ADR 0001](adr/0001-testcontainers-mysql.md)). Infra del back implementada en T-002; pendientes: front T-009 y E2E T-013.
 
 ## 2. Qué testear y qué no
 
@@ -33,17 +33,19 @@ Sin H2: la DB real es MySQL y los tests usan la misma vía Testcontainers ([ADR 
 
 | Tipo | Referencia |
 |---|---|
-| Unitario back | `JwtServiceTest` (lo crea T-001) |
-| `@WebMvcTest` | el que crea T-002 (`AuthControllerTest`) |
-| Integración back | el que crea T-002 (`AuthFlowIntegrationTest`) |
+| Unitario back | [UserServiceImpTest](../backend/src/test/java/com/clonair/back/user/UserServiceImpTest.java) (Mockito puro); [JwtServiceTest](../backend/src/test/java/com/clonair/back/security/jwt/JwtServiceTest.java) para JWT |
+| `@WebMvcTest` | [AuthControllerTest](../backend/src/test/java/com/clonair/back/security/auth/AuthControllerTest.java) (filtros y SecurityConfig reales, servicios mockeados, sin DB) |
+| Integración back | [AuthFlowIntegrationTest](../backend/src/test/java/com/clonair/back/security/auth/AuthFlowIntegrationTest.java) (HTTP real, puerto aleatorio y MySQL 8.4) |
 | Componente front | el que crea T-009 |
 | E2E | el que crea T-013 |
+
+La configuración de Spring en tests usa exclusivamente `application-test.properties` vía `spring.config.location`, sin cargar `application.properties` ni importar `env.properties`. No necesita `APP_PORT`, `JWT_SECRET` ni variables de DB externas. [TestcontainersConfiguration](../backend/src/test/java/com/clonair/back/TestcontainersConfiguration.java) declara la MySQL como bean con `@ServiceConnection`: Spring administra su ciclo de vida y comparte el contexto entre las dos clases de integración. El recurso `src/test/resources/mysql-test-conf/my.cnf` reemplaza la configuración antigua de Testcontainers 1.19.3 para ser compatible con MySQL 8.4 (sin `skip-host-cache`). La DB es efímera, sin el volumen ni los datos de compose. Cada caso crea su propio usuario con un nombre distinto; el orden no importa.
 
 Mientras una referencia no exista, la tarea que la necesita está bloqueada por la tarea de infra.
 
 **Correr un solo test**
 
-- Back (desde `backend/`, con la DB de compose arriba): `./mvnw -q test -Dtest=BackApplicationTests` · método: `./mvnw -q test -Dtest='BackApplicationTests#contextLoads'`.
+- Back (desde `backend/`, Docker corriendo para integración; sin DB de compose ni configuración manual): `./mvnw -q test -Dtest=BackApplicationTests` · método: `./mvnw -q test -Dtest='BackApplicationTests#contextLoads'`.
 - Front (desde T-009): `npx vitest run src/components/…/Archivo.test.jsx` · por nombre: `npx vitest run -t "texto del it"`.
 - E2E (desde T-013): `npx playwright test tests/e2e/archivo.spec.ts`.
 
@@ -61,16 +63,16 @@ Medir la base, fijar el umbral en ese valor redondeado hacia abajo y **no bajarl
 
 | Parte | Base | Umbral inicial | Meta |
 |---|---|---|---|
-| Back (línea) | 16,8 % | 16 % (lo fija T-002 con JaCoCo) | ≥ 70–80 % en servicios/dominio |
+| Back (línea) | 40,80 % (224/549, T-002) | **40 %** (JaCoCo en `verify`) | ≥ 70–80 % en servicios/dominio |
 | Front (línea) | — | el valor medido en T-009 | ≥ 70 % en lógica (services, hooks) |
 
-Medir hoy la base del back sin tocar el `pom.xml` (desde `backend/`):
+Medir y comprobar la cobertura del back (desde `backend/`):
 
 ```bash
-./mvnw org.jacoco:jacoco-maven-plugin:0.8.14:prepare-agent test org.jacoco:jacoco-maven-plugin:0.8.14:report
+./mvnw -B clean verify
 ```
 
-Reporte en `backend/target/site/jacoco/index.html`.
+Reporte en `backend/target/site/jacoco/index.html`. JaCoCo 0.8.14 ejecuta `prepare-agent`, `report` y `check` (LINE / COVEREDRATIO / BUNDLE, sin exclusiones) en el ciclo Maven. El gate distingue un fallo de cobertura de un fallo de tests.
 
 ## 6. Opcional
 
@@ -78,7 +80,7 @@ Mutation testing puntual en auditorías: PIT (`pitest-maven`) sobre `property/` 
 
 ## Roadmap de testing (antes de cualquier migración)
 
-1. 🧠 T-002 · infra back: JaCoCo con umbral, Testcontainers, sin config manual, primer test de integración y de `@WebMvcTest`.
+1. ✅ T-002 · infra back: JaCoCo con umbral, Testcontainers, sin config manual, primer test de integración y de `@WebMvcTest`.
 2. 🧠 T-009 · infra front: Vitest + RTL + MSW + cobertura (con Vite ya existente, no hace falta migrar de CRA).
 3. 🧠 T-013 · infra E2E: Playwright + `scripts/e2e.sh` + job de CI.
 4. 🤖 Caracterización: T-007 (propiedades) y una tarea por flujo crítico sin test (ver auditoría → Testing).
