@@ -4,6 +4,7 @@ import com.clonair.back.security.jwt.JwtAuthenticationFilter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.Customizer;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -35,7 +36,15 @@ public class SecurityConfig {
                 .csrf(csrf -> // Deshabilitar CSRF(Cross-Site Request Forgery) cuando se trabaja con una API REST.
                         csrf  // Ya que las aplicaciones RESTful no mantienen el estado de sesión por diseño, y CSRF se enfoca en la protección de sesiones.
                                 .disable())
-                                .authorizeHttpRequests(auth -> auth.requestMatchers(publicEndpoints()).permitAll().anyRequest().authenticated())
+                .cors(Customizer.withDefaults())
+                .authorizeHttpRequests(auth -> auth
+                        .requestMatchers(publicEndpoints()).permitAll()
+                        .requestMatchers(
+                                new AntPathRequestMatcher("/v1/api/user", "GET"),
+                                new AntPathRequestMatcher("/v1/api/user/", "GET"),
+                                new AntPathRequestMatcher("/v1/api/user/**", "DELETE"))
+                        .hasAuthority("ADMIN")
+                        .anyRequest().authenticated())
                 .sessionManagement(sessionManager->
                         sessionManager
                                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)) // La aplicación no mantendrá estados de sesión en el servidor, es común en servicios RESTful. Y cada solicitud debe incluir toda la información necesaria para su procesamiento.
@@ -50,7 +59,8 @@ public class SecurityConfig {
                 new AntPathRequestMatcher("/v1/api/auth/*"),
                 new AntPathRequestMatcher("/swagger-ui/**"),
                 new AntPathRequestMatcher("/v3/api-docs/**"),
-                new AntPathRequestMatcher("/v1/api/render/*")
+                new AntPathRequestMatcher("/v1/api/property/**", "GET"),
+                new AntPathRequestMatcher("/v1/api/img/**", "GET")
         );
     }
 

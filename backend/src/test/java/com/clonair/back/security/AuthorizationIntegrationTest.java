@@ -26,6 +26,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.http.client.JdkClientHttpRequestFactory;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.util.List;
@@ -176,7 +177,7 @@ class AuthorizationIntegrationTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = {"http://evil.example", "http://localhost:5173.evil.example", "http://localhost:5174"})
+    @ValueSource(strings = {"http://evil.example", "http://localhost.evil.example:5173", "http://localhost:5174"})
     void preflight_whenUnconfiguredOrigin_rejectsWithoutAllowOriginHeader(String origin) {
         // Auth es público: el rechazo tiene que venir de CORS, no de falta de autenticación.
         ResponseEntity<String> response = preflight(origin, "/v1/api/auth/login", HttpMethod.POST);
@@ -186,11 +187,14 @@ class AuthorizationIntegrationTest {
     }
 
     private ResponseEntity<String> preflight(String origin, String path, HttpMethod method) {
+        // HttpURLConnection descarta Origin; el cliente HTTP del JDK sí lo transmite.
+        TestRestTemplate corsClient = new TestRestTemplate();
+        corsClient.getRestTemplate().setRequestFactory(new JdkClientHttpRequestFactory());
         HttpHeaders headers = new HttpHeaders();
         headers.setOrigin(origin);
         headers.setAccessControlRequestMethod(method);
         headers.setAccessControlRequestHeaders(List.of("authorization"));
-        return restTemplate.exchange(path, HttpMethod.OPTIONS,
+        return corsClient.exchange(restTemplate.getRootUri() + path, HttpMethod.OPTIONS,
                 new HttpEntity<>(headers), String.class);
     }
 

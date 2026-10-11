@@ -30,9 +30,11 @@ sequenceDiagram
   participant S as Service (*ServiceImp)
   participant R as Repository (Spring Data)
   participant D as MySQL
-  F->>J: GET /v1/api/property (Authorization: Bearer …)
-  J->>J: valida firma/expiración, carga UserDetails
-  J->>C: SecurityContext autenticado
+  F->>J: GET /v1/api/property (público, sin token)
+  opt Si viene un Bearer token
+    J->>J: valida firma/expiración, carga UserDetails
+  end
+  J->>C: continúa (GET público)
   C->>S: getAll()
   S->>R: findAll()
   R->>D: SELECT …
@@ -85,18 +87,22 @@ Prefijo `/v1/api`. Contrato vivo: http://localhost:8080/v3/api-docs (Swagger UI 
 
 | Endpoint | Pantalla (front) | Estado |
 |---|---|---|
-| `POST auth/register`, `POST auth/login` | `components/forms/Forms.jsx` | ⚠️ el front llama a `/auth/*` (T-004) |
-| `GET property` | Home `shared/CardContainer` y filtros | ⚠️ requiere token; la home es pública (T-003) |
-| `GET property/{id}` | `cards/DetailContainerCard` | ⚠️ idem |
-| `GET property/user/{id}` | `owner/PropertiesUser`, `admin/AdminPanel` | |
+| `POST auth/register`, `POST auth/login` | `components/forms/Forms.jsx` | Registro público solo USER/OWNER; ADMIN se asigna por base/seed. ⚠️ el front llama a `/auth/*` (T-004) |
+| `GET property` | Home `shared/CardContainer` y filtros | Público (sin token) |
+| `GET property/{id}` | `cards/DetailContainerCard` | Público (sin token) |
+| `GET property/user/{id}` | `owner/PropertiesUser`, `admin/AdminPanel` | Público (sin token) |
 | `POST property` (multipart) | `property/PropertyRegister` | ✅ verificado por curl |
 | `PUT property/{id}` (multipart) | `owner/PropertiesUpdateForm` | |
 | `DELETE property` | `owner/PropertiesUser`, `admin/AdminPanel` | ⚠️ falta `{id}` (T-006) |
-| `GET user`, `GET user/{id}`, `GET user/username/{u}` | `admin/AdminPanel`, `user/PersonalInfoForm` | ⚠️ cualquier usuario lista todos (T-003) |
+| `GET user` | `admin/AdminPanel` | Solo ADMIN (`hasAuthority`, sin prefijo `ROLE_`) |
+| `GET user/{id}`, `GET user/username/{u}` | `user/PersonalInfoForm`, `admin/AdminPanel` | Requiere autenticación |
 | `PUT user/{id}` | `user/PersonalInfoForm` | ⚠️ comentado en el back (Backlog P2) |
-| `DELETE user/{id}` | `admin/AdminPanel` | ⚠️ cualquier usuario borra a cualquiera (T-003) |
-| `GET/POST/PUT/DELETE img…` | `<img>` en cards | ⚠️ requiere token y URLs inválidas (T-012) |
+| `DELETE user/{id}` | `admin/AdminPanel` | Solo ADMIN |
+| `GET img/{id}`, `GET img/{id}/url` | `<img>` en cards | Público. ⚠️ contrato de URLs pendiente (T-012) |
+| `POST/PUT/DELETE img…` | carga/edición de imágenes | Requiere autenticación |
 | — (reservas) | `cards/DetailCardReservation`, `user/TripsUser` | ⚠️ no existe (Backlog P2) |
+
+Los GET de propiedades e imágenes son públicos; las escrituras requieren autenticación y conservan las reglas de servicio existentes. El antiguo permiso `/v1/api/render/*` se quitó. CORS permite solo los orígenes configurados en `CORS_ALLOWED_ORIGINS` y procesa preflight antes de autenticar. Los códigos de error de registro siguen pendientes de T-008.
 
 ## Arquitectura objetivo
 

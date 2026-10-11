@@ -58,7 +58,7 @@ Cada parte tiene un archivo de ejemplo commiteado. **Los valores sirven tal cual
 
 | Archivo de ejemplo | Copiar a | Quién lo lee | Qué contiene |
 |---|---|---|---|
-| `backend/src/main/resources/env.properties.example` | `backend/src/main/resources/env.properties` | Spring Boot (`spring.config.import`, desde el classpath) | puerto del back, conexión a MySQL y JWT (clave solo local, duración 24 h) |
+| `backend/src/main/resources/env.properties.example` | `backend/src/main/resources/env.properties` | Spring Boot (`spring.config.import`, desde el classpath) | puerto del back, conexión a MySQL, JWT (clave solo local, duración 24 h) y orígenes CORS |
 | `frontend/airbnb_clone/.env.example` | `frontend/airbnb_clone/.env` | Vite (`VITE_*`) | URL del back (⚠️ hoy el código no la lee: T-004) |
 
 Desde la raíz del repo:
@@ -72,8 +72,9 @@ cp frontend/airbnb_clone/.env.example frontend/airbnb_clone/.env
 ```
 
 > ⚠️ El archivo del back va en `src/main/resources/`: en `backend/env.properties` **no** se lee.
-> Si ya tenías un `env.properties`, agregá las variables JWT del `.example` actualizado. El back requiere `JWT_SECRET` en Base64 con al menos 32 bytes decodificados; `JWT_EXPIRATION` es opcional y vale `86400000` ms (24 h) por defecto.
-> **Producción:** definir en el proveedor las variables `APP_PORT`, `DB_PORT`, `DB_NAME`, `DB_USER`, `DB_PASS`, `JWT_SECRET` (clave propia generada con `openssl rand -base64 32`, nunca la pública del `.example`) y, opcionalmente, `JWT_EXPIRATION` (y `SPRING_DATASOURCE_URL` si la DB no está en `localhost`). Detalle de cada variable en [`docs/SETUP.md`](docs/SETUP.md).
+> Si ya tenías un `env.properties`, agregá las variables JWT y `CORS_ALLOWED_ORIGINS` del `.example` actualizado. El back requiere `JWT_SECRET` en Base64 con al menos 32 bytes decodificados; `JWT_EXPIRATION` es opcional y vale `86400000` ms (24 h) por defecto.
+> Para el front local, `CORS_ALLOWED_ORIGINS=http://localhost:5173,http://localhost:8081`. Si cambiás el host o puerto del front, actualizá esa lista de orígenes exactos (sin comodines); ausente/vacía rechaza solicitudes entre orígenes.
+> **Producción:** definir en el proveedor las variables `APP_PORT`, `DB_PORT`, `DB_NAME`, `DB_USER`, `DB_PASS`, `JWT_SECRET` (clave propia generada con `openssl rand -base64 32`, nunca la pública del `.example`), `CORS_ALLOWED_ORIGINS` (orígenes exactos del front propio) y, opcionalmente, `JWT_EXPIRATION` (y `SPRING_DATASOURCE_URL` si la DB no está en `localhost`). Detalle de cada variable en [`docs/SETUP.md`](docs/SETUP.md).
 
 ### Opción A · Todo en contenedores (la más simple)
 

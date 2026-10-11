@@ -15,11 +15,13 @@ Complementa el [README](../README.md) (que tiene el paso a paso); acá va solo l
 | `VITE_API_URL` | URL base del back para el front (build time) | `http://localhost:8080` | sí, desde T-004 | variable de build del hosting del front |
 | `JWT_SECRET` | Clave de firma HS256: Base64 de al menos 32 bytes (256 bits); se valida al iniciar | clave pública solo local en `.example` y compose | **sí, sin default en el back** | **secreto** propio del proveedor, generado con `openssl rand -base64 32` |
 | `JWT_EXPIRATION` | Duración de tokens en milisegundos | `86400000` (24 h) | no; default `86400000` | variable de entorno |
-| `CORS_ALLOWED_ORIGINS` | Orígenes permitidos | — | se agrega en T-003 | variable de entorno |
+| `CORS_ALLOWED_ORIGINS` | Orígenes CORS exactos separados por comas, sin comodines | `http://localhost:5173,http://localhost:8081` | no; ausente/vacía rechaza solicitudes entre orígenes | variable de entorno con los orígenes del front propio |
 
 Archivos: `backend/src/main/resources/env.properties` (copia de su `.example`, leído desde el classpath) y `frontend/airbnb_clone/.env`. En compose, las mismas variables están en `docker-compose.yml` → `services.server.environment`.
 
-Si ya tenías un `env.properties` local, agregá `JWT_SECRET` y `JWT_EXPIRATION` desde el `.example` actualizado. Sin secreto, con Base64 inválido o con menos de 32 bytes decodificados, el back no arranca: el error identifica `JWT_SECRET` sin imprimir su valor. Compose usa la clave pública del `.example` solo para desarrollo y permite sobrescribir ambas variables desde el entorno. En producción usá un secreto propio; su rotación invalida los tokens anteriores (T-015).
+Si ya tenías un `env.properties` local, agregá `JWT_SECRET`, `JWT_EXPIRATION` y `CORS_ALLOWED_ORIGINS` desde el `.example` actualizado. Sin secreto, con Base64 inválido o con menos de 32 bytes decodificados, el back no arranca: el error identifica `JWT_SECRET` sin imprimir su valor. Compose usa la clave pública del `.example` solo para desarrollo y permite sobrescribir ambas variables desde el entorno. En producción usá un secreto propio; su rotación invalida los tokens anteriores (T-015).
+
+CORS se evalúa antes de la autenticación, incluidos los preflight de endpoints protegidos. La lista admite espacios alrededor de las comas, pero rechaza comodines al iniciar. Vite usa `http://localhost:5173` y el front de compose `http://localhost:8081`; si cambiás host, esquema o puerto, actualizá la lista. En producción definí solo los orígenes exactos de tu front, sin rutas. No se usan cookies para el JWT.
 
 ## Puertos
 
