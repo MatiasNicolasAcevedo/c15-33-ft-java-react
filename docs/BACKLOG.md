@@ -1,10 +1,10 @@
 # Tablero
 
-> **▶ SIGUIENTE: publicar y revisar el PR documental de [T-016](tasks/T-016-agent-models-context.md)**
+> **▶ SIGUIENTE: revisar [PR #3](https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/pull/3) · [T-016](tasks/T-016-agent-models-context.md)**
 >
 > **Revisa: 🧠 FRONTERA — GPT-6.1 Sol o Claude Opus 5.5 · sesión nueva; después merge: 👤 dueño.**
 >
-> Prompt al publicarse: «Leé `AGENTS.md` y seguí `docs/agents/reviewer.md` para el PR de T-016». Después del merge, implementar T-001 con 🧠 frontera. Ver [STATUS](STATUS.md).
+> Prompt: «Leé `AGENTS.md` y seguí `docs/agents/reviewer.md` para el PR #3 (T-016)». Después del merge, implementar T-001 con 🧠 frontera. Ver [STATUS](STATUS.md).
 
 **Leyenda:** 🤖 **Lite = Junie Lite (Free) en Air** · 🧠 **Frontera = p. ej. GPT-6.1 Sol / Claude Opus 5.5** · 👤 **Dueño**. Las categorías indican quién implementa; el campo **Revisa** de cada tarea puede pedir otro ejecutor.
 
@@ -15,7 +15,7 @@
 > Próximo ID libre: T-017
 
 ## 🔨 En curso / en revisión (con su PR)
-- T-016 · P0 · S · 🧠 frontera · Aclarar ejecutores, compactación y traspasos → [tarea](tasks/T-016-agent-models-context.md) · PR pendiente; mantenimiento pedido por el dueño antes de T-001.
+- T-016 · P0 · S · 🧠 frontera · Aclarar ejecutores, compactación y traspasos → [tarea](tasks/T-016-agent-models-context.md) · [PR #3](https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/pull/3); mantenimiento pedido por el dueño antes de T-001.
 
 ## ✅ Listas (cola en orden de ejecución, máx. 10)
 - **T-001 · P0 · S · 🧠 FRONTERA · Sacar el secreto y la expiración del JWT a configuración** → [tarea](tasks/T-001-jwt-secret-config.md) · primera implementación después de cerrar T-016.

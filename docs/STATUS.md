@@ -5,12 +5,12 @@ _Actualizado: 2026-10-10 · por: 🧠 Codex · sesión: revisión de documentaci
 
 | Campo | Qué sigue |
 |---|---|
-| **Acción** | **Publicar y revisar el PR documental de T-016**; después merge del dueño |
+| **Acción** | **Revisar el PR documental #3 de T-016**; después merge del dueño |
 | **Tarea** | [T-016 · Aclarar ejecutores, compactación y traspasos](tasks/T-016-agent-models-context.md) |
 | **Ejecutor** | **🧠 FRONTERA — GPT-6.1 Sol o Claude Opus 5.5** |
 | **Sesión** | Cerrar esta implementación; revisión en **sesión nueva** con frontera |
-| **Rama / PR** | `docs/T-016-agent-models-context` · PR pendiente de publicación |
-| **Prompt** | Al publicarse: «Leé `AGENTS.md` y seguí `docs/agents/reviewer.md` para el PR de T-016» |
+| **Rama / PR** | `docs/T-016-agent-models-context` · [PR #3](https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/pull/3) |
+| **Prompt** | «Leé `AGENTS.md` y seguí `docs/agents/reviewer.md` para el PR #3 (T-016)» |
 
 **Después del merge documental:** T-001 · Sacar el secreto y la expiración del JWT a configuración · **🧠 Frontera — GPT-6.1 Sol / Claude Opus 5.5**, sesión nueva con «Leé `AGENTS.md` y seguí `docs/agents/implementer.md` para T-001».
 
@@ -37,7 +37,7 @@ Harness montado y verificado desde un clon limpio (compose, `.example`, `verify.
 P0 Estabilizar · 0/15 tareas · ver [ROADMAP](ROADMAP.md)
 
 ## Foco
-- PR abierto (máx. 1): T-016 en preparación; sin otros PR abiertos, comprobado el 2026-10-10.
+- PR abierto (máx. 1): [#3 · T-016](https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/pull/3); revisión documental antes de T-001.
 - **Próximo paso / prompt:** ver la tarjeta **▶ Próxima acción** al inicio de este archivo y la cola de [BACKLOG](BACKLOG.md).
 
 ## Decisiones pendientes del dueño

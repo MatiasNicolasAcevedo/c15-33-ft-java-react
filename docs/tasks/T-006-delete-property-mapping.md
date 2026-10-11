@@ -1,8 +1,8 @@
 # T-006 · Corregir el endpoint `DELETE /v1/api/property/{id}`
-- Estado: Lista · Prioridad: P0 · Esfuerzo: S · Ejecuta: 🤖 agente gratuito
+- Estado: Lista · Prioridad: P0 · Esfuerzo: S · Ejecuta: 🤖 Junie Lite (Free)
 - Fase: P0 Estabilizar
 - Rama: `fix/T-006-delete-property-mapping` (crearla desde `development` actualizado antes del primer commit) · Depende de: T-002 · Spec/ADR: —
-- Revisa: 🤖 agente gratuito (chat nuevo)
+- Revisa: 🤖 Junie Lite (Free) (chat nuevo)
 
 ## Por qué
 `PropertyController.java:90-91` declara `@DeleteMapping()` sin `{id}` pero lee `@PathVariable String id`: el front (`apiRequests.jsx` → `deleteProperty`, usado en `AdminPanel.jsx:75` y `PropertiesUser`) llama a `DELETE /…/property/{id}` y nunca funciona (probe → 403).

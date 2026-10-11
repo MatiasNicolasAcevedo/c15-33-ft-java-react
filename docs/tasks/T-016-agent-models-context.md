@@ -7,7 +7,7 @@
 
 ## Por qué
 
-El dueño pidió corregir la identificación del agente gratuito a Junie Lite (Free), precisar qué modelos corresponden a frontera y hacer visibles la próxima acción y las condiciones para compactar y retomar. Después aportó el traspaso de Claude Code y pidió publicar las correcciones antes de continuar.
+El dueño pidió identificar el ejecutor Lite como Junie Lite (Free), precisar qué modelos corresponden a frontera y hacer visibles la próxima acción y las condiciones para compactar y retomar. Después aportó el traspaso de Claude Code y pidió continuar con la publicación de las correcciones.
 
 ## Objetivo
 
@@ -42,22 +42,23 @@ Las instrucciones, tareas y tablero distinguen Lite y frontera, permiten retomar
 
 ## Criterios de aceptación
 
-- [ ] No quedan referencias a Qwen ni al tamaño de contexto no verificado en la documentación operativa o su corrección histórica.
-- [ ] Lite significa Junie Lite (Free); frontera incluye GPT-6.1 Sol / Claude Opus 5.5 y se distingue del agente/interfaz.
-- [ ] Compactación y chat nuevo tienen checkpoint y prompt de retoma de la misma tarea, rama y PR.
-- [ ] STATUS y BACKLOG muestran revisión/merge del PR documental antes de implementar T-001, con ejecutor y prompt.
-- [ ] La excepción de rama en nube exige autorización explícita y evidencia; las instrucciones Docker de nube se distinguen de Windows local.
+- [x] No quedan referencias al nombre del modelo interno ni al tamaño de contexto no verificado en la documentación operativa o su corrección histórica. Evidencia: búsqueda con `rg` sin coincidencias en Markdown de AGENTS, README, CONTRIBUTING, docs (sin archive) y punteros de agentes.
+- [x] Lite significa Junie Lite (Free); frontera incluye GPT-6.1 Sol / Claude Opus 5.5 y se distingue del agente/interfaz. Evidencia: `AGENTS.md` §1 y `docs/SETUP.md` → agentes.
+- [x] Compactación y chat nuevo tienen checkpoint y prompt de retoma de la misma tarea, rama y PR. Evidencia: `AGENTS.md` §5 e `implementer.md` pasos 2 y 7.
+- [x] STATUS y BACKLOG muestran revisión/merge del PR documental antes de implementar T-001, con ejecutor y prompt. Evidencia: tarjeta superior en ambos archivos y PR #3.
+- [x] La excepción de rama en nube exige autorización explícita y evidencia; las instrucciones Docker de nube se distinguen de Windows local. Evidencia: SETUP → Prompt de inicio, CONTRIBUTING §1 y `reviewer.md` paso 3.
 - [ ] Formato y enlaces locales verificados; diff limitado a Markdown; estado de verify documentado.
 
 ## Notas de implementación
 
-- Hecho: revisión y correcciones locales; rama renombrada al nombre exacto antes del primer commit; `origin/development` verificado sin divergencia.
-- Pendiente: commit, push, PR draft y validación final.
-- Ejecutor/modelo: 🧠 Codex / GPT-6.1 Sol · Rama: `docs/T-016-agent-models-context` · PR: pendiente.
+- Hecho: revisión y correcciones documentales; rama exacta antes del primer commit; base sin divergencia; PR #3 draft publicado; validación de formato, enlaces locales, nomenclatura y alcance OK (17 archivos Markdown).
+- Pendiente: resumen del gate completo, publicar las correcciones finales y traspasar a revisión.
+- Ejecutor/modelo: 🧠 Codex / GPT-6.1 Sol · Rama: `docs/T-016-agent-models-context` · PR: [#3](https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/pull/3) · Commit inicial: `b1edcba`.
 - Decisiones: conservar la cola T-001…T-015; registrar este mantenimiento aparte; el dueño revisa/mergea después de la revisión de frontera en otra sesión.
-- Pruebas: formato y enlaces locales OK antes de publicar; gate completo todavía no ejecutado.
-- Próxima acción: publicar el PR draft y completar la validación documental.
+- Pruebas: `git diff --check origin/development` OK; enlaces locales y búsqueda de nombres/supuestos retirados OK; diff solo Markdown. Gate completo en ejecución con Git Bash `--login`.
+- Entorno: la primera invocación sin `--login` no encontró `dirname`; la invocación con `--login` inició correctamente y usó `env.properties.example`. No se modificó configuración real.
+- Próxima acción: registrar el resumen real del gate y publicar el traspaso de revisión.
 
 ## Resultado
 
-- PR: pendiente · Cambios: documentación de ejecutores, contexto y traspasos · Tests agregados: ninguno · Próxima implementación: T-001, después del merge.
+- PR: [#3](https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/pull/3) · Cambios: documentación de ejecutores, contexto y traspasos · Tests agregados: ninguno · Próxima implementación: T-001, después del merge.

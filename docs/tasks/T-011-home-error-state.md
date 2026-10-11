@@ -1,8 +1,8 @@
 # T-011 · Mostrar estados de carga, error y vacío en la home en vez de romperse
-- Estado: Bloqueada (por T-009: no hay infraestructura de tests de front) · Prioridad: P0 · Esfuerzo: S · Ejecuta: 🤖 agente gratuito
+- Estado: Bloqueada (por T-009: no hay infraestructura de tests de front) · Prioridad: P0 · Esfuerzo: S · Ejecuta: 🤖 Junie Lite (Free)
 - Fase: P0 Estabilizar
 - Rama: `fix/T-011-home-error-state` (crearla desde `development` actualizado antes del primer commit) · Depende de: T-004, T-009 · Spec/ADR: —
-- Revisa: 🤖 agente gratuito (chat nuevo)
+- Revisa: 🤖 Junie Lite (Free) (chat nuevo)
 
 ## Por qué
 F-2: si la API falla, `getAllProperties` (`apiRequests.jsx:228-246`) devuelve `undefined`, `CardContainer.jsx:18` lo guarda y `CardContainer.jsx:76` hace `properties.map` → excepción → la home muestra la pantalla 404 (verificado con Playwright en la auditoría).

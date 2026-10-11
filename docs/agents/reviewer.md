@@ -1,9 +1,9 @@
 # Protocolo · Revisor (un PR por sesión)
 
-**Lo puede usar:** el ejecutor que indique la tarea en "Revisa" (🤖 agente gratuito en chat nuevo, o 🧠 modelo de frontera). Siempre en una **sesión distinta** a la que implementó.
+**Lo puede usar:** el ejecutor que indique la tarea en "Revisa" (🤖 Junie Lite (Free) en chat nuevo, o 🧠 frontera, p. ej. GPT-6.1 Sol / Claude Opus 5.5). Siempre en una **sesión distinta** a la que implementó. Si la revisión se alarga, guardá los hallazgos y próximos pasos y seguí `AGENTS.md` → Gestión de contexto para retomar el mismo PR.
 
 ## 0. ¿Me corresponde?
-Abrí la tarea del PR (`docs/tasks/T-NNN-*.md`). Si dice `Revisa: 🧠` y sos 🤖: no revises; terminá con el Traspaso «ejecuta: 🧠 · abrí una sesión nueva de Claude Code y escribí: Seguí `docs/agents/reviewer.md` para el PR #N».
+Abrí la tarea del PR (`docs/tasks/T-NNN-*.md`). Si dice `Revisa: 🧠` y sos 🤖: no revises; terminá con el Traspaso «ejecuta: 🧠 Frontera — GPT-6.1 Sol / Claude Opus 5.5 · abrí una sesión nueva con ese modelo y escribí: Leé `AGENTS.md` y seguí `docs/agents/reviewer.md` para el PR #N».
 
 ## 1. Leer
 `AGENTS.md`, `CONTRIBUTING.md` (§3–§5), `docs/TESTING.md` (§2–§4), la descripción del PR, la tarea y el **diff completo**:
@@ -18,7 +18,7 @@ Estado de CI: `gh pr checks N` (o la pestaña Checks si no hay `gh`). Corré los
 
 ## 3. Revisar, en este orden
 1. **Criterios de aceptación:** uno por uno, con evidencia (salida de comando o archivo:línea).
-2. **Alcance y rama:** el nombre de la rama es exactamente el de la tarea; nada de "No incluye"; un solo PR de tarea abierto.
+2. **Alcance y rama:** el nombre de la rama es exactamente el de la tarea, o existe una excepción de nube autorizada explícitamente por el dueño con evidencia del fallo y rama real registrada (ver `AGENTS.md`); nada de "No incluye"; un solo PR de tarea abierto.
 3. **Tests:** ¿fallarían si el código estuviera mal? (romper mentalmente una línea); ¿hay tests borrados, `@Disabled`/`.skip`, asserts debilitados o umbral bajado?; ¿bajó la cobertura?; bugfix con test primero.
 4. **Corrección:** casos borde, nulls, errores.
 5. **Seguridad:** secretos, permisos, entradas sin validar.
@@ -31,7 +31,7 @@ Como review si la cuenta lo permite; si no, **comentario** en el PR (`gh pr comm
 
 ```markdown
 **Veredicto:** APROBADO | CAMBIOS REQUERIDOS | ESCALAR A 🧠/DUEÑO
-Revisó: <🤖 agente gratuito | 🧠 modelo de frontera> · verify.sh: <resumen>
+Revisó: <🤖 Junie Lite (Free) | 🧠 modelo de frontera> · verify.sh: <resumen>
 ### Criterios
 - ✅/❌ <criterio> — <evidencia>
 ### Bloqueantes
@@ -49,8 +49,10 @@ Revisó: <🤖 agente gratuito | 🧠 modelo de frontera> · verify.sh: <resumen
 Lo hace el **dueño** (squash + borrar rama). Excepción: el dueño te pidió explícitamente "revisá y mergeá el PR #N" (modo sub-agente): con `APROBADO` y CI en verde (sin CI: `verify.sh` sin regresiones respecto de `development`), squash merge (`gh pr merge N --squash --delete-branch`). Nunca commitees a `development`.
 
 ### 6b. Modo sub-agente
-Si un 🧠 te lanzó como sub-agente: trabajá **solo** con este archivo y el PR (no asumas nada de la sesión que te lanzó) y devolvé el veredicto con el formato del paso 4.
+Solo si el dueño pidió explícitamente una revisión con sub-agente, quien la ejecuta trabaja **solo** con este archivo y el PR (sin asumir nada de la sesión que lo lanzó) y devuelve el veredicto con el formato del paso 4. Los agentes no inician delegación por su cuenta.
 
 ## 7. Respuesta final (máx. 5 líneas) + Traspaso
-> **Próximo paso:** <👤 mergear el PR #N | atender cambios del PR #N (T-NNN)> · **ejecuta: 👤 dueño | 🤖 agente gratuito (IntelliJ) | 🧠 modelo de frontera** (quien implementó)
-> **Qué hacer:** <GitHub → PR #N → Squash and merge | abrí un chat nuevo del agente de IntelliJ / una sesión nueva de Claude Code y escribí: «Seguí `docs/agents/implementer.md` (cambios pedidos en el PR #N)»>.
+> **Próximo paso:** <👤 mergear el PR #N | atender cambios del PR #N (T-NNN)> · **ejecuta: <👤 dueño | 🤖 Junie Lite (Free) | 🧠 Frontera — GPT-6.1 Sol / Claude Opus 5.5>** (si hay cambios pedidos, quien implementó)
+> **Qué hacer:** <GitHub → PR #N → Squash and merge | abrí un chat nuevo de Junie Lite en Air / una sesión nueva con el modelo de frontera elegido y escribí: «Leé `AGENTS.md` y seguí `docs/agents/implementer.md` (cambios pedidos en el PR #N)»>.
+
+Indicá **un solo ejecutor**. Incluí en el traspaso el texto para actualizar la tarjeta de `STATUS.md` y el aviso superior de `BACKLOG.md` con **Mergear** (👤) o **Atender cambios** (quien implementó); el dueño o implementador guarda esa actualización. Tras el merge, ambas vistas deben mostrar la primera tarea de "Listas", su ejecutor y prompt.

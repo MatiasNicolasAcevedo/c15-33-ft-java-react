@@ -1,8 +1,8 @@
 # Protocolo · Auditor (auditoría periódica)
 
-**Lo puede usar:** solo 🧠 modelo de frontera.
+**Lo puede usar:** solo 🧠 modelo de frontera (p. ej. GPT-6.1 Sol / Claude Opus 5.5).
 **Cuándo:** cada 5–10 PR mergeados, antes de un cambio grande (p. ej. una migración de P1) o cuando hay 2+ tareas `requiere 🧠` en "Bloqueadas".
-Trabajá **por bloques**; al cerrar cada bloque, commit + push y (opcional) `/compact Conservar: auditoría AAAA-MM-DD, bloque N hecho, hallazgos en docs/audits/AAAA-MM-DD-periodic.md, próximo bloque. Descartar: salidas de comandos.`
+Trabajá **por bloques**; si el contexto se alarga, al cerrar un bloque guardá el checkpoint en el documento de la auditoría (bloque hecho, hallazgos, decisiones, pruebas, rama/PR y próximo bloque), actualizá `STATUS.md`, commit + push. Después compactá si la interfaz lo permite, o abrí una sesión nueva para retomar **la misma auditoría, rama y PR**. Seguí `AGENTS.md` → Gestión de contexto; no compactes entre auditoría y próxima tarea.
 
 ## 0. Rama
 ```bash
@@ -30,12 +30,12 @@ git switch development && git pull && git switch -c docs/audit-AAAA-MM-DD
 - Decisiones del dueño tomadas desde la última vez → ADR en `docs/adr/` (plantilla `docs/agents/templates/adr.md`).
 - Tareas 🧠 prioritarias: **de a una**, cada una en su rama/PR con `implementer.md` (no dentro del PR de la auditoría).
 - Relevamiento liviano de lo que cambió (dimensiones de la auditoría inicial que se tocaron).
-- Reordená la cola y refiná 5–10 tareas en "Listas" en orden de ejecución, con 3–5 para 🤖 que cumplan la Definición de Listo (S/M, < ~400 líneas y < ~8 archivos, test de referencia existente, "Leer antes" + "Archivos previstos" + `AGENTS.md` + `STATUS.md` + `BACKLOG.md` < ~40 % de 64K tokens: medí con `wc -c`).
+- Reordená la cola y refiná 5–10 tareas en "Listas" en orden de ejecución, con 3–5 para 🤖 Junie Lite (Free) que cumplan la Definición de Listo (S/M, < ~400 líneas y < ~8 archivos, test de referencia existente, "Leer antes" + "Archivos previstos" acotados). No fijes un tamaño de contexto ni conviertas caracteres en tokens como medida exacta: si hay un indicador de contexto, usalo; si no, reducí lecturas y dividí tareas que no entren cómodamente.
 - Si algo falla repetidamente (el 🤖 escala por lo mismo, revisiones flojas), ajustá `AGENTS.md`, plantillas o protocolos.
 
 ## 5. Cerrar
 - Escribí `docs/audits/AAAA-MM-DD-periodic.md`: resumen ejecutivo con semáforo, qué cambió, hallazgos (severidad, evidencia, recomendación, tarea), cobertura y umbral, preguntas abiertas.
-- Actualizá `docs/STATUS.md` (salud, última auditoría, foco) y archivá lo viejo (`docs/archive/tasks/`, `docs/archive/log/`).
+- Actualizá `docs/STATUS.md` (salud, última auditoría, foco y tarjeta **▶ Próxima acción**) y el aviso superior de `BACKLOG.md`: primero **Revisar/mergear la auditoría — 👤 dueño**; después del merge, la primera tarea de "Listas" con su ejecutor y prompt. Archivá lo viejo (`docs/archive/tasks/`, `docs/archive/log/`).
 - PR `docs: periodic audit AAAA-MM-DD` desde `docs/audit-AAAA-MM-DD`. Después del merge, el dueño (o vos si te lo pide) crea el tag:
 ```bash
 git switch development && git pull && git tag audit/AAAA-MM-DD && git push origin audit/AAAA-MM-DD
@@ -44,4 +44,4 @@ git switch development && git pull && git tag audit/AAAA-MM-DD && git push origi
 ## 6. Respuesta final (máx. 8 líneas) + Traspaso
 Semáforo general, top 3 hallazgos, cambios en la cola. Sugerí **sesión nueva** y cerrá con:
 > **Próximo paso:** revisar PR de la auditoría · **ejecuta: 👤 dueño** · luego T-NNN · **ejecuta: <🤖 | 🧠>**
-> **Qué hacer:** GitHub → PR #N → revisar y mergear; después abrí <chat nuevo del agente de IntelliJ | sesión nueva de Claude Code> y escribí: «Seguí `docs/agents/implementer.md`».
+> **Qué hacer:** GitHub → PR #N → revisar y mergear; después abrí <chat nuevo de Junie Lite en Air | sesión nueva con GPT-6.1 Sol / Claude Opus 5.5> y escribí: «Leé `AGENTS.md` y seguí `docs/agents/implementer.md` para T-NNN». Indicá un solo ejecutor en el traspaso.

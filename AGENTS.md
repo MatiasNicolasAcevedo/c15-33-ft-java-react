@@ -1,6 +1,6 @@
 # AGENTS.md
 
-Instrucciones para cualquier agente (🤖 agente gratuito de IntelliJ, 🧠 Claude Code) que llega sin contexto. Estable: el estado vivo está en `docs/STATUS.md`.
+Instrucciones para cualquier agente (🤖 Junie Lite (Free), 🧠 modelo de frontera) que llega sin contexto. Estable: el estado vivo y la próxima acción están en `docs/STATUS.md`.
 
 ## 1. Proyecto, mapa y ejecutores
 
@@ -16,14 +16,18 @@ docs/                    STATUS, BACKLOG, tasks/, agents/, audits/, adr/…
 
 | Ícono | Ejecutor | Hace |
 |---|---|---|
-| 🧠 | **Modelo de frontera** (Claude Code u otro potente) | seguridad, arquitectura, infra de tests/CI/contenedores, migraciones, specs y tareas, revisiones riesgosas, auditorías |
-| 🤖 | **Agente gratuito** (IntelliJ, modelo Qwen) | tareas chicas y muy especificadas, de a una, con sus tests; revisiones de PRs chicos sin riesgo |
+| 🧠 | **Frontera** (p. ej. **GPT-6.1 Sol** o **Claude Opus 5.5**) | seguridad, arquitectura, infra de tests/CI/contenedores, migraciones, specs y tareas, revisiones riesgosas, auditorías |
+| 🤖 | **Junie Lite (Free)** en IntelliJ mediante el plugin **Air** | tareas chicas y muy especificadas, de a una, con sus tests; revisiones de PRs chicos sin riesgo |
 | 👤 | **Dueño** | decide, configura GitHub, rota secretos, abre/mergea PRs, **cambia de agente** |
+
+**Modelo y herramienta son cosas distintas.** GPT-6.1 Sol y Claude Opus 5.5 son ejemplos de modelos de frontera; Codex, Claude Code y Junie son agentes que los ejecutan. Usar Air o Junie no define la categoría: importa la configuración elegida. En este repo, **Lite** siempre significa **Junie Lite (Free)**, sin fijar el modelo interno ni un tamaño de contexto. Ver [SETUP](docs/SETUP.md) para las fuentes y el arranque.
 
 **Traspasos.** Ningún agente lanza a otro. Cuando el próximo paso es de otro ejecutor, terminá con:
 
-> **Próximo paso:** T-NNN · <título> · **ejecuta: 🤖 agente gratuito (IntelliJ)** | **🧠 modelo de frontera** | **👤 dueño**
-> **Qué hacer:** abrí <chat nuevo del agente de IntelliJ | una sesión nueva de Claude Code | GitHub → …> y escribí: «Seguí `docs/agents/implementer.md`» (o el protocolo que corresponda).
+> **Próximo paso:** T-NNN · <título> · **ejecuta: <🤖 Junie Lite (Free) | 🧠 Frontera — GPT-6.1 Sol / Claude Opus 5.5 | 👤 dueño>**
+> **Qué hacer:** abrí <chat nuevo de Junie Lite en Air | sesión nueva con el modelo de frontera elegido | GitHub → …> y escribí: «Leé `AGENTS.md` y seguí `docs/agents/implementer.md` para T-NNN» (o el protocolo que corresponda).
+
+Completá el traspaso con **un solo ejecutor**, sin dejar las alternativas de la plantilla. En `STATUS.md`, la primera tarjeta muestra **acción, tarea, ejecutor, rama/PR y prompt**. Si hay un PR abierto, primero revisión/merge/cambios pedidos; si no, la primera de "Listas" en `BACKLOG.md`. Mantené ambas vistas sincronizadas.
 
 ## 2. Stack (versiones reales)
 
@@ -52,16 +56,32 @@ Detalle completo: [`docs/agents/implementer.md`](docs/agents/implementer.md) · 
 2. **Una tarea por sesión y una a la vez:** si hay un PR de tarea abierto, no empieces otra.
 3. Tomá **siempre la primera** de "Listas". Si no te corresponde (es 🧠 y sos 🤖, o es 👤): avisá con el formato de Traspasos y terminá. No saltees.
 4. **Creá la rama con el nombre exacto de la tarea antes del primer commit**; PR en draft enseguida.
+   Excepción: si el dueño autorizó explícitamente una rama asignada por el entorno de nube y el push del nombre exacto falla por esa restricción, registrá la evidencia y la rama real en la tarea, `STATUS.md` y el PR. Ver `docs/SETUP.md` → Prompt de inicio y contexto de nube.
 5. Tests en el mismo PR. Al terminar: `verify.sh` en verde, tablero/tarea/STATUS actualizados, PR "ready", y sugerí **sesión nueva**.
 
 ## 5. Gestión de contexto
 
-1. **Una tarea = una sesión.** Al cerrar una tarea, revisión o auditoría no sigas con otra: sugerí sesión nueva (mejor que compactar).
-2. Sugerí compactar **solo a mitad de un trabajo largo** y si: cerraste una sub-etapa; acumulaste logs o archivos que ya no sirven; el contexto pasa ~60 % (🧠) o ~50 % (🤖); o hay señales de degradación (releer archivos, olvidar decisiones, repetir intentos fallidos).
-3. **Antes de compactar, persistí:** "Notas de implementación" de la tarea (hecho / pendiente / próximo paso), commit y push.
-4. Cómo: 🧠 `/compact Conservar: tarea T-NNN, rama y PR, decisiones, archivos modificados, estado de verify y próximo paso. Descartar: logs y contenido de archivos ya procesados.` + «después escribime "seguí con T-NNN"». 🤖 (sin `/compact`): «abrí un chat nuevo y escribí: Seguí `docs/agents/implementer.md` (retomando T-NNN)».
-5. **No compactar** justo antes de terminar ni entre tareas.
-6. Higiene: salida acotada (`-q`, `| tail -n 60`, logs a archivo + `grep`); grep/glob y rangos de líneas; no abrir `package-lock.json`, `target/`, `node_modules/`, `dist/`, `.verify-logs/`, generados ni `docs/archive/`; respuestas cortas.
+**Una tarea = una sesión de trabajo; puede continuar en un chat nuevo si necesita recuperar contexto.** Compactar o cambiar de chat para retomar no cierra la tarea ni habilita otra. Conservá su rama y PR.
+
+| Situación | Acción | Continuación |
+|---|---|---|
+| Misma tarea larga, sub-etapa cerrada, logs acumulados o señales de pérdida de contexto | Persistir el punto de retoma y compactar si la interfaz lo permite | Retomar **la misma T-NNN**, rama y PR |
+| Contexto usado cerca de ~60 % en 🧠 o ~50 % en 🤖, si la interfaz muestra ese dato | Buscar el próximo corte seguro y persistir; son alertas orientativas del repo | Compactar o abrir un chat nuevo para **la misma tarea** |
+| Lite, o cualquier interfaz sin compactación disponible | Persistir y abrir un chat nuevo con el mismo ejecutor | Usar el prompt de retoma de abajo |
+| Tarea, revisión o auditoría terminada; o cambio de ejecutor | Cerrar con traspaso y abrir una sesión nueva | Seguir la próxima acción indicada en `STATUS.md` |
+| Falta poco para terminar | Terminar y registrar el resultado | Sesión nueva para la siguiente acción; no compactar entre tareas |
+
+**Antes de compactar o cambiar de chat:**
+1. Completá "Notas de implementación" en la tarea: hecho, pendiente, decisiones, archivos modificados, pruebas/verify (resultado o no ejecutado), bloqueos y **próximo comando o acción concreta**. Anotá rama, PR (o pendiente) y último commit. En auditorías, usá el documento de la auditoría.
+2. Actualizá `STATUS.md` con la acción **Retomar T-NNN**, el ejecutor y la rama/PR; mantené la tarea en curso. Hacé commit de los cambios propios que se puedan guardar sin secretos y push. Si el push falla, dejá escrito que solo existe el checkpoint local; no anuncies que está publicado.
+3. Pedí conservar tarea, rama/PR, decisiones, estado de pruebas y próximo paso; descartar logs repetidos y contenido de archivos ya procesados.
+
+**Cómo compactar:** depende del agente y su interfaz, no del modelo. En Codex CLI, usá `/compact`; en Air u otra interfaz, comprobá si ofrece esa acción. Si permite instrucciones para el resumen, usá: «Conservar: T-NNN, rama y PR, decisiones, archivos modificados, pruebas/verify, bloqueos y próximo paso. Descartar: logs repetidos y archivos ya procesados». Para Lite, el procedimiento del repo es **persistir + chat nuevo**, sin asumir comandos disponibles. Ver [SETUP](docs/SETUP.md) para la referencia de comandos.
+
+**Prompt para continuar**, después de compactar o en el chat nuevo:
+> Leé `AGENTS.md`, `docs/STATUS.md` y las Notas de implementación de `docs/tasks/T-NNN-slug.md`. Seguí `docs/agents/implementer.md` **retomando T-NNN** en la rama `<rama>` y el PR `<#N o pendiente>`. Verificá `git status` y el último commit; continuá desde el próximo paso registrado. No crees otra rama ni otro PR para esta retoma.
+
+**Higiene:** salida acotada (`-q`, `| tail -n 60`, logs a archivo + `grep`); grep/glob y rangos de líneas; no abrir `package-lock.json`, `target/`, `node_modules/`, `dist/`, `.verify-logs/`, generados ni `docs/archive/`; respuestas cortas. No asumas un tamaño fijo de contexto para Lite ni inventes un porcentaje si la interfaz no lo muestra.
 
 ## 6. Configuración
 

@@ -1,8 +1,8 @@
 # T-004 · Hacer configurable la URL de la API en el front y usar el prefijo /v1/api
-- Estado: Lista · Prioridad: P0 · Esfuerzo: S · Ejecuta: 🤖 agente gratuito
+- Estado: Lista · Prioridad: P0 · Esfuerzo: S · Ejecuta: 🤖 Junie Lite (Free)
 - Fase: P0 Estabilizar
 - Rama: `fix/T-004-frontend-api-base-url` (crearla desde `development` actualizado antes del primer commit) · Depende de: — · Spec/ADR: —
-- Revisa: 🤖 agente gratuito (chat nuevo)
+- Revisa: 🧠 modelo de frontera (sesión nueva; toca configuración, según CONTRIBUTING)
 
 ## Por qué
 🔴 F-1: la URL del back está hardcodeada a una IP de producción en 4 archivos y las rutas no tienen el prefijo `/v1` que el back usa desde jun-2024, así que **el front local no habla con el back local** (la home cae en la pantalla de error).

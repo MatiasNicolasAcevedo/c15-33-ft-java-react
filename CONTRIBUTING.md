@@ -1,6 +1,6 @@
 # Cómo contribuir
 
-Estable. Aplica a personas y agentes. Ejecutores: 🧠 modelo de frontera · 🤖 agente gratuito (IntelliJ) · 👤 dueño (ver [AGENTS.md](AGENTS.md)).
+Estable. Aplica a personas y agentes. Ejecutores: 🧠 modelo de frontera (p. ej. GPT-6.1 Sol / Claude Opus 5.5) · 🤖 Junie Lite (Free) en Air · 👤 dueño (ver [AGENTS.md](AGENTS.md)). El modelo elegido define la categoría; la aplicación no la define.
 
 > La rama por defecto es **`development`** (equivale a `main` en GitHub Flow). Renombrarla es una decisión pendiente del dueño.
 
@@ -14,6 +14,7 @@ git switch development && git pull && git switch -c <tipo>/T-NNN-slug-corto
 ```
 
 - Tipos: `feat`, `fix`, `test`, `refactor`, `chore`, `docs`, `ci`, `build`, `perf`. Vida corta; si `development` avanzó: `git fetch origin && git rebase origin/development` (solo en tu rama).
+- **Excepción de nube:** solo con autorización explícita del dueño en la sesión, si el push del nombre exacto falla por una restricción del entorno, se permite usar la rama asignada. Registrar el fallo, la autorización y el nombre real en la tarea, `STATUS.md` y el PR; conservar T-NNN. Ver [SETUP](docs/SETUP.md#prompt-de-inicio-y-contexto-de-nube).
 
 ## 2. Commits (Conventional Commits)
 
@@ -34,7 +35,7 @@ Refs: T-NNN
 - **Uno por tarea, chico** (< ~400 líneas sin lockfiles ni generados) y **uno abierto a la vez**: no se empieza otra tarea hasta que el PR anterior se mergea o se cierra.
 - **Título = Conventional Commit** (lo valida `.github/workflows/pr-title.yml`; se mergea con squash).
 - Se abre en **draft apenas se crea la rama** (primer commit: `docs(board): start T-NNN`) y pasa a "ready" con `./scripts/verify.sh` en verde y el [template](.github/pull_request_template.md) completo.
-- Sin `gh` (🤖): `git push -u origin <rama>` y el dueño abre el PR desde `https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/compare/development...<rama>?expand=1`.
+- Sin `gh` ni integración de GitHub (cualquier ejecutor): `git push -u origin <rama>` y el dueño abre el PR desde `https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/compare/development...<rama>?expand=1`.
 
 ## 4. Revisión
 
@@ -42,8 +43,8 @@ En una **sesión nueva** con [`docs/agents/reviewer.md`](docs/agents/reviewer.md
 
 | PR | Implementa | Revisa | Quién lanza la revisión |
 |---|---|---|---|
-| Tarea 🤖 S, sin riesgo | 🤖 agente gratuito | 🤖 agente gratuito, **chat nuevo** | 👤 abre el chat nuevo |
-| Tarea 🤖 M, o que toca back y front, seguridad, datos, configuración o CI | 🤖 agente gratuito | 🧠 modelo de frontera | 👤 abre una sesión de frontera |
+| Tarea 🤖 S, sin riesgo | 🤖 Junie Lite (Free) | 🤖 Junie Lite (Free), **chat nuevo** | 👤 abre el chat nuevo |
+| Tarea 🤖 M, o que toca back y front, seguridad, datos, configuración o CI | 🤖 Junie Lite (Free) | 🧠 modelo de frontera | 👤 abre una sesión de frontera |
 | Tarea 🧠 | 🧠 modelo de frontera | 🧠 sesión nueva o sub-agente (si el dueño lo pide) + 👤 | 👤 |
 | Dependabot | bot | 🤖; versión mayor → tarea 🧠 | 👤 |
 
