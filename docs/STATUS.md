@@ -9,7 +9,7 @@ _Actualizado: 2026-10-10 · por: 🧠 Codex · sesión: implementación de T-001
 | **Tarea** | [T-001 · Sacar el secreto y la expiración del JWT a configuración](tasks/T-001-jwt-secret-config.md) |
 | **Ejecutor** | **🧠 FRONTERA — GPT-6.1 Sol o Claude Opus 5.5** |
 | **Sesión** | T-001 en curso con frontera; conservar esta rama durante la implementación |
-| **Rama / PR** | `fix/T-001-jwt-secret-config` · PR draft pendiente |
+| **Rama / PR** | `fix/T-001-jwt-secret-config` · [PR #4](https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/pull/4) draft |
 | **Prompt** | «Leé `AGENTS.md` y seguí `docs/agents/implementer.md` para T-001» |
 
 **T-016 cerrada:** [PR #3](https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/pull/3) aprobado en [revisión independiente](https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/pull/3#issuecomment-6104448623) y mergeado por el dueño con squash (`47debed`). Gate sin regresiones: server build y 1 test OK; client build OK, lint con los 93 problemas previos pendientes de T-005.
@@ -37,7 +37,7 @@ Harness montado y verificado desde un clon limpio (compose, `.example`, `verify.
 P0 Estabilizar · 0/15 tareas · ver [ROADMAP](ROADMAP.md)
 
 ## Foco
-- T-001 en curso en `fix/T-001-jwt-secret-config`; PR draft pendiente. T-016 cerrada.
+- PR abierto (máx. 1): [#4 · T-001](https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/pull/4), draft en `fix/T-001-jwt-secret-config`. T-016 cerrada.
 - **Próximo paso / prompt:** ver la tarjeta **▶ Próxima acción** al inicio de este archivo y la cola de [BACKLOG](BACKLOG.md).
 
 ## Decisiones pendientes del dueño

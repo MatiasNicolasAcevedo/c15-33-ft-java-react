@@ -4,7 +4,7 @@
 >
 > **Ejecuta: 🧠 FRONTERA — GPT-6.1 Sol o Claude Opus 5.5 · T-001 en curso.**
 >
-> Prompt: «Leé `AGENTS.md` y seguí `docs/agents/implementer.md` para retomar T-001». Rama: `fix/T-001-jwt-secret-config`; PR draft pendiente. Ver [STATUS](STATUS.md).
+> Prompt: «Leé `AGENTS.md` y seguí `docs/agents/implementer.md` para retomar T-001». Rama: `fix/T-001-jwt-secret-config`; [PR #4](https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/pull/4) draft. Ver [STATUS](STATUS.md).
 
 **Leyenda:** 🤖 **Lite = Junie Lite (Free) en Air** · 🧠 **Frontera = p. ej. GPT-6.1 Sol / Claude Opus 5.5** · 👤 **Dueño**. Las categorías indican quién implementa; el campo **Revisa** de cada tarea puede pedir otro ejecutor.
 
@@ -15,7 +15,7 @@
 > Próximo ID libre: T-017
 
 ## 🔨 En curso / en revisión (con su PR)
-- T-001 · P0 · S · 🧠 frontera · Sacar el secreto y la expiración del JWT a configuración → [tarea](tasks/T-001-jwt-secret-config.md) · `fix/T-001-jwt-secret-config` · PR draft pendiente.
+- T-001 · P0 · S · 🧠 frontera · Sacar el secreto y la expiración del JWT a configuración → [tarea](tasks/T-001-jwt-secret-config.md) · `fix/T-001-jwt-secret-config` · [PR #4](https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/pull/4) draft.
 
 ## ✅ Listas (cola en orden de ejecución, máx. 10)
 - T-002 · P0 · M · 🧠 frontera · Montar la infraestructura de tests del back → [tarea](tasks/T-002-backend-test-infra.md)

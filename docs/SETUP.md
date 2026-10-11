@@ -13,10 +13,13 @@ Complementa el [README](../README.md) (que tiene el paso a paso); acá va solo l
 | `DB_PASS` | Contraseña de la base | `clonair_local_only` (inventada) | sí | **secreto** del proveedor |
 | `SPRING_DATASOURCE_URL` | Sobrescribe la URL JDBC completa (cuando la DB no está en `localhost`, p. ej. en compose) | no se usa en local | no | variable de entorno |
 | `VITE_API_URL` | URL base del back para el front (build time) | `http://localhost:8080` | sí, desde T-004 | variable de build del hosting del front |
-| `JWT_SECRET`, `JWT_EXPIRATION` | Firma y duración de tokens | — | se agregan en T-001 | **secreto** |
+| `JWT_SECRET` | Clave de firma HS256: Base64 de al menos 32 bytes (256 bits); se valida al iniciar | clave pública solo local en `.example` y compose | **sí, sin default en el back** | **secreto** propio del proveedor, generado con `openssl rand -base64 32` |
+| `JWT_EXPIRATION` | Duración de tokens en milisegundos | `86400000` (24 h) | no; default `86400000` | variable de entorno |
 | `CORS_ALLOWED_ORIGINS` | Orígenes permitidos | — | se agrega en T-003 | variable de entorno |
 
 Archivos: `backend/src/main/resources/env.properties` (copia de su `.example`, leído desde el classpath) y `frontend/airbnb_clone/.env`. En compose, las mismas variables están en `docker-compose.yml` → `services.server.environment`.
+
+Si ya tenías un `env.properties` local, agregá `JWT_SECRET` y `JWT_EXPIRATION` desde el `.example` actualizado. Sin secreto, con Base64 inválido o con menos de 32 bytes decodificados, el back no arranca: el error identifica `JWT_SECRET` sin imprimir su valor. Compose usa la clave pública del `.example` solo para desarrollo y permite sobrescribir ambas variables desde el entorno. En producción usá un secreto propio; su rotación invalida los tokens anteriores (T-015).
 
 ## Puertos
 

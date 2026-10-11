@@ -39,9 +39,12 @@ El back firma con `JWT_SECRET` y expira según `JWT_EXPIRATION` (default 24 h); 
 - [ ] Un token tiene `exp - iat` = 86400 s (decodificar el payload)
 
 ## Notas de implementación
-- Hecho: protocolo leído; development actualizado (`47debed`); sin PR abiertos ni rama remota de T-001. Rama `fix/T-001-jwt-secret-config`; PR pendiente.
+- Hecho: protocolo leído; development actualizado (`47debed`); sin PR abiertos ni rama remota de T-001 al iniciar. Rama `fix/T-001-jwt-secret-config`; [PR #4](https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/pull/4) draft.
 - Línea de base: `./scripts/verify.sh` → server build + 1 test OK; client build OK, mismos 93 problemas de lint (T-005); JDK 21 / Node 24.19.0.
-- Pendiente: test de regresión, configuración y validación del secreto, unitarios y verificaciones de aceptación. Próximo paso: abrir el PR draft y reproducir la expiración incorrecta con `JwtServiceTest`.
+- Regresión reproducida y publicada en `c277f53`: duración obtenida `86400000000` ms frente a `86400000` ms esperados; test falló antes del fix.
+- Implementado: constructor con clave Base64 validada y decodificada una vez, expiración configurable, HS256 conservado, eliminación del helper sin llamadas; `.example`, compose, README y SETUP actualizados. Unitarios `JwtServiceTest` OK (sin contexto Spring).
+- Decisiones: Base64 estricto (`java.util.Base64`); `iat` y `exp` parten de un mismo instante. Los tokens expirados siguen lanzando `ExpiredJwtException`, sin cambiar el manejo de errores de T-008. Clave pública nueva generada con `openssl rand -base64 32` solo para local; no es una rotación de producción.
+- Pendiente: gate final, cobertura y smoke de aceptación. Próximo paso: comprobar los procesos de verify/compose, luego arrancar sin `JWT_SECRET` y decodificar el token demo.
 
 ## Resultado
 - PR: #N · Qué cambió: … · Tests agregados: … · Pendientes → T-015 (👤 rotar en prod)
