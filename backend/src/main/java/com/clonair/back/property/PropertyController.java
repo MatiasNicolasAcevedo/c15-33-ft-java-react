@@ -3,6 +3,7 @@ package com.clonair.back.property;
 
 import java.util.List;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -32,6 +33,7 @@ public class PropertyController {
     }
 
     @PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    @ResponseStatus(HttpStatus.CREATED)
     public void register(
             @RequestHeader(name = HttpHeaders.AUTHORIZATION) String token,
             @RequestParam("title") String title,
@@ -88,6 +90,7 @@ public class PropertyController {
     }
 
     @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     public void delete(@PathVariable String id, @RequestHeader(name = HttpHeaders.AUTHORIZATION) String token ) throws Exception{
         propertyService.delete(id, token);
     }

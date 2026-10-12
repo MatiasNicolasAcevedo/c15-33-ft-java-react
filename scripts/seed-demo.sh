@@ -8,7 +8,11 @@ USER_JSON='{"username":"demo-owner@clonair.local","password":"Demo1234!","firstn
 LOGIN_JSON='{"username":"demo-owner@clonair.local","password":"Demo1234!"}'
 
 code=$(curl -s -o /dev/null -w '%{http_code}' -X POST "$API/register" -H 'Content-Type: application/json' -d "$USER_JSON")
-[ "$code" = 200 ] && echo "usuario demo creado" || echo "usuario demo ya existía (register → $code)"
+case "$code" in
+  201) echo "usuario demo creado" ;;
+  409) echo "usuario demo ya existía (register → $code)" ;;
+  *) echo "❌ registro demo falló (HTTP $code)"; exit 1 ;;
+esac
 code=$(curl -s -o /dev/null -w '%{http_code}' -X POST "$API/login" -H 'Content-Type: application/json' -d "$LOGIN_JSON")
 if [ "$code" = 200 ]; then
   echo "✅ login demo OK · usuario: demo-owner@clonair.local · contraseña: Demo1234!"

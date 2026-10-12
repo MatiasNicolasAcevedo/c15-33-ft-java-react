@@ -1,5 +1,9 @@
 package com.clonair.back.security.jwt;
 
+import com.clonair.back.common.error.SecurityProblemHandler;
+import io.jsonwebtoken.JwtException;
+import org.springframework.security.core.AuthenticationException;
+import org.springframework.security.authentication.BadCredentialsException;
 import java.io.IOException;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.FilterChain;
@@ -24,6 +28,7 @@ import org.springframework.web.filter.OncePerRequestFilter;
 @RequiredArgsConstructor // Genera automáticamente un constructor que incluya todos los campos marcados como final en una clase.
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
+    private final SecurityProblemHandler securityProblemHandler;
     private final JwtService jwtService; // Service que maneja la generación, validación y extracción de tokens JWT.
     private final UserDetailsService userDetailsService; // Se utiliza para cargar los detalles del usuario a partir del nombre de usuario extraído del token JWT.
 
@@ -33,23 +38,28 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         final String token = getTokenFromRequest(request);
         final String username;
 
-        if (token != null) {
-            username = jwtService.getUsernameFromToken(token);
+        try {
+            if (token != null) {
+                username = jwtService.getUsernameFromToken(token);
+                if (!StringUtils.hasText(username)) {
+                    throw new BadCredentialsException("Invalid JWT token");
+                }
 
-            if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
-                UserDetails userDetails = userDetailsService.loadUserByUsername(username);
-
-                if (jwtService.isTokenValid(token, userDetails)) { // Llamada a isTokenValid con el token y userDetails
+                if (SecurityContextHolder.getContext().getAuthentication() == null) {
+                    UserDetails userDetails = userDetailsService.loadUserByUsername(username);
+                    if (!jwtService.isTokenValid(token, userDetails)) {
+                        throw new BadCredentialsException("Invalid JWT token");
+                    }
                     UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(
-                            userDetails,
-                            null,
-                            userDetails.getAuthorities());
-
+                            userDetails, null, userDetails.getAuthorities());
                     authToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
-
                     SecurityContextHolder.getContext().setAuthentication(authToken);
                 }
             }
+        } catch (JwtException | IllegalArgumentException | AuthenticationException exception) {
+            SecurityContextHolder.clearContext();
+            securityProblemHandler.commence(request, response, new BadCredentialsException("Invalid JWT token", exception));
+            return;
         }
 
         filterChain.doFilter(request, response);

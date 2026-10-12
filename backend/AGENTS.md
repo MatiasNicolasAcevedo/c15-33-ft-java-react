@@ -5,7 +5,7 @@ Solo lo específico del back. Lo general está en el [AGENTS.md raíz](../AGENTS
 ## Comandos (desde `backend/`)
 
 - Tests (Docker corriendo para integración; sin DB de compose ni `env.properties`): `./mvnw -q test` · uno: `./mvnw -q test -Dtest='Clase#metodo'` · gate: `../scripts/verify.sh --server`.
-- Correr: `./mvnw spring-boot:run` → `curl -s -o /dev/null -w '%{http_code}\n' http://localhost:8080/v3/api-docs` = 200.
+- Correr: `./mvnw spring-boot:run` → `curl -s -o /dev/null -w '%{http_code}\n' http://localhost:8080/actuator/health` = 200.
 - Config: `src/main/resources/env.properties` (copia del `.example`). No la leas ni la commitees.
 
 ## Convenciones actuales
@@ -19,7 +19,7 @@ Solo lo específico del back. Lo general está en el [AGENTS.md raíz](../AGENTS
 
 ## Cuidado
 
-- Errores: los servicios lanzan `Exception` genérica y todo termina en 403 hasta T-008. No agregues `try/catch` que devuelvan 400/404 a mano: esperá a T-008 o pedilo como tarea.
+- Errores: usá `common/error/{NotFoundException,ForbiddenException,ConflictException,BadRequestException}`; el advice devuelve ProblemDetail. Autenticación → 401; permisos → 403. No agregues try/catch que cambien el status o el formato en controllers.
 - `security/**`, `SecurityConfig`, `JwtService`, `CorsConfig` → solo tareas 🧠.
 - `@Data` en entidades con relaciones bidireccionales (`User` ↔ `Property` ↔ `Image`): no uses `equals/hashCode/toString` de entidades en tests ni logs (recursión).
 - Archivos largos: `PropertyServiceImp.java` (276 líneas), `ImageServiceImp.java` (219): leé por rangos.

@@ -1,5 +1,8 @@
 package com.clonair.back.security.auth;
 
+import com.clonair.back.common.error.BadRequestException;
+import com.clonair.back.common.error.ConflictException;
+import org.springframework.dao.DataIntegrityViolationException;
 import com.clonair.back.security.jwt.JwtService;
 import com.clonair.back.user.User;
 import com.clonair.back.user.UserRepository;
@@ -53,7 +56,10 @@ public class AuthService {
      * */
     public AuthResponse register(RegisterRequest request) {
         if (!"USER".equals(request.getRole()) && !"OWNER".equals(request.getRole())) {
-            throw new IllegalArgumentException("Registration role must be USER or OWNER");
+            throw new BadRequestException("Registration role must be USER or OWNER");
+        }
+        if (userRepository.findByUsername(request.getUsername()).isPresent()) {
+            throw new ConflictException("Username already registered");
         }
         Role role = Role.valueOf(request.getRole());
 
@@ -66,7 +72,15 @@ public class AuthService {
                 .role(role)
                 .build();
 
-        userRepository.save(user); // Guarda el nuevo usuario en la base de datos.
+        try {
+            userRepository.save(user);
+        } catch (DataIntegrityViolationException exception) {
+            // La restricción única también protege registros concurrentes del mismo username.
+            if (userRepository.findByUsername(request.getUsername()).isPresent()) {
+                throw new ConflictException("Username already registered");
+            }
+            throw exception;
+        }
 
         return AuthResponse.builder() // Retorna un objeto AuthResponse que encapsula el token JWT generado.
                 .token(jwtService.getToken(user)) // Se genera un token JWT utilizando jwtService.

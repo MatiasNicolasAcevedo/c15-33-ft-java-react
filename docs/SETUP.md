@@ -23,6 +23,12 @@ Si ya tenías un `env.properties` local, agregá `JWT_SECRET`, `JWT_EXPIRATION` 
 
 CORS se evalúa antes de la autenticación, incluidos los preflight de endpoints protegidos. La lista admite espacios alrededor de las comas, pero rechaza comodines al iniciar. Vite usa `http://localhost:5173` y el front de compose `http://localhost:8081`; si cambiás host, esquema o puerto, actualizá la lista. En producción definí solo los orígenes exactos de tu front, sin rutas. No se usan cookies para el JWT.
 
+## Health y contrato de errores
+
+`GET /actuator/health` es público: 200 + `{"status":"UP"}` cuando la aplicación y MySQL están disponibles. Solo `health` está expuesto en Actuator; no se muestran componentes ni detalles. Compose y `dev.sh` usan este probe. No se agregan variables por entorno en T-008.
+
+Los errores devuelven `application/problem+json` con `status`, `detail` e `instance`. Un 401 requiere renovar la sesión; un 403 indica permisos insuficientes. Registro: 201 + token; login: 200 + token/role; borrados de propiedad/usuario: 204 sin cuerpo. `seed-demo.sh` acepta 201 o 409 en registro y exige 200 en login.
+
 ## Puertos
 
 | Servicio | Puerto | Cómo cambiarlo |

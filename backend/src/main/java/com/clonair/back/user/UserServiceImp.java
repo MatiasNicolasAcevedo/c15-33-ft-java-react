@@ -1,6 +1,7 @@
 
 package com.clonair.back.user;
 
+import com.clonair.back.common.error.NotFoundException;
 import com.clonair.back.property.Property;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -21,7 +22,7 @@ public class UserServiceImp implements UserService {
         if (user != null) {
             return mapUserToResponse(user);
         } else {
-            throw new Exception("User not found");
+            throw new NotFoundException("User not found");
         }
     }
 
@@ -41,7 +42,7 @@ public class UserServiceImp implements UserService {
         if (user != null) {
             return mapUserToResponse(user);
         } else {
-            throw new Exception("User not found");
+            throw new NotFoundException("User not found");
         }
     }
 
@@ -67,7 +68,7 @@ public class UserServiceImp implements UserService {
             // Guardar los cambios en la base de datos
             userRepository.save(user);
         } else {
-            throw new Exception("User not found");
+            throw new NotFoundException("User not found");
         }
     }
 
@@ -81,7 +82,7 @@ public class UserServiceImp implements UserService {
             // Si se completan las validaciones, proceder con la eliminación.
             userRepository.deleteById(id);
         } else {
-            throw new Exception("User not found");
+            throw new NotFoundException("User not found");
         }
     }
 

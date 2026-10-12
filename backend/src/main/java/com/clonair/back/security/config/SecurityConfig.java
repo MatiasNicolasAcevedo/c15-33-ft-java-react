@@ -1,5 +1,6 @@
 package com.clonair.back.security.config;
 
+import com.clonair.back.common.error.SecurityProblemHandler;
 import com.clonair.back.security.jwt.JwtAuthenticationFilter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
@@ -24,6 +25,7 @@ import org.springframework.security.web.util.matcher.RequestMatcher;
 public class SecurityConfig {
 
     private final JwtAuthenticationFilter jwtAuthenticationFilter; // Es un filtro personalizado para procesar tokens JWT.
+    private final SecurityProblemHandler securityProblemHandler;
     private final AuthenticationProvider authProvider; // El proveedor de autenticación personalizado definido en ApplicationConfig.
     
     /**
@@ -37,6 +39,9 @@ public class SecurityConfig {
                         csrf  // Ya que las aplicaciones RESTful no mantienen el estado de sesión por diseño, y CSRF se enfoca en la protección de sesiones.
                                 .disable())
                 .cors(Customizer.withDefaults())
+                .exceptionHandling(errors -> errors
+                        .authenticationEntryPoint(securityProblemHandler)
+                        .accessDeniedHandler(securityProblemHandler))
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers(publicEndpoints()).permitAll()
                         .requestMatchers(
@@ -57,6 +62,8 @@ public class SecurityConfig {
         return new OrRequestMatcher(
                 // Esto cambia según los endpoints que usemos nosotros
                 new AntPathRequestMatcher("/v1/api/auth/*"),
+                new AntPathRequestMatcher("/error"),
+                new AntPathRequestMatcher("/actuator/health", "GET"),
                 new AntPathRequestMatcher("/swagger-ui/**"),
                 new AntPathRequestMatcher("/v3/api-docs/**"),
                 new AntPathRequestMatcher("/v1/api/property/**", "GET"),

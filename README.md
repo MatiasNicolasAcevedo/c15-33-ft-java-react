@@ -140,10 +140,10 @@ docker compose up -d --wait
 **Resultado esperado:** el log termina en `Started BackApplication in … seconds`. Chequeo (desde otra terminal):
 
 ```bash
-curl -s -o /dev/null -w '%{http_code}\n' http://localhost:8080/v3/api-docs
+curl -s -w '\n%{http_code}\n' http://localhost:8080/actuator/health
 ```
 
-→ `200` (todavía no hay endpoint de health: T-008).
+→ `200` y `{"status":"UP"}` en `/actuator/health` (público; incluye la conexión a MySQL sin exponer detalles).
 
 **5. Crear el usuario demo** (desde la raíz):
 
@@ -196,14 +196,14 @@ docker compose down -v
 | `./mvnw: Permission denied` | checkout viejo sin bit de ejecución | `chmod +x backend/mvnw` o `sh mvnw …` |
 | `invalid target release: 17` | JDK menor a 17 | instalar JDK 17 o 21 (ver Prerrequisitos) |
 | El front muestra "Error code: 404" en la home | la home no maneja estados de carga/error | pendiente T-011 |
-| 403 en cualquier error de la API | no hay manejo global de errores | pendiente T-008 |
+| API devuelve 400 / 401 / 403 / 404 / 409 | errores con `application/problem+json` | 400: JSON/valor inválido; 401: sesión o credenciales inválidas; 403: sin permiso; 404: recurso inexistente; 409: username duplicado. Leer `detail`; los errores internos devuelven 500 sin detalles sensibles |
 | `seed-demo.sh` → `register → 000` | el back todavía no arrancó | esperar el `200` del paso 4 |
 
 _Verificado el 2026-10-10 en Ubuntu 24.04 con Java 21.0.12 (y 17.0.20 en contenedor), Node 22.22 (y 24 en contenedor), Docker 29.8.2 y Compose v5.6._
 
 ## Tests y calidad
 
-`./scripts/verify.sh` es el gate único (build + lint + tests de ambas partes; `--server` o `--client` para una sola). Estrategia, cobertura y cómo correr un solo test: [`docs/TESTING.md`](docs/TESTING.md). El back tiene 57 tests; los de integración usan MySQL 8.4 efímera vía Testcontainers y puerto HTTP aleatorio. Para verificar el back basta Docker corriendo: `./scripts/verify.sh --server` (o `cd backend && ./mvnw -B clean verify`), sin `env.properties` ni DB de compose. JaCoCo genera el reporte en `backend/target/site/jacoco/index.html` y comprueba un umbral de líneas del 40 % en `verify` (cobertura medida tras T-003: 56,48 %). El front todavía no tiene tests (T-009).
+`./scripts/verify.sh` es el gate único (build + lint + tests de ambas partes; `--server` o `--client` para una sola). Estrategia, cobertura y cómo correr un solo test: [`docs/TESTING.md`](docs/TESTING.md). El back tiene 118 tests; los de integración usan MySQL 8.4 efímera vía Testcontainers y puerto HTTP aleatorio. Para verificar el back basta Docker corriendo: `./scripts/verify.sh --server` (o `cd backend && ./mvnw -B clean verify`), sin `env.properties` ni DB de compose. JaCoCo genera el reporte en `backend/target/site/jacoco/index.html` y comprueba un umbral de líneas del 40 % en `verify` (cobertura medida tras T-008: 82,54 %). El front todavía no tiene tests (T-009).
 
 ## Cómo se trabaja
 
