@@ -39,12 +39,13 @@ Q-1: `npm run lint` falla con 93 problemas (66 `react/prop-types`, 17 `no-unused
 
 ## Notas de implementación
 - Hecho: `.eslintrc.cjs` con `react/prop-types: off` y `overrides` con `env: { node: true }` para config files; variables sin uso eliminadas de 8 archivos; `hasOwnProperty` corregido en `CountryList.jsx`; 7 warnings con `eslint-disable-next-line -- comportamiento existente, ver Backlog`.
+- Cambios pedidos (PR #8, commit 66937b0): Forms.jsx → restaurado cierre original `}), [registerButtonPressed]` sin array de dependencias real; comentario eslint-disable movido antes de useEffect. Test.jsx → eliminado objeto `_property` sin uso y su supresión `no-unused-vars`.
 - Pendiente: —
 - Decisiones: JS sin PropTypes (migración a TS en Backlog P3); `useEffect` sin dependencias no se modifican (pueden crear loops).
 - Archivos modificados: 12 archivos en `frontend/airbnb_clone/` + 3 docs.
-- Pruebas/verify: `verify.sh --client` → ✅ lint ✅ build ⚠️ sin tests (T-009).
+- Pruebas/verify: `verify.sh --client` → ✅ lint ✅ build ⚠️ sin tests (T-009). Segunda iteración (cambios pedidos): lint ✅ build ✅.
 - Bloqueos: —
-- Próximo paso: revisión de PR #8.
+- Próximo paso: segunda revisión de PR #8.
 
 ## Resultado
-- PR: #8 · Qué cambió: 93 problemas de lint resueltos (66 prop-types desactivados, 17 vars sin uso eliminadas, 1 hasOwnProperty, 2 no-undef, 7 warnings con disable) · Tests agregados: — · Pendientes: —
+- PR: #8 · Qué cambió: 93 problemas de lint resueltos (66 prop-types desactivados, 17 vars sin uso eliminadas, 1 hasOwnProperty, 2 no-undef, 7 warnings con disable) + cambios pedidos atendidos (Forms.jsx: efecto de registro sin array de dependencias; Test.jsx: `_property` eliminado) · Tests agregados: — · Pendientes: —

@@ -197,6 +197,7 @@ const Forms = ({openLogin, handleOpenLogin, openSignUp, handleOpenSignUp}) => {
         setShowContactInput(prev => !prev)
     }
 
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- comportamiento existente, ver Backlog
     useEffect(() => {
         if (registerButtonPressed && !dataMissing && !invalidEmail && !invalidPassword && !invalidContact) {
       
@@ -205,8 +206,7 @@ const Forms = ({openLogin, handleOpenLogin, openSignUp, handleOpenSignUp}) => {
             resetData();
         }
         setRegisterButtonPressed(false)
-    // eslint-disable-next-line react-hooks/exhaustive-deps -- comportamiento existente, ver Backlog
-    }, [registerButtonPressed])
+    }), [registerButtonPressed]
 
 
 

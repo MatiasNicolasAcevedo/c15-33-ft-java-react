@@ -10,28 +10,6 @@ export const Test = () => {
     useAuth()
 
 
-      // eslint-disable-next-line no-unused-vars
-      const _property = {
-        "title": "Titulo",
-        "description": "Descripcion",
-        "images": [],
-        "value": "123",
-        "location": "Antarctica",
-        "category": "casa",
-        "subCategory": "cabana",
-        "bathroom": "2",
-        "bed": "5",
-        "bedroom": "1",
-        "serviceTypes": [
-            "cocina",
-            "mascotas"
-        ],
-        "permanent_availability": "true",
-        "availability": [],
-        "active": "true",
-        "user": "user_owner_placeholder"
-    }
-
       const getUsers = async () => {
         try {
             const response = await fetch(`${API_URL}/user`, {
