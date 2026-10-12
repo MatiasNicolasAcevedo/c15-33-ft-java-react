@@ -1,8 +1,10 @@
 # Tablero
 
-> **▶ T-007 EN CURSO:** [T-007](tasks/T-007-property-service-characterization.md) · 🤖 Junie Lite (Free) · rama `test/T-007-property-service-characterization` · PR pendiente
+> **▶ REVISAR PR T-007:** [T-007](tasks/T-007-property-service-characterization.md) · 🧠 Frontera · rama `test/T-007-property-service-characterization` · PR draft pendiente (el dueño debe abrirlo)
 >
-> **▶ PRÓXIMA TAREA (tras T-007):** [T-008](tasks/T-008-error-handling.md) · 🧠 Frontera
+> Link para abrir PR: https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/compare/development...test/T-007-property-service-characterization?expand=1
+>
+> **▶ PRÓXIMA IMPLEMENTACIÓN (tras merge de T-007):** [T-008](tasks/T-008-error-handling.md) · 🧠 Frontera
 
 **Leyenda:** 🤖 **Lite = Junie Lite (Free) en Air** · 🧠 **Frontera = p. ej. GPT-6.1 Sol / Claude Opus 5.5** · 👤 **Dueño**. Las categorías indican quién implementa; el campo **Revisa** de cada tarea puede pedir otro ejecutor.
 
@@ -11,9 +13,6 @@
 > las 👤 que no bloquean nada van al final de "Listas" con "(no bloquea la cola)" ·
 > formato: `- T-NNN · Pn · S/M/L · 🤖 Lite|🧠 frontera|👤 dueño · Título → [tarea](tasks/T-NNN-slug.md)`
 > Próximo ID libre: T-017
-
-## 🔨 En curso
-- T-007 · P0 · M · 🤖 Lite · Escribir tests de caracterización de `PropertyServiceImp` → [tarea](tasks/T-007-property-service-characterization.md) · rama `test/T-007-property-service-characterization` · PR pendiente
 
 ## ✅ Listas (cola en orden de ejecución, máx. 10)
 - T-008 · P0 · M · 🧠 frontera · Agregar manejo global de errores con ProblemDetail y health check → [tarea](tasks/T-008-error-handling.md)
@@ -61,6 +60,7 @@
 - 🧠 Evaluar mover a `client/` + `server/` ([ADR 0004](adr/0004-keep-folder-layout.md))
 
 ## 🏁 Hecho reciente (máx. 10; las más viejas → archive/tasks/)
+- T-007 · P0 · M · 🤖 Lite · Escribir tests de caracterización de `PropertyServiceImp` → [tarea](tasks/T-007-property-service-characterization.md) · PR draft pendiente · **18 tests agregados, 94.3 % cobertura, 77 tests OK**; revisión por 🧠.
 - T-006 · P0 · S · 🤖 Lite · Corregir el endpoint `DELETE /v1/api/property/{id}` → [tarea](tasks/T-006-delete-property-mapping.md) · [PR #9](https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/pull/9) · **mergeada con squash**; endpoint mapeado por ID, 2 tests agregados, verify.sh --server ✅.
 - T-005 · P0 · S · 🤖 Lite · Dejar `npm run lint` en verde → [tarea](tasks/T-005-frontend-lint.md) · [PR #8](https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/pull/8) · **mergeada con squash `9dfe037`**; 93 problemas de lint resueltos, lint ✅, build ✅.
 - T-004 · P0 · S · 🤖 Lite · Hacer configurable la URL de la API en el front y usar el prefijo /v1/api → [tarea](tasks/T-004-frontend-api-base-url.md) · [PR #7](https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/pull/7) · **mergeada con squash `c648fbd`**; build ✅, sin IPs hardcodeadas, bundle con localhost:8080/v1/api.

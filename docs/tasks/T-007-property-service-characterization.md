@@ -1,5 +1,5 @@
 # T-007 · Escribir tests de caracterización de `PropertyServiceImp`
-- Estado: En curso · Prioridad: P0 · Esfuerzo: M · Ejecuta: 🤖 Junie Lite (Free)
+- Estado: Lista para revisión · Prioridad: P0 · Esfuerzo: M · Ejecuta: 🤖 Junie Lite (Free)
 - Fase: P0 Estabilizar
 - Rama: `test/T-007-property-service-characterization` (crearla desde `development` actualizado antes del primer commit) · Depende de: T-002, T-006 · Spec/ADR: —
 - Revisa: 🧠 modelo de frontera (tarea M)
@@ -36,13 +36,20 @@ Mocks: `JwtService`, `PropertyRepository`, `ImageService`, `UserService`. Antes 
 3. Si el contexto se llena: persistir "Notas", commit, push y chat nuevo.
 
 ## Criterios de aceptación
-- [ ] ≥ 10 tests nuevos, todos verdes; `./scripts/verify.sh --server` pasa
-- [ ] Cobertura de líneas de `PropertyServiceImp` ≥ 60 % (`backend/target/site/jacoco/com.clonair.back.property/PropertyServiceImp.html`)
-- [ ] Spot check: cambiar `Role.OWNER` por `Role.USER` en `PropertyServiceImp.java:70` hace fallar al menos un test (revertir después; anotarlo en "Notas")
-- [ ] Ningún archivo de `src/main` modificado (`git diff --stat development -- backend/src/main` vacío)
+- [x] ≥ 10 tests nuevos, todos verdes; `./scripts/verify.sh --server` pasa → **18 tests OK, 77 tests totales, BUILD SUCCESS**
+- [x] Cobertura de líneas de `PropertyServiceImp` ≥ 60 % → **94.3 % (115/122 líneas)**
+- [x] Spot check: cambiar `Role.OWNER` por `Role.USER` en `PropertyServiceImp.java:70` hace fallar al menos un test → **2 tests fallaron** (`save_whenUserIsNotOwner_throws`, `save_whenUserIsOwner_savesPropertyWithImages`); revertido
+- [x] Ningún archivo de `src/main` modificado → **`git diff --stat development -- backend/src/main` vacío**
 
 ## Notas de implementación
-- Hecho: … · Pendiente: … · Próximo paso: …
+- Hecho: 18 tests unitarios (Mockito puro) en `PropertyServiceImpTest.java` organizados en 4 clases @Nested (GetOne, Save, Update, Delete). Cubren: token missing/invalid, usuario no OWNER, OWNER que no es dueño, casos exitosos de save/update/delete, y getOne con/sin propiedad.
+- Decisión: usar `SecurityContextHolder` con `UsernamePasswordAuthenticationToken` para simular el contexto de seguridad; mocks de `JwtService`, `PropertyRepository`, `ImageService`, `UserService`.
+- Pruebas: `./mvnw test -Dtest='PropertyServiceImpTest'` → 18 tests OK. `verify.sh --server` → 77 tests OK, cobertura OK.
+- Spot check: cambiar `Role.OWNER` por `Role.USER` en `PropertyServiceImp.java:70` hizo fallar 2 tests (`save_whenUserIsNotOwner_throws` y `save_whenUserIsOwner_savesPropertyWithImages`). Revertido.
+- Cobertura PropertyServiceImp: 94.3 % (115/122 líneas).
+- Sin cambios en `src/main` (`git diff --stat development -- backend/src/main` vacío).
+- Pendiente: revisión por 🧠 modelo de frontera.
+- Próximo paso: revisión del PR.
 
 ## Resultado
-- PR: #N · Qué cambió: … · Tests agregados: … · Pendientes → …
+- PR: pendiente (draft) · Qué cambió: 1 archivo nuevo con 18 tests de caracterización · Tests agregados: 18 (GetOne: 2, Save: 5, Update: 6, Delete: 5) · Pendientes → revisión 🧠
