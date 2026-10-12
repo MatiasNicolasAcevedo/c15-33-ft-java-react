@@ -134,6 +134,6 @@ Versiones mayores de dependencias · esquema de DB y datos · seguridad/autentic
 - `env.properties` en la ruta equivocada → `Failed to parse the host:port pair 'localhost:${DB_PORT}'`.
 - Errores API: `application/problem+json` con 400 (request inválido), 401 (autenticación), 403 (permiso), 404 (no encontrado), 409 (conflicto), 500 (interno sin detalles). Usá las excepciones de `common/error`; no devuelvas errores a mano en controllers.
 - Health público: `GET /actuator/health` → 200 + `{"status":"UP"}`. Es el probe de compose y dev.sh; Swagger sigue en `/v3/api-docs`.
-- El front llama a una IP de producción hardcodeada hasta T-004.
+- El front usa `VITE_API_URL` con prefijo `/v1/api` desde T-004; default local `http://localhost:8080`.
 - `verify.sh --server` necesita Docker (MySQL efímera vía Testcontainers; sin DB de compose ni config manual).
 - En contenedores con proxy TLS (cloud): Docker Hub puede dar 429 y `docker build` puede fallar con `PKIX path building failed` (ver `docs/SETUP.md` → Modelo de frontera).

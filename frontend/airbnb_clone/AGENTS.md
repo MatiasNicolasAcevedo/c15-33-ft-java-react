@@ -22,4 +22,4 @@ Solo lo específico del front. Lo general está en el [AGENTS.md raíz](../../AG
 
 - Archivos largos (leé por rangos): `components/forms/Forms.jsx` (443), `components/admin/AdminPanel.jsx` (390), `components/owner/PropertiesContainer/PropertiesContainer.jsx` (377), `components/property/PropertyRegister.jsx` (344), `services/apiRequests.jsx` (335).
 - No abras `package-lock.json` ni `dist/`.
-- El contrato con el back está desalineado (rutas `/api/*` vs `/v1/api/*`, `images` vs `imageUrls`): no lo "arregles de paso", hay tareas (T-004, T-012).
+- T-004 alineó las rutas con `/v1/api` y la base configurable. El contrato de imágenes sigue desalineado (`images` vs `imageUrls`): se corrige en T-012.

@@ -14,10 +14,9 @@ flowchart LR
     S["server · Spring Boot :8080<br/>(profile app o ./mvnw)"]
     DB[("db · MySQL 8.4 :3306<br/>volumen clonair_db-data")]
   end
-  SPA -- "fetch + JWT (Bearer)" --> S
+  SPA -- "VITE_API_URL + /v1/api · JWT (Bearer)" --> S
   C -- "sirve dist/" --> SPA
   S -- "JPA/Hibernate (ddl-auto=update)" --> DB
-  SPA -. "⚠️ hoy: IP de producción hardcodeada (T-004)" .-> PROD["API de producción<br/>⚠️ estado desconocido"]
 ```
 
 ## Flujo de un request
