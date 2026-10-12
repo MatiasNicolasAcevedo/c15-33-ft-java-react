@@ -1,5 +1,5 @@
 # Estado del proyecto
-_Actualizado: 2026-10-12 · por: 🤖 Junie Lite (Free) · sesión: T-007 cambios del PR #10_
+_Actualizado: 2026-10-12 · por: 🧠 Frontera (Codex) · sesión: T-007 corrección de servicios autorizada por el dueño_
 
 ## ▶ Próxima acción
 
@@ -9,9 +9,9 @@ _Actualizado: 2026-10-12 · por: 🤖 Junie Lite (Free) · sesión: T-007 cambio
 | **Tarea** | [T-007 · Escribir tests de caracterización de `PropertyServiceImp`](tasks/T-007-property-service-characterization.md) |
 | **Ejecutor** | **🧠 Frontera — GPT-6.1 Sol / Claude Opus 5.5** (revisión) |
 | **Rama / PR** | `test/T-007-property-service-characterization` · [PR #10](https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/pull/10) (ready) |
-| **Prompt** | «Leé `AGENTS.md` y seguí `docs/agents/reviewer.md` para el PR #10 de T-007 en la rama `test/T-007-property-service-characterization`. Los cambios pedidos (update con valores distintos y save con imágenes no vacías) han sido atendidos.» |
+| **Prompt** | «Leé `AGENTS.md`, `docs/STATUS.md` y `docs/tasks/T-007-property-service-characterization.md`. Seguí `docs/agents/reviewer.md` para el PR #10 de T-007 en la rama `test/T-007-property-service-characterization`. Revisá la corrección de la escalación: el test de update verifica exactamente SWIMMING_POOL y PARKING_LOT y debe fallar ante WIFI/WIFI. Conservá la rama y el PR; publicá el veredicto y no inicies T-008.» |
 
-**T-007 en curso:** cambios pedidos del PR #10 atendidos. Tests de update y save corregidos para detectar regresiones de mapeo y asociación de imágenes. [PR #10](https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/pull/10) (ready). Nueva revisión por 🧠.
+**T-007 en curso:** el dueño autorizó a 🧠 Frontera a resolver la escalación del PR #10. El test de update comprueba los servicios exactos; una lista WIFI/WIFI debe fallar. Se conserva la rama y el PR. Pendiente: revisión independiente del commit corregido; T-008 espera al merge.
 
 **T-006 cerrada:** [PR #9](https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/pull/9) mergeado por el dueño con squash. Endpoint `DELETE /v1/api/property/{id}` corregido para mapear por ID en lugar de UUID. 2 tests agregados, verify.sh --server ✅ 57 tests OK.
 

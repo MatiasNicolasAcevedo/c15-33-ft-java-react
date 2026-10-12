@@ -354,7 +354,8 @@ class PropertyServiceImpTest {
                 if (property.getBathroom() != 3) return false;
                 if (property.getBed() != 5) return false;
                 if (property.getBedroom() != 4) return false;
-                if (property.getServiceTypes().size() != 2) return false;
+                if (!List.of(ServiceType.SWIMMING_POOL, ServiceType.PARKING_LOT)
+                        .equals(property.getServiceTypes())) return false;
                 if (property.getSubCategory() != SubCategory.BEACH) return false;
                 // ID and OWNER must be preserved
                 if (!"prop-1".equals(property.getId())) return false;
