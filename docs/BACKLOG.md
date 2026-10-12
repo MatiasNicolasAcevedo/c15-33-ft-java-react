@@ -1,8 +1,8 @@
 # Tablero
 
-> **▶ IMPLEMENTAR T-008:** 🧠 Frontera · rama `feat/T-008-error-handling` · [PR #11](https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/pull/11) (draft).
+> **▶ REVISAR PR #11 (T-008):** 🧠 Frontera · rama `feat/T-008-error-handling` · [PR #11](https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/pull/11) (ready). T-009 espera revisión y merge del dueño.
 >
-> **Prompt:** «Leé `AGENTS.md`, `docs/STATUS.md` y `docs/tasks/T-008-error-handling.md`. Seguí `docs/agents/implementer.md` retomando T-008 en `feat/T-008-error-handling`; conservá la rama y el PR #11. No inicies T-009.»
+> **Prompt:** «Leé `AGENTS.md`, `docs/STATUS.md` y `docs/tasks/T-008-error-handling.md`. Seguí `docs/agents/reviewer.md` para el PR #11 de T-008 en la rama `feat/T-008-error-handling`. Revisá el commit publicado, errores MVC/dominio/seguridad, health público y compatibilidad del frontend. Publicá un veredicto independiente; no mergees ni inicies T-009.»
 
 **Leyenda:** 🤖 **Lite = Junie Lite (Free) en Air** · 🧠 **Frontera = p. ej. GPT-6.1 Sol / Claude Opus 5.5** · 👤 **Dueño**. Las categorías indican quién implementa; el campo **Revisa** de cada tarea puede pedir otro ejecutor.
 
@@ -13,7 +13,7 @@
 > Próximo ID libre: T-017
 
 ## 🔨 En curso
-- T-008 · P0 · M · 🧠 frontera · Manejo global de errores y health → [tarea](tasks/T-008-error-handling.md) · `feat/T-008-error-handling` · [PR #11](https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/pull/11) (draft).
+Sin implementaciones activas; PR #11 de T-008 pendiente de revisión y merge.
 
 ## ✅ Listas (cola en orden de ejecución, máx. 10)
 - T-009 · P0 · M · 🧠 frontera · Montar la infraestructura de tests del front → [tarea](tasks/T-009-frontend-test-infra.md)
@@ -28,6 +28,7 @@
 
 ## 📥 Backlog (sin refinar)
 **P0 Estabilizar**
+- 🧠 Corregir cascada de borrado en `Property.user`: `@Cascade(ALL)` elimina al OWNER al borrar su propiedad. Preexistente, confirmado en probes de T-008; requiere tarea de datos y test de integración que preserve al usuario.
 - 🧠 Diagnosticar demora de cierre de Surefire/Testcontainers en Windows: T-002 pasa 31 tests y limpia los contenedores, pero Surefire termina el fork tras 30 s de espera al cerrar la JVM.
 - 🧠 Fijar LF para scripts Bash y `backend/mvnw` con `.gitattributes`: en Windows el checkout CRLF rompe el build Docker con `./mvnw: not found` (detectado en T-001; normalizado solo localmente para validar).
 - 🤖 Default `8080` para `APP_PORT` (`application.properties:2`) (X-2)
@@ -60,6 +61,7 @@
 - 🧠 Evaluar mover a `client/` + `server/` ([ADR 0004](adr/0004-keep-folder-layout.md))
 
 ## 🏁 Hecho reciente (máx. 10; las más viejas → archive/tasks/)
+- T-008 · P0 · M · 🧠 frontera · ProblemDetail y health → [tarea](tasks/T-008-error-handling.md) · [PR #11](https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/pull/11) · **lista para revisión, sin merge**; 118 tests, gate completo ✅, cobertura 82,54 %, compose healthy, probes y login/alta manual OK.
 - T-007 · P0 · M · 🤖 Lite + corrección 🧠 · Tests de PropertyServiceImp → [tarea](tasks/T-007-property-service-characterization.md) · [PR #10](https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/pull/10) · revisión independiente APROBADA y squash `e1b07c4`; 77 tests, gate completo verde, cobertura global 76,20 %.
 - T-006 · P0 · S · 🤖 Lite · Corregir el endpoint `DELETE /v1/api/property/{id}` → [tarea](tasks/T-006-delete-property-mapping.md) · [PR #9](https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/pull/9) · **mergeada con squash**; endpoint mapeado por ID, 2 tests agregados, verify.sh --server ✅.
 - T-005 · P0 · S · 🤖 Lite · Dejar `npm run lint` en verde → [tarea](tasks/T-005-frontend-lint.md) · [PR #8](https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/pull/8) · **mergeada con squash `9dfe037`**; 93 problemas de lint resueltos, lint ✅, build ✅.
