@@ -52,4 +52,4 @@ Mocks: `JwtService`, `PropertyRepository`, `ImageService`, `UserService`. Antes 
 - Próximo paso: revisión del PR.
 
 ## Resultado
-- PR: pendiente (draft) · Qué cambió: 1 archivo nuevo con 18 tests de caracterización · Tests agregados: 18 (GetOne: 2, Save: 5, Update: 6, Delete: 5) · Pendientes → revisión 🧠
+- PR: [#10](https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/pull/10) (draft) · Qué cambió: 1 archivo nuevo con 18 tests de caracterización · Tests agregados: 18 (GetOne: 2, Save: 5, Update: 6, Delete: 5) · Pendientes → revisión 🧠

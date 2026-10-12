@@ -8,7 +8,7 @@ _Actualizado: 2026-10-12 · por: 🤖 Junie Lite (Free) · sesión: T-007 implem
 | **Acción** | **Revisar PR de T-007**; 18 tests de caracterización de `PropertyServiceImp` (94.3 % cobertura, 77 tests OK) |
 | **Tarea** | [T-007 · Escribir tests de caracterización de `PropertyServiceImp`](tasks/T-007-property-service-characterization.md) |
 | **Ejecutor** | **🧠 Frontera — GPT-6.1 Sol / Claude Opus 5.5** (revisión) |
-| **Rama / PR** | `test/T-007-property-service-characterization` · PR pendiente (draft) |
+| **Rama / PR** | `test/T-007-property-service-characterization` · [PR #10](https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/pull/10) (draft) |
 | **Prompt** | «Leé `AGENTS.md` y seguí `docs/agents/reviewer.md` para el PR de T-007 en la rama `test/T-007-property-service-characterization`.» |
 
 **T-006 cerrada:** [PR #9](https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/pull/9) mergeado por el dueño con squash. Endpoint `DELETE /v1/api/property/{id}` corregido para mapear por ID en lugar de UUID. 2 tests agregados, verify.sh --server ✅ 57 tests OK.
@@ -28,7 +28,7 @@ _Actualizado: 2026-10-12 · por: 🤖 Junie Lite (Free) · sesión: T-007 implem
 **Compactar y continuar:** solo durante el mismo trabajo largo, en un corte seguro y después de guardar las notas + commit + push. Si la interfaz ofrece compactación, usala y retomá **la misma tarea, rama y PR**. Para Lite, guardá el checkpoint y abrí otro chat. El procedimiento y prompt están en [AGENTS.md → Gestión de contexto](../AGENTS.md#5-gestión-de-contexto).
 
 ## En una línea
-T-007 completada: 18 tests de caracterización de PropertyServiceImp (94.3 % cobertura). PR pendiente de revisión por 🧠.
+T-007 completada: 18 tests de caracterización de PropertyServiceImp (94.3 % cobertura). [PR #10](https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/pull/10) pendiente de revisión por 🧠.
 
 ## Salud
 | Check | Estado | Nota |
@@ -46,7 +46,7 @@ T-007 completada: 18 tests de caracterización de PropertyServiceImp (94.3 % cob
 P0 Estabilizar · 2/15 tareas · ver [ROADMAP](ROADMAP.md)
 
 ## Foco
-- **PR de T-007 pendiente de revisión:** rama `test/T-007-property-service-characterization` · PR draft pendiente (sin `gh` CLI; el dueño debe abrirlo).
+- **PR de T-007 pendiente de revisión:** rama `test/T-007-property-service-characterization` · [PR #10](https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/pull/10) (draft).
 - **Próximo paso / prompt:** ver la tarjeta **▶ Próxima acción** al inicio de este archivo y la cola de [BACKLOG](BACKLOG.md).
 
 ## Decisiones pendientes del dueño
@@ -59,7 +59,7 @@ P0 Estabilizar · 2/15 tareas · ver [ROADMAP](ROADMAP.md)
   `git switch development && git pull && git tag audit/2026-10-10 && git push origin audit/2026-10-10`
 
 ## Últimas sesiones (máx. 5; las anteriores → archive/log/AAAA-MM.md)
-- 2026-10-12 · 🤖 Junie Lite (Free) · T-007 completada: 18 tests de caracterización de PropertyServiceImp (94.3 % cobertura). 77 tests OK, verify.sh --server ✅. PR draft pendiente de apertura por el dueño. Revisión por 🧠.
+- 2026-10-12 · 🤖 Junie Lite (Free) · T-007 completada: 18 tests de caracterización de PropertyServiceImp (94.3 % cobertura). 77 tests OK, verify.sh --server ✅. [PR #10](https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/pull/10) creado (draft). Revisión por 🧠.
 - 2026-10-12 · 🤖 Junie Lite (Free) · Documentación corregida: T-006 (PR #9) ya estaba mergeada pero no reflejada como cerrada en STATUS.md y BACKLOG.md. T-007 establecida como próxima acción.
 - 2026-10-12 · 🤖 Junie Lite (Free) · T-006 completada: `@DeleteMapping("/{id}")` en PropertyController.java + PropertyControllerTest.java (2 tests). verify.sh --server ✅ 57 tests OK, cobertura OK. PR #9 mergeado.
 - 2026-10-12 · 🤖 Junie Lite (Free) · T-005: cambios pedidos de PR #8 atendidos. Forms.jsx: restaurado cierre original `}), [registerButtonPressed]` sin array de dependencias; Test.jsx: eliminado `_property` sin uso. verify.sh --client ✅ lint ✅ build. PR #8 mergeado con squash (`9dfe037`).
