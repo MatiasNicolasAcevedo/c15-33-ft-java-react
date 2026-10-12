@@ -1,15 +1,17 @@
 # Estado del proyecto
-_Actualizado: 2026-10-12 · por: 🤖 Junie Lite (Free) · sesión: cambios pedidos PR #8_
+_Actualizado: 2026-10-12 · por: 🤖 Junie Lite (Free) · sesión: implementación T-006_
 
 ## ▶ Próxima acción
 
 | Campo | Qué sigue |
 |---|---|
-| **Acción** | **Segunda revisión de PR #8 de T-005**; cambios pedidos atendidos (Forms.jsx: efecto de registro sin array de dependencias; Test.jsx: `_property` eliminado), espera revisión independiente |
-| **Tarea** | [T-005 · Dejar `npm run lint` en verde](tasks/T-005-frontend-lint.md) |
+| **Acción** | **Implementar T-006**: corregir `@DeleteMapping` en `PropertyController.java` y agregar test `@WebMvcTest` |
+| **Tarea** | [T-006 · Corregir el endpoint `DELETE /v1/api/property/{id}`](tasks/T-006-delete-property-mapping.md) |
 | **Ejecutor** | **🤖 Junie Lite (Free)** |
-| **Rama / PR** | `chore/T-005-frontend-lint` · [PR #8](https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/pull/8) |
-| **Prompt** | «Leé `AGENTS.md` y seguí `docs/agents/reviewer.md` para el PR #8. Revisá la segunda iteración: cambios pedidos atendidos en Forms.jsx (efecto de registro sin array de dependencias) y Test.jsx (`_property` eliminado). Verificá lint y build.» |
+| **Rama / PR** | `fix/T-006-delete-property-mapping` · PR pendiente |
+| **Prompt** | «Leé `AGENTS.md` y seguí `docs/agents/implementer.md` para T-006: corregir el endpoint DELETE /v1/api/property/{id}. Cambiá la anotación a @DeleteMapping("/{id}") y agregá el test @WebMvcTest indicado en la tarea.» |
+
+**T-005 cerrada:** [PR #8](https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/pull/8) mergeado por el dueño con squash (`9dfe037`). 93 problemas de lint resueltos, cambios pedidos atendidos. `verify.sh --client` en verde.
 
 **T-004 cerrada:** [PR #7](https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/pull/7) mergeado por el dueño con squash (`c648fbd`). API_URL configurable vía `VITE_API_URL`, prefijo `/v1/api`, IP de producción eliminada de 4 archivos, prefijo `/api/` quitado de 14 rutas. Build ✅, lint 93 problemas (T-005).
 
@@ -24,12 +26,12 @@ _Actualizado: 2026-10-12 · por: 🤖 Junie Lite (Free) · sesión: cambios pedi
 **Compactar y continuar:** solo durante el mismo trabajo largo, en un corte seguro y después de guardar las notas + commit + push. Si la interfaz ofrece compactación, usala y retomá **la misma tarea, rama y PR**. Para Lite, guardá el checkpoint y abrí otro chat. El procedimiento y prompt están en [AGENTS.md → Gestión de contexto](../AGENTS.md#5-gestión-de-contexto).
 
 ## En una línea
-T-005 en PR #8: 93 problemas de lint resueltos + cambios pedidos atendidos. `verify.sh --client` en verde. Espera segunda revisión de Lite.
+T-006 en implementación: corregir `@DeleteMapping` sin `{id}` en PropertyController y agregar test @WebMvcTest.
 
 ## Salud
 | Check | Estado | Nota |
 |---|---|---|
-| verify.sh | ✅ client | T-005, 2026-10-12: client ✅ lint ✅ build ⚠️ sin tests (T-009); cambios pedidos atendidos; server no ejecutado |
+| verify.sh | ✅ client | T-005 mergeada: client ✅ lint ✅ build; server pendiente T-006 |
 | CI en development | sin CI | → T-010 (bloqueada por T-005) |
 | Levantar en local (README) | ⚠️ verificado 2026-10-10 | T-001: compose con build/wait ✅, login demo ✅ y JWT de 24 h ✅; checkout Windows requirió LF local en `mvnw`; el front usa localhost:8080/v1/api (T-004) pero la home se rompe (T-011) |
 | Cobertura back / front | 56,48 % / sin tests | T-003: 318/563 líneas (base 40,80 %); umbral 40 % conservado; front → T-009 |
@@ -42,7 +44,6 @@ T-005 en PR #8: 93 problemas de lint resueltos + cambios pedidos atendidos. `ver
 P0 Estabilizar · 2/15 tareas · ver [ROADMAP](ROADMAP.md)
 
 ## Foco
-- PR abierto (máx. 1): [#8 · T-005](https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/pull/8), cambios pedidos atendidos en `chore/T-005-frontend-lint`; espera segunda revisión de 🤖.
 - **Próximo paso / prompt:** ver la tarjeta **▶ Próxima acción** al inicio de este archivo y la cola de [BACKLOG](BACKLOG.md).
 
 ## Decisiones pendientes del dueño

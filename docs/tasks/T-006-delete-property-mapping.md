@@ -1,5 +1,5 @@
 # T-006 · Corregir el endpoint `DELETE /v1/api/property/{id}`
-- Estado: Lista · Prioridad: P0 · Esfuerzo: S · Ejecuta: 🤖 Junie Lite (Free)
+- Estado: En curso · Prioridad: P0 · Esfuerzo: S · Ejecuta: 🤖 Junie Lite (Free)
 - Fase: P0 Estabilizar
 - Rama: `fix/T-006-delete-property-mapping` (crearla desde `development` actualizado antes del primer commit) · Depende de: T-002 · Spec/ADR: —
 - Revisa: 🤖 Junie Lite (Free) (chat nuevo)

@@ -1,10 +1,10 @@
 # Tablero
 
-> **▶ EN REVISIÓN (2da ronda): [PR #8](https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/pull/8) · [T-005](tasks/T-005-frontend-lint.md)**
+> **▶ EN IMPLEMENTACIÓN: [T-006](tasks/T-006-delete-property-mapping.md)**
 >
-> **Ejecuta: 🤖 Junie Lite (Free) · rama `chore/T-005-frontend-lint` · [PR #8](https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/pull/8).**
+> **Ejecuta: 🤖 Junie Lite (Free) · rama `fix/T-006-delete-property-mapping` · PR pendiente.**
 >
-> Prompt: «Leé `AGENTS.md` y seguí `docs/agents/reviewer.md` para el PR #8. Revisá la segunda iteración: cambios pedidos atendidos en Forms.jsx (efecto de registro sin array de dependencias) y Test.jsx (`_property` eliminado). Verificá lint y build.» Ver [STATUS](STATUS.md).
+> Prompt: «Leé `AGENTS.md` y seguí `docs/agents/implementer.md` para T-006: corregir el endpoint DELETE /v1/api/property/{id}. Cambiá la anotación a @DeleteMapping("/{id}") y agregá el test @WebMvcTest indicado en la tarea.» Ver [STATUS](STATUS.md).
 
 **Leyenda:** 🤖 **Lite = Junie Lite (Free) en Air** · 🧠 **Frontera = p. ej. GPT-6.1 Sol / Claude Opus 5.5** · 👤 **Dueño**. Las categorías indican quién implementa; el campo **Revisa** de cada tarea puede pedir otro ejecutor.
 
@@ -15,10 +15,9 @@
 > Próximo ID libre: T-017
 
 ## 🔨 En curso / en revisión (con su PR)
-- T-005 · P0 · S · 🤖 Lite · Dejar `npm run lint` en verde → [tarea](tasks/T-005-frontend-lint.md) · [PR #8](https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/pull/8) · cambios pedidos atendidos, espera segunda revisión de 🤖
+- T-006 · P0 · S · 🤖 Lite · Corregir el endpoint `DELETE /v1/api/property/{id}` → [tarea](tasks/T-006-delete-property-mapping.md) · PR pendiente
 
 ## ✅ Listas (cola en orden de ejecución, máx. 10)
-- T-006 · P0 · S · 🤖 Lite · Corregir el endpoint `DELETE /v1/api/property/{id}` → [tarea](tasks/T-006-delete-property-mapping.md)
 - T-007 · P0 · M · 🤖 Lite · Escribir tests de caracterización de `PropertyServiceImp` → [tarea](tasks/T-007-property-service-characterization.md)
 - T-008 · P0 · M · 🧠 frontera · Agregar manejo global de errores con ProblemDetail y health check → [tarea](tasks/T-008-error-handling.md)
 - T-009 · P0 · M · 🧠 frontera · Montar la infraestructura de tests del front → [tarea](tasks/T-009-frontend-test-infra.md)
