@@ -1,8 +1,14 @@
 # Tablero
 
-> **▶ REVISAR PR #11 (T-008):** 🧠 Frontera · rama `feat/T-008-error-handling` · [PR #11](https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/pull/11) (ready). T-009 espera revisión y merge del dueño.
+> **▶ REVISAR E INTEGRAR PR #12:** 👤 dueño · cierre documental de T-008 · rama `docs/T-008-closeout` · [PR #12](https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/pull/12). T-008 ya mergeada en #11; T-009 espera la integración de este cierre.
 >
-> **Prompt:** «Leé `AGENTS.md`, `docs/STATUS.md` y `docs/tasks/T-008-error-handling.md`. Seguí `docs/agents/reviewer.md` para el PR #11 de T-008 en la rama `feat/T-008-error-handling`. Revisá el commit publicado, errores MVC/dominio/seguridad, health público y compatibilidad del frontend. Publicá un veredicto independiente; no mergees ni inicies T-009.»
+> **Prompt:** «GitHub → PR #12 → revisar el diff documental y, si está correcto, Squash and merge. Después abrir una sesión nueva de 🧠 Frontera — GPT-6.1 Sol con el prompt de T-009 de abajo; revalidar PR abiertos antes de comenzar.»
+
+**Próxima implementación después de integrar #12:** T-009 · 🧠 Frontera — GPT-6.1 Sol · rama prevista `test/T-009-frontend-test-infra`, PR pendiente, tarea todavía Lista.
+
+```text
+Leé AGENTS.md, docs/STATUS.md, docs/BACKLOG.md y docs/tasks/T-009-frontend-test-infra.md. Seguí docs/agents/implementer.md para implementar T-009 en una sesión nueva de 🧠 Frontera. Verificá git status y los PR abiertos; confirmá que #11 y el cierre documental #12 estén mergeados. Si hay un PR abierto, atendé primero la próxima acción de STATUS y no inicies T-009. Con el árbol limpio y development actualizado, corré la línea de base y creá la rama exacta test/T-009-frontend-test-infra antes del primer commit; abrí su PR en draft. Actualizá STATUS/BACKLOG para reflejar el merge de #12 y el inicio de T-009. Implementá Vitest, React Testing Library, MSW y cobertura v8 con versiones compatibles con Vite 5 y React 18, siguiendo el contrato de la tarea. Conservá el comportamiento actual de la home y del cliente; los arreglos de UI pertenecen a T-011. Verificá npm test, npm run test:coverage, el test individual indicado y scripts/verify.sh; documentá cobertura y umbral, hacé commit y push de todos los cambios propios y dejá el PR listo para revisión independiente. No mergees ni inicies T-010.
+```
 
 **Leyenda:** 🤖 **Lite = Junie Lite (Free) en Air** · 🧠 **Frontera = p. ej. GPT-6.1 Sol / Claude Opus 5.5** · 👤 **Dueño**. Las categorías indican quién implementa; el campo **Revisa** de cada tarea puede pedir otro ejecutor.
 
@@ -13,17 +19,17 @@
 > Próximo ID libre: T-017
 
 ## 🔨 En curso
-Sin implementaciones activas; PR #11 de T-008 pendiente de revisión y merge.
+Sin implementaciones activas; PR #12 de cierre documental pendiente de revisión e integración. T-008 mergeada, T-009 todavía Lista.
 
 ## ✅ Listas (cola en orden de ejecución, máx. 10)
 - T-009 · P0 · M · 🧠 frontera · Montar la infraestructura de tests del front → [tarea](tasks/T-009-frontend-test-infra.md)
+- T-010 · P0 · S · 🧠 frontera · Agregar CI (verify por parte) y Dependabot → [tarea](tasks/T-010-ci-workflow.md) · dependencias T-002/T-005 mergeadas; ejecutar después de T-009.
 - T-014 · P0 · S · 👤 dueño · Proteger la rama por defecto y limpiar ramas (no bloquea la cola) → [tarea](tasks/T-014-branch-protection.md)
 - T-015 · P0 · S · 👤 dueño · Rotar el secreto JWT en todo entorno que lo haya usado (no bloquea la cola) → [tarea](tasks/T-015-rotate-jwt-secret.md) · desbloqueada por el merge de T-001; confirmar si existe deploy activo.
 
 ## ⛔ Bloqueadas (en el orden en que entrarán a la cola)
-- T-010 · P0 · S · 🧠 frontera · Agregar CI (verify por parte) y Dependabot → [tarea](tasks/T-010-ci-workflow.md) · bloqueada por: `verify.sh` en rojo hasta T-005
 - T-011 · P0 · S · 🤖 Lite · Mostrar estados de carga, error y vacío en la home → [tarea](tasks/T-011-home-error-state.md) · bloqueada por: T-009 (sin tests de front)
-- T-012 · P0 · M · 🧠 frontera · Alinear el contrato de imágenes entre front y back → [tarea](tasks/T-012-image-contract.md) · bloqueada por: T-003, T-004, T-009
+- T-012 · P0 · M · 🧠 frontera · Alinear el contrato de imágenes entre front y back → [tarea](tasks/T-012-image-contract.md) · bloqueada por: T-009; T-003/T-004 mergeadas.
 - T-013 · P0 · M · 🧠 frontera · Montar la infraestructura E2E con Playwright → [tarea](tasks/T-013-e2e-infra.md) · bloqueada por: T-010, T-011, T-012
 
 ## 📥 Backlog (sin refinar)
@@ -61,7 +67,7 @@ Sin implementaciones activas; PR #11 de T-008 pendiente de revisión y merge.
 - 🧠 Evaluar mover a `client/` + `server/` ([ADR 0004](adr/0004-keep-folder-layout.md))
 
 ## 🏁 Hecho reciente (máx. 10; las más viejas → archive/tasks/)
-- T-008 · P0 · M · 🧠 frontera · ProblemDetail y health → [tarea](tasks/T-008-error-handling.md) · [PR #11](https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/pull/11) · **lista para revisión, sin merge**; 118 tests, gate completo ✅, cobertura 82,54 %, compose healthy, probes y login/alta manual OK.
+- T-008 · P0 · M · 🧠 frontera · ProblemDetail y health → [tarea](tasks/T-008-error-handling.md) · [PR #11](https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/pull/11) · **revisión independiente APROBADA y mergeada por el dueño** con squash `1b8ec82`; 118 tests, gate completo ✅, cobertura de revisión 82,59 %, PropertyServiceImp 95,07 %, compose/probes OK. Límites de repetición manual registrados en la tarea; cierre documental en #12.
 - T-007 · P0 · M · 🤖 Lite + corrección 🧠 · Tests de PropertyServiceImp → [tarea](tasks/T-007-property-service-characterization.md) · [PR #10](https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/pull/10) · revisión independiente APROBADA y squash `e1b07c4`; 77 tests, gate completo verde, cobertura global 76,20 %.
 - T-006 · P0 · S · 🤖 Lite · Corregir el endpoint `DELETE /v1/api/property/{id}` → [tarea](tasks/T-006-delete-property-mapping.md) · [PR #9](https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/pull/9) · **mergeada con squash**; endpoint mapeado por ID, 2 tests agregados, verify.sh --server ✅.
 - T-005 · P0 · S · 🤖 Lite · Dejar `npm run lint` en verde → [tarea](tasks/T-005-frontend-lint.md) · [PR #8](https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/pull/8) · **mergeada con squash `9dfe037`**; 93 problemas de lint resueltos, lint ✅, build ✅.
