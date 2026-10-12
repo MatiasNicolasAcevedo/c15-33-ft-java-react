@@ -10,11 +10,16 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.context.annotation.Import;
 import org.springframework.http.HttpHeaders;
 import org.springframework.security.authentication.AuthenticationProvider;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.test.web.servlet.MockMvc;
 
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyNoInteractions;
+import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -37,6 +42,14 @@ class PropertyControllerTest {
 
     @Test
     void delete_whenIdProvided_delegatesAndReturns200() throws Exception {
+        UserDetails userDetails = User.withUsername("testuser")
+                .password("ignored")
+                .roles("OWNER")
+                .build();
+        when(jwtService.getUsernameFromToken("x")).thenReturn("testuser");
+        when(userDetailsService.loadUserByUsername("testuser")).thenReturn(userDetails);
+        when(jwtService.isTokenValid("x", userDetails)).thenReturn(true);
+
         mockMvc.perform(delete("/v1/api/property/abc")
                         .header(HttpHeaders.AUTHORIZATION, "Bearer x"))
                 .andExpect(status().isOk());

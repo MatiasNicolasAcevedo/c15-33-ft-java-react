@@ -87,7 +87,7 @@ public class PropertyController {
         propertyService.update(id, token, propertyRequest);
     }
 
-    @DeleteMapping()
+    @DeleteMapping("/{id}")
     public void delete(@PathVariable String id, @RequestHeader(name = HttpHeaders.AUTHORIZATION) String token ) throws Exception{
         propertyService.delete(id, token);
     }
