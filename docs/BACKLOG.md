@@ -1,10 +1,8 @@
 # Tablero
 
-> **▶ PRÓXIMA TAREA: [T-007](tasks/T-007-property-service-characterization.md)**
+> **▶ T-007 EN CURSO:** [T-007](tasks/T-007-property-service-characterization.md) · 🤖 Junie Lite (Free) · rama `test/T-007-property-service-characterization` · PR pendiente
 >
-> **Ejecuta: 🤖 Junie Lite (Free) · rama `test/T-007-property-service-characterization` · PR pendiente.**
->
-> Prompt: «Leé `AGENTS.md` y seguí `docs/agents/implementer.md` para T-007. Creá la rama `test/T-007-property-service-characterization` desde `development` actualizado y escribí tests de caracterización de `PropertyServiceImp` siguiendo las referencias en `docs/TESTING.md` §3.» Ver [STATUS](STATUS.md).
+> **▶ PRÓXIMA TAREA (tras T-007):** [T-008](tasks/T-008-error-handling.md) · 🧠 Frontera
 
 **Leyenda:** 🤖 **Lite = Junie Lite (Free) en Air** · 🧠 **Frontera = p. ej. GPT-6.1 Sol / Claude Opus 5.5** · 👤 **Dueño**. Las categorías indican quién implementa; el campo **Revisa** de cada tarea puede pedir otro ejecutor.
 
@@ -14,8 +12,10 @@
 > formato: `- T-NNN · Pn · S/M/L · 🤖 Lite|🧠 frontera|👤 dueño · Título → [tarea](tasks/T-NNN-slug.md)`
 > Próximo ID libre: T-017
 
+## 🔨 En curso
+- T-007 · P0 · M · 🤖 Lite · Escribir tests de caracterización de `PropertyServiceImp` → [tarea](tasks/T-007-property-service-characterization.md) · rama `test/T-007-property-service-characterization` · PR pendiente
+
 ## ✅ Listas (cola en orden de ejecución, máx. 10)
-- T-007 · P0 · M · 🤖 Lite · Escribir tests de caracterización de `PropertyServiceImp` → [tarea](tasks/T-007-property-service-characterization.md)
 - T-008 · P0 · M · 🧠 frontera · Agregar manejo global de errores con ProblemDetail y health check → [tarea](tasks/T-008-error-handling.md)
 - T-009 · P0 · M · 🧠 frontera · Montar la infraestructura de tests del front → [tarea](tasks/T-009-frontend-test-infra.md)
 - T-014 · P0 · S · 👤 dueño · Proteger la rama por defecto y limpiar ramas (no bloquea la cola) → [tarea](tasks/T-014-branch-protection.md)

@@ -5,7 +5,7 @@ _Actualizado: 2026-10-12 · por: 🤖 Junie Lite (Free) · sesión: corrección 
 
 | Campo | Qué sigue |
 |---|---|
-| **Acción** | **Implementar T-007**; escribir tests de caracterización de `PropertyServiceImp` (≥ 10 tests, cobertura ≥ 60 %, sin modificar `src/main`) |
+| **Acción** | **Implementar T-007** (en curso); escribir tests de caracterización de `PropertyServiceImp` (≥ 10 tests, cobertura ≥ 60 %, sin modificar `src/main`) |
 | **Tarea** | [T-007 · Escribir tests de caracterización de `PropertyServiceImp`](tasks/T-007-property-service-characterization.md) |
 | **Ejecutor** | **🤖 Junie Lite (Free)** |
 | **Rama / PR** | `test/T-007-property-service-characterization` · PR pendiente |
@@ -28,7 +28,7 @@ _Actualizado: 2026-10-12 · por: 🤖 Junie Lite (Free) · sesión: corrección 
 **Compactar y continuar:** solo durante el mismo trabajo largo, en un corte seguro y después de guardar las notas + commit + push. Si la interfaz ofrece compactación, usala y retomá **la misma tarea, rama y PR**. Para Lite, guardá el checkpoint y abrí otro chat. El procedimiento y prompt están en [AGENTS.md → Gestión de contexto](../AGENTS.md#5-gestión-de-contexto).
 
 ## En una línea
-T-005 y T-006 mergeadas. Documentación actualizada. T-007 lista para implementar con Lite.
+T-005 y T-006 mergeadas. T-007 en curso: tests de caracterización de PropertyServiceImp.
 
 ## Salud
 | Check | Estado | Nota |
@@ -46,7 +46,7 @@ T-005 y T-006 mergeadas. Documentación actualizada. T-007 lista para implementa
 P0 Estabilizar · 2/15 tareas · ver [ROADMAP](ROADMAP.md)
 
 ## Foco
-- **Sin PRs abiertos.** T-007 es la próxima tarea disponible.
+- **T-007 en curso:** rama `test/T-007-property-service-characterization` · PR pendiente.
 - **Próximo paso / prompt:** ver la tarjeta **▶ Próxima acción** al inicio de este archivo y la cola de [BACKLOG](BACKLOG.md).
 
 ## Decisiones pendientes del dueño

@@ -1,5 +1,5 @@
 # T-007 · Escribir tests de caracterización de `PropertyServiceImp`
-- Estado: Lista · Prioridad: P0 · Esfuerzo: M · Ejecuta: 🤖 Junie Lite (Free)
+- Estado: En curso · Prioridad: P0 · Esfuerzo: M · Ejecuta: 🤖 Junie Lite (Free)
 - Fase: P0 Estabilizar
 - Rama: `test/T-007-property-service-characterization` (crearla desde `development` actualizado antes del primer commit) · Depende de: T-002, T-006 · Spec/ADR: —
 - Revisa: 🧠 modelo de frontera (tarea M)
