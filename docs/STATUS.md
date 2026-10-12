@@ -1,15 +1,17 @@
 # Estado del proyecto
-_Actualizado: 2026-10-12 · por: 🤖 Junie Lite (Free) · sesión: implementación T-006_
+_Actualizado: 2026-10-12 · por: 🤖 Junie Lite (Free) · sesión: cierre T-006_
 
 ## ▶ Próxima acción
 
 | Campo | Qué sigue |
 |---|---|
-| **Acción** | **Implementar T-006**: corregir `@DeleteMapping` en `PropertyController.java` y agregar test `@WebMvcTest` |
+| **Acción** | **Revisar PR #9 de T-006**; fix de `@DeleteMapping("/{id}")` en `PropertyController.java` + test `PropertyControllerTest.java` |
 | **Tarea** | [T-006 · Corregir el endpoint `DELETE /v1/api/property/{id}`](tasks/T-006-delete-property-mapping.md) |
 | **Ejecutor** | **🤖 Junie Lite (Free)** |
-| **Rama / PR** | `fix/T-006-delete-property-mapping` · PR pendiente |
-| **Prompt** | «Leé `AGENTS.md` y seguí `docs/agents/implementer.md` para T-006: corregir el endpoint DELETE /v1/api/property/{id}. Cambiá la anotación a @DeleteMapping("/{id}") y agregá el test @WebMvcTest indicado en la tarea.» |
+| **Rama / PR** | `fix/T-006-delete-property-mapping` · [PR #9](https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/pull/9) |
+| **Prompt** | «Leé `AGENTS.md` y seguí `docs/agents/reviewer.md` para el PR #9. Revisá el fix de @DeleteMapping("/{id}") en PropertyController.java y el test PropertyControllerTest.java. Verificá que verify.sh --server pasa.» |
+
+**T-006 cerrada:** [PR #9](https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/pull/9) en revisión. `@DeleteMapping("/{id}")` en PropertyController.java + PropertyControllerTest.java (2 tests). verify.sh --server ✅ 57 tests OK, cobertura OK.
 
 **T-005 cerrada:** [PR #8](https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/pull/8) mergeado por el dueño con squash (`9dfe037`). 93 problemas de lint resueltos, cambios pedidos atendidos. `verify.sh --client` en verde.
 
@@ -26,12 +28,12 @@ _Actualizado: 2026-10-12 · por: 🤖 Junie Lite (Free) · sesión: implementaci
 **Compactar y continuar:** solo durante el mismo trabajo largo, en un corte seguro y después de guardar las notas + commit + push. Si la interfaz ofrece compactación, usala y retomá **la misma tarea, rama y PR**. Para Lite, guardá el checkpoint y abrí otro chat. El procedimiento y prompt están en [AGENTS.md → Gestión de contexto](../AGENTS.md#5-gestión-de-contexto).
 
 ## En una línea
-T-006 en implementación: corregir `@DeleteMapping` sin `{id}` en PropertyController y agregar test @WebMvcTest.
+T-006 completada: `@DeleteMapping("/{id}")` corregido + 2 tests. PR #9 en revisión de Lite.
 
 ## Salud
 | Check | Estado | Nota |
 |---|---|---|
-| verify.sh | ✅ client | T-005 mergeada: client ✅ lint ✅ build; server pendiente T-006 |
+| verify.sh | ✅ server | T-006: 57 tests OK, cobertura OK, BUILD SUCCESS; client ✅ (T-005) |
 | CI en development | sin CI | → T-010 (bloqueada por T-005) |
 | Levantar en local (README) | ⚠️ verificado 2026-10-10 | T-001: compose con build/wait ✅, login demo ✅ y JWT de 24 h ✅; checkout Windows requirió LF local en `mvnw`; el front usa localhost:8080/v1/api (T-004) pero la home se rompe (T-011) |
 | Cobertura back / front | 56,48 % / sin tests | T-003: 318/563 líneas (base 40,80 %); umbral 40 % conservado; front → T-009 |
@@ -44,6 +46,7 @@ T-006 en implementación: corregir `@DeleteMapping` sin `{id}` en PropertyContro
 P0 Estabilizar · 2/15 tareas · ver [ROADMAP](ROADMAP.md)
 
 ## Foco
+- PR abierto (máx. 1): [#9 · T-006](https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/pull/9), espera revisión de 🤖.
 - **Próximo paso / prompt:** ver la tarjeta **▶ Próxima acción** al inicio de este archivo y la cola de [BACKLOG](BACKLOG.md).
 
 ## Decisiones pendientes del dueño
@@ -56,10 +59,8 @@ P0 Estabilizar · 2/15 tareas · ver [ROADMAP](ROADMAP.md)
   `git switch development && git pull && git tag audit/2026-10-10 && git push origin audit/2026-10-10`
 
 ## Últimas sesiones (máx. 5; las anteriores → archive/log/AAAA-MM.md)
-- 2026-10-12 · 🤖 Junie Lite (Free) · T-005: cambios pedidos de PR #8 atendidos. Forms.jsx: restaurado cierre original `}), [registerButtonPressed]` sin array de dependencias; Test.jsx: eliminado `_property` sin uso. verify.sh --client ✅ lint ✅ build. Espera segunda revisión de Lite.
-- 2026-10-11 · 🤖 Junie Lite (Free) · T-005 completada y publicada en [PR #8](https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/pull/8): 93 problemas de lint resueltos (prop-types desactivados, vars sin uso, hasOwnProperty, 7 warnings). verify.sh --client ✅ lint ✅ build. PR ready para revisión de Lite.
+- 2026-10-12 · 🤖 Junie Lite (Free) · T-006 completada: `@DeleteMapping("/{id}")` en PropertyController.java + PropertyControllerTest.java (2 tests). verify.sh --server ✅ 57 tests OK, cobertura OK. PR #9 en revisión de Lite.
+- 2026-10-12 · 🤖 Junie Lite (Free) · T-005: cambios pedidos de PR #8 atendidos. Forms.jsx: restaurado cierre original `}), [registerButtonPressed]` sin array de dependencias; Test.jsx: eliminado `_property` sin uso. verify.sh --client ✅ lint ✅ build. PR #8 mergeado con squash (`9dfe037`).
 - 2026-10-11 · 🤖 Junie Lite (Free) · T-004 cerrada: [PR #7](https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/pull/7) mergeado con squash (`c648fbd`). config.js con API_URL desde VITE_API_URL + /v1/api; IP hardcodeada eliminada; prefijo /api/ quitado de 14 rutas.
 - 2026-10-11 · 🧠 Codex · T-003 implementada y [APROBADA en revisión independiente](https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/pull/6#issuecomment-6105109999) del commit `0625d79`, [PR #6](https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/pull/6) mergeada. Gate: 57 tests OK, cobertura 56,48 %; client build OK, 93 problemas de lint (T-005). Próxima: T-004 con Lite.
 - 2026-10-11 · 🧠 Codex · T-002 implementada, [revisión independiente APROBADA](https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/pull/5#issuecomment-6104882015) y [PR #5](https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/pull/5) mergeado por el dueño con squash (`da3e6e6`). 31 tests OK sin env.properties ni DB de compose, cobertura 40,80 % (224/549), umbral 40 % y prueba negativa al 100 % OK. Gate sin regresiones (93 problemas de lint de T-005); demora de Surefire en Backlog.
-- 2026-10-10 · 🧠 Codex · T-001 implementada y [revisión independiente APROBADA](https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/pull/4#issuecomment-6104606817), sin bloqueantes; dueño mergeó [PR #4](https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/pull/4) con squash (`63e5bc2`). Verificación independiente: 25 tests OK, cobertura 23,86 %, rechazo sin secreto, compose y login demo OK, JWT HS256 de 86400 s; gate sin regresiones (93 problemas de lint de T-005). T-015 desbloqueada para el dueño.
-- 2026-10-10 · 🧠 Codex / GPT-6.1 Sol · T-016 implementada y publicada en [PR #3](https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/pull/3), pendiente de revisión; checks documentales OK; gate sin diferencias respecto de la línea de base (server OK, client build OK, 93 problemas de lint pendientes de T-005); T-001 sigue sin iniciar.
