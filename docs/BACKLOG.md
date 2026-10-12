@@ -1,10 +1,10 @@
 # Tablero
 
-> **▶ EN REVISIÓN: [PR #9](https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/pull/9) · [T-006](tasks/T-006-delete-property-mapping.md)**
+> **▶ PRÓXIMA TAREA: [T-007](tasks/T-007-property-service-characterization.md)**
 >
-> **Ejecuta: 🤖 Junie Lite (Free) · rama `fix/T-006-delete-property-mapping` · [PR #9](https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/pull/9).**
+> **Ejecuta: 🤖 Junie Lite (Free) · rama `test/T-007-property-service-characterization` · PR pendiente.**
 >
-> Prompt: «Leé `AGENTS.md` y seguí `docs/agents/reviewer.md` para el PR #9. Revisá el fix de @DeleteMapping("/{id}") en PropertyController.java y el test PropertyControllerTest.java. Verificá que verify.sh --server pasa.» Ver [STATUS](STATUS.md).
+> Prompt: «Leé `AGENTS.md` y seguí `docs/agents/implementer.md` para T-007. Creá la rama `test/T-007-property-service-characterization` desde `development` actualizado y escribí tests de caracterización de `PropertyServiceImp` siguiendo las referencias en `docs/TESTING.md` §3.» Ver [STATUS](STATUS.md).
 
 **Leyenda:** 🤖 **Lite = Junie Lite (Free) en Air** · 🧠 **Frontera = p. ej. GPT-6.1 Sol / Claude Opus 5.5** · 👤 **Dueño**. Las categorías indican quién implementa; el campo **Revisa** de cada tarea puede pedir otro ejecutor.
 
@@ -13,9 +13,6 @@
 > las 👤 que no bloquean nada van al final de "Listas" con "(no bloquea la cola)" ·
 > formato: `- T-NNN · Pn · S/M/L · 🤖 Lite|🧠 frontera|👤 dueño · Título → [tarea](tasks/T-NNN-slug.md)`
 > Próximo ID libre: T-017
-
-## 🔨 En curso / en revisión (con su PR)
-- T-006 · P0 · S · 🤖 Lite · Corregir el endpoint `DELETE /v1/api/property/{id}` → [tarea](tasks/T-006-delete-property-mapping.md) · [PR #9](https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/pull/9) · espera revisión de 🤖
 
 ## ✅ Listas (cola en orden de ejecución, máx. 10)
 - T-007 · P0 · M · 🤖 Lite · Escribir tests de caracterización de `PropertyServiceImp` → [tarea](tasks/T-007-property-service-characterization.md)
@@ -64,6 +61,7 @@
 - 🧠 Evaluar mover a `client/` + `server/` ([ADR 0004](adr/0004-keep-folder-layout.md))
 
 ## 🏁 Hecho reciente (máx. 10; las más viejas → archive/tasks/)
+- T-006 · P0 · S · 🤖 Lite · Corregir el endpoint `DELETE /v1/api/property/{id}` → [tarea](tasks/T-006-delete-property-mapping.md) · [PR #9](https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/pull/9) · **mergeada con squash**; endpoint mapeado por ID, 2 tests agregados, verify.sh --server ✅.
 - T-005 · P0 · S · 🤖 Lite · Dejar `npm run lint` en verde → [tarea](tasks/T-005-frontend-lint.md) · [PR #8](https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/pull/8) · **mergeada con squash `9dfe037`**; 93 problemas de lint resueltos, lint ✅, build ✅.
 - T-004 · P0 · S · 🤖 Lite · Hacer configurable la URL de la API en el front y usar el prefijo /v1/api → [tarea](tasks/T-004-frontend-api-base-url.md) · [PR #7](https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/pull/7) · **mergeada con squash `c648fbd`**; build ✅, sin IPs hardcodeadas, bundle con localhost:8080/v1/api.
 - T-003 · P0 · M · 🧠 frontera · Corregir la autorización → [tarea](tasks/T-003-authorization-rules.md) · [PR #6](https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/pull/6) · **APROBADA en [revisión independiente](https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/pull/6#issuecomment-6105109999) y mergeada**; 57 tests OK, cobertura 56,48 % (base 40,80 %), umbral 40 %; probes curl y compose OK; gate sin regresiones (93 problemas de lint de T-005).
