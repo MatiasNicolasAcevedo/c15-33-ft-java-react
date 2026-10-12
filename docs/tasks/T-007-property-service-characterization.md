@@ -37,19 +37,20 @@ Mocks: `JwtService`, `PropertyRepository`, `ImageService`, `UserService`. Antes 
 
 ## Criterios de aceptación
 - [x] ≥ 10 tests nuevos, todos verdes; `./scripts/verify.sh --server` pasa → **18 tests OK, 77 tests totales, BUILD SUCCESS**
-- [x] Cobertura de líneas de `PropertyServiceImp` ≥ 60 % → **94.3 % (115/122 líneas)**
-- [x] Spot check: cambiar `Role.OWNER` por `Role.USER` en `PropertyServiceImp.java:70` hace fallar al menos un test → **2 tests fallaron** (`save_whenUserIsNotOwner_throws`, `save_whenUserIsOwner_savesPropertyWithImages`); revertido
+- [x] Cobertura de líneas de `PropertyServiceImp` ≥ 60 % → **95,07 % (135/142 líneas)**
+- [x] Spot check: cambiar `Role.OWNER` por `Role.USER` en `PropertyServiceImp.java:70` hace fallar al menos un test → **9 tests fallaron** (6 failures + 3 errors en Save, Update, Delete); revertido
 - [x] Ningún archivo de `src/main` modificado → **`git diff --stat development -- backend/src/main` vacío**
 
 ## Notas de implementación
 - Hecho: 18 tests unitarios (Mockito puro) en `PropertyServiceImpTest.java` organizados en 4 clases @Nested (GetOne, Save, Update, Delete). Cubren: token missing/invalid, usuario no OWNER, OWNER que no es dueño, casos exitosos de save/update/delete, y getOne con/sin propiedad.
 - Decisión: usar `SecurityContextHolder` con `UsernamePasswordAuthenticationToken` para simular el contexto de seguridad; mocks de `JwtService`, `PropertyRepository`, `ImageService`, `UserService`.
 - Pruebas: `./mvnw test -Dtest='PropertyServiceImpTest'` → 18 tests OK. `verify.sh --server` → 77 tests OK, cobertura OK.
-- Spot check: cambiar `Role.OWNER` por `Role.USER` en `PropertyServiceImp.java:70` hizo fallar 2 tests (`save_whenUserIsNotOwner_throws` y `save_whenUserIsOwner_savesPropertyWithImages`). Revertido.
-- Cobertura PropertyServiceImp: 94.3 % (115/122 líneas).
+- Spot check: cambiar `Role.OWNER` por `Role.USER` en `PropertyServiceImp.java:70` hizo fallar 9 tests (6 failures + 3 errors en Save, Update, Delete). Revertido.
+- Cobertura PropertyServiceImp: 95,07 % (135/142 líneas). Bundle: 76,20 % (429/563 líneas).
 - Sin cambios en `src/main` (`git diff --stat development -- backend/src/main` vacío).
-- Pendiente: revisión por 🧠 modelo de frontera.
-- Próximo paso: revisión del PR.
+- Cambios del PR #10 atendidos: test de update con valores distintos y verificación de todos los campos; test de save con imágenes no vacías y verificación de asociación bidireccional por identidad.
+- Pendiente: nueva revisión por 🧠 modelo de frontera.
+- Próximo paso: revisión del commit corregido.
 
 ## Resultado
-- PR: [#10](https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/pull/10) (draft) · Qué cambió: 1 archivo nuevo con 18 tests de caracterización · Tests agregados: 18 (GetOne: 2, Save: 5, Update: 6, Delete: 5) · Pendientes → revisión 🧠
+- PR: [#10](https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/pull/10) (ready) · Qué cambió: 1 archivo con 18 tests de caracterización (2 corregidos) · Tests agregados: 18 (GetOne: 2, Save: 5, Update: 6, Delete: 5) · Cobertura: 95,07 % PropertyServiceImp, 76,20 % bundle · Pendientes → nueva revisión 🧠

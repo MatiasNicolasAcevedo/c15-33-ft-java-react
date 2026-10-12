@@ -1,15 +1,17 @@
 # Estado del proyecto
-_Actualizado: 2026-10-12 · por: 🤖 Junie Lite (Free) · sesión: T-007 implementación_
+_Actualizado: 2026-10-12 · por: 🤖 Junie Lite (Free) · sesión: T-007 cambios del PR #10_
 
 ## ▶ Próxima acción
 
 | Campo | Qué sigue |
 |---|---|
-| **Acción** | **Revisar PR de T-007**; 18 tests de caracterización de `PropertyServiceImp` (94.3 % cobertura, 77 tests OK) |
+| **Acción** | **Revisar PR de T-007** (cambios pedidos atendidos); 18 tests de caracterización de `PropertyServiceImp` (95,07 % cobertura, 77 tests OK) |
 | **Tarea** | [T-007 · Escribir tests de caracterización de `PropertyServiceImp`](tasks/T-007-property-service-characterization.md) |
 | **Ejecutor** | **🧠 Frontera — GPT-6.1 Sol / Claude Opus 5.5** (revisión) |
-| **Rama / PR** | `test/T-007-property-service-characterization` · [PR #10](https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/pull/10) (draft) |
-| **Prompt** | «Leé `AGENTS.md` y seguí `docs/agents/reviewer.md` para el PR de T-007 en la rama `test/T-007-property-service-characterization`.» |
+| **Rama / PR** | `test/T-007-property-service-characterization` · [PR #10](https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/pull/10) (ready) |
+| **Prompt** | «Leé `AGENTS.md` y seguí `docs/agents/reviewer.md` para el PR #10 de T-007 en la rama `test/T-007-property-service-characterization`. Los cambios pedidos (update con valores distintos y save con imágenes no vacías) han sido atendidos.» |
+
+**T-007 en curso:** cambios pedidos del PR #10 atendidos. Tests de update y save corregidos para detectar regresiones de mapeo y asociación de imágenes. [PR #10](https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/pull/10) (ready). Nueva revisión por 🧠.
 
 **T-006 cerrada:** [PR #9](https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/pull/9) mergeado por el dueño con squash. Endpoint `DELETE /v1/api/property/{id}` corregido para mapear por ID en lugar de UUID. 2 tests agregados, verify.sh --server ✅ 57 tests OK.
 
@@ -28,15 +30,15 @@ _Actualizado: 2026-10-12 · por: 🤖 Junie Lite (Free) · sesión: T-007 implem
 **Compactar y continuar:** solo durante el mismo trabajo largo, en un corte seguro y después de guardar las notas + commit + push. Si la interfaz ofrece compactación, usala y retomá **la misma tarea, rama y PR**. Para Lite, guardá el checkpoint y abrí otro chat. El procedimiento y prompt están en [AGENTS.md → Gestión de contexto](../AGENTS.md#5-gestión-de-contexto).
 
 ## En una línea
-T-007 completada: 18 tests de caracterización de PropertyServiceImp (94.3 % cobertura). [PR #10](https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/pull/10) pendiente de revisión por 🧠.
+T-007: cambios pedidos del PR #10 atendidos. 18 tests de caracterización de PropertyServiceImp (95,07 % cobertura). [PR #10](https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/pull/10) (ready) — nueva revisión por 🧠.
 
 ## Salud
 | Check | Estado | Nota |
 |---|---|---|
-| verify.sh | ✅ server + client | T-007: 77 tests OK, cobertura OK (94.3 % PropertyServiceImp); T-005: lint ✅ build ✅ |
+| verify.sh | ✅ server + client | T-007: 77 tests OK, cobertura OK (95,07 % PropertyServiceImp, 76,20 % bundle); T-005: lint ✅ build ✅ |
 | CI en development | sin CI | → T-010 (bloqueada por T-005) |
 | Levantar en local (README) | ⚠️ verificado 2026-10-10 | T-001: compose con build/wait ✅, login demo ✅ y JWT de 24 h ✅; checkout Windows requirió LF local en `mvnw`; el front usa localhost:8080/v1/api (T-004) pero la home se rompe (T-011) |
-| Cobertura back / front | 65,61 % / sin tests | T-007: 77 tests (57 + 18 nuevos + 2); PropertyServiceImp 94.3 %; umbral 40 % conservado; front → T-009 |
+| Cobertura back / front | 76,20 % / sin tests | T-007: 77 tests (57 + 18 nuevos + 2); PropertyServiceImp 95,07 %; umbral 40 % conservado; front → T-009 |
 | E2E smoke | no existe | → T-013 |
 | Dependencias vulnerables | npm: 16 altas, 8 moderadas | → Backlog P1 |
 | Seguridad 🔴 abierta | rotación pendiente; T-003 mergeada | Registro como ADMIN y listado/borrado por USER corregidos en PR #6. T-015: dueño confirma deploy y rota el secreto histórico si corresponde |
@@ -46,7 +48,7 @@ T-007 completada: 18 tests de caracterización de PropertyServiceImp (94.3 % cob
 P0 Estabilizar · 2/15 tareas · ver [ROADMAP](ROADMAP.md)
 
 ## Foco
-- **PR de T-007 pendiente de revisión:** rama `test/T-007-property-service-characterization` · [PR #10](https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/pull/10) (draft).
+- **PR de T-007 con cambios atendidos:** rama `test/T-007-property-service-characterization` · [PR #10](https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/pull/10) (ready). Nueva revisión por 🧠.
 - **Próximo paso / prompt:** ver la tarjeta **▶ Próxima acción** al inicio de este archivo y la cola de [BACKLOG](BACKLOG.md).
 
 ## Decisiones pendientes del dueño
@@ -59,6 +61,7 @@ P0 Estabilizar · 2/15 tareas · ver [ROADMAP](ROADMAP.md)
   `git switch development && git pull && git tag audit/2026-10-10 && git push origin audit/2026-10-10`
 
 ## Últimas sesiones (máx. 5; las anteriores → archive/log/AAAA-MM.md)
+- 2026-10-12 · 🤖 Junie Lite (Free) · T-007: cambios pedidos del PR #10 atendidos. Tests de update y save corregidos. 77 tests OK, verify.sh --server ✅, cobertura 95,07 % PropertyServiceImp. [PR #10](https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/pull/10) (ready). Nueva revisión por 🧠.
 - 2026-10-12 · 🤖 Junie Lite (Free) · T-007 completada: 18 tests de caracterización de PropertyServiceImp (94.3 % cobertura). 77 tests OK, verify.sh --server ✅. [PR #10](https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/pull/10) creado (draft). Revisión por 🧠.
 - 2026-10-12 · 🤖 Junie Lite (Free) · Documentación corregida: T-006 (PR #9) ya estaba mergeada pero no reflejada como cerrada en STATUS.md y BACKLOG.md. T-007 establecida como próxima acción.
 - 2026-10-12 · 🤖 Junie Lite (Free) · T-006 completada: `@DeleteMapping("/{id}")` en PropertyController.java + PropertyControllerTest.java (2 tests). verify.sh --server ✅ 57 tests OK, cobertura OK. PR #9 mergeado.

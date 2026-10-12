@@ -1,6 +1,8 @@
 # Tablero
 
-> **▶ REVISAR PR T-007:** [T-007](tasks/T-007-property-service-characterization.md) · 🧠 Frontera · rama `test/T-007-property-service-characterization` · [PR #10](https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/pull/10) (draft)
+> **▶ REVISAR PR T-007 (cambios atendidos):** [T-007](tasks/T-007-property-service-characterization.md) · 🧠 Frontera · rama `test/T-007-property-service-characterization` · [PR #10](https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/pull/10) (ready)
+>
+> **Prompt para revisión:** «Leé `AGENTS.md` y seguí `docs/agents/reviewer.md` para el PR #10 de T-007 en la rama `test/T-007-property-service-characterization`. Los cambios pedidos (update con valores distintos y save con imágenes no vacías) han sido atendidos.»
 >
 > **▶ PRÓXIMA IMPLEMENTACIÓN (tras merge de T-007):** [T-008](tasks/T-008-error-handling.md) · 🧠 Frontera
 
@@ -58,7 +60,7 @@
 - 🧠 Evaluar mover a `client/` + `server/` ([ADR 0004](adr/0004-keep-folder-layout.md))
 
 ## 🏁 Hecho reciente (máx. 10; las más viejas → archive/tasks/)
-- T-007 · P0 · M · 🤖 Lite · Escribir tests de caracterización de `PropertyServiceImp` → [tarea](tasks/T-007-property-service-characterization.md) · [PR #10](https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/pull/10) (draft) · **18 tests agregados, 94.3 % cobertura, 77 tests OK**; revisión por 🧠.
+- T-007 · P0 · M · 🤖 Lite · Escribir tests de caracterización de `PropertyServiceImp` → [tarea](tasks/T-007-property-service-characterization.md) · [PR #10](https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/pull/10) (ready) · **18 tests agregados, 95,07 % cobertura PropertyServiceImp, 76,20 % bundle, 77 tests OK**; cambios pedidos atendidos, nueva revisión por 🧠.
 - T-006 · P0 · S · 🤖 Lite · Corregir el endpoint `DELETE /v1/api/property/{id}` → [tarea](tasks/T-006-delete-property-mapping.md) · [PR #9](https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/pull/9) · **mergeada con squash**; endpoint mapeado por ID, 2 tests agregados, verify.sh --server ✅.
 - T-005 · P0 · S · 🤖 Lite · Dejar `npm run lint` en verde → [tarea](tasks/T-005-frontend-lint.md) · [PR #8](https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/pull/8) · **mergeada con squash `9dfe037`**; 93 problemas de lint resueltos, lint ✅, build ✅.
 - T-004 · P0 · S · 🤖 Lite · Hacer configurable la URL de la API en el front y usar el prefijo /v1/api → [tarea](tasks/T-004-frontend-api-base-url.md) · [PR #7](https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/pull/7) · **mergeada con squash `c648fbd`**; build ✅, sin IPs hardcodeadas, bundle con localhost:8080/v1/api.

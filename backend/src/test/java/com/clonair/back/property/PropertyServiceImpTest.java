@@ -196,21 +196,57 @@ class PropertyServiceImpTest {
             setSecurityContext(ownerUser);
             when(jwtService.isTokenValid(anyString(), any())).thenReturn(true);
             when(userService.findByUsername("owner@example.test")).thenReturn(Optional.of(ownerUser));
-            when(imageService.saveMulti(any(MultipartFile[].class))).thenReturn(List.of());
+
+            Image mockImage1 = new Image();
+            mockImage1.setId("img-1");
+            Image mockImage2 = new Image();
+            mockImage2.setId("img-2");
+            when(imageService.saveMulti(any(MultipartFile[].class))).thenReturn(List.of(mockImage1, mockImage2));
+
             when(propertyRepository.save(any(Property.class))).thenAnswer(invocation -> {
                 Property saved = invocation.getArgument(0);
                 saved.setId("new-prop-id");
                 return saved;
             });
-            PropertyRequest request = createRequest();
+
+            MultipartFile mockFile1 = mock(MultipartFile.class);
+            MultipartFile mockFile2 = mock(MultipartFile.class);
+            PropertyRequest request = new PropertyRequest(
+                    "Test Property", "APARTMENT", "URBAN", "Test description",
+                    100.0, true, List.of(mockFile1, mockFile2),
+                    "Argentina", "Buenos Aires", 1, 2, 1, List.of("WIFI")
+            );
 
             propertyService.save("Bearer token", request);
 
-            verify(propertyRepository).save(argThat(property ->
-                    property.getUser() != null &&
-                    property.getUser().getUsername().equals("owner@example.test") &&
-                    property.getTitle().equals("Test Property")
+            // Verify imageService.saveMulti was called with the uploaded files
+            verify(imageService).saveMulti(argThat(files ->
+                    files.length == 2 && files[0] == mockFile1 && files[1] == mockFile2
             ));
+
+            // Verify the property saved has the OWNER set by identity, images list, and bidirectional association
+            verify(propertyRepository).save(argThat(property -> {
+                // OWNER must be the exact user object (identity)
+                if (property.getUser() != ownerUser) {
+                    return false;
+                }
+                // Property must have exactly 2 images
+                List<Image> propImages = property.getImages();
+                if (propImages == null || propImages.size() != 2) {
+                    return false;
+                }
+                // Each image must point back to this same property (identity)
+                for (Image img : propImages) {
+                    if (img.getProperty() != property) {
+                        return false;
+                    }
+                }
+                // Images must be the ones returned by saveMulti
+                if (propImages.get(0) != mockImage1 || propImages.get(1) != mockImage2) {
+                    return false;
+                }
+                return true;
+            }));
         }
     }
 
@@ -296,14 +332,35 @@ class PropertyServiceImpTest {
             when(imageService.updatePropertyImages(any(Property.class), any(List.class)))
                     .thenReturn(List.of());
             when(propertyRepository.save(any(Property.class))).thenAnswer(invocation -> invocation.getArgument(0));
-            PropertyRequest request = createRequest();
+
+            // Request with values DIFFERENT from the existing property
+            PropertyRequest request = new PropertyRequest(
+                    "Updated Title", "HOUSE", "BEACH", "Updated description",
+                    250.0, false, List.of(),
+                    "Spain", "Madrid", 3, 5, 4, List.of("SWIMMING_POOL", "PARKING_LOT")
+            );
 
             propertyService.update("prop-1", "Bearer token", request);
 
-            verify(propertyRepository).save(argThat(property ->
-                    property.getTitle().equals("Test Property") &&
-                    property.getUser().getUsername().equals("owner@example.test")
-            ));
+            verify(propertyRepository).save(argThat(property -> {
+                // Verify all fields are updated to the new values
+                if (!"Updated Title".equals(property.getTitle())) return false;
+                if (property.getCategory() != Category.HOUSE) return false;
+                if (!"Updated description".equals(property.getDescription())) return false;
+                if (property.getValue() != 250.0) return false;
+                if (property.isActive() != false) return false;
+                if (!"Spain".equals(property.getLocation().getCountry())) return false;
+                if (!"Madrid".equals(property.getLocation().getCity())) return false;
+                if (property.getBathroom() != 3) return false;
+                if (property.getBed() != 5) return false;
+                if (property.getBedroom() != 4) return false;
+                if (property.getServiceTypes().size() != 2) return false;
+                if (property.getSubCategory() != SubCategory.BEACH) return false;
+                // ID and OWNER must be preserved
+                if (!"prop-1".equals(property.getId())) return false;
+                if (property.getUser() != ownerUser) return false;
+                return true;
+            }));
         }
     }
 
