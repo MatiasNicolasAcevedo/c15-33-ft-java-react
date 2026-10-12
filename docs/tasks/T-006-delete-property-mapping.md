@@ -1,5 +1,5 @@
 # T-006 · Corregir el endpoint `DELETE /v1/api/property/{id}`
-- Estado: Lista · Prioridad: P0 · Esfuerzo: S · Ejecuta: 🤖 Junie Lite (Free)
+- Estado: Hecho · Prioridad: P0 · Esfuerzo: S · Ejecuta: 🤖 Junie Lite (Free)
 - Fase: P0 Estabilizar
 - Rama: `fix/T-006-delete-property-mapping` (crearla desde `development` actualizado antes del primer commit) · Depende de: T-002 · Spec/ADR: —
 - Revisa: 🤖 Junie Lite (Free) (chat nuevo)
@@ -39,7 +39,13 @@
 - [ ] Con el back corriendo: `curl -s -o /dev/null -w '%{http_code}' -X DELETE -H "Authorization: Bearer <token del dueño>" http://localhost:8080/v1/api/property/<id>` → 200 y `GET` de ese id deja de devolver 200
 
 ## Notas de implementación
-- Hecho: … · Pendiente: … · Próximo paso: …
+- Hecho: Test @WebMvcTest creado (PropertyControllerTest) con 2 casos: DELETE con id (200 + verify servicio) y DELETE sin id (4xx + verifyNoInteractions). Fix aplicado: @DeleteMapping() → @DeleteMapping("/{id}") en PropertyController.java:90. Autenticación JWT mockada en el test (JwtService, UserDetailsService, AuthenticationProvider).
+- Pendiente: No.
+- Decisiones: Seguir patrón de AuthControllerTest para @WebMvcTest con @Import(SecurityConfig, JwtAuthenticationFilter) y @MockBean de servicios de seguridad.
+- Archivos modificados: PropertyController.java (1 línea), PropertyControllerTest.java (nuevo, 69 líneas).
+- Pruebas/verify: verify.sh --server ✅ 57 tests OK, cobertura OK, BUILD SUCCESS.
+- Bloqueos: Ninguno.
+- Próximo paso: Revisión independiente del PR #9.
 
 ## Resultado
-- PR: #N · Qué cambió: … · Tests agregados: … · Pendientes → …
+- PR: #9 · Qué cambió: @DeleteMapping("/{id}") en PropertyController.java · Tests agregados: PropertyControllerTest.java (2 tests) · Pendientes → Ninguna.
