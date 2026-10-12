@@ -7,7 +7,7 @@ import { updateUser } from "../../../services/apiRequests";
 
 export const PersonalInfoForm = () => {
   let { state } = useLocation();
-  const { id, username , firstname, lastname, country, propertyIds, contact, description } = state;
+  const { id, firstname, lastname, country, contact, description } = state;
   const [openDialog, setOpenDialog] = useState(false);
   const handleOpenDialog = () => setOpenDialog(!openDialog);
   const [isFormSubmitted, setIsFormSubmitted] = useState(false);
@@ -48,6 +48,7 @@ export const PersonalInfoForm = () => {
       contact: contact || "",
       description: description || "",
     });
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- comportamiento existente, ver Backlog
   }, [isFormSubmitted])
   
 

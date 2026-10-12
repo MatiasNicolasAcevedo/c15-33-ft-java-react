@@ -1,6 +1,6 @@
 import { API_URL } from "../../../services/config";
 
-export const HostCardItem = ({title, description, location, value, images}) => {
+export const HostCardItem = ({title, location, value, images}) => {
   return (
     <div
       className="col-span-1 cursor-pointer group"

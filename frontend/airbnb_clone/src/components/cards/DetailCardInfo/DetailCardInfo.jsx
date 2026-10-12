@@ -6,7 +6,6 @@ export const DetailCardInfo = ({
   bed,
   bedroom,
   bathroom,
-  value,
   category,
   subCategory,
   active

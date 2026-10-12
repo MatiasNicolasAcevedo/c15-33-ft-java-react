@@ -7,29 +7,8 @@ import { API_URL } from "../services/config";
 export const Test = () => {
     const token = localStorage.getItem('token') ? localStorage.getItem('token') : ''
 
-    const { user, setUser } = useAuth()
+    useAuth()
 
-
-      const property = {
-        "title": "Titulo",
-        "description": "Descripcion",
-        "images": [],
-        "value": "123",
-        "location": "Antarctica",
-        "category": "casa",
-        "subCategory": "cabana",
-        "bathroom": "2",
-        "bed": "5",
-        "bedroom": "1",
-        "serviceTypes": [
-            "cocina",
-            "mascotas"
-        ],
-        "permanent_availability": "true",
-        "availability": [],
-        "active": "true",
-        "user": "user_owner_placeholder"
-    }
 
       const getUsers = async () => {
         try {
