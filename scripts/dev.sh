@@ -43,7 +43,7 @@ db_up >"$LOGS/db.log" 2>&1 || { echo "❌ la DB no levantó: ver .dev-logs/db.lo
 # 3. Back
 echo "▶ back: ./mvnw spring-boot:run (log: .dev-logs/server.log)"
 start_group "$SERVER_DIR" "$LOGS/server.log" ./mvnw -B spring-boot:run
-wait_http http://localhost:8080/v3/api-docs 180 || { echo "❌ el back no respondió en 180 s: tail .dev-logs/server.log"; exit 1; }
+wait_http http://localhost:8080/actuator/health 180 || { echo "❌ el back no respondió en 180 s: tail .dev-logs/server.log"; exit 1; }
 "$ROOT/scripts/seed-demo.sh" http://localhost:8080
 
 # 4. Front

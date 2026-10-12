@@ -1,5 +1,8 @@
 package com.clonair.back.property;
 
+import com.clonair.back.common.error.NotFoundException;
+import com.clonair.back.common.error.ForbiddenException;
+import org.springframework.security.authentication.BadCredentialsException;
 import com.clonair.back.image.Image;
 import com.clonair.back.image.ImageService;
 import com.clonair.back.location.Location;
@@ -31,7 +34,7 @@ public class PropertyServiceImp implements PropertyService {
     public PropertyResponse getOne(String id) throws Exception {
        
         Property property = propertyRepository.findById(id)
-                .orElseThrow(() -> new Exception("Property not found"));
+                .orElseThrow(() -> new NotFoundException("Property not found"));
 
             return propertyToResponseMap(property);
                 
@@ -82,13 +85,13 @@ public class PropertyServiceImp implements PropertyService {
 
                     propertyRepository.save(property); // Guardar la propiedad con las imágenes asociadas.
                 } else {
-                    throw new Exception("El usuario no es un OWNER");
+                    throw new ForbiddenException("El usuario no es un OWNER");
                 }
             } else {
-                throw new Exception("Invalid JWT token");
+                throw new BadCredentialsException("Invalid JWT token");
             }
         } else {
-            throw new Exception("Authorization token is missing or invalid");
+            throw new BadCredentialsException("Authorization token is missing or invalid");
         }
     }
 
@@ -105,10 +108,10 @@ public class PropertyServiceImp implements PropertyService {
 
                 if (user != null && user.getRole() == Role.OWNER) {
                     Property existingProperty = propertyRepository.findById(id)
-                            .orElseThrow(() -> new Exception("Property not found"));
+                            .orElseThrow(() -> new NotFoundException("Property not found"));
 
                     if (!existingProperty.getUser().getUsername().equals(userDetails.getUsername())) {
-                        throw new Exception("No tiene permiso para editar esta propiedad");
+                        throw new ForbiddenException("No tiene permiso para editar esta propiedad");
                     }
 
                     // Actualizar la propiedad existente con los nuevos valores del PropertyRequest
@@ -121,13 +124,13 @@ public class PropertyServiceImp implements PropertyService {
                     // Guardar la propiedad actualizada
                     propertyRepository.save(updatedProperty);
                 } else {
-                    throw new Exception("El usuario no es un OWNER");
+                    throw new ForbiddenException("El usuario no es un OWNER");
                 }
             } else {
-                throw new Exception("Invalid JWT token");
+                throw new BadCredentialsException("Invalid JWT token");
             }
         } else {
-            throw new Exception("Authorization token is missing or invalid");
+            throw new BadCredentialsException("Authorization token is missing or invalid");
         }
     }
 
@@ -148,25 +151,25 @@ public class PropertyServiceImp implements PropertyService {
 
             if (jwtService.isTokenValid(token, userDetails)) { // Validar el token JWT con los UserDetails
                 Optional<User> userOptional = userService.findByUsername(userDetails.getUsername());
-                User user = userOptional.orElseThrow(() -> new Exception("User not found"));
+                User user = userOptional.orElseThrow(() -> new NotFoundException("User not found"));
 
                 if (user.getRole() == Role.OWNER) {
                     Property property = propertyRepository.findById(id)
-                            .orElseThrow(() -> new Exception("Property not found"));
+                            .orElseThrow(() -> new NotFoundException("Property not found"));
 
                     if (property.getUser().getUsername().equals(userDetails.getUsername())) {
                         propertyRepository.delete(property);
                     } else {
-                        throw new Exception("No tiene permiso para eliminar esta propiedad");
+                        throw new ForbiddenException("No tiene permiso para eliminar esta propiedad");
                     }
                 } else {
-                    throw new Exception("El usuario no tiene permiso para eliminar propiedades");
+                    throw new ForbiddenException("El usuario no tiene permiso para eliminar propiedades");
                 }
             } else {
-                throw new Exception("Invalid JWT token");
+                throw new BadCredentialsException("Invalid JWT token");
             }
         } else {
-            throw new Exception("Authorization token is missing or invalid");
+            throw new BadCredentialsException("Authorization token is missing or invalid");
         }
     }
 

@@ -1,6 +1,6 @@
 # Estrategia de testing
 
-Estable. Base de auditoría (2026-10-10): back **1 test, 16,8 % líneas / 1,0 % ramas**. Tras T-003: **57 tests, 56,48 % líneas (318/563), umbral 40 %**; front **sin tests**; E2E **no existe**. Gate: `./scripts/verify.sh`.
+Estable. Base de auditoría (2026-10-10): back **1 test, 16,8 % líneas / 1,0 % ramas**. Tras T-008: **118 tests, 82,54 % líneas (520/630), umbral 40 %**; front **sin tests**; E2E **no existe**. Gate: `./scripts/verify.sh`.
 
 ## 1. Pirámide y herramientas
 
@@ -39,6 +39,8 @@ Sin H2: la DB real es MySQL y los tests usan la misma vía Testcontainers ([ADR 
 | Componente front | el que crea T-009 |
 | E2E | el que crea T-013 |
 
+T-008 agrega `ErrorHandlingIntegrationTest` (HTTP real: errores, JWT inválidos, health y mutaciones 201/204), `GlobalExceptionHandlerTest` (dominio, MVC y ausencia de detalles internos), `ProblemErrorControllerTest` (despacho del contenedor) y `AuthServiceTest` (duplicados y carrera de registro). El cliente JDK permite leer respuestas POST 401 con `WWW-Authenticate`: el cliente `HttpURLConnection` intenta reintentar en streaming y pierde el cuerpo.
+
 T-003 agrega [AuthorizationIntegrationTest](../backend/src/test/java/com/clonair/back/security/AuthorizationIntegrationTest.java) para roles, catálogo público y CORS, y [CorsConfigTest](../backend/src/test/java/com/clonair/back/security/config/CorsConfigTest.java) para denegar configuración vacía y comodines. Sus preflight usan `JdkClientHttpRequestFactory`: `HttpURLConnection` descarta el encabezado `Origin`, lo que impediría probar CORS real.
 
 La configuración de Spring en tests usa exclusivamente `application-test.properties` vía `spring.config.location`, sin cargar `application.properties` ni importar `env.properties`. No necesita `APP_PORT`, `JWT_SECRET` ni variables de DB externas. [TestcontainersConfiguration](../backend/src/test/java/com/clonair/back/TestcontainersConfiguration.java) declara la MySQL como bean con `@ServiceConnection`: Spring administra su ciclo de vida y comparte el contexto entre las clases de integración. El recurso `src/test/resources/mysql-test-conf/my.cnf` reemplaza la configuración antigua de Testcontainers 1.19.3 para ser compatible con MySQL 8.4 (sin `skip-host-cache`). La DB es efímera, sin el volumen ni los datos de compose. Cada caso crea su propio usuario con un nombre distinto; el orden no importa.
@@ -65,7 +67,7 @@ Medir la base, fijar el umbral en ese valor redondeado hacia abajo y **no bajarl
 
 | Parte | Base | Umbral inicial | Meta |
 |---|---|---|---|
-| Back (línea) | 56,48 % (318/563, T-003) | **40 %** (JaCoCo en `verify`) | ≥ 70–80 % en servicios/dominio |
+| Back (línea) | 82,54 % (520/630, T-008; base T-007: 76,20 %) | **40 %** (JaCoCo en `verify`) | ≥ 70–80 % en servicios/dominio |
 | Front (línea) | — | el valor medido en T-009 | ≥ 70 % en lógica (services, hooks) |
 
 Medir y comprobar la cobertura del back (desde `backend/`):

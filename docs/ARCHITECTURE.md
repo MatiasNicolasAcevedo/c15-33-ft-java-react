@@ -1,6 +1,6 @@
 # Arquitectura
 
-Estado real al 2026-10-10 (auditoría inicial). Lo que está roto se marca ⚠️ con su tarea.
+Actualizado para T-008 (2026-10-12). Lo que está roto se marca ⚠️ con su tarea.
 
 ## Componentes
 
@@ -41,7 +41,8 @@ sequenceDiagram
   D-->>R: filas
   S-->>C: List<PropertyResponse> (record)
   C-->>F: 200 JSON
-  Note over C,F: ⚠️ cualquier excepción → 403 (sin @RestControllerAdvice; /error no es público) → T-008
+  Note over C,F: Errores MVC y dominio → GlobalExceptionHandler → status + ProblemDetail
+  Note over J,F: JWT inválido / falta autenticación → 401; permiso insuficiente → 403
 ```
 
 ## Autenticación
@@ -56,14 +57,14 @@ sequenceDiagram
   U->>F: email + contraseña
   F->>A: POST /login
   A->>M: authenticate()
-  M-->>A: OK / BadCredentials (→ 403)
-  A->>JS: getToken(user)  (HS256, ⚠️ secreto hardcodeado: T-001)
+  M-->>A: OK / BadCredentials (→ 401 ProblemDetail)
+  A->>JS: getToken(user) (HS256, secreto y expiración configurados)
   A-->>F: { token, role[] }
   F->>F: localStorage.setItem('token')  (⚠️ S-8)
 ```
 
-- Stateless (`SessionCreationPolicy.STATELESS`), CSRF deshabilitado. Públicos: `/v1/api/auth/*`, `/swagger-ui/**`, `/v3/api-docs/**` (`SecurityConfig.java:47-55`).
-- Roles `USER`, `OWNER`, `ADMIN` (`Role.java`) como authorities **sin prefijo** `ROLE_`. No hay reglas por rol en `SecurityConfig`: el chequeo OWNER está a mano en `PropertyServiceImp` (⚠️ T-003).
+- Stateless (`SessionCreationPolicy.STATELESS`), CSRF deshabilitado. Públicos: `/v1/api/auth/*`, `/swagger-ui/**`, `/v3/api-docs/**`, GET de catálogo/imágenes, `/error` y `GET /actuator/health`.
+- Roles `USER`, `OWNER`, `ADMIN` (`Role.java`) como authorities **sin prefijo** `ROLE_`. `SecurityConfig` restringe listado y borrado de usuarios a ADMIN; el chequeo OWNER/dueño permanece en `PropertyServiceImp`.
 
 ## Modelo de datos
 
@@ -87,22 +88,30 @@ Prefijo `/v1/api`. Contrato vivo: http://localhost:8080/v3/api-docs (Swagger UI 
 
 | Endpoint | Pantalla (front) | Estado |
 |---|---|---|
-| `POST auth/register`, `POST auth/login` | `components/forms/Forms.jsx` | Registro público solo USER/OWNER; ADMIN se asigna por base/seed. ⚠️ el front llama a `/auth/*` (T-004) |
+| `POST auth/register`, `POST auth/login` | `components/forms/Forms.jsx` | Registro 201 + token; login 200 + token/role. Registro público solo USER/OWNER; ADMIN se asigna por base/seed. |
 | `GET property` | Home `shared/CardContainer` y filtros | Público (sin token) |
 | `GET property/{id}` | `cards/DetailContainerCard` | Público (sin token) |
 | `GET property/user/{id}` | `owner/PropertiesUser`, `admin/AdminPanel` | Público (sin token) |
-| `POST property` (multipart) | `property/PropertyRegister` | ✅ verificado por curl |
+| `POST property` (multipart) | `property/PropertyRegister` | 201 sin cuerpo; OWNER |
 | `PUT property/{id}` (multipart) | `owner/PropertiesUpdateForm` | |
-| `DELETE property` | `owner/PropertiesUser`, `admin/AdminPanel` | ⚠️ falta `{id}` (T-006) |
+| `DELETE property/{id}` | `owner/PropertiesUser`, `admin/AdminPanel` | 204 sin cuerpo; solo dueño |
 | `GET user` | `admin/AdminPanel` | Solo ADMIN (`hasAuthority`, sin prefijo `ROLE_`) |
 | `GET user/{id}`, `GET user/username/{u}` | `user/PersonalInfoForm`, `admin/AdminPanel` | Requiere autenticación |
 | `PUT user/{id}` | `user/PersonalInfoForm` | ⚠️ comentado en el back (Backlog P2) |
-| `DELETE user/{id}` | `admin/AdminPanel` | Solo ADMIN |
+| `DELETE user/{id}` | `admin/AdminPanel` | 204 sin cuerpo; solo ADMIN |
 | `GET img/{id}`, `GET img/{id}/url` | `<img>` en cards | Público. ⚠️ contrato de URLs pendiente (T-012) |
 | `POST/PUT/DELETE img…` | carga/edición de imágenes | Requiere autenticación |
 | — (reservas) | `cards/DetailCardReservation`, `user/TripsUser` | ⚠️ no existe (Backlog P2) |
 
-Los GET de propiedades e imágenes son públicos; las escrituras requieren autenticación y conservan las reglas de servicio existentes. El antiguo permiso `/v1/api/render/*` se quitó. CORS permite solo los orígenes configurados en `CORS_ALLOWED_ORIGINS` y procesa preflight antes de autenticar. Los códigos de error de registro siguen pendientes de T-008.
+Los GET de propiedades e imágenes son públicos; las escrituras requieren autenticación y conservan las reglas de servicio existentes. El antiguo permiso `/v1/api/render/*` se quitó. CORS permite solo los orígenes configurados en `CORS_ALLOWED_ORIGINS` y procesa preflight antes de autenticar. Los errores de rol de registro son 400 y username duplicado 409.
+
+## Errores y health
+
+`GlobalExceptionHandler` extiende `ResponseEntityExceptionHandler` para conservar los códigos MVC (JSON inválido 400, método 405, media type 415) y mapear excepciones de dominio a 400/403/404/409. Seguridad usa `SecurityProblemHandler` tanto en `AuthenticationEntryPoint`/`AccessDeniedHandler` como en el filtro JWT. Credenciales malas y usuario desconocido devuelven el mismo 401 y challenge `WWW-Authenticate: Bearer`. Un Bearer inválido produce 401 también en rutas públicas; no se cambia su acceso anónimo.
+
+Cuerpo: `application/problem+json` con `type`, `title`, `status`, `detail`, `instance`. Errores internos → 500 genérico; no se envían SQL, excepciones ni stack traces. `/error` está permitido y `ProblemErrorController` mantiene ese contrato para el despacho del contenedor.
+
+Actuator expone únicamente `health` por HTTP/JMX; `/actuator/health` es público, devuelve solo `status` y verifica MySQL. Compose y `scripts/dev.sh` esperan ese endpoint. El front usa `response.ok`: registro 201 y deletes 204 conservan su compatibilidad. `updateUserData` invalida el token ante 401; 403 conserva la sesión y representa falta de permiso. Las URLs de imágenes siguen pendientes de T-012.
 
 ## Arquitectura objetivo
 

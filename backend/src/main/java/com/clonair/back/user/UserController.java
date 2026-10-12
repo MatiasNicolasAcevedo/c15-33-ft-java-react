@@ -47,13 +47,9 @@ public class UserController {
     */
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<String> delete(@PathVariable String id, @RequestHeader(name = HttpHeaders.AUTHORIZATION) String token) {
-        try {
-            userService.delete(id, token);
-            return ResponseEntity.ok("User deleted successfully");
-        } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
-        }
+    public ResponseEntity<Void> delete(@PathVariable String id, @RequestHeader(name = HttpHeaders.AUTHORIZATION) String token) throws Exception {
+        userService.delete(id, token);
+        return ResponseEntity.noContent().build();
     }
 
 }

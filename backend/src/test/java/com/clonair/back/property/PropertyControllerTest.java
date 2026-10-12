@@ -25,7 +25,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @WebMvcTest(controllers = PropertyController.class,
         properties = "spring.config.location=classpath:/application-test.properties")
-@Import({SecurityConfig.class, JwtAuthenticationFilter.class})
+@Import({SecurityConfig.class, JwtAuthenticationFilter.class, com.clonair.back.common.error.SecurityProblemHandler.class})
 class PropertyControllerTest {
 
     @Autowired
@@ -41,7 +41,7 @@ class PropertyControllerTest {
     private AuthenticationProvider authenticationProvider;
 
     @Test
-    void delete_whenIdProvided_delegatesAndReturns200() throws Exception {
+    void delete_whenIdProvided_delegatesAndReturns204() throws Exception {
         UserDetails userDetails = User.withUsername("testuser")
                 .password("ignored")
                 .roles("OWNER")
@@ -52,7 +52,7 @@ class PropertyControllerTest {
 
         mockMvc.perform(delete("/v1/api/property/abc")
                         .header(HttpHeaders.AUTHORIZATION, "Bearer x"))
-                .andExpect(status().isOk());
+                .andExpect(status().isNoContent());
 
         verify(propertyService).delete("abc", "Bearer x");
     }

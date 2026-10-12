@@ -47,8 +47,8 @@ services:
     ports:
       - "8080:8080"
     healthcheck:
-      # No hay Actuator todavía (T-008): /v3/api-docs es público y responde 200 cuando la app está lista.
-      test: ["CMD", "curl", "-fs", "-o", "/dev/null", "http://localhost:8080/v3/api-docs"]
+      # Health público: incluye el estado de la conexión a la DB, sin exponer detalles.
+      test: ["CMD", "curl", "-fs", "-o", "/dev/null", "http://localhost:8080/actuator/health"]
       interval: 5s
       timeout: 5s
       retries: 30

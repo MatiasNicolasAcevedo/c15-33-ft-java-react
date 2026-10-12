@@ -1,5 +1,5 @@
 # T-007 · Escribir tests de caracterización de `PropertyServiceImp`
-- Estado: Lista para revisión · Prioridad: P0 · Esfuerzo: M · Ejecuta: 🤖 Junie Lite (Free)
+- Estado: Hecho · Prioridad: P0 · Esfuerzo: M · Ejecuta: 🤖 Junie Lite (Free)
 - Fase: P0 Estabilizar
 - Rama: `test/T-007-property-service-characterization` (crearla desde `development` actualizado antes del primer commit) · Depende de: T-002, T-006 · Spec/ADR: —
 - Revisa: 🧠 modelo de frontera (tarea M)
@@ -52,9 +52,9 @@ Mocks: `JwtService`, `PropertyRepository`, `ImageService`, `UserService`. Antes 
 - Segunda revisión: [escalación](https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/pull/10#issuecomment-6128830751) del commit `7e19637`: los servicios se verificaban solo por cantidad. El dueño autorizó expresamente a 🧠 Frontera (Codex) a corregirlo en la misma rama y PR.
 - Corrección: la lista de servicios guardados debe ser exactamente `[SWIMMING_POOL, PARKING_LOT]`; comparación de enums, sin equals/hashCode de entidades. No se modifica `src/main`.
 - Verificación de la corrección: gate completo `bash ./scripts/verify.sh` ✅ (54 s), 77 tests sin fallos/errores/skips, lint/build del client ✅. Mutación aislada de los servicios de update a `[WIFI, WIFI]`: 18 tests, 1 failure, 0 errors; fuente temporal restaurado. Antes de esta corrección la misma mutación dejaba los 18 tests verdes.
-- Pendiente: nueva revisión por 🧠 modelo de frontera.
+- Cierre: revisión independiente APROBADA sobre `7ce95ad375af3a359203cc50f0980140542ed320`: https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/pull/10#issuecomment-6128981587. El dueño mergeó #10 con squash `e1b07c4cf00423302b19199082239d8fda88c330`.
 - Rama / PR: `test/T-007-property-service-characterization` · #10. Punto de partida: `7e1963792f1d5897676692af85e9d890374688b4`; el commit de corrección incluye estas notas y se identifica con `git log -1`.
-- Próximo paso: sesión nueva de revisión independiente del commit corregido; publicar el veredicto sobre la comprobación exacta de servicios. No iniciar T-008 antes del merge.
+- Próximo paso: T-008 en sesión nueva de 🧠 Frontera; merge confirmado al iniciar T-008.
 
 ## Resultado
-- PR: [#10](https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/pull/10) (ready) · Qué cambió: 1 archivo con 18 tests de caracterización; update verifica todos los valores, incluidos los servicios exactos, y save verifica las asociaciones por identidad · Tests agregados: 18 (GetOne: 2, Save: 5, Update: 6, Delete: 5) · Cobertura: 95,07 % PropertyServiceImp, 76,20 % bundle · Pendientes → nueva revisión independiente 🧠
+- PR: [#10](https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/pull/10) (mergeado) · Qué cambió: 1 archivo con 18 tests de caracterización; update verifica todos los valores, incluidos los servicios exactos, y save verifica las asociaciones por identidad · Tests agregados: 18 (GetOne: 2, Save: 5, Update: 6, Delete: 5) · Cobertura: 95,07 % PropertyServiceImp, 76,20 % bundle · Pendientes → ninguno

@@ -68,7 +68,7 @@ class AuthorizationIntegrationTest {
         ResponseEntity<AuthResponse> response = restTemplate.postForEntity(
                 "/v1/api/auth/register", request, AuthResponse.class);
 
-        assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
+        assertThat(response.getStatusCode()).isEqualTo(HttpStatus.CREATED);
         assertThat(response.getBody()).isNotNull();
         User user = userRepository.findByUsername(request.getUsername()).orElseThrow();
         assertThat(user.getRole()).isEqualTo(role);
@@ -109,7 +109,7 @@ class AuthorizationIntegrationTest {
 
         assertThat(listing.getStatusCode()).isEqualTo(HttpStatus.OK);
         assertThat(listing.getBody()).contains(victim.getUsername());
-        assertThat(deletion.getStatusCode()).isEqualTo(HttpStatus.OK);
+        assertThat(deletion.getStatusCode()).isEqualTo(HttpStatus.NO_CONTENT);
         assertThat(userRepository.existsById(victim.getId())).isFalse();
     }
 
@@ -161,7 +161,7 @@ class AuthorizationIntegrationTest {
                     target, method, HttpEntity.EMPTY, String.class);
 
             assertThat(response.getStatusCode()).as("%s %s", method, target)
-                    .isEqualTo(HttpStatus.FORBIDDEN);
+                    .isEqualTo(HttpStatus.UNAUTHORIZED);
         }
     }
 

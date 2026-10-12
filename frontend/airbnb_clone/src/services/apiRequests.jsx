@@ -127,7 +127,7 @@ export async function updateUserData (setUser, username) {
             const data = await response.json();
             setUser(data);
         } else {
-            if(response.status === 403){
+            if(response.status === 401){
                 forceLogout()
             }
             console.error('error de respuesta');

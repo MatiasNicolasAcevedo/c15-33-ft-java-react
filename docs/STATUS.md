@@ -1,17 +1,17 @@
 # Estado del proyecto
-_Actualizado: 2026-10-12 · por: 🧠 Frontera (Codex) · sesión: T-007 corrección de servicios autorizada por el dueño_
+_Actualizado: 2026-10-12 · por: 🧠 Frontera (Codex) · sesión: T-008 implementación_
 
 ## ▶ Próxima acción
 
 | Campo | Qué sigue |
 |---|---|
-| **Acción** | **Revisar PR de T-007** (cambios pedidos atendidos); 18 tests de caracterización de `PropertyServiceImp` (95,07 % cobertura, 77 tests OK) |
-| **Tarea** | [T-007 · Escribir tests de caracterización de `PropertyServiceImp`](tasks/T-007-property-service-characterization.md) |
-| **Ejecutor** | **🧠 Frontera — GPT-6.1 Sol / Claude Opus 5.5** (revisión) |
-| **Rama / PR** | `test/T-007-property-service-characterization` · [PR #10](https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/pull/10) (ready) |
-| **Prompt** | «Leé `AGENTS.md`, `docs/STATUS.md` y `docs/tasks/T-007-property-service-characterization.md`. Seguí `docs/agents/reviewer.md` para el PR #10 de T-007 en la rama `test/T-007-property-service-characterization`. Revisá la corrección de la escalación: el test de update verifica exactamente SWIMMING_POOL y PARKING_LOT y debe fallar ante WIFI/WIFI. Conservá la rama y el PR; publicá el veredicto y no inicies T-008.» |
+| **Acción** | **Revisar PR #11 de T-008**: implementación terminada, merge pendiente |
+| **Tarea** | [T-008](tasks/T-008-error-handling.md) |
+| **Ejecutor** | **🧠 Frontera — GPT-6.1 Sol / Claude Opus 5.5** (revisión independiente, sesión nueva) |
+| **Rama / PR** | `feat/T-008-error-handling` · [PR #11](https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/pull/11) (ready) |
+| **Prompt** | «Leé `AGENTS.md`, `docs/STATUS.md` y `docs/tasks/T-008-error-handling.md`. Seguí `docs/agents/reviewer.md` para el PR #11 de T-008 en la rama `feat/T-008-error-handling`. Revisá el commit publicado, errores MVC/dominio/seguridad, health público y compatibilidad del frontend. Publicá un veredicto independiente; no mergees ni inicies T-009.» |
 
-**T-007 en curso:** el dueño autorizó a 🧠 Frontera a resolver la escalación del PR #10. El test de update comprueba los servicios exactos; una lista WIFI/WIFI debe fallar. Se conserva la rama y el PR. Pendiente: revisión independiente del commit corregido; T-008 espera al merge.
+**T-007 cerrada:** revisión independiente [APROBADA](https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/pull/10#issuecomment-6128981587) sobre `7ce95ad375af3a359203cc50f0980140542ed320`; el dueño mergeó #10 con squash `e1b07c4cf00423302b19199082239d8fda88c330`. Gate completo verde: 77 tests, 95,07 % PropertyServiceImp, 76,20 % global; mutación WIFI/WIFI rechazada. Inicio T-008: árbol limpio y ningún PR abierto.
 
 **T-006 cerrada:** [PR #9](https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/pull/9) mergeado por el dueño con squash. Endpoint `DELETE /v1/api/property/{id}` corregido para mapear por ID en lugar de UUID. 2 tests agregados, verify.sh --server ✅ 57 tests OK.
 
@@ -30,26 +30,28 @@ _Actualizado: 2026-10-12 · por: 🧠 Frontera (Codex) · sesión: T-007 correcc
 **Compactar y continuar:** solo durante el mismo trabajo largo, en un corte seguro y después de guardar las notas + commit + push. Si la interfaz ofrece compactación, usala y retomá **la misma tarea, rama y PR**. Para Lite, guardá el checkpoint y abrí otro chat. El procedimiento y prompt están en [AGENTS.md → Gestión de contexto](../AGENTS.md#5-gestión-de-contexto).
 
 ## En una línea
-T-007: cambios pedidos del PR #10 atendidos. 18 tests de caracterización de PropertyServiceImp (95,07 % cobertura). [PR #10](https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/pull/10) (ready) — nueva revisión por 🧠.
+T-008 implementada; PR #11 pendiente de revisión independiente. T-009 espera al merge. T-007 mergeada y cerrada.
 
 ## Salud
 | Check | Estado | Nota |
 |---|---|---|
-| verify.sh | ✅ server + client | T-007: 77 tests OK, cobertura OK (95,07 % PropertyServiceImp, 76,20 % bundle); T-005: lint ✅ build ✅ |
+| verify.sh | ✅ server + client | T-008: 118 tests sin fallos/errores/skips; lint/build client ✅; cobertura global 82,54 %, PropertyServiceImp 95,07 % |
 | CI en development | sin CI | → T-010 (bloqueada por T-005) |
-| Levantar en local (README) | ⚠️ verificado 2026-10-10 | T-001: compose con build/wait ✅, login demo ✅ y JWT de 24 h ✅; checkout Windows requirió LF local en `mvnw`; el front usa localhost:8080/v1/api (T-004) pero la home se rompe (T-011) |
-| Cobertura back / front | 76,20 % / sin tests | T-007: 77 tests (57 + 18 nuevos + 2); PropertyServiceImp 95,07 %; umbral 40 % conservado; front → T-009 |
+| Levantar en local (README) | ✅ verificado 2026-10-12 | T-008: compose build/wait OK; server/db healthy; health público UP, probes curl y registro/login desde front OK |
+| Cobertura back / front | 82,54 % / sin tests | T-008: 118 tests (41 nuevos), 520/630 líneas; PropertyServiceImp 95,07 %; umbral 40 % conservado; front → T-009 |
 | E2E smoke | no existe | → T-013 |
 | Dependencias vulnerables | npm: 16 altas, 8 moderadas | → Backlog P1 |
 | Seguridad 🔴 abierta | rotación pendiente; T-003 mergeada | Registro como ADMIN y listado/borrado por USER corregidos en PR #6. T-015: dueño confirma deploy y rota el secreto histórico si corresponde |
 | Última auditoría | 2026-10-10 | [inicial](audits/2026-10-10-initial.md) |
 
 ## Fase actual
-P0 Estabilizar · 2/15 tareas · ver [ROADMAP](ROADMAP.md)
+P0 Estabilizar · 7/15 tareas mergeadas; T-008 en revisión · ver [ROADMAP](ROADMAP.md)
 
 ## Foco
-- **PR de T-007 con cambios atendidos:** rama `test/T-007-property-service-characterization` · [PR #10](https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/pull/10) (ready). Nueva revisión por 🧠.
+- **PR de T-008 listo para revisión:** `feat/T-008-error-handling` · [PR #11](https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/pull/11) (ready). Todos los cambios publicados; revisión independiente de 🧠 y merge del dueño pendientes.
 - **Próximo paso / prompt:** ver la tarjeta **▶ Próxima acción** al inicio de este archivo y la cola de [BACKLOG](BACKLOG.md).
+
+- **Hallazgo fuera de alcance:** cascada JPA de `Property.user` elimina al OWNER al borrar propiedad; registrado en Backlog P0, sin cambios al modelo de datos en T-008.
 
 ## Decisiones pendientes del dueño
 - ¿El deploy anterior (Vercel + back) sigue activo? T-015 ya está lista tras el merge de T-001: el dueño debe rotar el secreto si hay deploy activo, o registrar que no lo hay.
@@ -61,11 +63,8 @@ P0 Estabilizar · 2/15 tareas · ver [ROADMAP](ROADMAP.md)
   `git switch development && git pull && git tag audit/2026-10-10 && git push origin audit/2026-10-10`
 
 ## Últimas sesiones (máx. 5; las anteriores → archive/log/AAAA-MM.md)
+- 2026-10-12 · 🧠 Frontera (Codex) · T-008 implementada en PR #11: 118 tests, gate completo ✅, cobertura 82,54 %, compose healthy, probes y login/alta manual OK. T-007 cerrada tras squash e1b07c4. Próximo: revisión independiente; no iniciar T-009.
 - 2026-10-12 · 🤖 Junie Lite (Free) · T-007: cambios pedidos del PR #10 atendidos. Tests de update y save corregidos. 77 tests OK, verify.sh --server ✅, cobertura 95,07 % PropertyServiceImp. [PR #10](https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/pull/10) (ready). Nueva revisión por 🧠.
 - 2026-10-12 · 🤖 Junie Lite (Free) · T-007 completada: 18 tests de caracterización de PropertyServiceImp (94.3 % cobertura). 77 tests OK, verify.sh --server ✅. [PR #10](https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/pull/10) creado (draft). Revisión por 🧠.
 - 2026-10-12 · 🤖 Junie Lite (Free) · Documentación corregida: T-006 (PR #9) ya estaba mergeada pero no reflejada como cerrada en STATUS.md y BACKLOG.md. T-007 establecida como próxima acción.
 - 2026-10-12 · 🤖 Junie Lite (Free) · T-006 completada: `@DeleteMapping("/{id}")` en PropertyController.java + PropertyControllerTest.java (2 tests). verify.sh --server ✅ 57 tests OK, cobertura OK. PR #9 mergeado.
-- 2026-10-12 · 🤖 Junie Lite (Free) · T-005: cambios pedidos de PR #8 atendidos. Forms.jsx: restaurado cierre original `}), [registerButtonPressed]` sin array de dependencias; Test.jsx: eliminado `_property` sin uso. verify.sh --client ✅ lint ✅ build. PR #8 mergeado con squash (`9dfe037`).
-- 2026-10-11 · 🤖 Junie Lite (Free) · T-004 cerrada: [PR #7](https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/pull/7) mergeado con squash (`c648fbd`). config.js con API_URL desde VITE_API_URL + /v1/api; IP hardcodeada eliminada; prefijo /api/ quitado de 14 rutas.
-- 2026-10-11 · 🧠 Codex · T-003 implementada y [APROBADA en revisión independiente](https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/pull/6#issuecomment-6105109999) del commit `0625d79`, [PR #6](https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/pull/6) mergeada. Gate: 57 tests OK, cobertura 56,48 %; client build OK, 93 problemas de lint (T-005). Próxima: T-004 con Lite.
-- 2026-10-11 · 🧠 Codex · T-002 implementada, [revisión independiente APROBADA](https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/pull/5#issuecomment-6104882015) y [PR #5](https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/pull/5) mergeado por el dueño con squash (`da3e6e6`). 31 tests OK sin env.properties ni DB de compose, cobertura 40,80 % (224/549), umbral 40 % y prueba negativa al 100 % OK. Gate sin regresiones (93 problemas de lint de T-005); demora de Surefire en Backlog.

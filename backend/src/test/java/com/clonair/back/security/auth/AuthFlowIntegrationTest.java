@@ -7,6 +7,8 @@ import com.clonair.back.security.request.RegisterRequest;
 import com.clonair.back.user.Role;
 import com.clonair.back.user.UserRepository;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.springframework.http.client.JdkClientHttpRequestFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
@@ -31,13 +33,19 @@ class AuthFlowIntegrationTest {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
+    @BeforeEach
+    void useHttpClientThatCanRead401Bodies() {
+        // HttpURLConnection intenta reintentar POST con challenge y pierde el cuerpo del 401.
+        restTemplate.getRestTemplate().setRequestFactory(new JdkClientHttpRequestFactory());
+    }
+
     @Test
     void register_whenOwner_returnsTokenAndPersistsEncodedPassword() {
         String username = "register-owner@example.test";
 
         ResponseEntity<AuthResponse> response = registerOwner(username);
 
-        assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
+        assertThat(response.getStatusCode()).isEqualTo(HttpStatus.CREATED);
         assertThat(response.getBody()).isNotNull();
         assertThat(response.getBody().getToken()).isNotBlank();
         assertThat(jwtService.getUsernameFromToken(response.getBody().getToken())).isEqualTo(username);
@@ -50,7 +58,7 @@ class AuthFlowIntegrationTest {
     @Test
     void login_whenCorrectPassword_returnsTokenAndOwnerRole() {
         String username = "login-owner@example.test";
-        assertThat(registerOwner(username).getStatusCode()).isEqualTo(HttpStatus.OK);
+        assertThat(registerOwner(username).getStatusCode()).isEqualTo(HttpStatus.CREATED);
 
         ResponseEntity<AuthResponse> response = restTemplate.postForEntity("/v1/api/auth/login",
                 new LoginRequest(username, "Test1234!"), AuthResponse.class);
@@ -65,13 +73,12 @@ class AuthFlowIntegrationTest {
     @Test
     void login_whenIncorrectPassword_isNot2xx() {
         String username = "bad-password-owner@example.test";
-        assertThat(registerOwner(username).getStatusCode()).isEqualTo(HttpStatus.OK);
+        assertThat(registerOwner(username).getStatusCode()).isEqualTo(HttpStatus.CREATED);
 
         ResponseEntity<String> response = restTemplate.postForEntity("/v1/api/auth/login",
                 new LoginRequest(username, "wrong-password"), String.class);
 
-        // Hoy responde 403; T-008 lo cambia a 401. Caracterizamos el rechazo sin fijar el código.
-        assertThat(response.getStatusCode().is2xxSuccessful()).isFalse();
+        assertThat(response.getStatusCode()).isEqualTo(HttpStatus.UNAUTHORIZED);
     }
 
     private ResponseEntity<AuthResponse> registerOwner(String username) {
