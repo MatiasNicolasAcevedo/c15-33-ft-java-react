@@ -1,5 +1,5 @@
 # T-010 · Agregar CI (verify por parte) y Dependabot
-- Estado: Bloqueada (por T-005: `verify.sh` todavía no pasa) · Prioridad: P0 · Esfuerzo: S · Ejecuta: 🧠 modelo de frontera
+- Estado: Lista (dependencias T-005 y T-002 mergeadas; después de T-009 en la cola) · Prioridad: P0 · Esfuerzo: S · Ejecuta: 🧠 modelo de frontera
 - Fase: P0 Estabilizar
 - Rama: `ci/T-010-ci-workflow` (crearla desde `development` actualizado antes del primer commit) · Depende de: T-005 (y T-002 para el reporte de cobertura) · Spec/ADR: —
 - Revisa: 🧠 modelo de frontera (sesión nueva) + 👤

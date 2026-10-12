@@ -2,6 +2,8 @@
 
 Estable. Base de auditoría (2026-10-10): back **1 test, 16,8 % líneas / 1,0 % ramas**. Tras T-008: **118 tests, 82,54 % líneas (520/630), umbral 40 %**; front **sin tests**; E2E **no existe**. Gate: `./scripts/verify.sh`.
 
+La revisión independiente de T-008 sobre `4eb7e2f` reprodujo el gate con 118 tests y midió 82,59 % (517/626) en su ejecución; PropertyServiceImp conservó 95,07 % (135/142). Se conserva la medición de implementación como referencia y ambas evidencias en la tarea, sin atribuirles el mismo conteo de líneas.
+
 ## 1. Pirámide y herramientas
 
 | Capa | Herramientas | Qué cubre |
