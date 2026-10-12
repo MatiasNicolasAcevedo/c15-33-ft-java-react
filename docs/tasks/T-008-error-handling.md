@@ -35,7 +35,7 @@ Errores con el status correcto y cuerpo `application/problem+json`; `GET /actuat
 - Inicio: árbol limpio; #10 MERGED y sin PR abiertos comprobados con gh. Base `e1b07c4cf00423302b19199082239d8fda88c330`; rama exacta `feat/T-008-error-handling`.
 - Hecho: cierre documental de T-007 y tablero sincronizado.
 - Pendiente: implementación, tests, gate, probes, compose y comprobación manual del front.
-- Próximo paso: abrir PR draft y agregar tests de regresión. PR pendiente.
+- Próximo paso: abrir PR draft y agregar tests de regresión. PR #11 draft.
 
 ## Resultado
 - PR: #N · Qué cambió: … · Tests agregados: … · Pendientes → …

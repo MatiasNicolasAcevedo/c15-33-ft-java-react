@@ -8,8 +8,8 @@ _Actualizado: 2026-10-12 · por: 🧠 Frontera (Codex) · sesión: T-008 impleme
 | **Acción** | **Implementar T-008**: manejo global de errores y health |
 | **Tarea** | [T-008](tasks/T-008-error-handling.md) |
 | **Ejecutor** | **🧠 Frontera — GPT-6.1 Sol / Claude Opus 5.5** |
-| **Rama / PR** | `feat/T-008-error-handling` · PR draft pendiente |
-| **Prompt** | «Leé `AGENTS.md`, `docs/STATUS.md` y `docs/tasks/T-008-error-handling.md`. Seguí `docs/agents/implementer.md` retomando T-008 en `feat/T-008-error-handling`; conservá la rama y el PR. No inicies T-009.» |
+| **Rama / PR** | `feat/T-008-error-handling` · [PR #11](https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/pull/11) (draft) |
+| **Prompt** | «Leé `AGENTS.md`, `docs/STATUS.md` y `docs/tasks/T-008-error-handling.md`. Seguí `docs/agents/implementer.md` retomando T-008 en `feat/T-008-error-handling`; conservá la rama y el PR #11. No inicies T-009.» |
 
 **T-007 cerrada:** revisión independiente [APROBADA](https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/pull/10#issuecomment-6128981587) sobre `7ce95ad375af3a359203cc50f0980140542ed320`; el dueño mergeó #10 con squash `e1b07c4cf00423302b19199082239d8fda88c330`. Gate completo verde: 77 tests, 95,07 % PropertyServiceImp, 76,20 % global; mutación WIFI/WIFI rechazada. Inicio T-008: árbol limpio y ningún PR abierto.
 
@@ -48,7 +48,7 @@ T-008 en implementación sobre `feat/T-008-error-handling`; T-007 mergeada y cer
 P0 Estabilizar · 2/15 tareas · ver [ROADMAP](ROADMAP.md)
 
 ## Foco
-- **T-008 activa:** `feat/T-008-error-handling` · PR draft pendiente; implementar únicamente el contrato.
+- **T-008 activa:** `feat/T-008-error-handling` · [PR #11](https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/pull/11) (draft); implementar únicamente el contrato.
 - **Próximo paso / prompt:** ver la tarjeta **▶ Próxima acción** al inicio de este archivo y la cola de [BACKLOG](BACKLOG.md).
 
 ## Decisiones pendientes del dueño

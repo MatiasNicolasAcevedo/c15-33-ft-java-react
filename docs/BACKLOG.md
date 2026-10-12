@@ -1,8 +1,8 @@
 # Tablero
 
-> **▶ IMPLEMENTAR T-008:** 🧠 Frontera · rama `feat/T-008-error-handling` · PR pendiente (draft).
+> **▶ IMPLEMENTAR T-008:** 🧠 Frontera · rama `feat/T-008-error-handling` · [PR #11](https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/pull/11) (draft).
 >
-> **Prompt:** «Leé `AGENTS.md`, `docs/STATUS.md` y `docs/tasks/T-008-error-handling.md`. Seguí `docs/agents/implementer.md` retomando T-008 en `feat/T-008-error-handling`; conservá la rama y el PR. No inicies T-009.»
+> **Prompt:** «Leé `AGENTS.md`, `docs/STATUS.md` y `docs/tasks/T-008-error-handling.md`. Seguí `docs/agents/implementer.md` retomando T-008 en `feat/T-008-error-handling`; conservá la rama y el PR #11. No inicies T-009.»
 
 **Leyenda:** 🤖 **Lite = Junie Lite (Free) en Air** · 🧠 **Frontera = p. ej. GPT-6.1 Sol / Claude Opus 5.5** · 👤 **Dueño**. Las categorías indican quién implementa; el campo **Revisa** de cada tarea puede pedir otro ejecutor.
 
@@ -13,7 +13,7 @@
 > Próximo ID libre: T-017
 
 ## 🔨 En curso
-- T-008 · P0 · M · 🧠 frontera · Manejo global de errores y health → [tarea](tasks/T-008-error-handling.md) · `feat/T-008-error-handling` · PR draft pendiente.
+- T-008 · P0 · M · 🧠 frontera · Manejo global de errores y health → [tarea](tasks/T-008-error-handling.md) · `feat/T-008-error-handling` · [PR #11](https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/pull/11) (draft).
 
 ## ✅ Listas (cola en orden de ejecución, máx. 10)
 - T-009 · P0 · M · 🧠 frontera · Montar la infraestructura de tests del front → [tarea](tasks/T-009-frontend-test-infra.md)
