@@ -1,17 +1,17 @@
 # Estado del proyecto
-_Actualizado: 2026-10-12 · por: 🧠 Frontera (Codex) · sesión: T-007 corrección de servicios autorizada por el dueño_
+_Actualizado: 2026-10-12 · por: 🧠 Frontera (Codex) · sesión: T-008 implementación_
 
 ## ▶ Próxima acción
 
 | Campo | Qué sigue |
 |---|---|
-| **Acción** | **Revisar PR de T-007** (cambios pedidos atendidos); 18 tests de caracterización de `PropertyServiceImp` (95,07 % cobertura, 77 tests OK) |
-| **Tarea** | [T-007 · Escribir tests de caracterización de `PropertyServiceImp`](tasks/T-007-property-service-characterization.md) |
-| **Ejecutor** | **🧠 Frontera — GPT-6.1 Sol / Claude Opus 5.5** (revisión) |
-| **Rama / PR** | `test/T-007-property-service-characterization` · [PR #10](https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/pull/10) (ready) |
-| **Prompt** | «Leé `AGENTS.md`, `docs/STATUS.md` y `docs/tasks/T-007-property-service-characterization.md`. Seguí `docs/agents/reviewer.md` para el PR #10 de T-007 en la rama `test/T-007-property-service-characterization`. Revisá la corrección de la escalación: el test de update verifica exactamente SWIMMING_POOL y PARKING_LOT y debe fallar ante WIFI/WIFI. Conservá la rama y el PR; publicá el veredicto y no inicies T-008.» |
+| **Acción** | **Implementar T-008**: manejo global de errores y health |
+| **Tarea** | [T-008](tasks/T-008-error-handling.md) |
+| **Ejecutor** | **🧠 Frontera — GPT-6.1 Sol / Claude Opus 5.5** |
+| **Rama / PR** | `feat/T-008-error-handling` · PR draft pendiente |
+| **Prompt** | «Leé `AGENTS.md`, `docs/STATUS.md` y `docs/tasks/T-008-error-handling.md`. Seguí `docs/agents/implementer.md` retomando T-008 en `feat/T-008-error-handling`; conservá la rama y el PR. No inicies T-009.» |
 
-**T-007 en curso:** el dueño autorizó a 🧠 Frontera a resolver la escalación del PR #10. El test de update comprueba los servicios exactos; una lista WIFI/WIFI debe fallar. Se conserva la rama y el PR. Pendiente: revisión independiente del commit corregido; T-008 espera al merge.
+**T-007 cerrada:** revisión independiente [APROBADA](https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/pull/10#issuecomment-6128981587) sobre `7ce95ad375af3a359203cc50f0980140542ed320`; el dueño mergeó #10 con squash `e1b07c4cf00423302b19199082239d8fda88c330`. Gate completo verde: 77 tests, 95,07 % PropertyServiceImp, 76,20 % global; mutación WIFI/WIFI rechazada. Inicio T-008: árbol limpio y ningún PR abierto.
 
 **T-006 cerrada:** [PR #9](https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/pull/9) mergeado por el dueño con squash. Endpoint `DELETE /v1/api/property/{id}` corregido para mapear por ID en lugar de UUID. 2 tests agregados, verify.sh --server ✅ 57 tests OK.
 
@@ -30,7 +30,7 @@ _Actualizado: 2026-10-12 · por: 🧠 Frontera (Codex) · sesión: T-007 correcc
 **Compactar y continuar:** solo durante el mismo trabajo largo, en un corte seguro y después de guardar las notas + commit + push. Si la interfaz ofrece compactación, usala y retomá **la misma tarea, rama y PR**. Para Lite, guardá el checkpoint y abrí otro chat. El procedimiento y prompt están en [AGENTS.md → Gestión de contexto](../AGENTS.md#5-gestión-de-contexto).
 
 ## En una línea
-T-007: cambios pedidos del PR #10 atendidos. 18 tests de caracterización de PropertyServiceImp (95,07 % cobertura). [PR #10](https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/pull/10) (ready) — nueva revisión por 🧠.
+T-008 en implementación sobre `feat/T-008-error-handling`; T-007 mergeada y cerrada.
 
 ## Salud
 | Check | Estado | Nota |
@@ -48,7 +48,7 @@ T-007: cambios pedidos del PR #10 atendidos. 18 tests de caracterización de Pro
 P0 Estabilizar · 2/15 tareas · ver [ROADMAP](ROADMAP.md)
 
 ## Foco
-- **PR de T-007 con cambios atendidos:** rama `test/T-007-property-service-characterization` · [PR #10](https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/pull/10) (ready). Nueva revisión por 🧠.
+- **T-008 activa:** `feat/T-008-error-handling` · PR draft pendiente; implementar únicamente el contrato.
 - **Próximo paso / prompt:** ver la tarjeta **▶ Próxima acción** al inicio de este archivo y la cola de [BACKLOG](BACKLOG.md).
 
 ## Decisiones pendientes del dueño

@@ -1,5 +1,5 @@
 # T-008 · Agregar manejo global de errores con ProblemDetail y health check
-- Estado: Lista · Prioridad: P0 · Esfuerzo: M · Ejecuta: 🧠 modelo de frontera
+- Estado: En curso · Prioridad: P0 · Esfuerzo: M · Ejecuta: 🧠 modelo de frontera
 - Fase: P0 Estabilizar
 - Rama: `feat/T-008-error-handling` (crearla desde `development` actualizado antes del primer commit) · Depende de: T-002, T-003 · Spec/ADR: [0003](../adr/0003-jwt-stateless-auth.md)
 - Revisa: 🧠 modelo de frontera (sesión nueva) + 👤
@@ -32,7 +32,10 @@ Errores con el status correcto y cuerpo `application/problem+json`; `GET /actuat
 - [ ] El front sigue funcionando en los flujos de login y alta (manual, anotado en "Notas")
 
 ## Notas de implementación
-- Hecho: … · Pendiente: … · Próximo paso: …
+- Inicio: árbol limpio; #10 MERGED y sin PR abiertos comprobados con gh. Base `e1b07c4cf00423302b19199082239d8fda88c330`; rama exacta `feat/T-008-error-handling`.
+- Hecho: cierre documental de T-007 y tablero sincronizado.
+- Pendiente: implementación, tests, gate, probes, compose y comprobación manual del front.
+- Próximo paso: abrir PR draft y agregar tests de regresión. PR pendiente.
 
 ## Resultado
 - PR: #N · Qué cambió: … · Tests agregados: … · Pendientes → …

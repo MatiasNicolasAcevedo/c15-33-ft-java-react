@@ -1,10 +1,8 @@
 # Tablero
 
-> **▶ REVISAR PR T-007 (cambios atendidos):** [T-007](tasks/T-007-property-service-characterization.md) · 🧠 Frontera · rama `test/T-007-property-service-characterization` · [PR #10](https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/pull/10) (ready)
+> **▶ IMPLEMENTAR T-008:** 🧠 Frontera · rama `feat/T-008-error-handling` · PR pendiente (draft).
 >
-> **Prompt para revisión:** «Leé `AGENTS.md`, `docs/STATUS.md` y `docs/tasks/T-007-property-service-characterization.md`. Seguí `docs/agents/reviewer.md` para el PR #10 de T-007 en la rama `test/T-007-property-service-characterization`. Revisá la corrección de la escalación: el test de update verifica exactamente SWIMMING_POOL y PARKING_LOT y debe fallar ante WIFI/WIFI. Conservá la rama y el PR; publicá el veredicto y no inicies T-008.»
->
-> **▶ PRÓXIMA IMPLEMENTACIÓN (tras merge de T-007):** [T-008](tasks/T-008-error-handling.md) · 🧠 Frontera
+> **Prompt:** «Leé `AGENTS.md`, `docs/STATUS.md` y `docs/tasks/T-008-error-handling.md`. Seguí `docs/agents/implementer.md` retomando T-008 en `feat/T-008-error-handling`; conservá la rama y el PR. No inicies T-009.»
 
 **Leyenda:** 🤖 **Lite = Junie Lite (Free) en Air** · 🧠 **Frontera = p. ej. GPT-6.1 Sol / Claude Opus 5.5** · 👤 **Dueño**. Las categorías indican quién implementa; el campo **Revisa** de cada tarea puede pedir otro ejecutor.
 
@@ -15,10 +13,9 @@
 > Próximo ID libre: T-017
 
 ## 🔨 En curso
-- T-007 · P0 · M · 🤖 Lite; corrección por 🧠 autorizada por el dueño · Escribir tests de caracterización de `PropertyServiceImp` → [tarea](tasks/T-007-property-service-characterization.md) · [PR #10](https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/pull/10) · Pendiente de revisión independiente y merge; verificación exacta de servicios corregida.
+- T-008 · P0 · M · 🧠 frontera · Manejo global de errores y health → [tarea](tasks/T-008-error-handling.md) · `feat/T-008-error-handling` · PR draft pendiente.
 
 ## ✅ Listas (cola en orden de ejecución, máx. 10)
-- T-008 · P0 · M · 🧠 frontera · Agregar manejo global de errores con ProblemDetail y health check → [tarea](tasks/T-008-error-handling.md)
 - T-009 · P0 · M · 🧠 frontera · Montar la infraestructura de tests del front → [tarea](tasks/T-009-frontend-test-infra.md)
 - T-014 · P0 · S · 👤 dueño · Proteger la rama por defecto y limpiar ramas (no bloquea la cola) → [tarea](tasks/T-014-branch-protection.md)
 - T-015 · P0 · S · 👤 dueño · Rotar el secreto JWT en todo entorno que lo haya usado (no bloquea la cola) → [tarea](tasks/T-015-rotate-jwt-secret.md) · desbloqueada por el merge de T-001; confirmar si existe deploy activo.
@@ -63,6 +60,7 @@
 - 🧠 Evaluar mover a `client/` + `server/` ([ADR 0004](adr/0004-keep-folder-layout.md))
 
 ## 🏁 Hecho reciente (máx. 10; las más viejas → archive/tasks/)
+- T-007 · P0 · M · 🤖 Lite + corrección 🧠 · Tests de PropertyServiceImp → [tarea](tasks/T-007-property-service-characterization.md) · [PR #10](https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/pull/10) · revisión independiente APROBADA y squash `e1b07c4`; 77 tests, gate completo verde, cobertura global 76,20 %.
 - T-006 · P0 · S · 🤖 Lite · Corregir el endpoint `DELETE /v1/api/property/{id}` → [tarea](tasks/T-006-delete-property-mapping.md) · [PR #9](https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/pull/9) · **mergeada con squash**; endpoint mapeado por ID, 2 tests agregados, verify.sh --server ✅.
 - T-005 · P0 · S · 🤖 Lite · Dejar `npm run lint` en verde → [tarea](tasks/T-005-frontend-lint.md) · [PR #8](https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/pull/8) · **mergeada con squash `9dfe037`**; 93 problemas de lint resueltos, lint ✅, build ✅.
 - T-004 · P0 · S · 🤖 Lite · Hacer configurable la URL de la API en el front y usar el prefijo /v1/api → [tarea](tasks/T-004-frontend-api-base-url.md) · [PR #7](https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/pull/7) · **mergeada con squash `c648fbd`**; build ✅, sin IPs hardcodeadas, bundle con localhost:8080/v1/api.
