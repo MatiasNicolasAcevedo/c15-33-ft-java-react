@@ -1,23 +1,17 @@
 # Estado del proyecto
-_Actualizado: 2026-10-13 · por: 🧠 Frontera (Codex) · sesión: cierre T-009 y revisión de la cola_
+_Actualizado: 2026-10-13 · por: 🧠 Frontera (Codex) · sesión: implementación T-010_
 
 ## ▶ Próxima acción
 
 | Campo | Qué sigue |
 |---|---|
-| **Acción** | **Revisar e integrar PR #14**: cierre documental de T-009, ya mergeada en #13 |
-| **Tarea** | [T-009](tasks/T-009-frontend-test-infra.md) · Hecha; cierre documental pendiente |
-| **Ejecutor** | **👤 dueño** (revisión del diff documental y merge) |
-| **Rama / PR** | `docs/T-009-closeout` · [PR #14](https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/pull/14) |
-| **Prompt** | «GitHub → PR #14 → revisar el diff documental y, si está correcto, Squash and merge. Registrar el merge y activar la próxima acción Implementar T-010 en STATUS/BACKLOG con el prompt de abajo. No iniciar T-010 mientras #14 siga abierto.» |
+| **Acción** | **Implementar T-010**: CI y Dependabot |
+| **Tarea** | [T-010](tasks/T-010-ci-workflow.md) · En curso |
+| **Ejecutor** | **🧠 Frontera — GPT-6.1 Sol** |
+| **Rama / PR** | `ci/T-010-ci-workflow` · PR draft pendiente |
+| **Prompt** | «Leé AGENTS.md, docs/STATUS.md y docs/tasks/T-010-ci-workflow.md. Seguí docs/agents/implementer.md retomando T-010 en ci/T-010-ci-workflow; abrir su PR draft y continuar con CI, pruebas de jobs y test roto. No iniciar T-012.» |
 
-### Próxima implementación después de integrar #14
-
-**T-010 · Agregar CI y Dependabot · ejecuta: 🧠 Frontera — GPT-6.1 Sol.** Rama prevista `ci/T-010-ci-workflow`, PR pendiente. Tarea Lista, sin iniciar.
-
-```text
-Leé AGENTS.md, docs/STATUS.md, docs/BACKLOG.md y docs/tasks/T-010-ci-workflow.md. Seguí docs/agents/implementer.md para implementar T-010 en una sesión nueva de 🧠 Frontera. Verificá git status y los PR abiertos; confirmá que #13 y el cierre documental #14 estén mergeados. Si hay un PR abierto, atendé primero la próxima acción de STATUS y no inicies T-010. Con el árbol limpio y development actualizado, corré la línea de base y creá la rama exacta ci/T-010-ci-workflow antes del primer commit; abrí su PR en draft. Implementá CI y Dependabot según la tarea, verificando las versiones vigentes de las actions. Conservá los umbrales de cobertura; verify.sh --client ejecuta la suite y npm run test:coverage comprueba el umbral v8 por separado. Comprobá los jobs server/client y el rechazo de un test roto, registrá evidencias y los checks que el dueño debe requerir en T-014. Actualizá tarea/STATUS/BACKLOG, guardá todos los cambios propios con commit y push y dejá el PR listo para revisión independiente. No mergees ni inicies T-012.
-```
+**Inicio T-010 (2026-10-13):** árbol limpio, sin cambios heredados ni PR abiertos. #13 y #14 confirmados MERGED; #14 integrado en `6c71f894920f8725c0774a6cfefb88ad22c5aaed`. Development actualizado por fast-forward; gate completo verde (121 s, 118 tests back/6 front, JDK 21/Node 24). Rama exacta creada antes del primer commit. Próximo: abrir draft e implementar CI; Dependabot se agrega después de observar CI en verde.
 
 **T-009 cerrada:** revisión independiente [APROBADA](https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/pull/13#issuecomment-6146403632) sobre `e5de84062fc961983bfd78198d77f60044afe9d2`; el dueño mergeó [#13](https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/pull/13) con squash `dc2756330096d406ba0523ab7d9d39724191b97c` el 2026-10-13. Gate completo de revisión verde (95 s: 118 tests back/6 front), npm ci reproducible, client verde (17 s), cobertura v8 1,65 %, umbral 1 % y rechazo al exigir 100 % comprobados. #14 guarda este cierre autorizado y la cola revisada; inicio con árbol limpio y ningún PR abierto, sin cambios heredados.
 
@@ -46,7 +40,7 @@ Leé AGENTS.md, docs/STATUS.md, docs/BACKLOG.md y docs/tasks/T-010-ci-workflow.m
 **Compactar y continuar:** solo durante el mismo trabajo largo, en un corte seguro y después de guardar las notas + commit + push. Si la interfaz ofrece compactación, usala y retomá **la misma tarea, rama y PR**. Para Lite, guardá el checkpoint y abrí otro chat. El procedimiento y prompt están en [AGENTS.md → Gestión de contexto](../AGENTS.md#5-gestión-de-contexto).
 
 ## En una línea
-9/15 tareas P0 mergeadas (T-001 a T-009). Próxima acción: dueño integra #14; luego sesión nueva de 🧠 para T-010. Camino: CI → imágenes → estados de la home → E2E; protección y rotación pendientes del dueño.
+9/15 tareas P0 mergeadas (T-001 a T-009). T-010 en implementación; #14 mergeado (`6c71f89`). Camino: CI → imágenes → estados de la home → E2E; protección y rotación pendientes del dueño.
 
 ## Salud
 | Check | Estado | Nota |
@@ -64,7 +58,7 @@ Leé AGENTS.md, docs/STATUS.md, docs/BACKLOG.md y docs/tasks/T-010-ci-workflow.m
 P0 Estabilizar · 9/15 tareas mergeadas (T-001 a T-009). Pendientes T-010 a T-015; T-016 fue mantenimiento aparte. No declarar P0 cerrada hasta completar sus criterios y resolver los hallazgos P0 abiertos · ver [ROADMAP](ROADMAP.md)
 
 ## Foco
-- **PR abierto de cierre documental:** `docs/T-009-closeout` · [PR #14](https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/pull/14), pendiente del dueño. #13 confirmado MERGED en development (`dc27563`); ninguna implementación nueva iniciada.
+- **Implementación en curso:** T-010 en `ci/T-010-ci-workflow`, PR draft pendiente. #13/#14 mergeados; gate de inicio verde.
 - **Próximo paso / prompt:** ver la tarjeta **▶ Próxima acción** al inicio de este archivo y la cola de [BACKLOG](BACKLOG.md).
 
 - **Hallazgo fuera de alcance:** cascada JPA de `Property.user` elimina al OWNER al borrar propiedad; registrado en Backlog P0, sin cambios al modelo de datos en T-008.

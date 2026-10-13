@@ -1,5 +1,5 @@
 # T-010 · Agregar CI (verify por parte) y Dependabot
-- Estado: Lista (primera de la cola; T-002/T-005 y T-009 mergeadas; iniciar después de integrar el cierre documental #14) · Prioridad: P0 · Esfuerzo: S · Ejecuta: 🧠 modelo de frontera
+- Estado: En curso · Prioridad: P0 · Esfuerzo: S · Ejecuta: 🧠 modelo de frontera
 - Fase: P0 Estabilizar
 - Rama: `ci/T-010-ci-workflow` (crearla desde `development` actualizado antes del primer commit) · Depende de: T-005 (y T-002 para el reporte de cobertura) · Spec/ADR: —
 - Revisa: 🧠 modelo de frontera (sesión nueva) + 👤
@@ -67,7 +67,7 @@ Versiones mayores vigentes al 2026-10-10 (`git ls-remote --tags`); volver a cheq
 ## Notas de implementación
 - Preparación 2026-10-13: #13 integrado con squash `dc27563`; línea de base de revisión verde (118 tests back/6 front). El cierre #14 no implementa CI. Al iniciar, revalidar PR abiertos, development y gate según el protocolo.
 - Cobertura actual: verify.sh --server exige JaCoCo; verify.sh --client corre lint/build/tests y no mide v8. Para exigir el umbral del front en CI, agregar un paso explícito `npm run test:coverage` desde frontend/airbnb_clone y conservar 1 %. Documentar en el PR qué pasos verifican cada umbral; no confundir la suite verde con la cobertura comprobada.
-- Hecho: … · Pendiente: … · Próximo paso: …
+- Inicio 2026-10-13: sin PR abiertos, árbol limpio y sin cambios heredados. #13/#14 MERGED; development actualizado a `6c71f89`. Línea de base completa verde: 121 s, 118 tests back/6 front, cobertura JaCoCo OK. Rama exacta `ci/T-010-ci-workflow` creada antes del primer commit. Pendiente: abrir draft, implementar workflow, comprobar jobs y test roto, agregar Dependabot tras CI verde. Próximo comando: `gh pr create --draft --base development`.
 
 ## Resultado
 - PR: #N · Qué cambió: … · Pendientes → …
