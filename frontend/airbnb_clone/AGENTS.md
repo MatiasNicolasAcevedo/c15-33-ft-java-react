@@ -5,7 +5,7 @@ Solo lo específico del front. Lo general está en el [AGENTS.md raíz](../../AG
 ## Comandos (desde `frontend/airbnb_clone/`)
 
 - `npm ci` · `npm run dev` (http://localhost:5173) · `npm run build` · `npm run lint` · gate: `../../scripts/verify.sh --client`.
-- Tests: no hay hasta T-009 (después: `npx vitest run <archivo>`).
+- Tests: `npm test` · cobertura v8 y umbral: `npm run test:coverage` · un archivo: `npx vitest run src/components/shared/HostCardItem/HostCardItem.test.jsx`.
 - Config: `.env` (copia de `.env.example`), variables `VITE_*`. No la leas ni la commitees.
 
 ## Convenciones actuales
@@ -17,6 +17,7 @@ Solo lo específico del front. Lo general está en el [AGENTS.md raíz](../../AG
 - Estilos: Tailwind en `className` + componentes de `@material-tailwind/react`; íconos FontAwesome.
 - Indentación mayormente 2 espacios (hay archivos con 4: respetá el del archivo que tocás).
 - Referencia de componente: `components/shared/HostCardItem/HostCardItem.jsx` (simple) y `components/shared/CardContainer/CardContainer.jsx` (con datos de la API).
+- Referencias de tests: `components/shared/HostCardItem/HostCardItem.test.jsx` (RTL) y `services/apiRequests.test.js` (MSW). Setup y handlers en `src/test/`; importá las funciones desde `vitest`, sin globals. Ver [TESTING](../../docs/TESTING.md) §3/§5.
 
 ## Cuidado
 

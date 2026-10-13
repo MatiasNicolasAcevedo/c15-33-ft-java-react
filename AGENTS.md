@@ -47,7 +47,7 @@ Setup completo: ver [README](README.md) → "Levantar el proyecto en local" (no 
 | Desarrollo (DB + back + front) | `./scripts/dev.sh` (`Ctrl+C` corta todo; `--down` apaga la DB) |
 | Usuario demo | `./scripts/seed-demo.sh` → `demo-owner@clonair.local` / `Demo1234!` |
 | Un test del back | `cd backend && ./mvnw -q test -Dtest='Clase#metodo'` (Docker corriendo para integración; sin DB de compose ni config manual) |
-| Un test del front | desde T-009: `cd frontend/airbnb_clone && npx vitest run <archivo>` |
+| Un test del front | `cd frontend/airbnb_clone && npx vitest run src/components/shared/HostCardItem/HostCardItem.test.jsx` |
 | E2E | no existe todavía (T-013 crea `scripts/e2e.sh`) |
 
 ## 4. Protocolo de sesión

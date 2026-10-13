@@ -30,8 +30,10 @@ npm run dev
 | Instalar | `npm ci` | usa `package-lock.json` |
 | Desarrollo | `npm run dev` | http://localhost:5173 |
 | Build | `npm run build` | sale en `dist/` (~7 s) |
-| Lint | `npm run lint` | ⚠️ hoy falla: 93 problemas ([T-005](../../docs/tasks/T-005-frontend-lint.md)) |
-| Tests | — | no hay todavía ([T-009](../../docs/tasks/T-009-frontend-test-infra.md)); un solo test será `npx vitest run <archivo>` |
+| Lint | `npm run lint` | verde desde T-005 |
+| Tests | `npm test` | Vitest + RTL + MSW; no necesita API ni Docker |
+| Cobertura | `npm run test:coverage` | v8; umbral global de líneas 1 %, base 1,65 % (T-009); reporte `coverage/index.html` |
+| Un archivo de tests | `npx vitest run src/components/shared/HostCardItem/HostCardItem.test.jsx` | referencia de componente puro; API mockeada en `src/services/apiRequests.test.js` |
 | Preview del build | `npm run preview` | |
 | Gate del repo | `../../scripts/verify.sh --client` | |
 
@@ -48,3 +50,9 @@ src/
 ```
 
 Convenciones y límites para agentes: [`AGENTS.md`](AGENTS.md).
+
+Los tests fijan `VITE_API_URL=http://localhost:8080` y MSW intercepta las llamadas;
+las peticiones sin handler se rechazan. El setup limpia el DOM, los handlers y el
+storage entre casos, y Vitest restaura los spies. Para agregar tests y mantener el
+umbral, ver [TESTING](../../docs/TESTING.md) §3/§5. La home sigue pendiente de T-011;
+el contrato `images`/`imageUrls` se alinea en T-012.
