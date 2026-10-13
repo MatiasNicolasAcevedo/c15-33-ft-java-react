@@ -1,25 +1,19 @@
 # Estado del proyecto
-_Actualizado: 2026-10-12 · por: 🧠 Frontera (Codex) · sesión: cierre documental de T-008 después del merge_
+_Actualizado: 2026-10-13 · por: 🧠 Frontera (Codex) · sesión: implementación T-009_
 
 ## ▶ Próxima acción
 
 | Campo | Qué sigue |
 |---|---|
-| **Acción** | **Revisar e integrar PR #12**: cierre documental de T-008, ya mergeada en #11 |
-| **Tarea** | [T-008](tasks/T-008-error-handling.md) |
-| **Ejecutor** | **👤 dueño** (revisión del diff documental y merge) |
-| **Rama / PR** | `docs/T-008-closeout` · [PR #12](https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/pull/12) |
-| **Prompt** | «GitHub → PR #12 → revisar el diff documental y, si está correcto, Squash and merge. Después abrir una sesión nueva de 🧠 Frontera — GPT-6.1 Sol con el prompt de T-009 de abajo; revalidar PR abiertos antes de comenzar.» |
+| **Acción** | **Implementar T-009**: infraestructura de tests del front |
+| **Tarea** | [T-009](tasks/T-009-frontend-test-infra.md) · En curso |
+| **Ejecutor** | **🧠 Frontera — GPT-6.1 Sol** |
+| **Rama / PR** | `test/T-009-frontend-test-infra` · PR draft pendiente |
+| **Prompt** | «Leé AGENTS.md, docs/STATUS.md y docs/tasks/T-009-frontend-test-infra.md. Seguí docs/agents/implementer.md para retomar T-009 en test/T-009-frontend-test-infra; conservá la rama y el PR draft. Continuá desde las Notas de implementación; no inicies T-010.» |
 
-### Próxima implementación después de integrar #12
+**Inicio T-009:** árbol limpio, ningún PR abierto; #11 y #12 confirmados MERGED. #12 integrado en `793fa11adab5b229703a432345807f60a762766b`; development actualizado por fast-forward. Línea de base completa verde: 118 tests del back, cobertura OK, lint/build del front OK (todavía sin tests).
 
-**Implementar T-009 · Montar la infraestructura de tests del front · ejecuta: 🧠 Frontera — GPT-6.1 Sol.** Rama prevista: `test/T-009-frontend-test-infra`; PR pendiente, tarea todavía Lista.
-
-```text
-Leé AGENTS.md, docs/STATUS.md, docs/BACKLOG.md y docs/tasks/T-009-frontend-test-infra.md. Seguí docs/agents/implementer.md para implementar T-009 en una sesión nueva de 🧠 Frontera. Verificá git status y los PR abiertos; confirmá que #11 y el cierre documental #12 estén mergeados. Si hay un PR abierto, atendé primero la próxima acción de STATUS y no inicies T-009. Con el árbol limpio y development actualizado, corré la línea de base y creá la rama exacta test/T-009-frontend-test-infra antes del primer commit; abrí su PR en draft. Actualizá STATUS/BACKLOG para reflejar el merge de #12 y el inicio de T-009. Implementá Vitest, React Testing Library, MSW y cobertura v8 con versiones compatibles con Vite 5 y React 18, siguiendo el contrato de la tarea. Conservá el comportamiento actual de la home y del cliente; los arreglos de UI pertenecen a T-011. Verificá npm test, npm run test:coverage, el test individual indicado y scripts/verify.sh; documentá cobertura y umbral, hacé commit y push de todos los cambios propios y dejá el PR listo para revisión independiente. No mergees ni inicies T-010.
-```
-
-**T-008 cerrada:** revisión independiente [APROBADA](https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/pull/11#issuecomment-6129711504) sobre `4eb7e2fed41ea1bc629f4216e4e673ea4977d4ff`; el dueño mergeó [#11](https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/pull/11) con squash `1b8ec829c519b3d84a2c11543738eb8def7bf23b`. Gate de revisión: 118 tests sin fallos, lint/build verdes, cobertura global 82,59 %, PropertyServiceImp 95,07 %; compose healthy y probes OK. La limitación de repetición manual permanece explicitada en la tarea y el veredicto. #12 guarda este cierre y el traspaso; T-009 no iniciada.
+**T-008 cerrada:** revisión independiente [APROBADA](https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/pull/11#issuecomment-6129711504) sobre `4eb7e2fed41ea1bc629f4216e4e673ea4977d4ff`; el dueño mergeó [#11](https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/pull/11) con squash `1b8ec829c519b3d84a2c11543738eb8def7bf23b`. Gate de revisión: 118 tests sin fallos, lint/build verdes, cobertura global 82,59 %, PropertyServiceImp 95,07 %; compose healthy y probes OK. La limitación de repetición manual permanece explicitada en la tarea y el veredicto. #12 guarda este cierre y el traspaso, mergeado por el dueño en `793fa11`; T-009 iniciada.
 
 **T-007 cerrada:** revisión independiente [APROBADA](https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/pull/10#issuecomment-6128981587) sobre `7ce95ad375af3a359203cc50f0980140542ed320`; el dueño mergeó #10 con squash `e1b07c4cf00423302b19199082239d8fda88c330`. Gate completo verde: 77 tests, 95,07 % PropertyServiceImp, 76,20 % global; mutación WIFI/WIFI rechazada. Inicio T-008: árbol limpio y ningún PR abierto.
 
@@ -55,10 +49,10 @@ T-008 aprobada y mergeada en #11; #12 publica el cierre documental. Próxima imp
 | Última auditoría | 2026-10-10 | [inicial](audits/2026-10-10-initial.md) |
 
 ## Fase actual
-P0 Estabilizar · 8/15 tareas mergeadas (T-001 a T-008); T-009 Lista · ver [ROADMAP](ROADMAP.md)
+P0 Estabilizar · 8/15 tareas mergeadas (T-001 a T-008); T-009 En curso · ver [ROADMAP](ROADMAP.md)
 
 ## Foco
-- **Cierre documental pendiente de integración:** `docs/T-008-closeout` · [PR #12](https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/pull/12). T-008 ya cerrada en #11; revisar/mergear este mantenimiento antes de implementar T-009.
+- **Implementación activa:** T-009 · `test/T-009-frontend-test-infra` · PR draft pendiente. #12 mergeado; línea de base completa verde.
 - **Próximo paso / prompt:** ver la tarjeta **▶ Próxima acción** al inicio de este archivo y la cola de [BACKLOG](BACKLOG.md).
 
 - **Hallazgo fuera de alcance:** cascada JPA de `Property.user` elimina al OWNER al borrar propiedad; registrado en Backlog P0, sin cambios al modelo de datos en T-008.

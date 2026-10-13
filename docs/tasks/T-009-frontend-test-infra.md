@@ -1,5 +1,5 @@
 # T-009 · Montar la infraestructura de tests del front
-- Estado: Lista · Prioridad: P0 · Esfuerzo: M · Ejecuta: 🧠 modelo de frontera
+- Estado: En curso · Prioridad: P0 · Esfuerzo: M · Ejecuta: 🧠 modelo de frontera
 - Fase: P0 Estabilizar
 - Rama: `test/T-009-frontend-test-infra` (crearla desde `development` actualizado antes del primer commit) · Depende de: T-004, T-005 · Spec/ADR: —
 - Revisa: 🧠 modelo de frontera (sesión nueva) + 👤
@@ -29,7 +29,9 @@
 - [ ] `docs/TESTING.md` §3 apunta a las referencias reales
 
 ## Notas de implementación
-- Hecho: … · Pendiente: … · Próximo paso: …
+- Hecho: #11/#12 mergeados confirmados, árbol limpio, development actualizado a `793fa11`; línea de base completa verde (118 tests back, cobertura OK, lint/build front OK). Rama exacta creada antes del primer commit.
+- Pendiente: PR draft, dependencias, configuración, referencias, cobertura y gate final.
+- Próximo paso: abrir PR draft e implementar el contrato de T-009. No modificar UI ni cliente de producción.
 
 ## Resultado
 - PR: #N · Qué cambió: … · Tests agregados: … · Cobertura: …% · Pendientes → …
