@@ -1,6 +1,6 @@
 # Estrategia de testing
 
-Estable. Base de auditoría (2026-10-10): back **1 test, 16,8 % líneas / 1,0 % ramas**. Tras T-008: **118 tests, 82,54 % líneas (520/630), umbral 40 %**; front **sin tests**; E2E **no existe**. Gate: `./scripts/verify.sh`.
+Estable. Base de auditoría (2026-10-10): back **1 test, 16,8 % líneas / 1,0 % ramas**. Tras T-008: **118 tests, 82,54 % líneas (520/630), umbral 40 %**; front T-009: **6 tests, 1,65 % líneas (54/3254), umbral 1 %**; E2E **no existe**. Gate: `./scripts/verify.sh`.
 
 La revisión independiente de T-008 sobre `4eb7e2f` reprodujo el gate con 118 tests y midió 82,59 % (517/626) en su ejecución; PropertyServiceImp conservó 95,07 % (135/142). Se conserva la medición de implementación como referencia y ambas evidencias en la tarea, sin atribuirles el mismo conteo de líneas.
 
@@ -18,7 +18,7 @@ La revisión independiente de T-008 sobre `4eb7e2f` reprodujo el gate con 118 te
 | Front · cobertura | Vitest coverage **v8** | — |
 | E2E | **Playwright** (desktop 1280 + mobile 375), screenshots y traces en fallos | 3–5 smoke de flujos críticos contra `docker compose --profile app` |
 
-Sin H2: la DB real es MySQL y los tests usan la misma vía Testcontainers ([ADR 0001](adr/0001-testcontainers-mysql.md)). Infra del back implementada en T-002; pendientes: front T-009 y E2E T-013.
+Sin H2: la DB real es MySQL y los tests usan la misma vía Testcontainers ([ADR 0001](adr/0001-testcontainers-mysql.md)). Infra del back implementada en T-002, front en T-009; pendiente E2E T-013.
 
 ## 2. Qué testear y qué no
 
@@ -38,7 +38,8 @@ Sin H2: la DB real es MySQL y los tests usan la misma vía Testcontainers ([ADR 
 | Unitario back | [UserServiceImpTest](../backend/src/test/java/com/clonair/back/user/UserServiceImpTest.java) (Mockito puro); [JwtServiceTest](../backend/src/test/java/com/clonair/back/security/jwt/JwtServiceTest.java) para JWT |
 | `@WebMvcTest` | [AuthControllerTest](../backend/src/test/java/com/clonair/back/security/auth/AuthControllerTest.java) (filtros y SecurityConfig reales, servicios mockeados, sin DB) |
 | Integración back | [AuthFlowIntegrationTest](../backend/src/test/java/com/clonair/back/security/auth/AuthFlowIntegrationTest.java) (HTTP real, puerto aleatorio y MySQL 8.4) |
-| Componente front | el que crea T-009 |
+| Componente front | [HostCardItem.test.jsx](../frontend/airbnb_clone/src/components/shared/HostCardItem/HostCardItem.test.jsx) (RTL: título, país, precio, primera imagen y cambio de props) |
+| API front | [apiRequests.test.js](../frontend/airbnb_clone/src/services/apiRequests.test.js) (MSW: catálogo, vacío, HTTP 500 y error de red) |
 | E2E | el que crea T-013 |
 
 T-008 agrega `ErrorHandlingIntegrationTest` (HTTP real: errores, JWT inválidos, health y mutaciones 201/204), `GlobalExceptionHandlerTest` (dominio, MVC y ausencia de detalles internos), `ProblemErrorControllerTest` (despacho del contenedor) y `AuthServiceTest` (duplicados y carrera de registro). El cliente JDK permite leer respuestas POST 401 con `WWW-Authenticate`: el cliente `HttpURLConnection` intenta reintentar en streaming y pierde el cuerpo.
@@ -52,8 +53,42 @@ Mientras una referencia no exista, la tarea que la necesita está bloqueada por 
 **Correr un solo test**
 
 - Back (desde `backend/`, Docker corriendo para integración; sin DB de compose ni configuración manual): `./mvnw -q test -Dtest=BackApplicationTests` · método: `./mvnw -q test -Dtest='BackApplicationTests#contextLoads'`.
-- Front (desde T-009): `npx vitest run src/components/…/Archivo.test.jsx` · por nombre: `npx vitest run -t "texto del it"`.
+- Front (desde `frontend/airbnb_clone/`): `npx vitest run src/components/shared/HostCardItem/HostCardItem.test.jsx` · por nombre: `npx vitest run -t "texto del it"`.
 - E2E (desde T-013): `npx playwright test tests/e2e/archivo.spec.ts`.
+
+**Infra del front (T-009)**
+
+`npm test` ejecuta `vitest run`, sin watch; `npm run test:coverage` agrega cobertura
+v8 y verifica el umbral. `verify.sh --client` ya detecta el script `test` y ejecuta
+la suite después de lint/build; la medición de cobertura se corre por separado.
+
+Vitest y `@vitest/coverage-v8` están fijados en **3.2.7** (ambos iguales, compatibles
+con Vite 5), jsdom **26.1.0**, RTL **16.3.0** con su peer `@testing-library/dom`
+**10.4.2**, jest-dom **6.9.1**, user-event **14.6.8** y MSW **2.15.0**. Se conservan
+Vite **5.0.2** y React/React DOM **18.2.0** del lockfile. Fuentes:
+[configuración de Vitest 3](https://v3.vitest.dev/config/),
+[RTL](https://testing-library.com/docs/react-testing-library/intro/) y
+[MSW en Node](https://mswjs.io/api/setup-server/).
+
+El [setup](../frontend/airbnb_clone/src/test/setup.js) carga jest-dom para Vitest,
+usa jsdom y abre/cierra el servidor MSW. Después de cada caso limpia el DOM y
+ambos storages y restablece los handlers; `restoreMocks` restaura los spies.
+Importá `describe`, `it`, `expect` y `vi` desde `vitest`: no se habilitan globals de
+test en ESLint. Para interacciones, usá `userEvent.setup()` y esperá sus acciones
+con `await`; el componente puro de referencia no tiene controles interactivos.
+
+Los [handlers](../frontend/airbnb_clone/src/test/msw/handlers.js) siguen
+`GET /v1/api/property` → `PropertyResponse[]` y `Location` de `/v3/api-docs`,
+obtenido el 2026-10-13 con configuración de tests y MySQL efímera. `Location.id`
+es string, las categorías son enums y la API devuelve `imageUrls`. La referencia
+pura conserva la prop `images` de HostCardItem: la alineación corresponde a T-012.
+El caso 500 usa `application/problem+json` y conserva `undefined` como resultado
+actual del cliente; los estados de error de la home corresponden a T-011.
+
+`test.env` fija `VITE_API_URL` a `http://localhost:8080` para que los tests sean
+independientes del entorno local. MSW usa `onUnhandledRequest: 'error'`: ningún
+test necesita API, DB ni Docker. Para variar una respuesta en un caso, usá
+`server.use(http.get(...))`; el setup restablece los handlers al terminar.
 
 ## 4. Reglas para todas las tareas
 
@@ -70,7 +105,7 @@ Medir la base, fijar el umbral en ese valor redondeado hacia abajo y **no bajarl
 | Parte | Base | Umbral inicial | Meta |
 |---|---|---|---|
 | Back (línea) | 82,54 % (520/630, T-008; base T-007: 76,20 %) | **40 %** (JaCoCo en `verify`) | ≥ 70–80 % en servicios/dominio |
-| Front (línea) | — | el valor medido en T-009 | ≥ 70 % en lógica (services, hooks) |
+| Front (línea) | **1,65 % (54/3254, T-009)** | **1 %** (v8 en `npm run test:coverage`) | ≥ 70 % en lógica (services, hooks) |
 
 Medir y comprobar la cobertura del back (desde `backend/`):
 
@@ -80,6 +115,17 @@ Medir y comprobar la cobertura del back (desde `backend/`):
 
 Reporte en `backend/target/site/jacoco/index.html`. JaCoCo 0.8.14 ejecuta `prepare-agent`, `report` y `check` (LINE / COVEREDRATIO / BUNDLE, sin exclusiones) en el ciclo Maven. El gate distingue un fallo de cobertura de un fallo de tests.
 
+Medir el front desde `frontend/airbnb_clone/`: `npm run test:coverage`.
+Reportes ignorados por Git y ESLint en `coverage/index.html` y
+`coverage/coverage-summary.json`. `coverage.include` abarca **todo** `src/**/*.js`
+y `src/**/*.jsx`, incluidos archivos sin tests; solo excluye tests y `src/test/`.
+La base pequeña refleja la SPA todavía sin caracterizar: HostCardItem tiene
+100 % (20/20) y `apiRequests.jsx` 11,34 % (32/282), con getAllProperties cubierto.
+Ramas globales: 7,59 %; funciones: 2,27 %. El umbral global de líneas es
+`floor(1,65) = 1`; no hay umbrales iniciales de ramas, funciones ni statements.
+Se comprobó el rechazo con `npx vitest run --coverage --coverage.thresholds.lines=100`
+(exit 1), sin modificar el umbral guardado, y luego la cobertura volvió a pasar.
+
 ## 6. Opcional
 
 Mutation testing puntual en auditorías: PIT (`pitest-maven`) sobre `property/` y `security/`; Stryker en `services/`.
@@ -87,6 +133,6 @@ Mutation testing puntual en auditorías: PIT (`pitest-maven`) sobre `property/` 
 ## Roadmap de testing (antes de cualquier migración)
 
 1. ✅ T-002 · infra back: JaCoCo con umbral, Testcontainers, sin config manual, primer test de integración y de `@WebMvcTest`.
-2. 🧠 T-009 · infra front: Vitest + RTL + MSW + cobertura (con Vite ya existente, no hace falta migrar de CRA).
+2. ✅ T-009 · infra front: Vitest + RTL + MSW + cobertura v8; sin migrar Vite ni React.
 3. 🧠 T-013 · infra E2E: Playwright + `scripts/e2e.sh` + job de CI.
 4. 🤖 Caracterización: T-007 (propiedades) y una tarea por flujo crítico sin test (ver auditoría → Testing).
