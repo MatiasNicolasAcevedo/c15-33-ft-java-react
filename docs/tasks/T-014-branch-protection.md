@@ -38,3 +38,9 @@ git branch -r --merged origin/development | grep -vE 'origin/(development|HEAD)'
 
 ## Resultado
 - Fecha: … · Notas: …
+
+## Evidencia de CI para configurar los checks (T-010)
+- Workflow `CI`, PR [#15](https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/pull/15), rama `ci/T-010-ci-workflow`. Los nombres exactos que el dueño debe requerir son **`server`** y **`client`**, con GitHub Actions como origen, además del `conventional-title` existente. El job `server` exige JaCoCo 40 % mediante `verify.sh --server`; `client` ejecuta la suite con `verify.sh --client` y exige v8 1 % con un paso separado `npm run test:coverage`.
+- Primera ejecución [38407632151](https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/actions/runs/38407632151) verde en ambos jobs sobre `d57b213`: 118 tests back con JDK 17; 6 tests front con Node 24, cobertura 1,65 %. Reportes y logs publicados como `server-reports` y `client-reports`.
+- Prueba negativa [38408053751](https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/actions/runs/38408053751) sobre `d307534`: `client` rechaza una aserción de precio intencionalmente incorrecta, y los logs se suben aun con el test rojo. Se revierte antes del cierre de T-010; ver su tarea para el run final.
+- Después del merge de T-010, abrir Settings → Rules → Rulesets → `protect-development` → Require status checks to pass, agregar **`server`** y **`client`** y exigir la rama actualizada. Registrar aquí evidencia de la configuración; este PR no modifica el ruleset ni da T-014 por hecha. E2E se agrega en T-013.
