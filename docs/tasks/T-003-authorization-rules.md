@@ -1,5 +1,5 @@
 # T-003 · Corregir la autorización: roles en el registro, usuarios solo ADMIN, catálogo público y CORS
-- Estado: Hecho (revisión independiente APROBADA; merge pendiente) · Prioridad: P0 · Esfuerzo: M · Ejecuta: 🧠 modelo de frontera
+- Estado: Hecho (revisión independiente APROBADA; PR #6 mergeado) · Prioridad: P0 · Esfuerzo: M · Ejecuta: 🧠 modelo de frontera
 - Fase: P0 Estabilizar
 - Rama: `fix/T-003-authorization-rules` (crearla desde `development` actualizado antes del primer commit) · Depende de: T-002 · Spec/ADR: [0003](../adr/0003-jwt-stateless-auth.md)
 - Revisa: 🧠 modelo de frontera (sesión nueva) + 👤
@@ -51,12 +51,12 @@ Solo USER/OWNER se auto-registran; listar y borrar usuarios requiere ADMIN; el c
 - Revisión independiente: [APROBADO, sin bloqueantes](https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/pull/6#issuecomment-6105109999), sobre `0625d79`: gate reproducido con 57 tests, 0 fallos/errores/skips y cobertura 56,48 %. Probes curl en API/DB efímeras (:18086): ADMIN 403 sin persistir, listado/borrado USER 403 y víctima conservada, ADMIN 200 con borrado efectivo, catálogo anónimo 200, CORS local permitido/evil rechazado. Entorno de revisión limpiado; stack existente conservado.
 - Cambios documentales previos: inicialmente preservados en el working tree y excluidos de los commits del fix. El dueño autorizó explícitamente incorporarlos al PR #6 antes de T-004: cierres T-001/T-002, desbloqueo T-015 y reglas de prompts Lite. Se agrega además la regla de cierre en AGENTS y protocolos: inventario, diff revisado, rutas explícitas, documentación antes del último commit, commit/push, comprobación del árbol limpio y resolución de heredados antes de otra tarea.
 - Cierre adicional: solo documentación, sin cambios de código, tests, dependencias, configuración ejecutable ni umbrales. Validación: diff y enlaces revisados, git diff --check y prompts idénticos en STATUS/BACKLOG. No se repite el gate funcional ya verificado porque el código ejecutable conserva el árbol de `0625d79`; commit de cierre identificable por su mensaje `docs(agents): publish pending records and require clean handoffs`, con Refs: T-003.
-- Pendiente: merge del dueño. Sin bloqueos técnicos; lint conocido → T-005, códigos de error → T-008, contrato de imágenes → T-012.
-- Próximo paso: GitHub → PR #6 → Squash and merge y borrar rama; registrar el squash y activar el prompt preparado de T-004 en STATUS/BACKLOG. T-004 no se inicia hasta el merge.
+- Cierre confirmado en la revisión documental del 2026-10-13: PR #6 MERGED con squash `8691bd48f1f9ea3b2e31363195b854fbc437109a`. T-004/T-005/T-008 también integradas; contrato de imágenes pendiente en T-012.
+- Próximo paso vigente: seguir STATUS/BACKLOG; no reabrir esta tarea ni repetir el traspaso histórico a T-004.
 
 ## Resultado
-- PR: [#6](https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/pull/6), APROBADO en revisión independiente; merge pendiente.
+- PR: [#6](https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/pull/6), APROBADO en revisión independiente y mergeado con squash `8691bd4`.
 - Qué cambió: registro sin escalada a ADMIN, administración de usuarios por authority ADMIN, catálogo público solo por GET y CORS con orígenes configurados.
 - Tests agregados: AuthorizationIntegrationTest (20) y CorsConfigTest (6); 57 totales. Cobertura sube de 40,80 % a 56,48 %.
 - Cierre documental autorizado: se incorporan pendientes previos y reglas de cierre con commit/push y árbol limpio; próxima acción sincronizada en STATUS/BACKLOG y prompt completo de T-004 preparado para después del merge.
-- Pendientes: merge 👤; T-004 espera. No se inicia otra tarea.
+- Pendientes de esta tarea: ninguno. Próxima acción vigente en STATUS/BACKLOG.

@@ -1,6 +1,6 @@
 # T-016 · Aclarar ejecutores, compactación y traspasos de agentes
 
-- Estado: En revisión · Prioridad: P0 · Esfuerzo: S · Ejecuta: 🧠 modelo de frontera
+- Estado: Hecha (PR #3 mergeado; mantenimiento fuera de las 15 tareas P0) · Prioridad: P0 · Esfuerzo: S · Ejecuta: 🧠 modelo de frontera
 - Fase: Mantenimiento documental (fuera de las 15 tareas de P0 Estabilizar)
 - Rama: `docs/T-016-agent-models-context` · Depende de: — · Spec/ADR: —
 - Revisa: 🧠 modelo de frontera (sesión nueva) + 👤 dueño
@@ -52,13 +52,13 @@ Las instrucciones, tareas y tablero distinguen Lite y frontera, permiten retomar
 ## Notas de implementación
 
 - Hecho: correcciones publicadas; rama exacta antes del primer commit; base sin divergencia; PR #3; validación de formato, enlaces locales, nomenclatura y alcance OK (17 archivos Markdown); gate completo ejecutado y resultado registrado.
-- Pendiente: revisión independiente 🧠 y merge del dueño; T-001 sigue sin iniciar.
+- Cierre confirmado en la revisión documental del 2026-10-13: PR #3 MERGED con squash `47debed77e74f64fe3d46a8f7d5e64e725f9a396`; revisión independiente APROBADA registrada en BACKLOG. T-001 a T-009 ya integradas. Sin pendientes de esta tarea.
 - Ejecutor/modelo: 🧠 Codex / GPT-6.1 Sol · Rama: `docs/T-016-agent-models-context` · PR: [#3](https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/pull/3) · Commit de implementación: `75ecb25`.
 - Decisiones: conservar la cola T-001…T-015; registrar este mantenimiento aparte; el dueño revisa/mergea después de la revisión de frontera en otra sesión.
 - Pruebas: `git diff --check origin/development` OK; enlaces locales y búsqueda de nombres/supuestos retirados OK; diff solo Markdown. Gate completo con Git Bash `--login`: server ✅ build ✅ tests (1), JDK 21; client ❌ lint (93 problemas) ✅ build, Node 24.19.0, sin tests hasta T-009; exit 1, 132 s. Coincide con la línea de base registrada: lint pendiente de T-005. No se afirma que el gate completo esté verde.
 - Entorno: la primera invocación sin `--login` no encontró `dirname`; la invocación con `--login` inició correctamente y usó `env.properties.example`. No se modificó configuración real.
-- Próxima acción: en una sesión nueva de frontera, «Leé `AGENTS.md` y seguí `docs/agents/reviewer.md` para el PR #3 (T-016)»; después merge del dueño. Checkpoint de implementación publicado en origin.
+- Próxima acción vigente: seguir STATUS/BACKLOG; el checkpoint y gate de arriba son evidencia histórica de esta tarea, no una ejecución actual ni un bloqueo vigente.
 
 ## Resultado
 
-- PR: [#3](https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/pull/3) · Cambios: documentación de ejecutores, contexto y traspasos · Tests agregados: ninguno · Próxima implementación: T-001, después del merge.
+- PR: [#3](https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/pull/3), mergeado con squash `47debed` · Cambios: documentación de ejecutores, contexto y traspasos · Tests agregados: ninguno · Sin pendientes; próxima acción en STATUS/BACKLOG.

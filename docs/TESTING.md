@@ -4,6 +4,8 @@ Estable. Base de auditoría (2026-10-10): back **1 test, 16,8 % líneas / 1,0 % 
 
 La revisión independiente de T-008 sobre `4eb7e2f` reprodujo el gate con 118 tests y midió 82,59 % (517/626) en su ejecución; PropertyServiceImp conservó 95,07 % (135/142). Se conserva la medición de implementación como referencia y ambas evidencias en la tarea, sin atribuirles el mismo conteo de líneas.
 
+T-009 fue aprobada en revisión independiente sobre `e5de840` y mergeada en #13 (`dc27563`). Se reprodujeron los 6 tests, cobertura 1,65 %, umbral 1 %, rechazo al exigir 100 %, archivo individual y ambos gates. Próxima caracterización de UI: primero T-012 alinea imágenes y actualiza los mocks reales; después T-011 usa ese contrato para probar una home con catálogo no vacío. No agregar images al fixture de la API para ocultar el desalineamiento actual con imageUrls.
+
 ## 1. Pirámide y herramientas
 
 | Capa | Herramientas | Qué cubre |

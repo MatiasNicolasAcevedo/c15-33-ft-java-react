@@ -203,7 +203,9 @@ _Verificado el 2026-10-10 en Ubuntu 24.04 con Java 21.0.12 (y 17.0.20 en contene
 
 ## Tests y calidad
 
-`./scripts/verify.sh` es el gate único (build + lint + tests de ambas partes; `--server` o `--client` para una sola). Estrategia, cobertura y cómo correr un solo test: [`docs/TESTING.md`](docs/TESTING.md). El back tiene 118 tests; los de integración usan MySQL 8.4 efímera vía Testcontainers y puerto HTTP aleatorio. Para verificar el back basta Docker corriendo: `./scripts/verify.sh --server` (o `cd backend && ./mvnw -B clean verify`), sin `env.properties` ni DB de compose. JaCoCo genera el reporte en `backend/target/site/jacoco/index.html` y comprueba un umbral de líneas del 40 % en `verify` (cobertura medida tras T-008: 82,54 %). El front todavía no tiene tests (T-009).
+`./scripts/verify.sh` es el gate único (build + lint + tests de ambas partes; `--server` o `--client` para una sola). Estrategia, cobertura y cómo correr un solo test: [`docs/TESTING.md`](docs/TESTING.md). El back tiene 118 tests; los de integración usan MySQL 8.4 efímera vía Testcontainers y puerto HTTP aleatorio. Para verificar el back basta Docker corriendo: `./scripts/verify.sh --server` (o `cd backend && ./mvnw -B clean verify`), sin `env.properties` ni DB de compose. JaCoCo genera el reporte en `backend/target/site/jacoco/index.html` y comprueba un umbral de líneas del 40 % en `verify` (cobertura medida tras T-008: 82,54 %).
+
+El front tiene 6 tests con Vitest, React Testing Library y MSW desde T-009 (PR #13 mergeado). Desde `frontend/airbnb_clone/`: `npm test` corre la suite; `npm run test:coverage` mide cobertura v8 y comprueba el umbral de líneas del 1 % (base 1,65 %). No necesita API ni Docker. El gate `--client` ejecuta lint/build/tests; la cobertura del front se comprueba por separado. E2E sigue pendiente de T-013.
 
 ## Cómo se trabaja
 

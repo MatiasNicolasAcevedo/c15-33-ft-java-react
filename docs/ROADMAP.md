@@ -2,6 +2,8 @@
 
 Fases en orden. Cada una cierra con un tag `v0.x.0` (ver `CONTRIBUTING.md` → Releases). Detalle de tareas en [BACKLOG](BACKLOG.md).
 
+**Estado al 2026-10-13:** T-001 a T-009 mergeadas (9/15 tareas P0). Primero integrar el cierre documental #14; después T-010 (CI) → T-012 (imágenes) → T-011 (home) → T-013 (E2E), con revisión y merge entre tareas. T-012 precede a T-011 para que su test de catálogo no vacío use el contrato real de imágenes. T-014/T-015 las ejecuta el dueño sin bloquear la cola; protección completa, rotación o constancia de ausencia de deploy y hallazgos P0 resueltos siguen siendo necesarios para salir de la fase. Próxima acción y prompts: STATUS/BACKLOG.
+
 ## P0 · Estabilizar → `v0.1.0`
 **Objetivo:** que funcione, se pueda verificar y sea seguro de cambiar.
 **Criterio de salida (verificable):**

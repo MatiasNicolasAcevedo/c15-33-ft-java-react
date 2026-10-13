@@ -1,5 +1,5 @@
 # T-005 · Dejar `npm run lint` en verde
-- Estado: En curso · Prioridad: P0 · Esfuerzo: S · Ejecuta: 🤖 Junie Lite (Free)
+- Estado: Hecha (PR #8 mergeado, cambios pedidos atendidos) · Prioridad: P0 · Esfuerzo: S · Ejecuta: 🤖 Junie Lite (Free)
 - Fase: P0 Estabilizar
 - Rama: `chore/T-005-frontend-lint` (crearla desde `development` actualizado antes del primer commit) · Depende de: — · Spec/ADR: —
 - Revisa: 🤖 Junie Lite (Free) (chat nuevo)
@@ -45,7 +45,7 @@ Q-1: `npm run lint` falla con 93 problemas (66 `react/prop-types`, 17 `no-unused
 - Archivos modificados: 12 archivos en `frontend/airbnb_clone/` + 3 docs.
 - Pruebas/verify: `verify.sh --client` → ✅ lint ✅ build ⚠️ sin tests (T-009). Segunda iteración (cambios pedidos): lint ✅ build ✅.
 - Bloqueos: —
-- Próximo paso: segunda revisión de PR #8.
+- Cierre confirmado en la revisión documental del 2026-10-13: PR #8 MERGED con squash `9dfe0379bedfbeb9167c1b902dde161d450cd613`. La ausencia de tests anotada arriba describe la ejecución de T-005; T-009 ya agregó 6 tests. Próximo paso vigente en STATUS/BACKLOG.
 
 ## Resultado
-- PR: #8 · Qué cambió: 93 problemas de lint resueltos (66 prop-types desactivados, 17 vars sin uso eliminadas, 1 hasOwnProperty, 2 no-undef, 7 warnings con disable) + cambios pedidos atendidos (Forms.jsx: efecto de registro sin array de dependencias; Test.jsx: `_property` eliminado) · Tests agregados: — · Pendientes: —
+- PR: [#8](https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/pull/8), mergeado con squash `9dfe037` · Qué cambió: 93 problemas de lint resueltos (66 prop-types desactivados, 17 vars sin uso eliminadas, 1 hasOwnProperty, 2 no-undef, 7 warnings con disable) + cambios pedidos atendidos (Forms.jsx: efecto de registro sin array de dependencias; Test.jsx: `_property` eliminado) · Tests agregados: — · Pendientes: —
