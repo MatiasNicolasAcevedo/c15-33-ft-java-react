@@ -5,11 +5,11 @@ _Actualizado: 2026-10-13 · por: 🧠 Frontera (Codex) · sesión: implementaci�
 
 | Campo | Qué sigue |
 |---|---|
-| **Acción** | **Implementar T-009**: infraestructura de tests del front |
-| **Tarea** | [T-009](tasks/T-009-frontend-test-infra.md) · En curso |
-| **Ejecutor** | **🧠 Frontera — GPT-6.1 Sol** |
-| **Rama / PR** | `test/T-009-frontend-test-infra` · PR draft pendiente |
-| **Prompt** | «Leé AGENTS.md, docs/STATUS.md y docs/tasks/T-009-frontend-test-infra.md. Seguí docs/agents/implementer.md para retomar T-009 en test/T-009-frontend-test-infra; conservá la rama y el PR draft. Continuá desde las Notas de implementación; no inicies T-010.» |
+| **Acción** | **Revisar PR #13**: infraestructura de tests del front |
+| **Tarea** | [T-009](tasks/T-009-frontend-test-infra.md) · Implementada, pendiente de revisión/merge |
+| **Ejecutor** | **🧠 Frontera — GPT-6.1 Sol** (sesión nueva e independiente) |
+| **Rama / PR** | `test/T-009-frontend-test-infra` · [PR #13](https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/pull/13) |
+| **Prompt** | «Leé AGENTS.md, docs/STATUS.md y docs/tasks/T-009-frontend-test-infra.md. Seguí docs/agents/reviewer.md para revisar el PR #13 (T-009), rama test/T-009-frontend-test-infra, en una sesión nueva de 🧠 Frontera. Verificá el HEAD publicado, los 6 tests, la cobertura v8 global 1,65 % con umbral de líneas 1 %, el rechazo del umbral, el test individual y verify.sh. Confirmá que no cambió el comportamiento de la home ni del cliente. No mergees ni inicies T-010.» |
 
 **Inicio T-009:** árbol limpio, ningún PR abierto; #11 y #12 confirmados MERGED. #12 integrado en `793fa11adab5b229703a432345807f60a762766b`; development actualizado por fast-forward. Línea de base completa verde: 118 tests del back, cobertura OK, lint/build del front OK (todavía sin tests).
 
@@ -27,32 +27,32 @@ _Actualizado: 2026-10-13 · por: 🧠 Frontera (Codex) · sesión: implementaci�
 
 **T-001 cerrada:** [PR #4](https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/pull/4) aprobado sin bloqueantes en [revisión independiente](https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/pull/4#issuecomment-6104606817) y mergeado por el dueño con squash (`63e5bc2`). Revisión: server build y 25 tests OK, cobertura 23,86 %, arranque sin secreto rechazado, compose y login demo OK, JWT HS256 de 86400 s; client build OK, mismos 93 problemas de lint pendientes de T-005. T-015 queda lista para el dueño, sin bloquear la cola.
 
-**Ejecutor actual de la cola:** T-008 está mergeada; T-009 y T-010 corresponden a 🧠 Frontera. T-011 vuelve a 🤖 Junie Lite (Free) después de T-009. Entre tareas, primero revisión y merge del PR anterior; luego sesión nueva. Revalidá los PR abiertos al iniciar cada sesión.
+**Ejecutor actual de la cola:** revisión independiente de T-009 por 🧠 Frontera en sesión nueva. T-010 espera el merge de #13. T-011 vuelve a 🤖 Junie Lite (Free) después de integrar T-009. Entre tareas, primero revisión y merge del PR anterior; luego sesión nueva. Revalidá los PR abiertos al iniciar cada sesión.
 
 **Prompt para Lite:** cuando la próxima acción corresponda a Junie Lite, el traspaso debe incluir un bloque `text` listo para copiar y pegar en Air, con tarea/archivo, protocolo y rama/PR si existen; el mismo prompt queda en esta tarjeta y en `BACKLOG.md`. Ver [AGENTS.md → Traspasos](../AGENTS.md#1-proyecto-mapa-y-ejecutores).
 
 **Compactar y continuar:** solo durante el mismo trabajo largo, en un corte seguro y después de guardar las notas + commit + push. Si la interfaz ofrece compactación, usala y retomá **la misma tarea, rama y PR**. Para Lite, guardá el checkpoint y abrí otro chat. El procedimiento y prompt están en [AGENTS.md → Gestión de contexto](../AGENTS.md#5-gestión-de-contexto).
 
 ## En una línea
-T-008 aprobada y mergeada en #11; #12 publica el cierre documental. Próxima implementación: T-009, tras integrar #12, en una sesión nueva.
+T-008 y su cierre #12 mergeados; T-009 implementada en #13 con gate verde. Próxima acción: revisión independiente de #13 en una sesión nueva de 🧠; T-010 espera el merge del dueño.
 
 ## Salud
 | Check | Estado | Nota |
 |---|---|---|
-| verify.sh | ✅ server + client | Revisión T-008: 118 tests sin fallos/errores/skips; lint/build client ✅; cobertura global 82,59 %, PropertyServiceImp 95,07 %. El cierre #12 solo modifica Markdown |
+| verify.sh | ✅ server + client | T-009: gate completo ✅ (97 s); 118 tests back, 6 tests front; lint/build client ✅. `--client` también ✅ (14 s); `npm test`, cobertura y archivo individual ✅ |
 | CI en development | sin CI de build/tests | → T-010, Lista después de T-009; dependencias T-002/T-005 satisfechas. Check de título existente |
 | Levantar en local (README) | ✅ verificado 2026-10-12 | T-008: compose build/wait OK; server/db healthy; health público UP, probes curl y registro/login desde front OK |
-| Cobertura back / front | 82,59 % revisión / sin tests | T-008: 118 tests (41 nuevos), 517/626 líneas en revisión; implementación: 82,54 % (520/630). PropertyServiceImp 95,07 %; umbral 40 % conservado; front → T-009 |
+| Cobertura back / front | 82,59 % / 1,65 % | Gate T-009: back 517/626 líneas, umbral 40 %; front 54/3254 líneas, umbral 1 % (floor de la base). Rechazo de cobertura al exigir 100 % verificado; HostCardItem 100 % |
 | E2E smoke | no existe | → T-013 |
 | Dependencias vulnerables | npm: 16 altas, 8 moderadas | → Backlog P1 |
 | Seguridad 🔴 abierta | rotación pendiente; T-003 mergeada | Registro como ADMIN y listado/borrado por USER corregidos en PR #6. T-015: dueño confirma deploy y rota el secreto histórico si corresponde |
 | Última auditoría | 2026-10-10 | [inicial](audits/2026-10-10-initial.md) |
 
 ## Fase actual
-P0 Estabilizar · 8/15 tareas mergeadas (T-001 a T-008); T-009 En curso · ver [ROADMAP](ROADMAP.md)
+P0 Estabilizar · 8/15 tareas mergeadas (T-001 a T-008); T-009 implementada, PR #13 pendiente de revisión/merge · ver [ROADMAP](ROADMAP.md)
 
 ## Foco
-- **Implementación activa:** T-009 · `test/T-009-frontend-test-infra` · PR draft pendiente. #12 mergeado; línea de base completa verde.
+- **PR abierto para revisión independiente:** T-009 · `test/T-009-frontend-test-infra` · [PR #13](https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/pull/13). #12 mergeado; línea de base y gate final completos verdes. T-010 espera el merge del dueño.
 - **Próximo paso / prompt:** ver la tarjeta **▶ Próxima acción** al inicio de este archivo y la cola de [BACKLOG](BACKLOG.md).
 
 - **Hallazgo fuera de alcance:** cascada JPA de `Property.user` elimina al OWNER al borrar propiedad; registrado en Backlog P0, sin cambios al modelo de datos en T-008.
@@ -67,8 +67,8 @@ P0 Estabilizar · 8/15 tareas mergeadas (T-001 a T-008); T-009 En curso · ver [
   `git switch development && git pull && git tag audit/2026-10-10 && git push origin audit/2026-10-10`
 
 ## Últimas sesiones (máx. 5; las anteriores → archive/log/AAAA-MM.md)
+- 2026-10-13 · 🧠 Frontera (Codex) · T-009 implementada en PR #13: Vitest 3.2.7, RTL, MSW y cobertura v8. 6 tests, 1,65 % global / umbral 1 %, rechazo a 100 % comprobado; test individual y gates completo/client verdes (118 back). #11/#12 mergeados confirmados; árbol inicial limpio, base 793fa11. Siguiente: revisión independiente de #13 en sesión nueva de 🧠; T-010 espera merge.
 - 2026-10-12 · 🧠 Frontera (Codex) · T-008 implementada, revisada y mergeada por el dueño en #11 (squash 1b8ec82). Gate de revisión: 118 tests, lint/build ✅, cobertura 82,59 %, compose/probes OK; límites manuales en la tarea. Cierre documental autorizado en #12, desde base 1b8ec82 y árbol limpio; diff/enlaces/cola verificados, sin repetir tests por cambios solo Markdown. Próximo: dueño integra #12, después sesión nueva de 🧠 para T-009.
 - 2026-10-12 · 🤖 Junie Lite (Free) · T-007: cambios pedidos del PR #10 atendidos. Tests de update y save corregidos. 77 tests OK, verify.sh --server ✅, cobertura 95,07 % PropertyServiceImp. [PR #10](https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/pull/10) (ready). Nueva revisión por 🧠.
 - 2026-10-12 · 🤖 Junie Lite (Free) · T-007 completada: 18 tests de caracterización de PropertyServiceImp (94.3 % cobertura). 77 tests OK, verify.sh --server ✅. [PR #10](https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/pull/10) creado (draft). Revisión por 🧠.
 - 2026-10-12 · 🤖 Junie Lite (Free) · Documentación corregida: T-006 (PR #9) ya estaba mergeada pero no reflejada como cerrada en STATUS.md y BACKLOG.md. T-007 establecida como próxima acción.
-- 2026-10-12 · 🤖 Junie Lite (Free) · T-006 completada: `@DeleteMapping("/{id}")` en PropertyController.java + PropertyControllerTest.java (2 tests). verify.sh --server ✅ 57 tests OK, cobertura OK. PR #9 mergeado.
