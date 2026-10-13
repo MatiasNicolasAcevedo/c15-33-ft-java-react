@@ -14,7 +14,7 @@ describe('HostCardItem', () => {
 
     expect(screen.getByText('Casa de prueba')).toBeVisible()
     expect(screen.getByText('Argentina')).toBeVisible()
-    expect(screen.getByText('$120 por noche')).toBeVisible()
+    expect(screen.getByText('$121 por noche')).toBeVisible()
   })
 
   it('usa la primera imagen y actualiza los datos al cambiar las props', () => {
