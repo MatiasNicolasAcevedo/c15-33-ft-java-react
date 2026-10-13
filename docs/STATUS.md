@@ -1,17 +1,19 @@
 # Estado del proyecto
-_Actualizado: 2026-10-13 · por: 🧠 Frontera (Codex) · sesión: implementación T-010_
+_Actualizado: 2026-10-13 · por: 🧠 Frontera (Codex) · sesión: cierre de implementación T-010_
 
 ## ▶ Próxima acción
 
 | Campo | Qué sigue |
 |---|---|
-| **Acción** | **Implementar T-010**: CI y Dependabot |
-| **Tarea** | [T-010](tasks/T-010-ci-workflow.md) · En curso |
-| **Ejecutor** | **🧠 Frontera — GPT-6.1 Sol** |
-| **Rama / PR** | `ci/T-010-ci-workflow` · [PR #15](https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/pull/15) (draft) |
-| **Prompt** | «Leé AGENTS.md, docs/STATUS.md y docs/tasks/T-010-ci-workflow.md. Seguí docs/agents/implementer.md retomando T-010 en ci/T-010-ci-workflow; continuar en el PR #15 draft con CI, pruebas de jobs y test roto. No iniciar T-012.» |
+| **Acción** | **Revisar PR #15**: CI y Dependabot; merge del dueño después del veredicto |
+| **Tarea** | [T-010](tasks/T-010-ci-workflow.md) · Implementación hecha, revisión pendiente |
+| **Ejecutor** | **🧠 Frontera — GPT-6.1 Sol** (sesión nueva e independiente) |
+| **Rama / PR** | `ci/T-010-ci-workflow` · [PR #15](https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/pull/15) |
+| **Prompt** | «Leé AGENTS.md, docs/STATUS.md, docs/BACKLOG.md y docs/tasks/T-010-ci-workflow.md. Seguí docs/agents/reviewer.md para revisar de forma independiente el PR #15, T-010, rama ci/T-010-ci-workflow, base development. Comprobá el HEAD publicado, los jobs server/client y cobertura, las versiones/SHA de actions, Dependabot y la evidencia del test roto revertido. No mergees ni inicies T-012.» |
 
-**Inicio T-010 (2026-10-13):** árbol limpio, sin cambios heredados ni PR abiertos. #13 y #14 confirmados MERGED; #14 integrado en `6c71f894920f8725c0774a6cfefb88ad22c5aaed`. Development actualizado por fast-forward; gate completo verde (121 s, 118 tests back/6 front, JDK 21/Node 24). Rama exacta creada antes del primer commit. PR #15 abierto en draft. Próximo: comprobar CI; Dependabot se agrega después de observar CI en verde.
+**T-010 implementada:** gate completo final verde (88 s; 118 back/6 front) y v8 separado verde (1,65 %). [CI con Dependabot](https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/actions/runs/38408551205) sobre `a56a618`: server/client SUCCESS; JaCoCo 40 % / v8 1 % intactos, artifacts y logs ocultos comprobados. [Test roto](https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/actions/runs/38408053751) rechazado por client; server verde, logs publicados. Probe `d307534` revertido en `29d7201`; sin diff final de tests. El cierre documental se publica antes de ready y se comprueba CI sobre el HEAD final. Siguiente: revisión de #15 en sesión nueva; T-012 espera su merge. Dueño: agregar **server** y **client** como checks requeridos en [T-014](tasks/T-014-branch-protection.md) después del merge.
+
+**Inicio T-010 (2026-10-13):** árbol limpio, sin cambios heredados ni PR abiertos. #13 y #14 confirmados MERGED; #14 integrado en `6c71f894920f8725c0774a6cfefb88ad22c5aaed`. Development actualizado por fast-forward; gate completo verde (121 s, 118 tests back/6 front, JDK 21/Node 24). Rama exacta creada antes del primer commit. PR #15 abierto en draft al iniciar; Dependabot agregado después del primer CI verde. Implementación cerrada para revisión independiente.
 
 **T-009 cerrada:** revisión independiente [APROBADA](https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/pull/13#issuecomment-6146403632) sobre `e5de84062fc961983bfd78198d77f60044afe9d2`; el dueño mergeó [#13](https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/pull/13) con squash `dc2756330096d406ba0523ab7d9d39724191b97c` el 2026-10-13. Gate completo de revisión verde (95 s: 118 tests back/6 front), npm ci reproducible, client verde (17 s), cobertura v8 1,65 %, umbral 1 % y rechazo al exigir 100 % comprobados. #14 guarda este cierre autorizado y la cola revisada; inicio con árbol limpio y ningún PR abierto, sin cambios heredados.
 
@@ -40,13 +42,13 @@ _Actualizado: 2026-10-13 · por: 🧠 Frontera (Codex) · sesión: implementaci�
 **Compactar y continuar:** solo durante el mismo trabajo largo, en un corte seguro y después de guardar las notas + commit + push. Si la interfaz ofrece compactación, usala y retomá **la misma tarea, rama y PR**. Para Lite, guardá el checkpoint y abrí otro chat. El procedimiento y prompt están en [AGENTS.md → Gestión de contexto](../AGENTS.md#5-gestión-de-contexto).
 
 ## En una línea
-9/15 tareas P0 mergeadas (T-001 a T-009). T-010 en implementación; #14 mergeado (`6c71f89`). Camino: CI → imágenes → estados de la home → E2E; protección y rotación pendientes del dueño.
+9/15 tareas P0 mergeadas (T-001 a T-009). T-010 implementada en PR #15, pendiente de revisión/merge; #14 mergeado (`6c71f89`). Camino: CI → imágenes → estados de la home → E2E; protección y rotación pendientes del dueño.
 
 ## Salud
 | Check | Estado | Nota |
 |---|---|---|
-| verify.sh | ✅ server + client | Revisión T-009: gate completo ✅ (95 s), 118 tests back/6 front; npm ci reproducible; --client ✅ (17 s), cobertura y archivo individual ✅. Cierre #14 solo Markdown: diff/enlaces/estados verificados, sin repetir el gate |
-| CI en development | sin CI de build/tests | → T-010, primera Lista tras #14; dependencias satisfechas. Check de título existente. Cobertura front se comprueba por separado con test:coverage |
+| verify.sh | ✅ server + client | T-010: línea de base 121 s, gate final 88 s; 118 tests back/6 front, lint/build/tests y JaCoCo verdes; v8 separado verde |
+| CI | ✅ en PR #15; development espera merge | [Run con Dependabot](https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/actions/runs/38408551205): server/client verdes; cobertura front separada, artifacts publicados; test roto rechazado y revertido |
 | Levantar en local (README) | ✅ verificado 2026-10-12 | T-008: compose build/wait OK; server/db healthy; health público UP, probes curl y registro/login desde front OK |
 | Cobertura back / front | 82,59 % / 1,65 % | Gate T-009: back 517/626 líneas, umbral 40 %; front 54/3254 líneas, umbral 1 % (floor de la base). Rechazo de cobertura al exigir 100 % verificado; HostCardItem 100 % |
 | E2E smoke | no existe | → T-013 |
@@ -58,7 +60,7 @@ _Actualizado: 2026-10-13 · por: 🧠 Frontera (Codex) · sesión: implementaci�
 P0 Estabilizar · 9/15 tareas mergeadas (T-001 a T-009). Pendientes T-010 a T-015; T-016 fue mantenimiento aparte. No declarar P0 cerrada hasta completar sus criterios y resolver los hallazgos P0 abiertos · ver [ROADMAP](ROADMAP.md)
 
 ## Foco
-- **Implementación en curso:** T-010 en `ci/T-010-ci-workflow`, [PR #15](https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/pull/15) (draft). #13/#14 mergeados; gate de inicio verde.
+- **PR abierto para revisión independiente:** T-010 en `ci/T-010-ci-workflow`, [PR #15](https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/pull/15). #13/#14 mergeados; gates local/remoto verdes, test roto rechazado y revertido. Sin otra implementación iniciada.
 - **Próximo paso / prompt:** ver la tarjeta **▶ Próxima acción** al inicio de este archivo y la cola de [BACKLOG](BACKLOG.md).
 
 - **Hallazgo fuera de alcance:** cascada JPA de `Property.user` elimina al OWNER al borrar propiedad; registrado en Backlog P0, sin cambios al modelo de datos en T-008.
@@ -73,8 +75,8 @@ P0 Estabilizar · 9/15 tareas mergeadas (T-001 a T-009). Pendientes T-010 a T-01
   `git switch development && git pull && git tag audit/2026-10-10 && git push origin audit/2026-10-10`
 
 ## Últimas sesiones (máx. 5; las anteriores → archive/log/AAAA-MM.md)
+- 2026-10-13 · 🧠 Frontera (Codex) · T-010 implementada en [PR #15](https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/pull/15) desde development `6c71f89`, árbol inicial limpio y sin PR abiertos. Gate base 121 s/final 88 s, 118 back/6 front, v8 1,65 %. CI server/client verde, prueba d307534 rechazada y revertida en 29d7201; actions SHA vigentes, Dependabot tras CI verde y badge. Documentación/checks T-014 actualizados. Próximo: revisión independiente de frontera en sesión nueva; no mergear ni iniciar T-012.
 - 2026-10-13 · 🧠 Frontera (Codex) · T-009 implementada, revisada APROBADA y mergeada por el dueño en #13 (`dc27563`). 6 tests, 1,65 % global / umbral 1 %, rechazo a 100 % y gates completo/client verdes (118 back). Cierre autorizado en #14, base dc27563 y árbol inicial limpio; revisión de estados y dependencias: T-012 Lista, T-011 espera T-012, T-013 espera los tres merges. Siguiente: integrar #14, luego T-010 en sesión nueva. Diff solo Markdown, sin repetir pruebas funcionales ni iniciar otra tarea.
 - 2026-10-12 · 🧠 Frontera (Codex) · T-008 implementada, revisada y mergeada por el dueño en #11 (squash 1b8ec82). Gate de revisión: 118 tests, lint/build ✅, cobertura 82,59 %, compose/probes OK; límites manuales en la tarea. Cierre documental autorizado en #12, desde base 1b8ec82 y árbol limpio; diff/enlaces/cola verificados, sin repetir tests por cambios solo Markdown. Próximo: dueño integra #12, después sesión nueva de 🧠 para T-009.
 - 2026-10-12 · 🤖 Junie Lite (Free) · T-007: cambios pedidos del PR #10 atendidos. Tests de update y save corregidos. 77 tests OK, verify.sh --server ✅, cobertura 95,07 % PropertyServiceImp. [PR #10](https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/pull/10) (ready). Nueva revisión por 🧠.
 - 2026-10-12 · 🤖 Junie Lite (Free) · T-007 completada: 18 tests de caracterización de PropertyServiceImp (94.3 % cobertura). 77 tests OK, verify.sh --server ✅. [PR #10](https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/pull/10) creado (draft). Revisión por 🧠.
-- 2026-10-12 · 🤖 Junie Lite (Free) · Documentación corregida: T-006 (PR #9) ya estaba mergeada pero no reflejada como cerrada en STATUS.md y BACKLOG.md. T-007 establecida como próxima acción.
