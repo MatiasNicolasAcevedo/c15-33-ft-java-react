@@ -3,12 +3,12 @@
 <p align="center">Plataforma para publicar, buscar y reservar alojamientos · Spring Boot + React · proyecto de equipo de No Country (c15-33-ft-java-react)</p>
 
 <p align="center">
+  <a href="https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/actions/workflows/ci.yml?query=branch%3Adevelopment"><img alt="CI" src="https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/actions/workflows/ci.yml/badge.svg?branch=development"></a>
   <img alt="Estado" src="https://img.shields.io/badge/estado-en%20retoma-orange">
   <img alt="Java" src="https://img.shields.io/badge/Java-17-blue">
   <img alt="Spring Boot" src="https://img.shields.io/badge/Spring%20Boot-3.2-6DB33F">
   <img alt="React" src="https://img.shields.io/badge/React-18-61DAFB">
 </p>
-<!-- Badges de CI y cobertura: se agregan en T-010 (docs/tasks/T-010-ci-workflow.md). -->
 
 <p align="center">
   <img src="https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/assets/109118183/4fe0900f-c101-48cb-b7bd-3a4f9ced4aa2" alt="Pantalla principal del clon de Airbnb" width="686">
