@@ -8,10 +8,10 @@ _Actualizado: 2026-10-13 · por: 🧠 Frontera (Codex) · sesión: implementaci�
 | **Acción** | **Implementar T-010**: CI y Dependabot |
 | **Tarea** | [T-010](tasks/T-010-ci-workflow.md) · En curso |
 | **Ejecutor** | **🧠 Frontera — GPT-6.1 Sol** |
-| **Rama / PR** | `ci/T-010-ci-workflow` · PR draft pendiente |
-| **Prompt** | «Leé AGENTS.md, docs/STATUS.md y docs/tasks/T-010-ci-workflow.md. Seguí docs/agents/implementer.md retomando T-010 en ci/T-010-ci-workflow; abrir su PR draft y continuar con CI, pruebas de jobs y test roto. No iniciar T-012.» |
+| **Rama / PR** | `ci/T-010-ci-workflow` · [PR #15](https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/pull/15) (draft) |
+| **Prompt** | «Leé AGENTS.md, docs/STATUS.md y docs/tasks/T-010-ci-workflow.md. Seguí docs/agents/implementer.md retomando T-010 en ci/T-010-ci-workflow; continuar en el PR #15 draft con CI, pruebas de jobs y test roto. No iniciar T-012.» |
 
-**Inicio T-010 (2026-10-13):** árbol limpio, sin cambios heredados ni PR abiertos. #13 y #14 confirmados MERGED; #14 integrado en `6c71f894920f8725c0774a6cfefb88ad22c5aaed`. Development actualizado por fast-forward; gate completo verde (121 s, 118 tests back/6 front, JDK 21/Node 24). Rama exacta creada antes del primer commit. Próximo: abrir draft e implementar CI; Dependabot se agrega después de observar CI en verde.
+**Inicio T-010 (2026-10-13):** árbol limpio, sin cambios heredados ni PR abiertos. #13 y #14 confirmados MERGED; #14 integrado en `6c71f894920f8725c0774a6cfefb88ad22c5aaed`. Development actualizado por fast-forward; gate completo verde (121 s, 118 tests back/6 front, JDK 21/Node 24). Rama exacta creada antes del primer commit. PR #15 abierto en draft. Próximo: comprobar CI; Dependabot se agrega después de observar CI en verde.
 
 **T-009 cerrada:** revisión independiente [APROBADA](https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/pull/13#issuecomment-6146403632) sobre `e5de84062fc961983bfd78198d77f60044afe9d2`; el dueño mergeó [#13](https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/pull/13) con squash `dc2756330096d406ba0523ab7d9d39724191b97c` el 2026-10-13. Gate completo de revisión verde (95 s: 118 tests back/6 front), npm ci reproducible, client verde (17 s), cobertura v8 1,65 %, umbral 1 % y rechazo al exigir 100 % comprobados. #14 guarda este cierre autorizado y la cola revisada; inicio con árbol limpio y ningún PR abierto, sin cambios heredados.
 
@@ -58,7 +58,7 @@ _Actualizado: 2026-10-13 · por: 🧠 Frontera (Codex) · sesión: implementaci�
 P0 Estabilizar · 9/15 tareas mergeadas (T-001 a T-009). Pendientes T-010 a T-015; T-016 fue mantenimiento aparte. No declarar P0 cerrada hasta completar sus criterios y resolver los hallazgos P0 abiertos · ver [ROADMAP](ROADMAP.md)
 
 ## Foco
-- **Implementación en curso:** T-010 en `ci/T-010-ci-workflow`, PR draft pendiente. #13/#14 mergeados; gate de inicio verde.
+- **Implementación en curso:** T-010 en `ci/T-010-ci-workflow`, [PR #15](https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/pull/15) (draft). #13/#14 mergeados; gate de inicio verde.
 - **Próximo paso / prompt:** ver la tarjeta **▶ Próxima acción** al inicio de este archivo y la cola de [BACKLOG](BACKLOG.md).
 
 - **Hallazgo fuera de alcance:** cascada JPA de `Property.user` elimina al OWNER al borrar propiedad; registrado en Backlog P0, sin cambios al modelo de datos en T-008.

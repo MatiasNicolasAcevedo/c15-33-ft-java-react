@@ -1,8 +1,8 @@
 # Tablero
 
-> **▶ IMPLEMENTAR T-010:** 🧠 Frontera — GPT-6.1 Sol · rama `ci/T-010-ci-workflow` · PR draft pendiente. #13/#14 mergeados; gate completo de inicio verde.
+> **▶ IMPLEMENTAR T-010:** 🧠 Frontera — GPT-6.1 Sol · rama `ci/T-010-ci-workflow` · [PR #15](https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/pull/15) (draft). #13/#14 mergeados; gate completo de inicio verde.
 >
-> **Prompt:** «Leé AGENTS.md, docs/STATUS.md y docs/tasks/T-010-ci-workflow.md. Seguí docs/agents/implementer.md retomando T-010 en ci/T-010-ci-workflow; abrir su PR draft y continuar con CI, pruebas de jobs y test roto. No iniciar T-012.»
+> **Prompt:** «Leé AGENTS.md, docs/STATUS.md y docs/tasks/T-010-ci-workflow.md. Seguí docs/agents/implementer.md retomando T-010 en ci/T-010-ci-workflow; continuar en el PR #15 draft con CI, pruebas de jobs y test roto. No iniciar T-012.»
 
 **Leyenda:** 🤖 **Lite = Junie Lite (Free) en Air** · 🧠 **Frontera = p. ej. GPT-6.1 Sol / Claude Opus 5.5** · 👤 **Dueño**. Las categorías indican quién implementa; el campo **Revisa** de cada tarea puede pedir otro ejecutor.
 
@@ -13,7 +13,7 @@
 > Próximo ID libre: T-017
 
 ## 🔨 En curso
-- T-010 · P0 · S · 🧠 frontera · Agregar CI y Dependabot → [tarea](tasks/T-010-ci-workflow.md) · `ci/T-010-ci-workflow`, PR draft pendiente.
+- T-010 · P0 · S · 🧠 frontera · Agregar CI y Dependabot → [tarea](tasks/T-010-ci-workflow.md) · `ci/T-010-ci-workflow`, [PR #15](https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/pull/15) (draft).
 
 ## ✅ Listas (cola en orden de ejecución, máx. 10)
 - T-012 · P0 · M · 🧠 frontera · Alinear el contrato de imágenes entre front y back → [tarea](tasks/T-012-image-contract.md) · desbloqueada por los merges de T-003/T-004/T-009; segunda en la cola, antes de T-011.
