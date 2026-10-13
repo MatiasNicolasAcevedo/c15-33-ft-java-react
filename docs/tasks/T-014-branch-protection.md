@@ -7,6 +7,8 @@
 ## Por qué
 G-1/G-2: `development` no tiene protección verificable, hay merges sin PR en el historial y ramas muertas (`feat/add-swagger`, ramas de sesiones de agentes ya mergeadas).
 
+**Disponibilidad revisada 2026-10-13:** T-000 está mergeada y conventional-title existe, por lo que el dueño puede aplicar la protección básica y limpiar ramas ahora. Los checks server/client quedan pendientes hasta que T-010 esté mergeada y sus jobs existan; después debe incorporarlos al ruleset. T-013 agregará e2e. No bloquea la cola de implementación, pero la protección completa sigue siendo requisito de salida de P0. No se da por configurada sin evidencia del dueño.
+
 ## Pasos (GitHub web)
 1. **Settings → General → Pull Requests:** dejar tildado solo **Allow squash merging** (destildar merge commits y rebase); en "Default commit message" elegir **Pull request title and description**; tildar **Automatically delete head branches**.
 2. **Settings → Rules → Rulesets → New ruleset → New branch ruleset:**

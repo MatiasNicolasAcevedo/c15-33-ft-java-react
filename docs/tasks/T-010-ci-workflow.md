@@ -1,5 +1,5 @@
 # T-010 · Agregar CI (verify por parte) y Dependabot
-- Estado: Lista (dependencias T-005 y T-002 mergeadas; después de T-009 en la cola) · Prioridad: P0 · Esfuerzo: S · Ejecuta: 🧠 modelo de frontera
+- Estado: Lista (primera de la cola; T-002/T-005 y T-009 mergeadas; iniciar después de integrar el cierre documental #14) · Prioridad: P0 · Esfuerzo: S · Ejecuta: 🧠 modelo de frontera
 - Fase: P0 Estabilizar
 - Rama: `ci/T-010-ci-workflow` (crearla desde `development` actualizado antes del primer commit) · Depende de: T-005 (y T-002 para el reporte de cobertura) · Spec/ADR: —
 - Revisa: 🧠 modelo de frontera (sesión nueva) + 👤
@@ -65,6 +65,8 @@ Versiones mayores vigentes al 2026-10-10 (`git ls-remote --tags`); volver a cheq
 - [ ] En la respuesta final: pedirle al dueño que agregue `server` y `client` como checks requeridos (T-014)
 
 ## Notas de implementación
+- Preparación 2026-10-13: #13 integrado con squash `dc27563`; línea de base de revisión verde (118 tests back/6 front). El cierre #14 no implementa CI. Al iniciar, revalidar PR abiertos, development y gate según el protocolo.
+- Cobertura actual: verify.sh --server exige JaCoCo; verify.sh --client corre lint/build/tests y no mide v8. Para exigir el umbral del front en CI, agregar un paso explícito `npm run test:coverage` desde frontend/airbnb_clone y conservar 1 %. Documentar en el PR qué pasos verifican cada umbral; no confundir la suite verde con la cobertura comprobada.
 - Hecho: … · Pendiente: … · Próximo paso: …
 
 ## Resultado

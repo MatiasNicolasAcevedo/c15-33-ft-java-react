@@ -26,6 +26,8 @@ No hay ninguna prueba de punta a punta; los flujos críticos 1, 3 y 5 (login, al
 - [ ] README y TESTING actualizados
 
 ## Notas de implementación
+- Revisión de dependencias 2026-10-13: T-009 ya mergeada; esta tarea sigue Bloqueada hasta los merges de T-010/T-012/T-011, en ese orden. Solo entonces pasa a la primera de Listas, antes de las tareas del dueño. T-009 no reemplaza ninguna de estas dependencias.
+- Al agregar el job e2e, avisar al dueño para actualizar los checks requeridos de T-014 si su protección ya está activa; no exigir un check antes de que exista.
 - Hecho: … · Pendiente: … · Próximo paso: …
 
 ## Resultado

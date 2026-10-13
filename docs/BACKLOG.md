@@ -1,8 +1,14 @@
 # Tablero
 
-> **▶ REVISAR PR #13 (T-009):** 🧠 Frontera — GPT-6.1 Sol · sesión nueva e independiente · rama `test/T-009-frontend-test-infra` · [PR #13](https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/pull/13). Gate completo y client verdes; #11/#12 mergeados. T-010 espera el merge del dueño.
+> **▶ REVISAR E INTEGRAR PR #14:** 👤 dueño · cierre documental de T-009 · rama `docs/T-009-closeout` · [PR #14](https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/pull/14). #13 mergeado con squash `dc27563`; primero integrar este cierre, después sesión nueva para T-010.
 >
-> **Prompt:** «Leé AGENTS.md, docs/STATUS.md y docs/tasks/T-009-frontend-test-infra.md. Seguí docs/agents/reviewer.md para revisar el PR #13 (T-009), rama test/T-009-frontend-test-infra, en una sesión nueva de 🧠 Frontera. Verificá el HEAD publicado, los 6 tests, la cobertura v8 global 1,65 % con umbral de líneas 1 %, el rechazo del umbral, el test individual y verify.sh. Confirmá que no cambió el comportamiento de la home ni del cliente. No mergees ni inicies T-010.»
+> **Prompt:** «GitHub → PR #14 → revisar el diff documental y, si está correcto, Squash and merge. Registrar el merge y activar la próxima acción Implementar T-010 en STATUS/BACKLOG con el prompt de abajo. No iniciar T-010 mientras #14 siga abierto.»
+
+**Próxima implementación después de integrar #14:** T-010 · 🧠 Frontera — GPT-6.1 Sol · rama prevista `ci/T-010-ci-workflow`, PR pendiente.
+
+```text
+Leé AGENTS.md, docs/STATUS.md, docs/BACKLOG.md y docs/tasks/T-010-ci-workflow.md. Seguí docs/agents/implementer.md para implementar T-010 en una sesión nueva de 🧠 Frontera. Verificá git status y los PR abiertos; confirmá que #13 y el cierre documental #14 estén mergeados. Si hay un PR abierto, atendé primero la próxima acción de STATUS y no inicies T-010. Con el árbol limpio y development actualizado, corré la línea de base y creá la rama exacta ci/T-010-ci-workflow antes del primer commit; abrí su PR en draft. Implementá CI y Dependabot según la tarea, verificando las versiones vigentes de las actions. Conservá los umbrales de cobertura; verify.sh --client ejecuta la suite y npm run test:coverage comprueba el umbral v8 por separado. Comprobá los jobs server/client y el rechazo de un test roto, registrá evidencias y los checks que el dueño debe requerir en T-014. Actualizá tarea/STATUS/BACKLOG, guardá todos los cambios propios con commit y push y dejá el PR listo para revisión independiente. No mergees ni inicies T-012.
+```
 
 **Leyenda:** 🤖 **Lite = Junie Lite (Free) en Air** · 🧠 **Frontera = p. ej. GPT-6.1 Sol / Claude Opus 5.5** · 👤 **Dueño**. Las categorías indican quién implementa; el campo **Revisa** de cada tarea puede pedir otro ejecutor.
 
@@ -13,17 +19,21 @@
 > Próximo ID libre: T-017
 
 ## 🔨 En curso
-Sin implementaciones activas; T-009 implementada en PR #13, pendiente de revisión independiente y merge. No iniciar T-010.
+Sin implementaciones activas; PR #14 de cierre documental pendiente de revisión e integración. T-009 hecha y mergeada; T-010 todavía Lista.
 
 ## ✅ Listas (cola en orden de ejecución, máx. 10)
-- T-010 · P0 · S · 🧠 frontera · Agregar CI (verify por parte) y Dependabot → [tarea](tasks/T-010-ci-workflow.md) · dependencias T-002/T-005 mergeadas; ejecutar después de T-009.
-- T-014 · P0 · S · 👤 dueño · Proteger la rama por defecto y limpiar ramas (no bloquea la cola) → [tarea](tasks/T-014-branch-protection.md)
+- T-010 · P0 · S · 🧠 frontera · Agregar CI (verify por parte) y Dependabot → [tarea](tasks/T-010-ci-workflow.md) · dependencias T-002/T-005 satisfechas; T-009 también mergeada. Primera implementación después de integrar #14.
+- T-012 · P0 · M · 🧠 frontera · Alinear el contrato de imágenes entre front y back → [tarea](tasks/T-012-image-contract.md) · desbloqueada por los merges de T-003/T-004/T-009; segunda en la cola, antes de T-011.
+- T-014 · P0 · S · 👤 dueño · Proteger la rama por defecto y limpiar ramas (no bloquea la cola) → [tarea](tasks/T-014-branch-protection.md) · protección básica disponible; agregar checks server/client después del merge de T-010.
 - T-015 · P0 · S · 👤 dueño · Rotar el secreto JWT en todo entorno que lo haya usado (no bloquea la cola) → [tarea](tasks/T-015-rotate-jwt-secret.md) · desbloqueada por el merge de T-001; confirmar si existe deploy activo.
 
 ## ⛔ Bloqueadas (en el orden en que entrarán a la cola)
-- T-011 · P0 · S · 🤖 Lite · Mostrar estados de carga, error y vacío en la home → [tarea](tasks/T-011-home-error-state.md) · bloqueada por: merge de T-009 (PR #13, tests implementados)
-- T-012 · P0 · M · 🧠 frontera · Alinear el contrato de imágenes entre front y back → [tarea](tasks/T-012-image-contract.md) · bloqueada por: merge de T-009 (PR #13); T-003/T-004 mergeadas.
+- T-011 · P0 · S · 🤖 Lite · Mostrar estados de carga, error y vacío en la home → [tarea](tasks/T-011-home-error-state.md) · bloqueada por: merge de T-012. T-004/T-009 satisfechas; el caso de catálogo no vacío necesita el contrato de imágenes alineado.
 - T-013 · P0 · M · 🧠 frontera · Montar la infraestructura E2E con Playwright → [tarea](tasks/T-013-e2e-infra.md) · bloqueada por: T-010, T-011, T-012
+
+**Orden de implementación revisado:** T-010 (🧠) → T-012 (🧠) → T-011 (🤖) → T-013 (🧠), con revisión y merge entre tareas. Al mergear T-012, mover T-011 a la primera posición de Listas, antes de las tareas del dueño; al integrar T-011 y estar T-010/T-012 mergeadas, hacer lo mismo con T-013. T-014/T-015 las ejecuta el dueño sin bloquear esta cola, pero siguen siendo requisitos de salida de P0.
+
+**Motivo del orden:** el fixture real de T-009 expone `imageUrls`; `CardContainer` pasa `property.images` y `HostCardItem` accede a `images[0]`. El caso exitoso de T-011 rompe por una causa de T-012. Se resuelve primero en frontera, sin pedir a Lite que cambie el contrato ni que simule una respuesta incompatible con la API.
 
 ## 📥 Backlog (sin refinar)
 **P0 Estabilizar**
@@ -60,7 +70,7 @@ Sin implementaciones activas; T-009 implementada en PR #13, pendiente de revisi�
 - 🧠 Evaluar mover a `client/` + `server/` ([ADR 0004](adr/0004-keep-folder-layout.md))
 
 ## 🏁 Hecho reciente (máx. 10; las más viejas → archive/tasks/)
-- T-009 · P0 · M · 🧠 frontera · Infra de tests del front → [tarea](tasks/T-009-frontend-test-infra.md) · [PR #13](https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/pull/13) · **implementada, pendiente de revisión independiente y merge**; 6 tests, cobertura global 1,65 %, umbral 1 %, gates completo/client verdes. T-010 espera el merge.
+- T-009 · P0 · M · 🧠 frontera · Infra de tests del front → [tarea](tasks/T-009-frontend-test-infra.md) · [PR #13](https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/pull/13) · **revisión independiente APROBADA y mergeada por el dueño** con squash `dc27563`; 6 tests, cobertura global 1,65 %, umbral 1 %, rechazo a 100 % y gates completo/client verdes. Cierre documental en #14; T-012 desbloqueada, T-011 espera T-012.
 - T-008 · P0 · M · 🧠 frontera · ProblemDetail y health → [tarea](tasks/T-008-error-handling.md) · [PR #11](https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/pull/11) · **revisión independiente APROBADA y mergeada por el dueño** con squash `1b8ec82`; 118 tests, gate completo ✅, cobertura de revisión 82,59 %, PropertyServiceImp 95,07 %, compose/probes OK. Límites de repetición manual registrados en la tarea; cierre documental mergeado en #12 (`793fa11`).
 - T-007 · P0 · M · 🤖 Lite + corrección 🧠 · Tests de PropertyServiceImp → [tarea](tasks/T-007-property-service-characterization.md) · [PR #10](https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/pull/10) · revisión independiente APROBADA y squash `e1b07c4`; 77 tests, gate completo verde, cobertura global 76,20 %.
 - T-006 · P0 · S · 🤖 Lite · Corregir el endpoint `DELETE /v1/api/property/{id}` → [tarea](tasks/T-006-delete-property-mapping.md) · [PR #9](https://github.com/MatiasNicolasAcevedo/c15-33-ft-java-react/pull/9) · **mergeada con squash**; endpoint mapeado por ID, 2 tests agregados, verify.sh --server ✅.
